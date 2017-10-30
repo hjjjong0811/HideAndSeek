@@ -24,8 +24,8 @@ public class enemy_test : MonoBehaviour {
         
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            //enemy.transform.position = new Vector3(enemy_pos.x, enemy_pos.y + move_speed, enemy_pos.z);
-            enemy.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.forward * Time.deltaTime);
+            enemy.transform.position = new Vector3(enemy_pos.x, enemy_pos.y + move_speed, enemy_pos.z);
+            //enemy.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.forward * Time.deltaTime);
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
