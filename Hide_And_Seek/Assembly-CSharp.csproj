@@ -46,15 +46,36 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Anima2D\Scripts\Bone2D.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\Control.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\EditorUpdaterProxy.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\Ik2D.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkCCD2D.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkGroup.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkLimb2D.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkSolver2D.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkSolver2DCCD.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\IkSolver2DLimb.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\MathUtils.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\Pose.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\PoseManager.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\SpriteMesh.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshAnimation.cs" />
+     <Compile Include="Assets\Anima2D\Scripts\SpriteMeshInstance.cs" />
      <Compile Include="Assets\Script\Enemy.cs" />
      <Compile Include="Assets\Script\Enemy_Chase.cs" />
      <Compile Include="Assets\Script\Enemy_Normal.cs" />
      <Compile Include="Assets\Script\Enemy_State.cs" />
+     <Compile Include="Assets\Script\Move.cs" />
+     <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\Scene_Manager.cs" />
      <Compile Include="Assets\Script\enemy_test\enemy_test.cs" />
      <Compile Include="Assets\Script\enemy_test\mouse_click_test.cs" />
      <Compile Include="Assets\Script\enemy_test\object_test.cs" />
      <Compile Include="Assets\Script\enemy_test\test.cs" />
+     <None Include="Assets\Anima2D\Version.txt" />
+     <None Include="Assets\Anima2D\Licenses.txt" />
+     <None Include="Assets\Anima2D\Readme.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
