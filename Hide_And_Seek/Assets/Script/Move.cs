@@ -12,7 +12,7 @@ public class Move : MonoBehaviour {
         Horizontal = Input.GetAxis("Horizontal");
         Vertical = Input.GetAxis("Vertical");
 
-        if (Input.GetKey(KeyCode.X)) {
+        if (Input.GetButton("Run")) {
             Run = true;
         } else {
             Run = false;

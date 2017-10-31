@@ -59,9 +59,9 @@ public class Player : MonoBehaviour {
             Speed = Speed_run;
             Animator.speed = Speed_run;
         }
-        if (move.Vertical > 0 && (move.Horizontal < 0.3 && move.Horizontal > -0.3)) {
+        if (move.Vertical > 0 && (move.Horizontal < 0.4 && move.Horizontal > -0.4)) {
             Animator.SetBool("Back", true);
-        } else {  }
+        }
 
         //이동
         transform.Translate(Vector3.right * Speed * move.Horizontal * Time.deltaTime);
@@ -82,18 +82,18 @@ public class Player : MonoBehaviour {
     }
 
     void action() {
-        GameObject gameobject = findNearObject();
-        if(gameObject != null) {
+        GameObject nearObject = findNearObject();
+        if(nearObject != null) {
             //gameObject.SendMessage("action");
-            Debug.Log(gameObject.name);
+            Debug.Log(nearObject.name + " Player_action");
         }
     }
 
     void action_item() {
-        GameObject gameobject = findNearObject();
-        if (gameObject != null) {
+        GameObject nearObject = findNearObject();
+        if (nearObject != null) {
             //gameObject.SendMessage("action");
-            Debug.Log(gameObject.name +" Player_action");
+            Debug.Log(nearObject.name +" Player_action");
         }
     }
 
@@ -102,8 +102,8 @@ public class Player : MonoBehaviour {
         Vector2 examdistance = new Vector2(-0.01513481f * transform.localScale.x, -0.7239494f);
         Vector2 examPosition = transform.position;
         examPosition += examdistance;
-        Collider2D[] objects = Physics2D.OverlapBoxAll(examPosition, new Vector2(0.1f, 0.1f),
-            0, 1 << LayerMask.NameToLayer("Object"));   //Layer이름 Object인 경우만 조사
+        Collider2D[] objects = Physics2D.OverlapBoxAll(examPosition, new Vector2(0.1f, 0.1f), 
+            0, 1<< LayerMask.NameToLayer("Object"));   //Layer이름 Object인 경우만 조사
 
         //범위내 오브젝트 X
         if (objects.Length == 0) {
