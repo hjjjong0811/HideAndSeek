@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public readonly float Speed_walk = 1, Speed_run = 2.5, Hp_max = 300;
+    public readonly float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
+    public readonly int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
     public float Hp, Speed;
     public bool Tire;
@@ -22,9 +23,10 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        Animator.SetInteger("State", 0);
+        Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (15f * Time.deltaTime); //시간에따른 hp회복
+        Animator.SetBool("Back", false);
 
         //지치지 않아야 이동, 액션 가능
         if (!Tire) {
@@ -38,7 +40,7 @@ public class Player : MonoBehaviour {
         if (Hp <= 0) {
             Tire = true;
             Animator.speed = Speed_run;
-            Animator.SetInteger("State", 0);
+            Animator.SetInteger("State", Ani_Idle);
             Invoke("heal", 2.0f);
         }
     }
@@ -49,17 +51,17 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        Animator.SetInteger("State",1);
+        Animator.SetInteger("State",Ani_Walk);
         //달리는 경우 체력감소, 달리기모션
         if (move.Run) {
             Hp -= 2;
-            Animator.SetInteger("State", 2);
+            Animator.SetInteger("State", Ani_Run);
             Speed = Speed_run;
             Animator.speed = Speed_run;
         }
-        //if (move.Vertical > 0 && (move.Horizontal < 0.3 && move.Horizontal > -0.3))
-        //    Animator.SetTrigger("Back");
-        //else Animator.ResetTrigger("Back");
+        if (move.Vertical > 0 && (move.Horizontal < 0.3 && move.Horizontal > -0.3)) {
+            Animator.SetBool("Back", true);
+        } else {  }
 
         //이동
         transform.Translate(Vector3.right * Speed * move.Horizontal * Time.deltaTime);
