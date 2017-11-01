@@ -14,7 +14,13 @@ public class DataManager_Item : DataManager {
     public void Start() {
         itemSprites = Resources.LoadAll<Sprite>("Sprites/Items/item_0");
     }
-
+    public override void SortByKey() {
+        list_item.Sort(delegate (Item A, Item B) {
+            if (A.Key > B.Key) return 1;
+            else if (A.Key < B.Key) return -1;
+            return 0;
+        });
+    }
     public override void LoadData(string path) {
         if (list_item != null) list_item.Clear();
 

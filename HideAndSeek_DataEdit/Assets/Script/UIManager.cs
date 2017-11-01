@@ -7,8 +7,8 @@ public class UIManager : MonoBehaviour
 {
     private readonly int code_item = 0;
 
-    DataManager dataManager;
-    EditUIManager editUIManager;
+    DataManager dataManager = null;
+    EditUIManager editUIManager = null;
 
     InputField inputPath;   //파일경로입력
     Dropdown dropdown;      //종류선택
@@ -29,12 +29,19 @@ public class UIManager : MonoBehaviour
         }
     }
     public void saveClick() {
+        if (dataManager == null) return;
         dataManager.SaveData(inputPath.text);
     }
 
     public void createClick() {
+        if (editUIManager == null) return;
         editUIManager.CreateClick();
     }
 
+    public void SortClick() {
+        if (dataManager == null || editUIManager == null) return;
+        dataManager.SortByKey();
+        editUIManager.displayItemList();
+    }
 
 }

@@ -9,5 +9,5 @@ public abstract class DataManager : MonoBehaviour
 {
     public abstract void LoadData(String path);
     public abstract void SaveData(String path);
-    
+    public virtual void SortByKey() { }
 }
