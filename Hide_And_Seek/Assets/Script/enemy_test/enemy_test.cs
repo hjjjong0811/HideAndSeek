@@ -8,6 +8,7 @@ public class enemy_test : MonoBehaviour {
     public float move_speed = 3f;
     public static bool moving;
     public static Vector3 destination;
+    int scene_num, spot_num;
 
 	// Use this for initialization
 	void Start () {
@@ -70,5 +71,18 @@ public class enemy_test : MonoBehaviour {
 
     void random_destination()
     {
+    }
+
+    //현재 몇층인지 반환
+    int check_floor()
+    {
+        if (scene_num >= 0 && scene_num < 10) return 1;
+        else if (scene_num >= 11 && scene_num < 20) return 2;
+        else return 0;
+    }
+
+    void go_to_the_room()
+    {
+
     }
 }

@@ -28,7 +28,7 @@ public class Scene_Manager : MonoBehaviour {
         "S_BBQ"//일단 여기에 둠
     };*/
     Scene[] Scenes = new Scene[]{
-        new Scene("0_Wine",2, new int[,]{{0,1}}),
+        new Scene("0_Wine",2, new int[,]{{0,1}}), //0
         new Scene("1_Bath",2, new int[,]{{0,1}}),
         new Scene("1_Dining",4, new int[,]{{0,1},{0,2},{1,3},{2,3}}),
         new Scene("1_Front",1, new int[,]{}),
@@ -37,8 +37,8 @@ public class Scene_Manager : MonoBehaviour {
         new Scene("1_Laundry",2, new int[,]{{0,2}}),
         new Scene("1_Living",3, new int[,]{{0,1},{0,2},{1,2}}),
         new Scene("1_Pantry",2, new int[,]{{0,1}}),
-        new Scene("1_Reception",2, new int[,]{{0,1}}),
-        new Scene("2_Baby",3, new int[,]{{0,1},{1,2}}),
+        new Scene("1_Reception",2, new int[,]{{0,1}}), //9
+        new Scene("2_Baby",3, new int[,]{{0,1},{1,2}}), //10
         new Scene("2_Bath",2, new int[,]{{0,1}}),
         new Scene("2_Bed",3, new int[,]{{0,1},{1,2}}),
         new Scene("2_Dress",2, new int[,]{{0,1}}),
@@ -47,7 +47,7 @@ public class Scene_Manager : MonoBehaviour {
         new Scene("2_Library",3, new int[,]{{0,1},{1,2}}),
         new Scene("2_Photo",1, new int[,]{}),
         new Scene("2_Swimming",3, new int[,]{{0,1},{1,2}}),
-        new Scene("3_Garret",2, new int[,]{{0,1}}),
+        new Scene("3_Garret",2, new int[,]{{0,1}}), //19
         new Scene("S_BBQ",0, new int[,]{}) //일단 여기 두기
     };
 
