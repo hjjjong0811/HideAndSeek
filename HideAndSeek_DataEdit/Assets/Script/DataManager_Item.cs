@@ -6,13 +6,10 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataManager_Item : DataManager {
-    public Sprite[] itemSprites;
-
     [SerializeField]
     public List<Item> list_item;
 
     public void Start() {
-        itemSprites = Resources.LoadAll<Sprite>("Sprites/Items/item_0");
     }
     public override void SortByKey() {
         list_item.Sort(delegate (Item A, Item B) {
@@ -42,14 +39,22 @@ public class DataManager_Item : DataManager {
         bf.Serialize(file, list_item);
         file.Close();
     }
-    public int findItemSpriteByName(String pname) {
-        int index = -1;
-        for (int i = 0; i < itemSprites.Length; i++) {
-            if (itemSprites[i].name == pname) {
-                index = i;
-            }
-        }
+    public byte[] LoadBytefromImgPath(String path) {
 
-        return index;
+        FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+        FileInfo fi = new FileInfo(path);
+        long imagelength = fi.Length;
+
+        BinaryReader br = new BinaryReader(fs);
+        byte[] imageData = br.ReadBytes((int)imagelength);
+
+        return imageData;
+    }
+    public Sprite LoadSpriteFromBytes(byte[] data) {
+        Texture2D texture2D = new Texture2D(300, 300);
+        texture2D.LoadImage(data);
+        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, 300, 300), new Vector2(0, 0));
+
+        return sprite;
     }
 }

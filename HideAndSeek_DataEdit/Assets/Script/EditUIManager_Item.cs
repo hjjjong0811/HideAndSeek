@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 public class EditUIManager_Item : EditUIManager {
     public DataManager_Item dataManager;
@@ -14,6 +17,7 @@ public class EditUIManager_Item : EditUIManager {
     
     public override void Init() {
         displayItemList();
+
     }
 
     public override void editPanelSetting() {
@@ -35,12 +39,11 @@ public class EditUIManager_Item : EditUIManager {
         Item item = (Item)arg;
         //아이템 정보 출력
         GameObject.Find("EditItem_key").GetComponent<InputField>().text = item.Key + "";
-        GameObject.Find("EditItem_img").GetComponent<InputField>().text = item.Img;
+        GameObject.Find("EditItem_img").GetComponent<InputField>().text = item.Img_path;
         GameObject.Find("EditItem_name").GetComponent<InputField>().text = item.Name;
         GameObject.Find("EditItem_info").GetComponent<InputField>().text = item.Info;
-        int spriteIndex = dataManager.findItemSpriteByName(item.Img);
-        GameObject.Find("Image").GetComponent<Image>().sprite =
-            (spriteIndex == -1) ? null : dataManager.itemSprites[spriteIndex];
+
+        GameObject.Find("Image").GetComponent<Image>().sprite = dataManager.LoadSpriteFromBytes(item.Img_data);
 
         GameObject.Find("EditItem_BtnOK").GetComponent<Button>().
             onClick.AddListener(() => itemEditOKClick());
@@ -69,9 +72,7 @@ public class EditUIManager_Item : EditUIManager {
 
             btn.name = item.Key + "";
             btn.transform.GetChild(0).GetComponent<Text>().text = item.Key + "";
-            int spriteIndex = dataManager.findItemSpriteByName(item.Img);
-            btn.transform.GetChild(1).GetComponent<Image>().sprite =
-                (spriteIndex == -1) ? null : dataManager.itemSprites[spriteIndex];
+            btn.transform.GetChild(1).GetComponent<Image>().sprite = dataManager.LoadSpriteFromBytes(item.Img_data);
             btn.transform.GetChild(2).GetComponent<Text>().text = item.Name;
             btn.transform.GetChild(3).GetComponent<Text>().text = item.Info;
 
@@ -96,9 +97,10 @@ public class EditUIManager_Item : EditUIManager {
         //UI로부터 정보얻음
         Item item = new Item();
         item.Key = int.Parse(GameObject.Find("EditItem_key").GetComponent<InputField>().text);
-        item.Img = GameObject.Find("EditItem_img").GetComponent<InputField>().text;
+        item.Img_path = GameObject.Find("EditItem_img").GetComponent<InputField>().text;
         item.Name = GameObject.Find("EditItem_name").GetComponent<InputField>().text;
         item.Info = GameObject.Find("EditItem_info").GetComponent<InputField>().text;
+        item.Img_data = dataManager.LoadBytefromImgPath(item.Img_path);
         //Create의 경우
         if (isNewItem) {
             if (-1 != findListItem(item.Key)) return;       //키값 겹치는 경우
@@ -109,9 +111,10 @@ public class EditUIManager_Item : EditUIManager {
             if (dataManager.list_item[nClikedIndex].Key != item.Key
                 && findListItem(item.Key) != -1) return;        //키값 겹치는 경우
             dataManager.list_item[nClikedIndex].Key = item.Key;
-            dataManager.list_item[nClikedIndex].Img = item.Img;
+            dataManager.list_item[nClikedIndex].Img_path = item.Img_path;
             dataManager.list_item[nClikedIndex].Name = item.Name;
             dataManager.list_item[nClikedIndex].Info = item.Info;
+            dataManager.list_item[nClikedIndex].Img_data = item.Img_data;
 
         }
         itemEditCloseClick();

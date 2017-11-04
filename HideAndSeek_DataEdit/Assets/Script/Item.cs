@@ -11,5 +11,6 @@ public class Item {
     public int Key;
     public String Name;
     public String Info;
-    public String Img;
+    public String Img_path;
+    public byte[] Img_data;
 }
