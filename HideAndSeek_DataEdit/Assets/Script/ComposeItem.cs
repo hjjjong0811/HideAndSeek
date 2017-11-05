@@ -9,7 +9,7 @@ using System.IO;
 public class ComposeItem
 {
     [SerializeField]
-    public int Key;
+    public int Key_Compose;
     public int Count;
     public int[] MaterialItemsKey;
     public int ResultItemKey;

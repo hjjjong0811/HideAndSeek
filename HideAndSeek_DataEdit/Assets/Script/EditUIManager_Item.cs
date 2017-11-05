@@ -17,48 +17,8 @@ public class EditUIManager_Item : EditUIManager {
     
     public override void Init() {
         displayItemList();
-
     }
 
-    public override void editPanelSetting() {
-        pnlEdit = Instantiate(pnlEdit_prefab, GameObject.Find("Canvas").transform);
-        pnlEdit.name = "myEdit";
-
-        GameObject.Find("EditItem_BtnOK").GetComponent<Button>().
-            onClick.AddListener(() => itemEditOKClick());
-        GameObject.Find("EditItem_BtnDelete").GetComponent<Button>().
-            onClick.AddListener(() => itemEditDeleteClick());
-        GameObject.Find("EditItem_exit").GetComponent<Button>().
-            onClick.AddListener(() => itemEditCloseClick());
-    }
-
-    public override void editPanelSetting(object arg) {
-        pnlEdit = Instantiate(pnlEdit_prefab, GameObject.Find("Canvas").transform);
-        pnlEdit.name = "myEdit";
-
-        Item item = (Item)arg;
-        //아이템 정보 출력
-        GameObject.Find("EditItem_key").GetComponent<InputField>().text = item.Key + "";
-        GameObject.Find("EditItem_img").GetComponent<InputField>().text = item.Img_path;
-        GameObject.Find("EditItem_name").GetComponent<InputField>().text = item.Name;
-        GameObject.Find("EditItem_info").GetComponent<InputField>().text = item.Info;
-
-        GameObject.Find("Image").GetComponent<Image>().sprite = dataManager.LoadSpriteFromBytes(item.Img_data);
-
-        GameObject.Find("EditItem_BtnOK").GetComponent<Button>().
-            onClick.AddListener(() => itemEditOKClick());
-        GameObject.Find("EditItem_BtnDelete").GetComponent<Button>().
-            onClick.AddListener(() => itemEditDeleteClick());
-        GameObject.Find("EditItem_exit").GetComponent<Button>().
-            onClick.AddListener(() => itemEditCloseClick());
-    }
-
-    public override void CreateClick() {
-        editPanelSetting();
-        isNewItem = true;
-        nClikedIndex = -1;
-    }
-    
     //Scroll View의 아이템들 보여줌
     public override void displayItemList() {
         //삭제
@@ -76,73 +36,108 @@ public class EditUIManager_Item : EditUIManager {
             btn.transform.GetChild(2).GetComponent<Text>().text = item.Name;
             btn.transform.GetChild(3).GetComponent<Text>().text = item.Info;
 
-            btn.GetComponent<Button>().onClick.AddListener(() => itemClick(item.Key));
+            int index = i;
+            btn.GetComponent<Button>().onClick.AddListener(() => itemClick(index));
         }
     }
-    
-    //item 클릭
-    public void itemClick(int item_key) {
-        itemEditCloseClick();
-        nClikedIndex = findListItem(item_key);  //오류체크
-        if (nClikedIndex == -1) return;
 
-        isNewItem = false;
+    //수정창 열기
+    public override void editPanelSetting() {
+        pnlEdit = Instantiate(pnlEdit_prefab, GameObject.Find("Canvas").transform);
+        pnlEdit.name = "myEdit";
 
-        Item item = dataManager.list_item[nClikedIndex];
-        editPanelSetting(item);
+        GameObject.Find("EditItem_BtnOK").GetComponent<Button>().
+            onClick.AddListener(() => editPanelOKClick());
+        GameObject.Find("EditItem_BtnDelete").GetComponent<Button>().
+            onClick.AddListener(() => editPanelDeleteClick());
+        GameObject.Find("EditItem_exit").GetComponent<Button>().
+            onClick.AddListener(() => editPanelCloseClick());
     }
 
-    //item 수정창 OK 클릭
-    public void itemEditOKClick() {
+    public override void editPanelSetting(object arg) {
+        pnlEdit = Instantiate(pnlEdit_prefab, GameObject.Find("Canvas").transform);
+        pnlEdit.name = "myEdit";
+
+        Item item = (Item)arg;
+        //아이템 정보 출력
+        GameObject.Find("EditItem_key").GetComponent<InputField>().text = item.Key + "";
+        GameObject.Find("EditItem_name").GetComponent<InputField>().text = item.Name;
+        GameObject.Find("EditItem_info").GetComponent<InputField>().text = item.Info;
+        GameObject.Find("Image").GetComponent<Image>().sprite = dataManager.LoadSpriteFromBytes(item.Img_data);
+
+        GameObject.Find("EditItem_BtnOK").GetComponent<Button>().
+            onClick.AddListener(() => editPanelOKClick());
+        GameObject.Find("EditItem_BtnDelete").GetComponent<Button>().
+            onClick.AddListener(() => editPanelDeleteClick());
+        GameObject.Find("EditItem_exit").GetComponent<Button>().
+            onClick.AddListener(() => editPanelCloseClick());
+    }
+
+    public override void CreateClick() {
+        editPanelSetting();
+        isNewItem = true;
+        nClikedIndex = -1;
+    }
+    
+    
+    //item 클릭
+    public void itemClick(int clickedIndex) {
+        editPanelCloseClick();
+        isNewItem = false;
+        Item item = dataManager.list_item[clickedIndex];
+        editPanelSetting(item);
+        nClikedIndex = clickedIndex;
+    }
+
+    //수정창 OK 클릭
+    public void editPanelOKClick() {
         //UI로부터 정보얻음
         Item item = new Item();
         item.Key = int.Parse(GameObject.Find("EditItem_key").GetComponent<InputField>().text);
-        item.Img_path = GameObject.Find("EditItem_img").GetComponent<InputField>().text;
         item.Name = GameObject.Find("EditItem_name").GetComponent<InputField>().text;
         item.Info = GameObject.Find("EditItem_info").GetComponent<InputField>().text;
-        item.Img_data = dataManager.LoadBytefromImgPath(item.Img_path);
+        String imgPath = GameObject.Find("EditItem_img").GetComponent<InputField>().text;
+        if (!imgPath.Equals("")) item.Img_data = dataManager.LoadBytefromImgPath(imgPath);
         //Create의 경우
         if (isNewItem) {
-            if (-1 != findListItem(item.Key)) return;       //키값 겹치는 경우
+            if (isExistKey(item.Key)) return;       //키값 겹치는 경우
             dataManager.list_item.Add(item);
         }
         //기존 아이템 수정의 경우
         else {
             if (dataManager.list_item[nClikedIndex].Key != item.Key
-                && findListItem(item.Key) != -1) return;        //키값 겹치는 경우
+                && isExistKey(item.Key)) return;        //키값 겹치는 경우
             dataManager.list_item[nClikedIndex].Key = item.Key;
-            dataManager.list_item[nClikedIndex].Img_path = item.Img_path;
             dataManager.list_item[nClikedIndex].Name = item.Name;
             dataManager.list_item[nClikedIndex].Info = item.Info;
-            dataManager.list_item[nClikedIndex].Img_data = item.Img_data;
+            if (!imgPath.Equals("")) dataManager.list_item[nClikedIndex].Img_data = item.Img_data;
 
         }
-        itemEditCloseClick();
+        editPanelCloseClick();
         displayItemList();
     }
     //아이템삭제
-    public void itemEditDeleteClick() {
-        if (nClikedIndex != -1) {
+    public void editPanelDeleteClick() {
+        if (!isNewItem) {
             dataManager.list_item.RemoveAt(nClikedIndex);
-            itemEditCloseClick();
+            editPanelCloseClick();
             displayItemList();
         }
 
     }
     //item 수정창 Close 클릭
-    public void itemEditCloseClick() {
+    public void editPanelCloseClick() {
         Destroy(pnlEdit);
     }
-    //키값으로 인덱스 조사
-    public int findListItem(int key) {
-        int index = -1;
 
+
+    //키값으로 인덱스 조사
+    public bool isExistKey(int key) {
         for (int i = 0; i < dataManager.list_item.Count; i++) {
             if (dataManager.list_item[i].Key == key) {
-                index = i;
-                break;
+                return true;
             }
         }
-        return index;
+        return false;
     }
 }

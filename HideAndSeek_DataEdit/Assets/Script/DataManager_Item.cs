@@ -8,9 +8,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 public class DataManager_Item : DataManager {
     [SerializeField]
     public List<Item> list_item;
-
-    public void Start() {
-    }
+    
     public override void SortByKey() {
         list_item.Sort(delegate (Item A, Item B) {
             if (A.Key > B.Key) return 1;
@@ -51,9 +49,9 @@ public class DataManager_Item : DataManager {
         return imageData;
     }
     public Sprite LoadSpriteFromBytes(byte[] data) {
-        Texture2D texture2D = new Texture2D(300, 300);
+        Texture2D texture2D = new Texture2D(500, 500);
         texture2D.LoadImage(data);
-        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, 300, 300), new Vector2(0, 0));
+        Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
 
         return sprite;
     }
