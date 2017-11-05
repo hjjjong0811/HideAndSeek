@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private readonly int code_item = 0;
+    private readonly int code_item = 0, code_compose = 1;
 
     DataManager dataManager = null;
     EditUIManager editUIManager = null;
 
     InputField inputPath;   //파일경로입력
     Dropdown dropdown;      //종류선택
+
+    public GameObject scrollList;
     
 
     private void Start() {
@@ -21,10 +23,18 @@ public class UIManager : MonoBehaviour
     }
 
     public void OpenClick() {
+        for (int i = scrollList.transform.childCount - 1; i >= 0; i--) {
+            Destroy(scrollList.transform.GetChild(i).gameObject);
+        }
         if (dropdown.value == code_item) {
             dataManager = GameObject.Find("Manager_Item").GetComponent<DataManager_Item>();
             dataManager.LoadData(inputPath.text);
             editUIManager = GameObject.Find("Manager_Item").GetComponent<EditUIManager_Item>();
+            editUIManager.Init();
+        }else if(dropdown.value == code_compose) {
+            dataManager = GameObject.Find("Manager_Compose").GetComponent<DataManager_Compose>();
+            dataManager.LoadData(inputPath.text);
+            editUIManager = GameObject.Find("Manager_Compose").GetComponent<EditUIManager_Compose>();
             editUIManager.Init();
         }
     }
