@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    public readonly float Speed_walk = 1, Speed_run = 3, Hp_max = 300;
+    public readonly float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
+    public readonly int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
     public float Hp, Speed;
     public bool Tire;
@@ -14,23 +15,23 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Hp = Hp_max;
-        Speed = Speed_walk;
         Tire = false;
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
+        Speed = Speed_walk;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //Animator.SetInteger("human_state", 0);
-
-        Hp = (Hp >= Hp_max) ? Hp_max : Hp + (15f * Time.deltaTime); //시간에따른 hp회복
+        Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
+        Hp = (Hp >= Hp_max) ? Hp_max : Hp + (15f * Time.deltaTime); //시간에따른 hp회복
+        Animator.SetBool("Back", false);
 
         //지치지 않아야 이동, 액션 가능
         if (!Tire) {
-            Animator.speed = Speed;
             movement();
+            Animator.speed = Speed;
             if (Input.GetButtonDown("Action")) {
                 action();
             }
@@ -38,7 +39,8 @@ public class Player : MonoBehaviour {
 
         if (Hp <= 0) {
             Tire = true;
-            Animator.speed = Speed;
+            Animator.speed = Speed_run;
+            Animator.SetInteger("State", Ani_Idle);
             Invoke("heal", 2.0f);
         }
     }
@@ -49,18 +51,22 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        //달리는 경우 체력감소
+        Animator.SetInteger("State",Ani_Walk);
+        //달리는 경우 체력감소, 달리기모션
         if (move.Run) {
-            Speed = Speed_run;
             Hp -= 2;
+            Animator.SetInteger("State", Ani_Run);
+            Speed = Speed_run;
+            Animator.speed = Speed_run;
         }
+        if (move.Vertical > 0 && (move.Horizontal < 0.4 && move.Horizontal > -0.4)) {
+            Animator.SetBool("Back", true);
+        }
+
         //이동
         transform.Translate(Vector3.right * Speed * move.Horizontal * Time.deltaTime);
         transform.Translate(Vector3.up * Speed * move.Vertical * Time.deltaTime);
 
-        //애니메이션
-        Animator.SetInteger("human_state", 1);
-        Animator.speed = Speed;
 
         //좌우반전
         if (move.Horizontal > 0) {
@@ -76,18 +82,18 @@ public class Player : MonoBehaviour {
     }
 
     void action() {
-        GameObject gameobject = findNearObject();
-        if(gameObject != null) {
+        GameObject nearObject = findNearObject();
+        if(nearObject != null) {
             //gameObject.SendMessage("action");
-            Debug.Log(gameObject.name);
+            Debug.Log(nearObject.name + " Player_action");
         }
     }
 
     void action_item() {
-        GameObject gameobject = findNearObject();
-        if (gameObject != null) {
+        GameObject nearObject = findNearObject();
+        if (nearObject != null) {
             //gameObject.SendMessage("action");
-            Debug.Log(gameObject.name);
+            Debug.Log(nearObject.name +" Player_action");
         }
     }
 
@@ -96,7 +102,8 @@ public class Player : MonoBehaviour {
         Vector2 examdistance = new Vector2(-0.01513481f * transform.localScale.x, -0.7239494f);
         Vector2 examPosition = transform.position;
         examPosition += examdistance;
-        Collider2D[] objects = Physics2D.OverlapBoxAll(examPosition, new Vector2(0.1f, 0.1f), 0, 1 << LayerMask.NameToLayer("Object"));
+        Collider2D[] objects = Physics2D.OverlapBoxAll(examPosition, new Vector2(0.1f, 0.1f), 
+            0, 1<< LayerMask.NameToLayer("Object"));   //Layer이름 Object인 경우만 조사
 
         //범위내 오브젝트 X
         if (objects.Length == 0) {
