@@ -12,6 +12,9 @@ public class Player : MonoBehaviour {
     public Animator Animator;
     public Move move;
 
+    public GameObject Flash_Prefab;
+    public FlashLight Flash;
+
 	// Use this for initialization
 	void Start () {
         Hp = Hp_max;
@@ -19,6 +22,10 @@ public class Player : MonoBehaviour {
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
+
+        GameObject f = Instantiate(Flash_Prefab);
+        Flash = f.GetComponent<FlashLight>();
+        Flash.LinkUser(this.gameObject);
 	}
 	
 	// Update is called once per frame
