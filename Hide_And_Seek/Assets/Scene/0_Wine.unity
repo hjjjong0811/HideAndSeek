@@ -42,7 +42,7 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 11
   m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 0
     m_EnableRealtimeLightmaps: 0
   m_LightmapEditorSettings:
-    serializedVersion: 8
+    serializedVersion: 9
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -87,7 +87,7 @@ LightmapSettings:
     m_PVRFilteringAtrousNormalSigma: 1
     m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
-  m_ShadowMaskMode: 2
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 11648432}
   - component: {fileID: 11648433}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Oak_and_boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -188,7 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232849638}
   - component: {fileID: 232849639}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: woodbox (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -249,6 +249,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &257047823
 GameObject:
   m_ObjectHideFlags: 0
@@ -258,7 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 257047824}
   - component: {fileID: 257047825}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -291,7 +292,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -319,6 +320,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &265374563
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265374564}
   - component: {fileID: 265374565}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +363,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -389,6 +391,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &272995694
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +401,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272995695}
   - component: {fileID: 272995696}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -431,7 +434,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -459,6 +462,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &303547130
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +472,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303547131}
   - component: {fileID: 303547132}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_box (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -501,7 +505,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -529,6 +533,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &434410514
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,7 +543,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434410515}
   - component: {fileID: 434410516}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +576,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -599,6 +604,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &554849762
 GameObject:
   m_ObjectHideFlags: 0
@@ -608,7 +614,7 @@ GameObject:
   m_Component:
   - component: {fileID: 554849763}
   - component: {fileID: 554849764}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Oaks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -711,7 +717,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -739,6 +745,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!4 &806172340
 Transform:
   m_ObjectHideFlags: 0
@@ -782,7 +789,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850094925}
   - component: {fileID: 850094926}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -815,7 +822,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -843,6 +850,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &864040814
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,7 +860,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864040815}
   - component: {fileID: 864040816}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -885,7 +893,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -913,6 +921,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &884033595
 GameObject:
   m_ObjectHideFlags: 0
@@ -923,7 +932,7 @@ GameObject:
   - component: {fileID: 884033596}
   - component: {fileID: 884033597}
   - component: {fileID: 884033599}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -956,7 +965,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -984,6 +993,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!60 &884033599
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1021,7 +1031,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925148313}
   - component: {fileID: 925148314}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1054,7 +1064,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1082,6 +1092,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1208662919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1091,7 +1102,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208662920}
   - component: {fileID: 1208662921}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: woodbox (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1124,7 +1135,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1152,6 +1163,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1247969522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1161,7 +1173,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247969523}
   - component: {fileID: 1247969524}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_box (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,7 +1206,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1222,6 +1234,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1294127900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1232,7 +1245,7 @@ GameObject:
   - component: {fileID: 1294127901}
   - component: {fileID: 1294127902}
   - component: {fileID: 1294127903}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: escape_stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1265,7 +1278,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1293,6 +1306,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!60 &1294127903
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1331,7 +1345,7 @@ GameObject:
   - component: {fileID: 1355341159}
   - component: {fileID: 1355341160}
   - component: {fileID: 1355341161}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: woodbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1364,7 +1378,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1392,6 +1406,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!60 &1355341161
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1430,7 +1445,7 @@ GameObject:
   - component: {fileID: 1387179276}
   - component: {fileID: 1387179277}
   - component: {fileID: 1387179278}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Oak_front_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1463,7 +1478,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1491,6 +1506,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!70 &1387179278
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1515,7 +1531,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1445875149}
   - component: {fileID: 1445875150}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Two_boxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1573,7 +1589,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1450961531}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Oak_and_Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1604,7 +1620,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470746372}
   - component: {fileID: 1470746373}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_box (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1637,7 +1653,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1665,6 +1681,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1529277943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,7 +1691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529277944}
   - component: {fileID: 1529277945}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing (0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1707,7 +1724,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1735,6 +1752,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1680288544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,7 +1762,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1680288545}
   - component: {fileID: 1680288546}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_box (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1777,7 +1795,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1805,6 +1823,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1701347825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1814,7 +1833,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701347826}
   - component: {fileID: 1701347827}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_landing_man
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1847,7 +1866,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1875,6 +1894,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1788908347
 GameObject:
   m_ObjectHideFlags: 0
@@ -1884,7 +1904,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1788908348}
   - component: {fileID: 1788908349}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1952,6 +1972,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
 --- !u!1 &1805486821
 GameObject:
   m_ObjectHideFlags: 0
@@ -1991,7 +2012,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1818539073}
   - component: {fileID: 1818539074}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: escape_door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2024,7 +2045,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2052,6 +2073,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1854338143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,7 +2083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854338144}
   - component: {fileID: 1854338145}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: winebottles_box (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2094,7 +2116,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2122,6 +2144,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &1861928115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2203,7 +2226,7 @@ GameObject:
   - component: {fileID: 1930807012}
   - component: {fileID: 1930807013}
   - component: {fileID: 1930807014}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: wine_standing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2236,7 +2259,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2264,6 +2287,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!70 &1930807014
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2289,7 +2313,7 @@ GameObject:
   - component: {fileID: 1997202556}
   - component: {fileID: 1997202557}
   - component: {fileID: 1997202558}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: ladder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2322,7 +2346,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2350,6 +2374,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!68 &1997202558
 EdgeCollider2D:
   m_ObjectHideFlags: 0
@@ -2482,7 +2507,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2113780081}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.33, y: 0.61, z: 0}
+  m_LocalPosition: {x: 2.8, y: 0.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1805486822}
@@ -2541,6 +2566,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!70 &2113780085
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2584,7 +2610,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2123420822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Door_Wayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
