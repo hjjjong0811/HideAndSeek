@@ -8,7 +8,7 @@ public class enemy_test : MonoBehaviour {
     public float move_speed = 3f;
     public static bool moving;
     public static Vector3 destination;
-    
+    int scene_num, spot_num;
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +24,12 @@ public class enemy_test : MonoBehaviour {
         //key_board_move(Time.deltaTime);//test
         if (moving)
         {
-            mouse_click_move(destination);
+            enemy_moving();
         }
 	}
-
+        
+    /*
+    //test용
     void key_board_move(float f)
     {
         
@@ -52,11 +54,35 @@ public class enemy_test : MonoBehaviour {
             enemy.transform.Translate(Vector3.right * f * move_speed);
         }
     }
+     */
 
-    void mouse_click_move(Vector3 v)
+    public void make_enemy_move(Vector3 v)
     {
-        float distance = Vector3.Distance(v, enemy_pos);
+        enemy_test.destination = v;
+        enemy_test.moving = true;
+    }
+
+    void enemy_moving()
+    {
+        float distance = Vector3.Distance(destination, enemy_pos);
         if (distance < 0.1f) moving = false;
         enemy.transform.Translate((destination - enemy_pos) * Time.deltaTime / distance * move_speed);
+    }
+
+    void random_destination()
+    {
+    }
+
+    //현재 몇층인지 반환
+    int check_floor()
+    {
+        if (scene_num >= 0 && scene_num < 10) return 1;
+        else if (scene_num >= 11 && scene_num < 20) return 2;
+        else return 0;
+    }
+
+    void go_to_the_room()
+    {
+
     }
 }
