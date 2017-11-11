@@ -406,6 +406,7 @@ GameObject:
   - component: {fileID: 95253390718291416}
   - component: {fileID: 50563836985098188}
   - component: {fileID: 60999688604259604}
+  - component: {fileID: 114419438932000036}
   m_Layer: 8
   m_Name: Char_HyoJung
   m_TagString: Player
@@ -2306,6 +2307,22 @@ MonoBehaviour:
   - {fileID: 4515875431735374}
   - {fileID: 4405372390753362}
   - {fileID: 4855233577205446}
+--- !u!114 &114419438932000036
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424421781323040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 581277d1f139d8042ba2668352a987c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isCharacter: 1
+  animator: {fileID: 0}
+  wayPoint: []
+  pointIndex: 0
+  speed: 0
 --- !u!114 &114430527422048398
 MonoBehaviour:
   m_ObjectHideFlags: 1
