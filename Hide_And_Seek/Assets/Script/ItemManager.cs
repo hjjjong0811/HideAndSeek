@@ -14,11 +14,6 @@ public class ItemManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         LoadData();
-        for (int i = 0; i < ListItem.Count; i++) {
-            //GameObject test = Instantiate(ItemPrefab, PnlList.transform);
-            //test.GetComponent<Image>().sprite = LoadSpriteFromBytes(ListItem[i].Img_data);
-            Debug.Log(ListItem[i].Key + ", " + ListItem[i].Name + " : " + ListItem[i].Info);
-        }
 	}
 	
     void LoadData() {
@@ -42,7 +37,7 @@ public class ItemManager : MonoBehaviour {
         return sprite;
     }
 
-    Item getItemInfo(int key) {
+    public Item getItemInfo(int key) {
         for (int i = 0; i < ListItem.Count; i++) {
             if(ListItem[i].Key == key) {
                 return ListItem[i];
@@ -51,9 +46,12 @@ public class ItemManager : MonoBehaviour {
         return null;
     }
 
-    int getComposeItem(int count, int[] material) {
+    public int getComposeItem(int count, List<int> material) {
         int resultKey = -1;
 
+        for (int i = 0; i < material.Count; i++) {
+            Debug.Log(material[i] + "");
+        }
         return resultKey;
     }
 }
