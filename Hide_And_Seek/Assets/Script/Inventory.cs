@@ -10,11 +10,13 @@ public class Inventory {
 
     private Inventory() {
         inventory = new List<int>();
+        curEquipItem = -1;
+        //test
         inventory.Add(1);
         inventory.Add(2);
         inventory.Add(3);
+        inventory.Add(4);
         inventory.Add(12);
-        curEquipItem = -1;
     }
 
     public static Inventory getInstance() {
