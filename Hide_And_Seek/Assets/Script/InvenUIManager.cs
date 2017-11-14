@@ -13,6 +13,8 @@ public class InvenUIManager : MonoBehaviour {
     private List<int> selectedCompose_key;
     private List<GameObject> btnItemList;
 
+    private Vector3 beginMousePos;
+
 	// Use this for initialization
 	void Start () {
         selectedItem_key = -1;
@@ -108,5 +110,11 @@ public class InvenUIManager : MonoBehaviour {
             Debug.Log("조합 아이템 선택 시작");
         }
     }
-    
+
+    public void OnDragStart() {
+        beginMousePos = Input.mousePosition - transform.position;
+    }
+    public void OnDrag() {
+        transform.position = Input.mousePosition - beginMousePos;
+    }
 }
