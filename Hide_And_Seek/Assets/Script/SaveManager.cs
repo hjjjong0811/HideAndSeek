@@ -16,12 +16,13 @@ public class SaveManager : MonoBehaviour {
     public Button Btn_Delete;
 
     public String tempName = "";
+    public int tempChapter = 3;
+    public String tempSave = "";
 
     /*화면표기*/
-    public Text Player_Name; // 플레이어 이름
-    public Text Chapter; // 게임 챕터    
-    public Text PlayTime; // 게임 플레이시간
-    public Text SaveTime; // 저장시간
+    public Text Text_Name; // 플레이어 이름
+    public Text Text_Chapter; // 게임 챕터
+    public Text Text_SaveTime; // 저장시간
     
     
 
@@ -36,22 +37,29 @@ public class SaveManager : MonoBehaviour {
     public class PlayerData
     {
         public String Name;
-
+        public String SaveTime;
+        public int MainChapter;
     }
-
+    
     public void Start()
     {
+        
         tempName = "정원";
+        tempChapter = 3;
+       
 
         /*모든버튼 비활성화*/
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
+
+        Btn_LoadData();
     }
 
     public void Update()
     {
         FileExist();
+        tempSave = DateTime.Now.ToString("HH-mm-ss");
     }
 
     public void Btn_Slot() // 슬롯 눌렀을때
@@ -103,6 +111,8 @@ public class SaveManager : MonoBehaviour {
         PlayerData data = new PlayerData();
         
         data.Name = tempName;
+        data.MainChapter = tempChapter;
+        data.SaveTime = tempSave;
         
         bf.Serialize(file, data);
         file.Close();
@@ -122,8 +132,10 @@ public class SaveManager : MonoBehaviour {
         {
             PlayerData data = (PlayerData)bf.Deserialize(file);
             
-            Player_Name.text = data.Name;
-
+            Text_Name.text = "name." + data.Name;
+            Text_Chapter.text = "ep. " + data.MainChapter.ToString();
+            Text_SaveTime.text = "Save.T " +data.SaveTime;
+            
         }
 
         file.Close();

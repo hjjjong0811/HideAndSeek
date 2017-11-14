@@ -9,8 +9,9 @@ public class StartUIManager : MonoBehaviour {
 #if UNITY_WEBPLAYER
         public static string webplayerQuitURL = "http://google.com";
 #endif
-
+    
     public GameObject SettingPanel;
+    
 
     public void Btn_Start() // 게임시작
     {
@@ -19,6 +20,7 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Load() // 이어하기
     {
+        
         PlayerPrefs.SetString("lastLoadedScene", SceneManager.GetActiveScene().name);
         SceneManager.LoadScene("GameSave", LoadSceneMode.Additive);
     } 
