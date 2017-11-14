@@ -15,6 +15,9 @@ public class Player : MonoBehaviour {
     public GameObject Flash_Prefab;
     public FlashLight Flash;
 
+    public GameObject Inventory_Prefab; //inventory open
+    public bool isOpenInven = false;
+
 	// Use this for initialization
 	void Start () {
         Hp = Hp_max;
@@ -49,6 +52,18 @@ public class Player : MonoBehaviour {
             Animator.speed = Speed_run;
             Animator.SetInteger("State", Ani_Idle);
             Invoke("heal", 2.0f);
+        }
+
+        //test(inventory open)
+        if (Input.GetKeyDown(KeyCode.I)) {
+            if (isOpenInven) {
+                GameObject.Destroy(GameObject.Find("TTTTEST"));
+                isOpenInven = false;
+            }else {
+                GameObject test = Instantiate(Inventory_Prefab);
+                test.name = "TTTTEST";
+                isOpenInven = true;
+            }
         }
     }
 

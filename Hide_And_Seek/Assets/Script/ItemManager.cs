@@ -7,29 +7,45 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 using UnityEngine.UI;   //test
 
-public class ItemManager : MonoBehaviour {
-    public TextAsset DataItem, DataCompose;
+public class ItemManager {
+    private static ItemManager instance = null;
+    
     public List<Item> ListItem;
+    public List<ComposeItem> ListCompose;
 
-	// Use this for initialization
-	void Start () {
+    private ItemManager() {
         LoadData();
-        for (int i = 0; i < ListItem.Count; i++) {
-            //GameObject test = Instantiate(ItemPrefab, PnlList.transform);
-            //test.GetComponent<Image>().sprite = LoadSpriteFromBytes(ListItem[i].Img_data);
-            Debug.Log(ListItem[i].Key + ", " + ListItem[i].Name + " : " + ListItem[i].Info);
+        Debug.Log("Create ItemManager");
+    }
+    
+    public static ItemManager getInstance() {
+        if(instance == null) {
+            instance = new ItemManager();
         }
-	}
+        return instance;
+    }
 	
     void LoadData() {
         if (ListItem != null) ListItem.Clear();
+        ListItem = new List<Item>();
+
+        if (ListCompose != null) ListCompose.Clear();
+        ListCompose = new List<ComposeItem>();
+
+        TextAsset DataItem = Resources.Load("GameData/item") as TextAsset;
+        TextAsset DataCompose = Resources.Load("GameData/compose") as TextAsset;
+
         BinaryFormatter bf = new BinaryFormatter();
 
         MemoryStream ms = new MemoryStream(DataItem.bytes);
-
-        ListItem = new List<Item>();
         if(ms != null && ms.Length > 0) {
             ListItem = (List<Item>)bf.Deserialize(ms);
+        }
+        ms.Close();
+
+        ms = new MemoryStream(DataCompose.bytes);
+        if (ms != null && ms.Length > 0) {
+            ListCompose = (List<ComposeItem>)bf.Deserialize(ms);
         }
         ms.Close();
     }
@@ -42,7 +58,7 @@ public class ItemManager : MonoBehaviour {
         return sprite;
     }
 
-    Item getItemInfo(int key) {
+    public Item getItemInfo(int key) {
         for (int i = 0; i < ListItem.Count; i++) {
             if(ListItem[i].Key == key) {
                 return ListItem[i];
@@ -51,8 +67,32 @@ public class ItemManager : MonoBehaviour {
         return null;
     }
 
-    int getComposeItem(int count, int[] material) {
+    public int getComposeItem(int count, List<int> material) {
         int resultKey = -1;
+
+        //test
+        String test = "조합 가능? 재료 : ";
+        for (int i = 0; i < material.Count; i++) {
+            test += material[i];
+        }
+        Debug.Log(test);
+
+        //재료 갯수 일치 확인
+        for (int i = 0; i < ListCompose.Count; i++) {
+            if(ListCompose[i].Count == material.Count) {
+                int check = 0;
+                //재료 종류 일치 확인
+                for (int j = 0; j < ListCompose[i].Count; j++) {
+                    if (material.Contains(ListCompose[i].MaterialItemsKey[j])) {
+                        check++;
+                    }
+                }
+                if(check == material.Count) {
+                    resultKey = ListCompose[i].ResultItemKey;
+                    break;
+                }
+            } //if
+        } //for
 
         return resultKey;
     }
