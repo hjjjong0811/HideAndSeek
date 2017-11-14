@@ -89,6 +89,13 @@ public class InvenUIManager : MonoBehaviour {
                 //조합성공, 인벤토리 수정
                 Inventory inven = Inventory.getInstance();
                 inven.composeItem(result, selectedCompose_key);
+
+                Item item = mng.getItemInfo(result);
+                selectedItem_key = result;
+                itemInfo.transform.GetChild(0).GetComponent<Image>().sprite = mng.LoadSpriteFromBytes(item.Img_data);
+                itemInfo.transform.GetChild(1).GetComponent<Text>().text = item.Name;
+                itemInfo.transform.GetChild(2).GetComponent<Text>().text = item.Info;
+                itemInfo.SetActive(true);
             }
 
             selectedCompose_key.Clear();

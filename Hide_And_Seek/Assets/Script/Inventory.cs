@@ -11,12 +11,13 @@ public class Inventory {
     private Inventory() {
         inventory = new List<int>();
         curEquipItem = -1;
-        //test
-        inventory.Add(1);
-        inventory.Add(2);
-        inventory.Add(3);
-        inventory.Add(4);
-        inventory.Add(12);
+
+
+        //test Data
+        ItemManager mng = ItemManager.getInstance();
+        for (int i = 0; i < mng.ListItem.Count; i++) {
+            inventory.Add(mng.ListItem[i].Key);
+        }
     }
 
     public static Inventory getInstance() {
