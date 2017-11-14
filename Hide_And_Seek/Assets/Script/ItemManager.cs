@@ -7,16 +7,26 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 using UnityEngine.UI;   //test
 
-public class ItemManager : MonoBehaviour {
-    public TextAsset DataItem, DataCompose;
+public class ItemManager {
+    private static ItemManager instance = null;
+    
     public List<Item> ListItem;
 
-	// Use this for initialization
-	void Start () {
+    private ItemManager() {
         LoadData();
-	}
+        Debug.Log("Create ItemManager");
+    }
+    
+    public static ItemManager getInstance() {
+        if(instance == null) {
+            instance = new ItemManager();
+        }
+        return instance;
+    }
 	
     void LoadData() {
+        TextAsset DataItem = Resources.Load("GameData/item") as TextAsset;
+
         if (ListItem != null) ListItem.Clear();
         BinaryFormatter bf = new BinaryFormatter();
 

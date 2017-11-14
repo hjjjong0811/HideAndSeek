@@ -74,7 +74,6 @@ GameObject:
   - component: {fileID: 222257882481348480}
   - component: {fileID: 114713870337407602}
   - component: {fileID: 114981749750992680}
-  - component: {fileID: 114853910009350620}
   m_Layer: 5
   m_Name: PnlInven
   m_TagString: Untagged
@@ -921,20 +920,6 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Equip
---- !u!114 &114853910009350620
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1155513052386280}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 183888a3f620f9d4088b8c9126b73be7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DataItem: {fileID: 4900000, guid: 37fba433ef7fb444ab2a23d64eeb7897, type: 3}
-  DataCompose: {fileID: 0}
-  ListItem: []
 --- !u!114 &114862787462800524
 MonoBehaviour:
   m_ObjectHideFlags: 1
