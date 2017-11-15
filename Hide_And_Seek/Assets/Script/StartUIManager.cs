@@ -10,13 +10,7 @@ public class StartUIManager : MonoBehaviour {
         public static string webplayerQuitURL = "http://google.com";
 #endif
     
-    public GameObject Save_Prefab;
-    public GameObject Setting_Prefab;
-
-    public bool isOpenSave = false;
-    public bool isOpenSetting = false;
-
-
+    public GameObject SettingPanel;
     
 
     public void Btn_Start() // 게임시작
@@ -26,34 +20,21 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Load() // 이어하기
     {
-        if (isOpenSave)
-        {
-            GameObject.Destroy(GameObject.Find("Save"));
-            isOpenSave = false;
-        }
-        else
-        {
-            GameObject temp = Instantiate(Save_Prefab);
-            temp.name = "Save";
-            isOpenSave = true;
-        }
+        
+        PlayerPrefs.SetString("lastLoadedScene", SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene("GameSave", LoadSceneMode.Additive);
     } 
 
     public void Btn_Setting() // 세팅창 열기
     {
-        if (isOpenSetting)
-        {
-            GameObject.Destroy(GameObject.Find("Setting"));
-            isOpenSetting = false;
-        }
-        else
-        {
-            GameObject temp = Instantiate(Setting_Prefab);
-            temp.name = "Setting";
-            isOpenSetting = true;
-        }
+        SettingPanel.SetActive(true);
     }
-    
+
+    public void Btn_SettingOff() // 세팅창 끄기
+    {
+        SettingPanel.SetActive(false);
+    }
+
     public void Btn_Exit() // 게임종료 + 에디터종료
     {
     #if UNITY_EDITOR
