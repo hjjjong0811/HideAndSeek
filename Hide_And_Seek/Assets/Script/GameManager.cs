@@ -74,11 +74,7 @@ public class GameManager : MonoBehaviour
             SetMainChapter(-2);
 
         else if (GetMainChapter() == 4 && DeadCharacter[0] == 1)
-        {
-            MeetCharacter[0] = 1;
             SetMainChapter(5);
-        }
-
 
         /*M=5 소금을 얻어야 겠다*/
         else if (GetMainChapter() == 5 && MeetCharacter[2] == 1)
@@ -89,10 +85,7 @@ public class GameManager : MonoBehaviour
             SetMainChapter(7);
 
         else if (GetMainChapter() == 7 && CheckArray(FindJeongyeon, 8))
-        {
-            //+하빈죽음
             SetMainChapter(8);
-        }
 
         else if (GetMainChapter() >= 8 && SaltyWater == 1)
             SetMainChapter(MainChapter + 1);
@@ -102,7 +95,6 @@ public class GameManager : MonoBehaviour
 
         else if (GetMainChapter() >= 8 && DeadCharacter[2] == 1)
             SetMainChapter(MainChapter + 1);
-
 
         /*M= 11 서운 죽음*/
         else if (GetMainChapter() == 11 && DeadCharacter[3] == 1)
