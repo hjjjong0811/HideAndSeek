@@ -10,6 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
+    
+
     /* 구성 */
     public Button Btn_Save;
     public Button Btn_Load;
@@ -202,9 +204,8 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_Off() // 이전 씬으로 돌아가기
     {
-        string sceneName = PlayerPrefs.GetString("lastLoadedScene");
-        SceneManager.LoadScene(sceneName);
 
+        GameObject.Destroy(GameObject.Find("Save"));
     }
 
 }
