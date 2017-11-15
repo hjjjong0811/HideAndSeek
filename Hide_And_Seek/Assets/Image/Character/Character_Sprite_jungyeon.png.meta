@@ -1,9 +1,26 @@
 fileFormatVersion: 2
 guid: 5483475efc8691b4da0c381a9d033de5
-timeCreated: 1509365916
+timeCreated: 1510742424
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: F_Character
+    21300002: F_Face
+    21300004: F_Arm_r
+    21300006: F_Body
+    21300008: F_Arm_l
+    21300010: B_Character
+    21300012: F_Hair_front
+    21300014: B_Face
+    21300016: F_Leg_r
+    21300018: F_Leg_l
+    21300020: B_Arm_l
+    21300022: B_Body
+    21300024: B_Arm_r
+    21300026: F_Hair_back
+    21300028: B_Leg_l
+    21300030: B_Leg_r
+    21300032: B_Hair
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -39,7 +56,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -63,12 +80,266 @@ TextureImporter:
     crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
+  - buildTarget: Standalone
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+  - buildTarget: Android
+    maxTextureSize: 2048
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: F_Character
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 78
+        width: 89
+        height: 172
+      alignment: 9
+      pivot: {x: 0.48314607, y: 0.5145349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Face
+      rect:
+        serializedVersion: 2
+        x: 82
+        y: 193
+        width: 63
+        height: 57
+      alignment: 9
+      pivot: {x: 0.5, y: 0.54385966}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Arm_r
+      rect:
+        serializedVersion: 2
+        x: 138.42416
+        y: 188.9496
+        width: 42.9601
+        height: 61.0504
+      alignment: 9
+      pivot: {x: 0.5138684, y: 0.50041276}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Body
+      rect:
+        serializedVersion: 2
+        x: 173.4718
+        y: 184.53687
+        width: 49.667725
+        height: 65.463135
+      alignment: 9
+      pivot: {x: 0.49384582, y: 0.5493647}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Arm_l
+      rect:
+        serializedVersion: 2
+        x: 216.15633
+        y: 193.28726
+        width: 33.869324
+        height: 56.712738
+      alignment: 9
+      pivot: {x: 0.40873784, y: 0.5415492}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Character
+      rect:
+        serializedVersion: 2
+        x: 232
+        y: 78
+        width: 95
+        height: 172
+      alignment: 9
+      pivot: {x: 0.5842106, y: 0.5145349}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Hair_front
+      rect:
+        serializedVersion: 2
+        x: 81
+        y: 138
+        width: 65
+        height: 62
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Face
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 121
+        width: 65
+        height: 70
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Leg_r
+      rect:
+        serializedVersion: 2
+        x: 77.908775
+        y: 76
+        width: 33.18244
+        height: 67
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Leg_l
+      rect:
+        serializedVersion: 2
+        x: 105.06533
+        y: 73
+        width: 33.354164
+        height: 69
+      alignment: 9
+      pivot: {x: 0.5077228, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Arm_l
+      rect:
+        serializedVersion: 2
+        x: 137.64627
+        y: 62.088226
+        width: 37.382507
+        height: 65.75336
+      alignment: 9
+      pivot: {x: 0.53109676, y: 0.44730452}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Body
+      rect:
+        serializedVersion: 2
+        x: 171.44522
+        y: 57.28609
+        width: 49.416656
+        height: 68.71391
+      alignment: 9
+      pivot: {x: 0.5070108, y: 0.5124713}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Arm_r
+      rect:
+        serializedVersion: 2
+        x: 214.74666
+        y: 61.30938
+        width: 36.62932
+        height: 65.574234
+      alignment: 9
+      pivot: {x: 0.47102547, y: 0.49852842}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: F_Hair_back
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 88.99458
+        height: 86.06685
+      alignment: 9
+      pivot: {x: 0.46070218, y: 0.4879928}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Leg_l
+      rect:
+        serializedVersion: 2
+        x: 166.59944
+        y: 0
+        width: 32.39029
+        height: 66
+      alignment: 9
+      pivot: {x: 0.5063418, y: 0.47727275}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Leg_r
+      rect:
+        serializedVersion: 2
+        x: 192.76985
+        y: 0
+        width: 30.746964
+        height: 66
+      alignment: 9
+      pivot: {x: 0.44655296, y: 0.46212122}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: B_Hair
+      rect:
+        serializedVersion: 2
+        x: 239.31372
+        y: 0
+        width: 87.68628
+        height: 84.08636
+      alignment: 9
+      pivot: {x: 0.54953045, y: 0.4638089}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
     outline: []
     physicsShape: []
   spritePackingTag: 
-  userData: 
+  userData: 99008014234804
   assetBundleName: 
   assetBundleVariant: 
