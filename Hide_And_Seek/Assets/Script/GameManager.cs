@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public static int[] MeetCharacter = new int[4]; // 만난 친구 배열
     public static int[] FindJeongyeon = new int[8]; // 정연 찾기 위해 1층 모든방 배열
 
-    public int Num = 0;
+    public static int Num = 0;
 
     /*획득 아이템*/
     public static int Soju = 0;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void GetItem(int ItemKey)
+    public static void GetItem(int ItemKey)
     {
         switch (ItemKey)
         {
@@ -44,11 +44,9 @@ public class GameManager : MonoBehaviour
             case GROUNDKEY: GroundKey = 1; break;
         }
     }
+    
 
-
-
-
-    public void CheckEvent()
+    public static void CheckEvent()
     {
 
         /*M=0 튜토리얼*/
@@ -114,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public bool CheckArray(int[] TestArray, int ArrayNum)
+    public static bool CheckArray(int[] TestArray, int ArrayNum)
     {
         Num = 0;
 
@@ -132,12 +130,12 @@ public class GameManager : MonoBehaviour
             return false;
     }
 
-    public int GetMainChapter() // 현재 챕터 반환
+    public static int GetMainChapter() // 현재 챕터 반환
     {
         return MainChapter;
     }
 
-    public void SetMainChapter(int Chapter) // 챕터 수정하기
+    public static void SetMainChapter(int Chapter) // 챕터 수정하기
     {
         MainChapter = Chapter;
     }

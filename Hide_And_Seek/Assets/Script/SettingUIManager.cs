@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 public class SettingUIManager : MonoBehaviour {
 
     //public GameObject InfoPanel;
-    public GameObject MenuPanel;
+    public GameObject Menu_Prefab;
     public GameObject Save_Prefab;
     public GameObject Setting_Prefab;
-
-    public bool isOpenSave = false;
-    public bool isOpenSetting = false;
+    public GameUIManager gameUI;
+    
 
     public void Start()
     {
+        GameObject test = Instantiate(Menu_Prefab);
+        gameUI = test.GetComponent<GameUIManager>();
+ 
        // InfoPanel.SetActive(false);
 
     }
@@ -22,32 +24,17 @@ public class SettingUIManager : MonoBehaviour {
     public void Btn_Setting()
     {
 
-        if (isOpenSetting)
-        {
-            GameObject.Destroy(GameObject.Find("Setting"));
-            isOpenSetting = false;
-        }
-        else
-        {
+   
             GameObject temp = Instantiate(Setting_Prefab);
             temp.name = "Setting";
-            isOpenSetting = true;
-        }
     }
 
     public void Btn_Save()
     {
-        if (isOpenSave)
-        {
-            GameObject.Destroy(GameObject.Find("Save"));
-            isOpenSave = false;
-        }
-        else
-        {
+     
             GameObject test2 = Instantiate(Save_Prefab);
             test2.name = "Save";
-            isOpenSave = true;
-        }
+
     }
 
     public void Btn_Info() // 개발자 정보
@@ -63,12 +50,15 @@ public class SettingUIManager : MonoBehaviour {
 
     public void Btn_MenuOff() // 메뉴창 끄기
     {
+
         GameObject.Destroy(GameObject.Find("Menu"));
+
     }
 
     public void Btn_SettingOff()
     {
 
             GameObject.Destroy(GameObject.Find("Setting"));
+
     }
 }

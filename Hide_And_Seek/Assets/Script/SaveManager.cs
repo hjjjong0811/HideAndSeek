@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-    
+   
 
     /* 구성 */
     public Button Btn_Save;

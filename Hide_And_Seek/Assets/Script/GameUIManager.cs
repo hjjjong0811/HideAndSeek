@@ -9,19 +9,18 @@ public class GameUIManager : MonoBehaviour {
     public GameObject Menu_Prefab;
 
     public bool isOpenInven = false;
-    public bool isOpenMenu = false;
 
     public void Btn_Inven()
     {
         if (isOpenInven)
         {
-            GameObject.Destroy(GameObject.Find("TTTTEST"));
+            GameObject.Destroy(GameObject.Find("Inven"));
             isOpenInven = false;
         }
         else
         {
             GameObject test = Instantiate(Inventory_Prefab);
-            test.name = "TTTTEST";
+            test.name = "Inven";
             isOpenInven = true;
         }
     }
@@ -29,17 +28,8 @@ public class GameUIManager : MonoBehaviour {
     public void Btn_Menu()
     {
 
-        if (isOpenMenu)
-        {
-            GameObject.Destroy(GameObject.Find("Menu"));
-            isOpenMenu = false;
-        }
-        else
-        {
-            GameObject test1 = Instantiate(Menu_Prefab);
-            test1.name = "Menu";
-            isOpenMenu = true;
-        }
+            GameObject temp = Instantiate(Menu_Prefab);
+            temp.name = "Menu";
 
     }
 
