@@ -28,6 +28,7 @@ public enum Room
 public class Scene_Manager
 {
     public static int MAX_ROUTE_LENGTH = 100;//가장 긴 최단거리의 길이 (ex
+    public static int MAX_FLOOR1_IDX = 9, MAX_FLOOR2_IDX = 19;
     int[] spot_num = new int[] { 2, 2, 4, 1, 3, 3, 2, 3, 2, 2, 2, 2, 3, 2, 1, 7, 3, 1, 3, 2 };//맵당 spot갯수
     Map_Graph _map_graph;
     private static Scene_Manager instance = null;
@@ -189,6 +190,19 @@ public class Route
     public ISpot get_data()
     {
         return _data;
+    }
+
+    public static Route add_route(Route r1, Route r2)
+    {
+        if (r1._next == null) return null;
+
+        Route tmp = r1._next;
+        while (tmp._next != null)
+        {
+            tmp = tmp._next;
+        }
+        tmp._next = r2;
+        return r1;
     }
 
 }
