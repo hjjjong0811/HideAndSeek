@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public static GameObject Player_obj;//호빈추가
     public readonly float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
     public readonly int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
@@ -20,6 +21,7 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        Player_obj = this.gameObject;//호빈추가
         Hp = Hp_max;
         Tire = false;
         Animator = GetComponent<Animator>();
@@ -152,5 +154,15 @@ public class Player : MonoBehaviour {
 
     void setLight(bool value) {
 
+    }
+
+    //호빈추가
+    public void set_player_pos(Vector3 v)
+    {
+        this.transform.position = v;
+    }
+    public Vector3 get_player_pos()
+    {
+        return this.transform.position;
     }
 }

@@ -2490,9 +2490,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2113780082}
   - component: {fileID: 2113780084}
-  - component: {fileID: 2113780083}
   - component: {fileID: 2113780086}
   - component: {fileID: 2113780085}
+  - component: {fileID: 2113780083}
   m_Layer: 0
   m_Name: tmp_enemy
   m_TagString: Untagged
@@ -2521,10 +2521,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2113780081}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43adc02a4dad4484a97a24423d4f1f29, type: 3}
+  m_Script: {fileID: 11500000, guid: d02aec8cc8dd1e14aa32455c4aea2c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  move_speed: 3
+  _camera: {fileID: 2030080214}
 --- !u!212 &2113780084
 SpriteRenderer:
   m_ObjectHideFlags: 0
