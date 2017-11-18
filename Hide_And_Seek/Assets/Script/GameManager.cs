@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     public static int[] MeetCharacter = new int[4]; // 만난 친구 배열
     public static int[] FindJeongyeon = new int[8]; // 정연 찾기 위해 1층 모든방 배열
 
-    public int Num = 0;
+    public static int Num = 0;
 
     /*획득 아이템*/
     public static int Soju = 0;
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void GetItem(int ItemKey)
+    public static void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
         switch (ItemKey)
         {
@@ -44,11 +44,9 @@ public class GameManager : MonoBehaviour
             case GROUNDKEY: GroundKey = 1; break;
         }
     }
+    
 
-
-
-
-    public void CheckEvent()
+    public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
 
         /*M=0 튜토리얼*/
@@ -69,16 +67,12 @@ public class GameManager : MonoBehaviour
         else if (GetMainChapter() == 3 && EndScene[1] == 1) // 2차 장롱씬 종료시
             SetMainChapter(4);
 
-        /*M=4 시작 정연이 3번누르면 엔딩 또는 효정이 확인 */
-        else if (GetMainChapter() == 4 && MeetCharacter[1] == 3) // 정연엔딩
+        /*M=4 시작 정연이 5번누르면 엔딩 또는 효정이 확인 */
+        else if (GetMainChapter() == 4 && MeetCharacter[1] == 5) // 정연엔딩
             SetMainChapter(-2);
 
         else if (GetMainChapter() == 4 && DeadCharacter[0] == 1)
-        {
-            MeetCharacter[0] = 1;
             SetMainChapter(5);
-        }
-
 
         /*M=5 소금을 얻어야 겠다*/
         else if (GetMainChapter() == 5 && MeetCharacter[2] == 1)
@@ -89,10 +83,7 @@ public class GameManager : MonoBehaviour
             SetMainChapter(7);
 
         else if (GetMainChapter() == 7 && CheckArray(FindJeongyeon, 8))
-        {
-            //+하빈죽음
             SetMainChapter(8);
-        }
 
         else if (GetMainChapter() >= 8 && SaltyWater == 1)
             SetMainChapter(MainChapter + 1);
@@ -102,7 +93,6 @@ public class GameManager : MonoBehaviour
 
         else if (GetMainChapter() >= 8 && DeadCharacter[2] == 1)
             SetMainChapter(MainChapter + 1);
-
 
         /*M= 11 서운 죽음*/
         else if (GetMainChapter() == 11 && DeadCharacter[3] == 1)
@@ -122,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public bool CheckArray(int[] TestArray, int ArrayNum)
+    public static bool CheckArray(int[] TestArray, int ArrayNum)
     {
         Num = 0;
 
@@ -140,12 +130,12 @@ public class GameManager : MonoBehaviour
             return false;
     }
 
-    public int GetMainChapter() // 현재 챕터 반환
+    public static int GetMainChapter() // 현재 챕터 반환
     {
         return MainChapter;
     }
 
-    public void SetMainChapter(int Chapter) // 챕터 수정하기
+    public static void SetMainChapter(int Chapter) // 챕터 수정하기
     {
         MainChapter = Chapter;
     }
