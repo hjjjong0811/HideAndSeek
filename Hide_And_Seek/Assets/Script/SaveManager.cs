@@ -10,31 +10,28 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-   
+    /*플레이어 정보*/
+    public static float Player_x;
+    public static float Player_y;
 
-    /* 구성 */
+
+    
+    /* 구성 화면표기*/
     public Button Btn_Save;
     public Button Btn_Load;
     public Button Btn_Delete;
 
     public String tempName = "";
-    public int tempChapter = 3;
+    public int tempChapter = 10;
     public String tempSave = "";
-
-
-    /*화면표기*/
 
     public Text[] Text_Name = new Text[3]; // 플레이어 이름
     public Text[] Text_Chapter = new Text[3]; // 게임 챕터
     public Text[] Text_SaveTime = new Text[3]; // 저장시간
   
-
-    /*체크마크*/
-    public GameObject[] Check = new GameObject[3];
+    public GameObject[] Check = new GameObject[3]; // 체크마크
     
-
-
-
+    
     public static int SlotNumber;
     public int Slotflag = 0;
 
@@ -49,16 +46,18 @@ public class SaveManager : MonoBehaviour {
         public String SaveTime;
         public int MainChapter;
     }
-    
 
 
 
     public void Start()
     {
-        
+        Player_x = GameObject.Find("Player").transform.position.x;
+        Player_y = GameObject.Find("Player").transform.position.y;
+
+        Debug.Log("x좌표" + Player_x + "///" + "y좌표" + Player_y + "챕터" + GameManager.GetMainChapter());
+
         tempName = "정원";
-        tempChapter = 3;
-       
+        tempChapter = GameManager.GetMainChapter();
 
         /*모든버튼 비활성화*/
         Btn_Save.GetComponent<Button>().interactable = false;
@@ -186,7 +185,23 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_LoadData() // 게임정보 불러오기
     {
-      
+
+        if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream file = File.Open(Application.persistentDataPath + "/" + SlotNumber + ".dat", FileMode.Open);
+
+            if (file != null && file.Length > 0)
+            {
+                PlayerData data = (PlayerData)bf.Deserialize(file);
+
+                
+        GameObject.Find("Player").transform.Translate(1, 1, 1);
+            }
+
+            file.Close();
+        }
+
 
     }
 
