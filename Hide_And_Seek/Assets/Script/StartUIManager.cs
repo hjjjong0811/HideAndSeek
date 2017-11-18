@@ -9,9 +9,10 @@ public class StartUIManager : MonoBehaviour {
 #if UNITY_WEBPLAYER
         public static string webplayerQuitURL = "http://google.com";
 #endif
-    
-    public GameObject SettingPanel;
-    
+
+    public GameObject Save_Prefab; // 저장하기
+    public GameObject Sound_Prefab; // 사운드설정
+
 
     public void Btn_Start() // 게임시작
     {
@@ -20,21 +21,19 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Load() // 이어하기
     {
-        
-        PlayerPrefs.SetString("lastLoadedScene", SceneManager.GetActiveScene().name);
-        SceneManager.LoadScene("GameSave", LoadSceneMode.Additive);
+        GameObject temp = Instantiate(Save_Prefab);
+        temp.name = "Save";
+      
     } 
 
-    public void Btn_Setting() // 세팅창 열기
+    public void Btn_Sound() // 세팅창 열기
     {
-        SettingPanel.SetActive(true);
-    }
 
-    public void Btn_SettingOff() // 세팅창 끄기
-    {
-        SettingPanel.SetActive(false);
+        GameObject temp = Instantiate(Sound_Prefab);
+        temp.name = "Sound";
+ 
     }
-
+    
     public void Btn_Exit() // 게임종료 + 에디터종료
     {
     #if UNITY_EDITOR
