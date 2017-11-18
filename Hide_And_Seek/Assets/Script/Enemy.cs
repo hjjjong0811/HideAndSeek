@@ -138,10 +138,11 @@ public class Enemy : MonoBehaviour
     void do_chasing()
     {
         //플레이어 위치 가져오기
+        _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
 
         //마우스 따라 가게 만들기
-        _player_pos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        _player_pos.z = 0f;
+        //_player_pos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        //_player_pos.z = 0f;
         float distance = Vector3.Distance(_player_pos, _enemy_pos);
         if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
     }
