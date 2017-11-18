@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
 
 
-    public static void GetItem(int ItemKey)
+    public static void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
         switch (ItemKey)
         {
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     }
     
 
-    public static void CheckEvent()
+    public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
 
         /*M=0 튜토리얼*/
@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
         else if (GetMainChapter() == 3 && EndScene[1] == 1) // 2차 장롱씬 종료시
             SetMainChapter(4);
 
-        /*M=4 시작 정연이 3번누르면 엔딩 또는 효정이 확인 */
-        else if (GetMainChapter() == 4 && MeetCharacter[1] == 3) // 정연엔딩
+        /*M=4 시작 정연이 5번누르면 엔딩 또는 효정이 확인 */
+        else if (GetMainChapter() == 4 && MeetCharacter[1] == 5) // 정연엔딩
             SetMainChapter(-2);
 
         else if (GetMainChapter() == 4 && DeadCharacter[0] == 1)

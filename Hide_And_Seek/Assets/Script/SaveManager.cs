@@ -10,41 +10,43 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
+    public GameManager gmng;
     /*플레이어 정보*/
     public static String Player_Name;
+
+    /*플레이어 위치정보*/
+    public static Vector3 PlayerPos;
     public static float Player_x;
     public static float Player_y;
-    public static int Player_Spot;
+    public static int Player_Scene;
 
-    public static int Enemy_Spot; // 아저씨 위치
-
-    public static int MainChapter;
-    public static String SaveTime; // 저장시간
-    public static String PlayTime; // 플레이시간
+    /*게임정보*/
+    public static int Player_MainChapter;
+    public static String Player_SaveTime; // 저장시간
+    public static float Player_Battery; // 배터리잔량
+    public static List<int> Player_Inventory; // 인벤토리
     
 
-    
-    /* 구성 화면표기*/
+    // public static int Enemy_Spot; // 아저씨 위치
+
+
+    /*구성 화면표기*/
+
+    //버튼
     public Button Btn_Save;
     public Button Btn_Load;
     public Button Btn_Delete;
 
     public String tempName = "";
-    public int tempChapter = 10;
-    public String tempSave = "";
 
     public Text[] Text_Name = new Text[3]; // 플레이어 이름
     public Text[] Text_Chapter = new Text[3]; // 게임 챕터
     public Text[] Text_SaveTime = new Text[3]; // 저장시간
-  
     public GameObject[] Check = new GameObject[3]; // 체크마크
     
     
     public static int SlotNumber;
     public int Slotflag = 0;
-
-
-
 
 
     [Serializable]
@@ -53,44 +55,57 @@ public class SaveManager : MonoBehaviour {
         public String Name;
         public String SaveTime;
         public int MainChapter;
-        public float x;
-        public float y;
+        public int P_Scene;
+        public float P_x;
+        public float P_y;
+        public float Battery;
+        public List<int> Inventory;
     }
 
 
 
     public void Start()
     {
-       
-
-        Debug.Log("x좌표" + Player_x + "///" + "y좌표" + Player_y + "챕터" + GameManager.GetMainChapter());
-
-        tempName = "정원";
-        tempChapter = GameManager.GetMainChapter();
-
-        /*모든버튼 비활성화*/
-        Btn_Save.GetComponent<Button>().interactable = false;
-        Btn_Load.GetComponent<Button>().interactable = false;
-        Btn_Delete.GetComponent<Button>().interactable = false;
+        gmng = GameObject.Find("GameUI").GetComponent<GameManager>();
 
         for (int i = 0; i < 3; i++)
         {
             Check[i].SetActive(false);
         }
 
-        DataLoad();
+        DataLoad(); // 데이터 불러오기
+
+        PlayerPos = transform.position;
+        
+
+        tempName = "정원";
+     
+
+        /*모든버튼 비활성화*/
+        Btn_Save.GetComponent<Button>().interactable = false;
+        Btn_Load.GetComponent<Button>().interactable = false;
+        Btn_Delete.GetComponent<Button>().interactable = false;
+
+        GameManager.SetMainChapter(2);
+        GameManager.GetItem(12);
+
     }
 
 
     public void Update()
     {
         FileExist();
-        DataLoad();
         CheckSlot();
+
+        
+        gmng.CheckMainChapter();
+        
+        Debug.Log(GameManager.GetMainChapter());
+        
 
         Player_x = GameObject.Find("Player").transform.position.x;
         Player_y = GameObject.Find("Player").transform.position.y;
-        tempSave = DateTime.Now.ToString("HH-mm-ss");
+        
     }
 
     public void Btn_Slot() // 슬롯 눌렀을때
@@ -120,9 +135,8 @@ public class SaveManager : MonoBehaviour {
 
     public bool FileExist() // 파일여부에 따른 버튼상태 변경
     {
-        bool SlotFileExist = false; // 파일 존재 여부
-
-        if (SlotFileExist = File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat")) // 데이터 저장 파일이 있으면
+      
+        if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat")) // 데이터 저장 파일이 있으면
         {
             Btn_Save.interactable = true;
             Btn_Load.interactable = true;
@@ -157,16 +171,16 @@ public class SaveManager : MonoBehaviour {
         PlayerData data = new PlayerData();
         
         data.Name = tempName;
-        data.MainChapter = tempChapter;
-        data.SaveTime = tempSave;
-        data.x = Player_x;
-        data.y = Player_y;
-        
+        data.MainChapter = GameManager.GetMainChapter(); // 현재 챕터저장
+        data.SaveTime = DateTime.Now.ToString("HH-mm-ss"); // 현재시간 저장
+        data.P_x = Player_x;
+        data.P_y = Player_y;
+        data.P_Scene = SceneManager.GetActiveScene().buildIndex; // 현재 씬 넘버 가져오기
+        data.Battery = Player_Battery;
+
         bf.Serialize(file, data);
         file.Close();
-
-
-        Debug.Log("저장" + SlotNumber + " / " + data.Name );
+        
 
     }
 
@@ -209,8 +223,20 @@ public class SaveManager : MonoBehaviour {
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
+                /*위치 세팅*/
+                PlayerPos.x = data.P_x; 
+                PlayerPos.y = data.P_y;
+                GameObject.Find("Player").transform.position = PlayerPos;
 
-                GameObject.Find("Player").transform.Translate(data.x, data.y, 1);
+                Player_Scene = data.P_Scene; // 씬정보 불러와 세팅
+                SceneManager.LoadScene(Player_Scene);
+                DontDestroyOnLoad(GameObject.Find("Player"));
+
+                Player_MainChapter = data.MainChapter;
+                GameManager.SetMainChapter(Player_MainChapter); // 챕터불러와 세팅
+
+                Player_Battery = data.Battery; // 배터리 잔량 불러와 세팅
+           
             }
 
             file.Close();
@@ -231,9 +257,8 @@ public class SaveManager : MonoBehaviour {
         
     }
 
-    public void Btn_Off() // 이전 씬으로 돌아가기
+    public void Btn_Off() // 세이브 창 끄기
     {
-
         GameObject.Destroy(GameObject.Find("Save"));
     }
 
