@@ -11,9 +11,17 @@ using UnityEngine.SceneManagement;
 public class SaveManager : MonoBehaviour {
 
     /*플레이어 정보*/
+    public static String Player_Name;
     public static float Player_x;
     public static float Player_y;
+    public static int Player_Spot;
 
+    public static int Enemy_Spot; // 아저씨 위치
+
+    public static int MainChapter;
+    public static String SaveTime; // 저장시간
+    public static String PlayTime; // 플레이시간
+    
 
     
     /* 구성 화면표기*/
@@ -45,14 +53,15 @@ public class SaveManager : MonoBehaviour {
         public String Name;
         public String SaveTime;
         public int MainChapter;
+        public float x;
+        public float y;
     }
 
 
 
     public void Start()
     {
-        Player_x = GameObject.Find("Player").transform.position.x;
-        Player_y = GameObject.Find("Player").transform.position.y;
+       
 
         Debug.Log("x좌표" + Player_x + "///" + "y좌표" + Player_y + "챕터" + GameManager.GetMainChapter());
 
@@ -78,6 +87,9 @@ public class SaveManager : MonoBehaviour {
         FileExist();
         DataLoad();
         CheckSlot();
+
+        Player_x = GameObject.Find("Player").transform.position.x;
+        Player_y = GameObject.Find("Player").transform.position.y;
         tempSave = DateTime.Now.ToString("HH-mm-ss");
     }
 
@@ -147,6 +159,8 @@ public class SaveManager : MonoBehaviour {
         data.Name = tempName;
         data.MainChapter = tempChapter;
         data.SaveTime = tempSave;
+        data.x = Player_x;
+        data.y = Player_y;
         
         bf.Serialize(file, data);
         file.Close();
@@ -195,8 +209,8 @@ public class SaveManager : MonoBehaviour {
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
-                
-        GameObject.Find("Player").transform.Translate(1, 1, 1);
+
+                GameObject.Find("Player").transform.Translate(data.x, data.y, 1);
             }
 
             file.Close();
