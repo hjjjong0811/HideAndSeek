@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameUIManager : MonoBehaviour {
 
     public GameObject Inventory_Prefab;
-    public GameObject Menu_Prefab;
+    public GameObject Setting_Prefab;
 
     public bool isOpenInven = false;
 
@@ -25,12 +26,11 @@ public class GameUIManager : MonoBehaviour {
         }
     }
 
-    public void Btn_Menu()
+    public void Btn_Setting()
     {
-
-            GameObject temp = Instantiate(Menu_Prefab);
-            temp.name = "Menu";
-
+        GameObject temp = Instantiate(Setting_Prefab);
+        temp.name = "Setting";
+           
     }
 
 

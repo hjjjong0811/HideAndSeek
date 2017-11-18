@@ -5,60 +5,48 @@ using UnityEngine.SceneManagement;
 
 public class SettingUIManager : MonoBehaviour {
 
-    //public GameObject InfoPanel;
-    public GameObject Menu_Prefab;
+
+    public GameObject InfoPanel; // 개발자 정보 패널(음악 리소스...)
+    public GameObject Sound_Prefab; // 사운드 설정
     public GameObject Save_Prefab;
-    public GameObject Setting_Prefab;
-    public GameUIManager gameUI;
-    
 
     public void Start()
     {
-        GameObject test = Instantiate(Menu_Prefab);
-        gameUI = test.GetComponent<GameUIManager>();
- 
-       // InfoPanel.SetActive(false);
-
+        InfoPanel.SetActive(false);
+        
     }
 
-    public void Btn_Setting()
+    public void Btn_Sound() // 소리설정
     {
+        GameObject temp = Instantiate(Sound_Prefab);
+        temp.name = "Sound";
+    } 
 
-   
-            GameObject temp = Instantiate(Setting_Prefab);
-            temp.name = "Setting";
-    }
-
-    public void Btn_Save()
+    public void Btn_Save() // 저장하기
     {
-     
-            GameObject test2 = Instantiate(Save_Prefab);
-            test2.name = "Save";
-
+        GameObject temp = Instantiate(Save_Prefab);
+        temp.name = "Save";
     }
 
     public void Btn_Info() // 개발자 정보
     {
-     //   InfoPanel.SetActive(true);
+        InfoPanel.SetActive(true);
+    }
+
+    public void Btn_InfoOff()
+    {
+        InfoPanel.SetActive(false);
     }
 
     public void Btn_Start() // 첫화면으로 이동
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene("UI_Start");
 
     }
 
-    public void Btn_MenuOff() // 메뉴창 끄기
+    public void Btn_MenuOff() // 메뉴창 끄기 
     {
-
-        GameObject.Destroy(GameObject.Find("Menu"));
-
-    }
-
-    public void Btn_SettingOff()
-    {
-
-            GameObject.Destroy(GameObject.Find("Setting"));
-
+        GameObject.Destroy(GameObject.Find("Setting"));
+       
     }
 }

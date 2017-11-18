@@ -713,13 +713,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 769f353aaf7a52842a0f9658bfdd6eb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MenuPanel: {fileID: 1477748341569328}
+  InfoPanel: {fileID: 0}
+  Sound_Prefab: {fileID: 1557719394311702, guid: fdce3aaddac953a4b82697bbdbdc8f32,
+    type: 2}
   Save_Prefab: {fileID: 1934564237233444, guid: 621c7ab742ff3764f8d1a0bf1dd9f901,
     type: 2}
-  Setting_Prefab: {fileID: 1431122369136486, guid: 2285628886111fd409271edf6bcd2ddf,
-    type: 2}
-  isOpenSave: 0
-  isOpenSetting: 0
 --- !u!114 &114857836583123312
 MonoBehaviour:
   m_ObjectHideFlags: 1
