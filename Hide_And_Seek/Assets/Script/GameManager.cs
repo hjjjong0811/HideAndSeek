@@ -4,35 +4,61 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    private static GameManager instance = null;
+    public Inventory inven = Inventory.getInstance();
+
     /*아이템 상수선언*/
     public const int SOJU = 12;
     public const int SALT = 18;
     public const int SALTYWATER = 22;
     public const int GROUNDKEY = 43;
 
-    public static int MainChapter = 0; // 전체 메인 에피소드 관리
+    public int MainChapter; // 전체 메인 에피소드 관리
 
-    public int[] EndScene = new int[2]; // 씬 종료 체크 배열
-    public int[] FindCharacter = new int[4]; // 친구찾기 배열
-    public int[] DeadCharacter = new int[4]; // 죽은 친구 배열
-    public int[] MeetCharacter = new int[4]; // 만난 친구 배열
-    public int[] FindJeongyeon = new int[8]; // 정연 찾기 위해 1층 모든방 배열
+    public int[] EndScene; // 씬 종료 체크 배열
+    public int[] FindCharacter; // 친구찾기 배열
+    public int[] DeadCharacter; // 죽은 친구 배열
+    public int[] MeetCharacter; // 만난 친구 배열
+    public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
 
-    public int Num = 0;
-
-    /*획득 아이템*/
-    public int Soju = 0;
-    public int Salt = 0;
-    public int SaltyWater = 0;
-    public int GroundKey = 0; // 지하실 열쇠
+   /*획득 아이템*/
+    public int Soju;
+    public int Salt;
+    public int SaltyWater;
+    public int GroundKey; // 지하실 열쇠
 
     /*상태변수*/
-    public int BreakDisplay = 0; // 장식장 깨뜨림
-    public int Wallpaper = 0; // 띠벽지 발견
-    public int HomeConstruct = 0; // 집구조도
-    public int CorrectPassword = 0; // 비밀번호 일치 여부
+    public int BreakDisplay; // 장식장 깨뜨림
+    public int Wallpaper; // 띠벽지 발견
+    public int HomeConstruct; // 집구조도
+    public int CorrectPassword; // 비밀번호 일치 여부
 
 
+    private GameManager()
+    {
+        MainChapter = 0;
+
+        EndScene = new int[2]{ 0,0 };
+        FindCharacter = new int[4] { 0, 0, 0, 0 };
+        DeadCharacter = new int[4] { 0, 0, 0, 0 };
+        MeetCharacter = new int[4] { 0, 0, 0, 0 };
+        FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+
+
+        Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
+        BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
+
+
+    }
+
+    public static GameManager getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new GameManager();
+        }
+        return instance;
+    }
 
     public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
@@ -45,19 +71,15 @@ public class GameManager : MonoBehaviour
         }
     }
     
-
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
-
         /*M=0 튜토리얼*/
         if (GetMainChapter() == 0 && EndScene[0] == 1)
             SetMainChapter(1);
 
-
         /*M=1 1차숨바꼭질(친구찾기)*/
         else if (GetMainChapter() == 1 && CheckArray(FindCharacter, 4)) // 숨바꼭질로 친구들 다 찾았을때
             SetMainChapter(2);
-
 
         /*M=2 소금물없어서 소주찾으러*/
         else if (GetMainChapter() == 2 && Soju == 1) // 소주 획득시
@@ -77,7 +99,6 @@ public class GameManager : MonoBehaviour
         /*M=5 소금을 얻어야 겠다*/
         else if (GetMainChapter() == 5 && MeetCharacter[2] == 1)
             SetMainChapter(6);
-
 
         else if (GetMainChapter() == 6 && Salt == 1)
             SetMainChapter(7);
@@ -114,7 +135,7 @@ public class GameManager : MonoBehaviour
 
     public bool CheckArray(int[] TestArray, int ArrayNum)
     {
-        Num = 0;
+        int Num = 0;
 
         for (int i = 0; i < ArrayNum; i++)
         {
@@ -130,12 +151,12 @@ public class GameManager : MonoBehaviour
             return false;
     }
 
-    public static int GetMainChapter() // 현재 챕터 반환
+    public int GetMainChapter() // 현재 챕터 반환
     {
         return MainChapter;
     }
 
-    public static void SetMainChapter(int Chapter) // 챕터 수정하기
+    public void SetMainChapter(int Chapter) // 챕터 수정하기
     {
         MainChapter = Chapter;
     }
