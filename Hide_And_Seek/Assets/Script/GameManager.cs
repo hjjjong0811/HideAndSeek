@@ -12,29 +12,29 @@ public class GameManager : MonoBehaviour
 
     public static int MainChapter = 0; // 전체 메인 에피소드 관리
 
-    public static int[] EndScene = new int[2]; // 씬 종료 체크 배열
-    public static int[] FindCharacter = new int[4]; // 친구찾기 배열
-    public static int[] DeadCharacter = new int[4]; // 죽은 친구 배열
-    public static int[] MeetCharacter = new int[4]; // 만난 친구 배열
-    public static int[] FindJeongyeon = new int[8]; // 정연 찾기 위해 1층 모든방 배열
+    public int[] EndScene = new int[2]; // 씬 종료 체크 배열
+    public int[] FindCharacter = new int[4]; // 친구찾기 배열
+    public int[] DeadCharacter = new int[4]; // 죽은 친구 배열
+    public int[] MeetCharacter = new int[4]; // 만난 친구 배열
+    public int[] FindJeongyeon = new int[8]; // 정연 찾기 위해 1층 모든방 배열
 
-    public static int Num = 0;
+    public int Num = 0;
 
     /*획득 아이템*/
-    public static int Soju = 0;
-    public static int Salt = 0;
-    public static int SaltyWater = 0;
-    public static int GroundKey = 0; // 지하실 열쇠
+    public int Soju = 0;
+    public int Salt = 0;
+    public int SaltyWater = 0;
+    public int GroundKey = 0; // 지하실 열쇠
 
     /*상태변수*/
-    public static int BreakDisplay = 0; // 장식장 깨뜨림
-    public static int Wallpaper = 0; // 띠벽지 발견
-    public static int HomeConstruct = 0; // 집구조도
-    public static int CorrectPassword = 0; // 비밀번호 일치 여부
+    public int BreakDisplay = 0; // 장식장 깨뜨림
+    public int Wallpaper = 0; // 띠벽지 발견
+    public int HomeConstruct = 0; // 집구조도
+    public int CorrectPassword = 0; // 비밀번호 일치 여부
 
 
 
-    public static void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
+    public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
         switch (ItemKey)
         {
@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public static bool CheckArray(int[] TestArray, int ArrayNum)
+    public bool CheckArray(int[] TestArray, int ArrayNum)
     {
         Num = 0;
 

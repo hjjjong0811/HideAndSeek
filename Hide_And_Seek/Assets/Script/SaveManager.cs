@@ -10,7 +10,9 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-    public GameManager gmng;
+    public GameManager gmng = new GameManager();
+    public Inventory inven = Inventory.getInstance();
+
     /*플레이어 정보*/
     public static String Player_Name;
 
@@ -68,7 +70,7 @@ public class SaveManager : MonoBehaviour {
     {
         gmng = GameObject.Find("GameUI").GetComponent<GameManager>();
 
-        for (int i = 0; i < 3; i++)
+        for (int i = 0; i < 3; i++) // 체크마크 모두 제거
         {
             Check[i].SetActive(false);
         }
@@ -77,17 +79,16 @@ public class SaveManager : MonoBehaviour {
 
         PlayerPos = transform.position;
         
-
-        tempName = "정원";
-     
-
         /*모든버튼 비활성화*/
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
 
-        GameManager.SetMainChapter(2);
-        GameManager.GetItem(12);
+
+        inven.inventory.Add(12);
+        Player_Inventory = inven.inventory;
+        Debug.Log(Player_Inventory);
+
 
     }
 
@@ -95,13 +96,7 @@ public class SaveManager : MonoBehaviour {
     public void Update()
     {
         FileExist();
-        CheckSlot();
-
-        
-        gmng.CheckMainChapter();
-        
-        Debug.Log(GameManager.GetMainChapter());
-        
+        CheckSlot();     
 
         Player_x = GameObject.Find("Player").transform.position.x;
         Player_y = GameObject.Find("Player").transform.position.y;
@@ -177,7 +172,8 @@ public class SaveManager : MonoBehaviour {
         data.P_y = Player_y;
         data.P_Scene = SceneManager.GetActiveScene().buildIndex; // 현재 씬 넘버 가져오기
         data.Battery = Player_Battery;
-
+        data.Inventory = Player_Inventory;
+       
         bf.Serialize(file, data);
         file.Close();
         
@@ -224,16 +220,21 @@ public class SaveManager : MonoBehaviour {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
                 /*위치 세팅*/
+
+                //Player_Scene = data.P_Scene; // 씬정보 불러와 세팅
+                //SceneManager.LoadScene(Player_Scene);
+
                 PlayerPos.x = data.P_x; 
                 PlayerPos.y = data.P_y;
                 GameObject.Find("Player").transform.position = PlayerPos;
 
-                Player_Scene = data.P_Scene; // 씬정보 불러와 세팅
-                SceneManager.LoadScene(Player_Scene);
-                DontDestroyOnLoad(GameObject.Find("Player"));
+              
 
                 Player_MainChapter = data.MainChapter;
                 GameManager.SetMainChapter(Player_MainChapter); // 챕터불러와 세팅
+
+                Player_Inventory = data.Inventory;
+                Debug.Log(Player_Inventory);
 
                 Player_Battery = data.Battery; // 배터리 잔량 불러와 세팅
            
