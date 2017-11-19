@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Camera _camera;
+    public static GameObject _enemy;
+
     //normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
     private static bool _enemy_chasing;
 
@@ -16,11 +19,17 @@ public class Enemy : MonoBehaviour
     private static Route _enemy_route;
     private static bool _enemy_looking;
 
+    //chasing
+    Vector3 _enemy_pos;
+    Vector3 _player_pos;
+    float _enemy_speed = 3f;
+
     // Use this for initialization
     void Start()
     {
+        _enemy = this.gameObject;
         _enemy_spot = new ISpot(Room.Hall_1, 1);
-        _enemy_chasing = false;
+        _enemy_chasing = true;//test
         _enemy_state = Enemy_State.in_hall;
         _enemy_route = null;
 
@@ -31,6 +40,8 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _enemy_pos = _enemy.transform.position;
+
         if (_enemy_chasing)
         {
             do_chasing();
@@ -126,6 +137,14 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_chasing
     void do_chasing()
     {
+        //플레이어 위치 가져오기
+        _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
+
+        //마우스 따라 가게 만들기
+        //_player_pos = _camera.ScreenToWorldPoint(Input.mousePosition);
+        //_player_pos.z = 0f;
+        float distance = Vector3.Distance(_player_pos, _enemy_pos);
+        if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
     }
 
     private static Room random_destination()
