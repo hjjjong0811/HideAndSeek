@@ -117,7 +117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 11648432}
   - component: {fileID: 11648433}
-  - component: {fileID: 11648434}
   m_Layer: 9
   m_Name: Oak_and_boxes
   m_TagString: Untagged
@@ -180,17 +179,6 @@ PolygonCollider2D:
       - {x: 0.5785911, y: -1.4801961}
       - {x: 1.2061371, y: -1.2649579}
       - {x: 1.8612857, y: -0.941399}
---- !u!114 &11648434
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 11648431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &232849637
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +756,54 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 137675889977724492, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21304905115701350, guid: b76bbd4f22c664c4fa74ce68c5540232,
+        type: 2}
+    - target: {fileID: 137767235512663144, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21802593783885398, guid: 2c3dcc2fdd9891643969fd020a346495,
+        type: 2}
+    - target: {fileID: 137009801171958914, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21258575293465642, guid: 12bfc4d6d24f3004aa9447e37dd37259,
+        type: 2}
+    - target: {fileID: 137178598133784632, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21185201345030232, guid: 810efef5bd11754469fec6cddff4406b,
+        type: 2}
+    - target: {fileID: 137289683799301620, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21872113397664666, guid: cd0bafef5ed5c36438afc2301f6c23cd,
+        type: 2}
+    - target: {fileID: 137065206024551710, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21976934315041882, guid: 9bba0471464d3fc4dacee39fd039feb2,
+        type: 2}
+    - target: {fileID: 137332973301358826, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21207566974909388, guid: df278b8b70e680249a5dbea731803819,
+        type: 2}
+    - target: {fileID: 137270860020847768, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21873847152076114, guid: b3dbf01d4c3bc044ebd3b3a6f23f65a9,
+        type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
@@ -780,7 +816,6 @@ GameObject:
   m_Component:
   - component: {fileID: 554849763}
   - component: {fileID: 554849764}
-  - component: {fileID: 554849765}
   m_Layer: 9
   m_Name: Oaks
   m_TagString: Untagged
@@ -854,17 +889,6 @@ PolygonCollider2D:
       - {x: 2.4478586, y: 1.0816821}
       - {x: 2.549687, y: 1.1482306}
       - {x: 2.7273514, y: 1.3385396}
---- !u!114 &554849765
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 554849762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &806172338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,7 +1841,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1445875149}
   - component: {fileID: 1445875150}
-  - component: {fileID: 1445875151}
   m_Layer: 9
   m_Name: Two_boxes
   m_TagString: Untagged
@@ -1868,17 +1891,6 @@ PolygonCollider2D:
       - {x: -5.090941, y: -1.9480705}
       - {x: -4.4667997, y: -2.2721543}
       - {x: -3.9150476, y: -1.954574}
---- !u!114 &1445875151
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1445875148}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1450961530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1887,7 +1899,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1450961531}
-  - component: {fileID: 1450961532}
   m_Layer: 9
   m_Name: Oak_and_Box
   m_TagString: Untagged
@@ -1910,17 +1921,6 @@ Transform:
   m_Father: {fileID: 1788908348}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1450961532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1450961530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1470746371
 GameObject:
   m_ObjectHideFlags: 0
@@ -3016,7 +3016,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2123420822}
-  - component: {fileID: 2123420823}
   m_Layer: 9
   m_Name: Door_Wayout
   m_TagString: Untagged
@@ -3040,14 +3039,3 @@ Transform:
   m_Father: {fileID: 1788908348}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2123420823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2123420821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
