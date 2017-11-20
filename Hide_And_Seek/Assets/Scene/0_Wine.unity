@@ -188,6 +188,7 @@ GameObject:
   m_Component:
   - component: {fileID: 232849638}
   - component: {fileID: 232849639}
+  - component: {fileID: 232849640}
   m_Layer: 9
   m_Name: woodbox (0)
   m_TagString: Untagged
@@ -250,6 +251,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &232849640
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232849637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &257047823
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +271,7 @@ GameObject:
   m_Component:
   - component: {fileID: 257047824}
   - component: {fileID: 257047825}
+  - component: {fileID: 257047826}
   m_Layer: 9
   m_Name: wine_landing (2)
   m_TagString: Untagged
@@ -321,6 +334,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &257047826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 257047823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &265374563
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265374564}
   - component: {fileID: 265374565}
+  - component: {fileID: 265374566}
   m_Layer: 9
   m_Name: wine_landing (7)
   m_TagString: Untagged
@@ -392,6 +417,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &265374566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 265374563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &272995694
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +437,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272995695}
   - component: {fileID: 272995696}
+  - component: {fileID: 272995697}
   m_Layer: 9
   m_Name: wine_landing (5)
   m_TagString: Untagged
@@ -463,6 +500,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &272995697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 272995694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &303547130
 GameObject:
   m_ObjectHideFlags: 0
@@ -472,6 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 303547131}
   - component: {fileID: 303547132}
+  - component: {fileID: 303547133}
   m_Layer: 9
   m_Name: winebottles_box (0)
   m_TagString: Untagged
@@ -534,6 +583,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &303547133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 303547130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &434410514
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +603,7 @@ GameObject:
   m_Component:
   - component: {fileID: 434410515}
   - component: {fileID: 434410516}
+  - component: {fileID: 434410517}
   m_Layer: 9
   m_Name: wine_landing (6)
   m_TagString: Untagged
@@ -605,6 +666,147 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &434410517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 434410514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1001 &485377715
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -0.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -1.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505961924299430, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 137675889977724492, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137178598133784632, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137270860020847768, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137332973301358826, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137009801171958914, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137767235512663144, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137065206024551710, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137289683799301620, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 137675889977724492, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21304905115701350, guid: b76bbd4f22c664c4fa74ce68c5540232,
+        type: 2}
+    - target: {fileID: 137767235512663144, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21802593783885398, guid: 2c3dcc2fdd9891643969fd020a346495,
+        type: 2}
+    - target: {fileID: 137009801171958914, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21258575293465642, guid: 12bfc4d6d24f3004aa9447e37dd37259,
+        type: 2}
+    - target: {fileID: 137178598133784632, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21185201345030232, guid: 810efef5bd11754469fec6cddff4406b,
+        type: 2}
+    - target: {fileID: 137289683799301620, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21872113397664666, guid: cd0bafef5ed5c36438afc2301f6c23cd,
+        type: 2}
+    - target: {fileID: 137065206024551710, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21976934315041882, guid: 9bba0471464d3fc4dacee39fd039feb2,
+        type: 2}
+    - target: {fileID: 137332973301358826, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21207566974909388, guid: df278b8b70e680249a5dbea731803819,
+        type: 2}
+    - target: {fileID: 137270860020847768, guid: e889e9d1b9ed81141bb7f3dd06d0a419,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 21873847152076114, guid: b3dbf01d4c3bc044ebd3b3a6f23f65a9,
+        type: 2}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &554849762
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,6 +991,7 @@ GameObject:
   m_Component:
   - component: {fileID: 850094925}
   - component: {fileID: 850094926}
+  - component: {fileID: 850094927}
   m_Layer: 9
   m_Name: wine_landing (3)
   m_TagString: Untagged
@@ -851,6 +1054,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &850094927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 850094924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &864040814
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,6 +1074,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864040815}
   - component: {fileID: 864040816}
+  - component: {fileID: 864040817}
   m_Layer: 9
   m_Name: wine_landing (1)
   m_TagString: Untagged
@@ -922,6 +1137,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &864040817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 864040814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &884033595
 GameObject:
   m_ObjectHideFlags: 0
@@ -932,6 +1158,7 @@ GameObject:
   - component: {fileID: 884033596}
   - component: {fileID: 884033597}
   - component: {fileID: 884033599}
+  - component: {fileID: 884033598}
   m_Layer: 9
   m_Name: winebottles_shelf
   m_TagString: Untagged
@@ -994,6 +1221,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &884033598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 884033595}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!60 &884033599
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1031,6 +1269,7 @@ GameObject:
   m_Component:
   - component: {fileID: 925148313}
   - component: {fileID: 925148314}
+  - component: {fileID: 925148315}
   m_Layer: 9
   m_Name: wine_landing (4)
   m_TagString: Untagged
@@ -1093,6 +1332,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &925148315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925148312}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1208662919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1102,6 +1352,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1208662920}
   - component: {fileID: 1208662921}
+  - component: {fileID: 1208662922}
   m_Layer: 9
   m_Name: woodbox (1)
   m_TagString: Untagged
@@ -1164,6 +1415,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1208662922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1208662919}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1247969522
 GameObject:
   m_ObjectHideFlags: 0
@@ -1173,6 +1435,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1247969523}
   - component: {fileID: 1247969524}
+  - component: {fileID: 1247969525}
   m_Layer: 9
   m_Name: winebottles_box (2)
   m_TagString: Untagged
@@ -1235,6 +1498,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1247969525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1247969522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1294127900
 GameObject:
   m_ObjectHideFlags: 0
@@ -1245,6 +1519,7 @@ GameObject:
   - component: {fileID: 1294127901}
   - component: {fileID: 1294127902}
   - component: {fileID: 1294127903}
+  - component: {fileID: 1294127904}
   m_Layer: 9
   m_Name: escape_stairs
   m_TagString: Untagged
@@ -1335,6 +1610,17 @@ PolygonCollider2D:
       - {x: -0.63259244, y: 0.035748124}
       - {x: -0.13019943, y: 0.37784594}
       - {x: 0.69640684, y: -0.075959325}
+--- !u!114 &1294127904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1294127900}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355341158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1345,6 +1631,7 @@ GameObject:
   - component: {fileID: 1355341159}
   - component: {fileID: 1355341160}
   - component: {fileID: 1355341161}
+  - component: {fileID: 1355341162}
   m_Layer: 9
   m_Name: woodbox
   m_TagString: Untagged
@@ -1435,6 +1722,17 @@ PolygonCollider2D:
       - {x: 0.5332893, y: 0.063449144}
       - {x: -0.015160561, y: 0.2315023}
       - {x: -0.6049521, y: 0.037079096}
+--- !u!114 &1355341162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355341158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1387179275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,6 +1743,7 @@ GameObject:
   - component: {fileID: 1387179276}
   - component: {fileID: 1387179277}
   - component: {fileID: 1387179278}
+  - component: {fileID: 1387179279}
   m_Layer: 9
   m_Name: Oak_front_door
   m_TagString: Untagged
@@ -1522,6 +1821,17 @@ CapsuleCollider2D:
   m_Offset: {x: -0.013551003, y: -0.0441179}
   m_Size: {x: 0.54026514, y: 0.19400236}
   m_Direction: 1
+--- !u!114 &1387179279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1387179275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1445875148
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470746372}
   - component: {fileID: 1470746373}
+  - component: {fileID: 1470746374}
   m_Layer: 9
   m_Name: winebottles_box (3)
   m_TagString: Untagged
@@ -1682,6 +1993,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1470746374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470746371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1529277943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +2013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1529277944}
   - component: {fileID: 1529277945}
+  - component: {fileID: 1529277946}
   m_Layer: 9
   m_Name: wine_landing (0)
   m_TagString: Untagged
@@ -1753,6 +2076,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1529277946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1529277943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1680288544
 GameObject:
   m_ObjectHideFlags: 0
@@ -1762,6 +2096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1680288545}
   - component: {fileID: 1680288546}
+  - component: {fileID: 1680288547}
   m_Layer: 9
   m_Name: winebottles_box (4)
   m_TagString: Untagged
@@ -1824,6 +2159,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1680288547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1680288544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1701347825
 GameObject:
   m_ObjectHideFlags: 0
@@ -1833,6 +2179,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1701347826}
   - component: {fileID: 1701347827}
+  - component: {fileID: 1701347828}
   m_Layer: 9
   m_Name: wine_landing_man
   m_TagString: Untagged
@@ -1895,6 +2242,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1701347828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1701347825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1788908347
 GameObject:
   m_ObjectHideFlags: 0
@@ -2012,6 +2370,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1818539073}
   - component: {fileID: 1818539074}
+  - component: {fileID: 1818539075}
   m_Layer: 9
   m_Name: escape_door
   m_TagString: Untagged
@@ -2074,6 +2433,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1818539075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1818539072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1854338143
 GameObject:
   m_ObjectHideFlags: 0
@@ -2083,6 +2453,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1854338144}
   - component: {fileID: 1854338145}
+  - component: {fileID: 1854338146}
   m_Layer: 9
   m_Name: winebottles_box (1)
   m_TagString: Untagged
@@ -2145,6 +2516,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1854338146
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1854338143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1861928115
 GameObject:
   m_ObjectHideFlags: 0
@@ -2161,7 +2543,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1861928116
 Transform:
   m_ObjectHideFlags: 0
@@ -2226,6 +2608,7 @@ GameObject:
   - component: {fileID: 1930807012}
   - component: {fileID: 1930807013}
   - component: {fileID: 1930807014}
+  - component: {fileID: 1930807015}
   m_Layer: 9
   m_Name: wine_standing
   m_TagString: Untagged
@@ -2303,6 +2686,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.008094244, y: -0.069990404}
   m_Size: {x: 0.52363163, y: 0.16068317}
   m_Direction: 1
+--- !u!114 &1930807015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1930807011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1997202555
 GameObject:
   m_ObjectHideFlags: 0
@@ -2313,6 +2707,7 @@ GameObject:
   - component: {fileID: 1997202556}
   - component: {fileID: 1997202557}
   - component: {fileID: 1997202558}
+  - component: {fileID: 1997202559}
   m_Layer: 9
   m_Name: ladder
   m_TagString: Untagged
@@ -2392,6 +2787,17 @@ EdgeCollider2D:
   m_Points:
   - {x: -0.21109629, y: -0.19229972}
   - {x: 0.1319282, y: -0.022167325}
+--- !u!114 &1997202559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1997202555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2030080210
 GameObject:
   m_ObjectHideFlags: 0

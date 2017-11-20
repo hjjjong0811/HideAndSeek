@@ -259,6 +259,7 @@ GameObject:
   m_Component:
   - component: {fileID: 373437187}
   - component: {fileID: 373437188}
+  - component: {fileID: 373437189}
   m_Layer: 9
   m_Name: book
   m_TagString: Untagged
@@ -321,6 +322,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &373437189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 373437186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &405974734
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +342,7 @@ GameObject:
   m_Component:
   - component: {fileID: 405974735}
   - component: {fileID: 405974736}
+  - component: {fileID: 405974737}
   m_Layer: 9
   m_Name: shelf_3
   m_TagString: Untagged
@@ -392,6 +405,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &405974737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 405974734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &424174521
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,6 +567,7 @@ GameObject:
   m_Component:
   - component: {fileID: 535774227}
   - component: {fileID: 535774228}
+  - component: {fileID: 535774229}
   m_Layer: 9
   m_Name: bed
   m_TagString: Untagged
@@ -605,6 +630,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &535774229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 535774226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &569970815
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,6 +651,7 @@ GameObject:
   - component: {fileID: 569970816}
   - component: {fileID: 569970817}
   - component: {fileID: 569970818}
+  - component: {fileID: 569970819}
   m_Layer: 9
   m_Name: shelf_1
   m_TagString: Untagged
@@ -705,6 +742,17 @@ PolygonCollider2D:
       - {x: 0.26201522, y: -0.35077643}
       - {x: 0.7125596, y: -0.11669801}
       - {x: -0.2267321, y: 0.41824698}
+--- !u!114 &569970819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 569970815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &674737226
 GameObject:
   m_ObjectHideFlags: 0
@@ -908,6 +956,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1154686855}
   - component: {fileID: 1154686856}
+  - component: {fileID: 1154686857}
   m_Layer: 9
   m_Name: shelf_0
   m_TagString: Untagged
@@ -970,6 +1019,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1154686857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154686854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1470434360
 GameObject:
   m_ObjectHideFlags: 0
@@ -979,6 +1039,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1470434361}
   - component: {fileID: 1470434362}
+  - component: {fileID: 1470434363}
   m_Layer: 9
   m_Name: chair
   m_TagString: Untagged
@@ -1041,6 +1102,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1470434363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1470434360}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581384515
 GameObject:
   m_ObjectHideFlags: 0
@@ -1050,6 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1581384516}
   - component: {fileID: 1581384517}
+  - component: {fileID: 1581384518}
   m_Layer: 9
   m_Name: shelf_2
   m_TagString: Untagged
@@ -1112,6 +1185,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1581384518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1581384515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1783945576
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1322,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1924567044}
   - component: {fileID: 1924567045}
+  - component: {fileID: 1924567046}
   m_Layer: 9
   m_Name: table
   m_TagString: Untagged
@@ -1302,6 +1387,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1924567046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924567043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1927854571
 GameObject:
   m_ObjectHideFlags: 0
