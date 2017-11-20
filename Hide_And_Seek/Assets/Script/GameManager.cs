@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager
 {
     private static GameManager instance = null;
-    public Inventory inven = Inventory.getInstance();
 
     /*아이템 상수선언*/
     public const int SOJU = 12;
@@ -13,7 +12,7 @@ public class GameManager : MonoBehaviour
     public const int SALTYWATER = 22;
     public const int GROUNDKEY = 43;
 
-    public int MainChapter; // 전체 메인 에피소드 관리
+    public static int MainChapter; // 전체 메인 에피소드 관리
 
     public int[] EndScene; // 씬 종료 체크 배열
     public int[] FindCharacter; // 친구찾기 배열
