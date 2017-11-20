@@ -717,6 +717,7 @@ GameObject:
   - component: {fileID: 917584883}
   - component: {fileID: 917584884}
   - component: {fileID: 917584885}
+  - component: {fileID: 917584886}
   m_Layer: 9
   m_Name: wall
   m_TagString: Untagged
@@ -814,6 +815,17 @@ PolygonCollider2D:
       - {x: 1.1393085, y: -1.2578912}
       - {x: 0.8839195, y: -1.3518786}
       - {x: 0.65598106, y: -1.5882089}
+--- !u!114 &917584886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 917584882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1011099644
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,6 +1079,7 @@ GameObject:
   - component: {fileID: 1327785702}
   - component: {fileID: 1327785703}
   - component: {fileID: 1327785704}
+  - component: {fileID: 1327785705}
   m_Layer: 9
   m_Name: wash
   m_TagString: Untagged
@@ -1158,6 +1171,17 @@ PolygonCollider2D:
       - {x: 1.0731202, y: -0.16545534}
       - {x: 0.5450903, y: 0.13016081}
       - {x: -0.278556, y: 0.5437821}
+--- !u!114 &1327785705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1327785701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1639516557
 GameObject:
   m_ObjectHideFlags: 0
@@ -1168,6 +1192,7 @@ GameObject:
   - component: {fileID: 1639516558}
   - component: {fileID: 1639516559}
   - component: {fileID: 1639516560}
+  - component: {fileID: 1639516561}
   m_Layer: 9
   m_Name: bath
   m_TagString: Untagged
@@ -1262,6 +1287,17 @@ PolygonCollider2D:
       - {x: 1.2197633, y: -0.121789455}
       - {x: -0.536391, y: 0.6367308}
       - {x: -1.1496437, y: 0.23749346}
+--- !u!114 &1639516561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1639516557}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1725706047
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,6 +1307,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1725706048}
   - component: {fileID: 1725706049}
+  - component: {fileID: 1725706050}
   m_Layer: 9
   m_Name: toilet_paper
   m_TagString: Untagged
@@ -1333,6 +1370,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1725706050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1725706047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1751872067
 GameObject:
   m_ObjectHideFlags: 0
@@ -1431,6 +1479,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1756503987}
   - component: {fileID: 1756503988}
+  - component: {fileID: 1756503989}
   m_Layer: 9
   m_Name: toilet
   m_TagString: Untagged
@@ -1493,3 +1542,14 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1756503989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1756503986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

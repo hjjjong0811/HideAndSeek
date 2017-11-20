@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23460526}
   - component: {fileID: 23460527}
+  - component: {fileID: 23460528}
   m_Layer: 9
   m_Name: knife
   m_TagString: Untagged
@@ -179,6 +180,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &23460528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 23460525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &273312448
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +320,7 @@ GameObject:
   m_Component:
   - component: {fileID: 670944090}
   - component: {fileID: 670944091}
+  - component: {fileID: 670944092}
   m_Layer: 9
   m_Name: table
   m_TagString: Untagged
@@ -370,6 +383,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &670944092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 670944089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &763833686
 GameObject:
   m_ObjectHideFlags: 0
@@ -553,6 +577,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1025681568}
   - component: {fileID: 1025681569}
+  - component: {fileID: 1025681570}
   m_Layer: 9
   m_Name: shelf
   m_TagString: Untagged
@@ -615,6 +640,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1025681570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1025681567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1215831740
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,6 +660,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1215831741}
   - component: {fileID: 1215831742}
+  - component: {fileID: 1215831743}
   m_Layer: 9
   m_Name: board
   m_TagString: Untagged
@@ -686,6 +723,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1215831743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1215831740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1383562884
 GameObject:
   m_ObjectHideFlags: 0
@@ -798,6 +846,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1423155244}
   - component: {fileID: 1423155245}
+  - component: {fileID: 1423155246}
   m_Layer: 9
   m_Name: refrigerator
   m_TagString: Untagged
@@ -860,6 +909,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1423155246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1423155243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1751133959
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,6 +1000,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2068451513}
   - component: {fileID: 2068451514}
+  - component: {fileID: 2068451515}
   m_Layer: 9
   m_Name: plates
   m_TagString: Untagged
@@ -1002,3 +1063,14 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &2068451515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068451512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

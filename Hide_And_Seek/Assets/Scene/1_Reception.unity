@@ -117,6 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 329999416}
   - component: {fileID: 329999417}
+  - component: {fileID: 329999418}
   m_Layer: 9
   m_Name: closet_2
   m_TagString: Untagged
@@ -179,6 +180,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &329999418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 329999415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &615107333
 GameObject:
   m_ObjectHideFlags: 0
@@ -188,6 +200,7 @@ GameObject:
   m_Component:
   - component: {fileID: 615107334}
   - component: {fileID: 615107335}
+  - component: {fileID: 615107336}
   m_Layer: 9
   m_Name: front_back
   m_TagString: Untagged
@@ -250,6 +263,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &615107336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 615107333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &631195933
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,6 +283,7 @@ GameObject:
   m_Component:
   - component: {fileID: 631195934}
   - component: {fileID: 631195935}
+  - component: {fileID: 631195936}
   m_Layer: 9
   m_Name: chair_front (1)
   m_TagString: Untagged
@@ -321,6 +346,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &631195936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 631195933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &756297156
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,6 +455,7 @@ GameObject:
   m_Component:
   - component: {fileID: 792413688}
   - component: {fileID: 792413689}
+  - component: {fileID: 792413690}
   m_Layer: 9
   m_Name: front_back (1)
   m_TagString: Untagged
@@ -481,6 +518,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &792413690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 792413687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &866343070
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,6 +539,7 @@ GameObject:
   - component: {fileID: 866343071}
   - component: {fileID: 866343072}
   - component: {fileID: 866343073}
+  - component: {fileID: 866343074}
   m_Layer: 9
   m_Name: table
   m_TagString: Untagged
@@ -594,6 +643,17 @@ PolygonCollider2D:
       - {x: 1.3155968, y: 0.08133149}
       - {x: 0.07802628, y: 0.7680593}
       - {x: -0.19214538, y: 0.75105}
+--- !u!114 &866343074
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 866343070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &893677002
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +663,7 @@ GameObject:
   m_Component:
   - component: {fileID: 893677003}
   - component: {fileID: 893677004}
+  - component: {fileID: 893677005}
   m_Layer: 9
   m_Name: speaker
   m_TagString: Untagged
@@ -665,6 +726,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &893677005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 893677002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &906969434
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,6 +817,7 @@ GameObject:
   m_Component:
   - component: {fileID: 988134494}
   - component: {fileID: 988134495}
+  - component: {fileID: 988134496}
   m_Layer: 9
   m_Name: closet_1
   m_TagString: Untagged
@@ -807,6 +880,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &988134496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 988134493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1027843740
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,6 +1008,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1285751039}
   - component: {fileID: 1285751040}
+  - component: {fileID: 1285751041}
   m_Layer: 9
   m_Name: hanger
   m_TagString: Untagged
@@ -986,6 +1071,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1285751041
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1285751038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1358865572
 GameObject:
   m_ObjectHideFlags: 0
@@ -995,6 +1091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1358865573}
   - component: {fileID: 1358865574}
+  - component: {fileID: 1358865575}
   m_Layer: 9
   m_Name: chair_front
   m_TagString: Untagged
@@ -1057,6 +1154,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1358865575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1358865572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1688896261
 GameObject:
   m_ObjectHideFlags: 0
@@ -1104,6 +1212,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1776113227}
   - component: {fileID: 1776113228}
+  - component: {fileID: 1776113229}
   m_Layer: 9
   m_Name: closet_3
   m_TagString: Untagged
@@ -1166,6 +1275,17 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1776113229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1776113226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2118981752
 GameObject:
   m_ObjectHideFlags: 0
