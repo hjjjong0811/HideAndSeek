@@ -10,8 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-    Inventory inven = Inventory.getInstance();
-    GameManager gameManager = GameManager.getInstance();
+    Inventory inven;
+    GameManager gameManager;
  
 
     /*플레이어 정보*/
@@ -19,12 +19,18 @@ public class SaveManager : MonoBehaviour {
 
     /*플레이어 위치정보*/
     public static Vector3 PlayerPos;
+    public static Vector3 ObjectPos;
     public static float Player_x;
     public static float Player_y;
     public static int Player_Scene;
 
     /*게임정보*/
     public static float Player_Battery; // 배터리잔량
+    public List<Transform> Player_Active;
+    public Transform[] allChildren;
+    public List<float> Player_Active_x;
+    public List<float> Player_Active_y;
+    public int Plyaer_Active_Num;
     
 
     // public static int Enemy_Spot; // 아저씨 위치
@@ -59,20 +65,41 @@ public class SaveManager : MonoBehaviour {
         public float P_x;
         public float P_y;
         public float Battery;
+        public int Active_Num;
+        public List<float> Active_x;
+        public List<float> Active_y;
         public List<int> Inventory;
     }
 
+  
 
 
     public void Start()
     {
-        
+
+        gameManager = GameManager.getInstance();
+        inven = Inventory.getInstance();
+
         for (int i = 0; i < 3; i++) // 체크마크 모두 제거
             Check[i].SetActive(false);
 
         DataLoad(); // 데이터 불러오기
 
+        allChildren = GameObject.Find("Objects").GetComponentsInChildren<Transform>();
+        Player_Active = new List<Transform>();
+        foreach (Transform child in allChildren)
+        {
+            Player_Active_x.Add(child.transform.position.x);
+            Player_Active_y.Add(child.transform.position.y);
+
+        }
+
+
+
+
+
         PlayerPos = transform.position;
+       
         
         /*모든버튼 비활성화*/
         Btn_Save.GetComponent<Button>().interactable = false;
@@ -85,7 +112,6 @@ public class SaveManager : MonoBehaviour {
 
     public void Update()
     {
-        
         FileExist();
         CheckSlot();
         DataLoad();
@@ -94,7 +120,8 @@ public class SaveManager : MonoBehaviour {
         Player_x = GameObject.Find("Player").transform.position.x;
         Player_y = GameObject.Find("Player").transform.position.y;
 
-       
+        
+
     }
 
     public void Btn_Slot() // 슬롯 눌렀을때
@@ -154,6 +181,8 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_SaveData() // 저장하기
     {
+
+    
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + SlotNumber + ".dat");
 
@@ -167,7 +196,10 @@ public class SaveManager : MonoBehaviour {
         data.P_Scene = SceneManager.GetActiveScene().buildIndex; // 현재 씬 넘버 가져오기
         data.Battery = Player_Battery;
         data.Inventory = inven.inventory;
-       
+        data.Active_x = Player_Active_x;
+        data.Active_y = Player_Active_y;
+
+
         bf.Serialize(file, data);
         file.Close();
         
@@ -222,8 +254,15 @@ public class SaveManager : MonoBehaviour {
                 PlayerPos.y = data.P_y;
                 GameObject.Find("Player").transform.position = PlayerPos;
 
-              
+
                 
+                for (int i=1;i<data.Active_x.Count; i++)
+                {
+                    ObjectPos.x = data.Active_x[i];
+                    ObjectPos.y = data.Active_y[i];
+                    GameObject.Find("Objects").transform.GetChild(i-1).transform.position = ObjectPos;
+                }
+
                 gameManager.SetMainChapter(data.MainChapter); // 챕터불러와 세팅
                 
                 inven.inventory = data.Inventory;
