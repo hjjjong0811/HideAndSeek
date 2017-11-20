@@ -10,8 +10,8 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-    public Inventory inven = Inventory.getInstance();
-    public GameManager gameManager = GameManager.getInstance();
+    Inventory inven = Inventory.getInstance();
+    GameManager gameManager = GameManager.getInstance();
  
 
     /*플레이어 정보*/

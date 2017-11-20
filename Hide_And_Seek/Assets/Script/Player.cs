@@ -21,6 +21,12 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
+        /*정원추가*/
+        GameObject prefab = Resources.Load("Prefabs/Canvas_UI") as GameObject;
+        GameObject GameUI = MonoBehaviour.Instantiate(prefab) as GameObject;
+        GameUI.name = "GameUI";
+
         Player_obj = this.gameObject;//호빈추가
         Hp = Hp_max;
         Tire = false;

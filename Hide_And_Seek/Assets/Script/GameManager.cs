@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance = null;
-    public Inventory inven = Inventory.getInstance();
 
     /*아이템 상수선언*/
     public const int SOJU = 12;
