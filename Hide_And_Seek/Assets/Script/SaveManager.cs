@@ -10,7 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
 
-    public GameManager gmng;
+    public Inventory inven = Inventory.getInstance();
+    public GameManager gameManager = GameManager.getInstance();
+ 
+
     /*플레이어 정보*/
     public static String Player_Name;
 
@@ -21,10 +24,7 @@ public class SaveManager : MonoBehaviour {
     public static int Player_Scene;
 
     /*게임정보*/
-    public static int Player_MainChapter;
-    public static String Player_SaveTime; // 저장시간
     public static float Player_Battery; // 배터리잔량
-    public static List<int> Player_Inventory; // 인벤토리
     
 
     // public static int Enemy_Spot; // 아저씨 위치
@@ -66,46 +66,35 @@ public class SaveManager : MonoBehaviour {
 
     public void Start()
     {
-        gmng = GameObject.Find("GameUI").GetComponent<GameManager>();
-
-        for (int i = 0; i < 3; i++)
-        {
+        
+        for (int i = 0; i < 3; i++) // 체크마크 모두 제거
             Check[i].SetActive(false);
-        }
 
         DataLoad(); // 데이터 불러오기
 
         PlayerPos = transform.position;
         
-
-        tempName = "정원";
-     
-
         /*모든버튼 비활성화*/
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
 
-        GameManager.SetMainChapter(2);
-        GameManager.GetItem(12);
 
     }
 
 
     public void Update()
     {
+        
         FileExist();
         CheckSlot();
-
-        
-        gmng.CheckMainChapter();
-        
-        Debug.Log(GameManager.GetMainChapter());
-        
+        DataLoad();
+        gameManager.CheckMainChapter();
 
         Player_x = GameObject.Find("Player").transform.position.x;
         Player_y = GameObject.Find("Player").transform.position.y;
-        
+
+       
     }
 
     public void Btn_Slot() // 슬롯 눌렀을때
@@ -171,13 +160,14 @@ public class SaveManager : MonoBehaviour {
         PlayerData data = new PlayerData();
         
         data.Name = tempName;
-        data.MainChapter = GameManager.GetMainChapter(); // 현재 챕터저장
+        data.MainChapter = gameManager.GetMainChapter(); // 현재 챕터저장
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss"); // 현재시간 저장
         data.P_x = Player_x;
         data.P_y = Player_y;
         data.P_Scene = SceneManager.GetActiveScene().buildIndex; // 현재 씬 넘버 가져오기
         data.Battery = Player_Battery;
-
+        data.Inventory = inven.inventory;
+       
         bf.Serialize(file, data);
         file.Close();
         
@@ -213,7 +203,7 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_LoadData() // 게임정보 불러오기
     {
-
+     
         if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -224,17 +214,20 @@ public class SaveManager : MonoBehaviour {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
                 /*위치 세팅*/
+
+                //Player_Scene = data.P_Scene; // 씬정보 불러와 세팅
+                //SceneManager.LoadScene(Player_Scene);
+
                 PlayerPos.x = data.P_x; 
                 PlayerPos.y = data.P_y;
                 GameObject.Find("Player").transform.position = PlayerPos;
 
-                Player_Scene = data.P_Scene; // 씬정보 불러와 세팅
-                SceneManager.LoadScene(Player_Scene);
-                DontDestroyOnLoad(GameObject.Find("Player"));
-
-                Player_MainChapter = data.MainChapter;
-                GameManager.SetMainChapter(Player_MainChapter); // 챕터불러와 세팅
-
+              
+                
+                gameManager.SetMainChapter(data.MainChapter); // 챕터불러와 세팅
+                
+                inven.inventory = data.Inventory;
+               
                 Player_Battery = data.Battery; // 배터리 잔량 불러와 세팅
            
             }
