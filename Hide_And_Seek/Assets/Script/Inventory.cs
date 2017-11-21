@@ -33,6 +33,7 @@ public class Inventory {
             return false;
         }
         inventory.Add(itemkey);
+        GameManager.getInstance().GetItem(itemkey);
         return true;
     }
 

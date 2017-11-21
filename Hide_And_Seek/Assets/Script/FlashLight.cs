@@ -16,24 +16,38 @@ public class FlashLight : MonoBehaviour {
     private float timeleft = 3.0f;      //일정시간마다 깜박이기 위함
     private float nexttime = 0.0f;
     private bool isFlashed = false;     //현재 깜박임중?
-    
+    private float batteryleft = 0.5f;   //배터리 닳는 속도(값이 커지면 빨라짐)
 
-    public void LinkUser(GameObject user) {
+
+    public void Init(GameObject user) {
         Player = user;
     }
+    private void Awake() {
+        Battery = PlayerPrefs.GetFloat("Flash_Battery", Battery_max);
+        if (PlayerPrefs.GetInt("Flash_IsLighted", 1) == 1) isLighted = true;
+        else isLighted = false;
+    }
     public void Start() {
-        Battery = Battery_max;
         Light_p = GetComponent<Light>();        //Light init
         Light_p.range = 5;
         Light_p.intensity = Light_power_on_ch;
         Light_o = transform.GetChild(0).GetComponent<Light>();
         Light_o.range = 4;
         Light_o.intensity = Light_power_on_obj;
+        
+        setLight(isLighted);
+    }
+
+    private void OnDestroy() {
+        PlayerPrefs.SetFloat("Flash_Battery", Battery);
+        if (isLighted) PlayerPrefs.SetInt("Flash_IsLighted", 1);
+        else PlayerPrefs.SetInt("Flash_IsLighted", 0);
+        PlayerPrefs.Save();
     }
 
     // Update is called once per frame
     void Update () {
-        Battery = (Battery > 0) ? Battery - (10 * Time.deltaTime) : 0; //시간경과시 배터리 방전
+        Battery = (Battery > 0) ? Battery - (batteryleft * Time.deltaTime) : 0; //시간경과시 배터리 방전
         transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -3f);
 
         //timeleft마다
@@ -44,51 +58,65 @@ public class FlashLight : MonoBehaviour {
                 flashedLight(2f);
             }
         }
-
-        //test on off
-        if (!isFlashed && Input.GetKeyDown(KeyCode.A)) {
-            Debug.Log(Battery + "");
-            setLight(!isLighted);
-            isLighted = !isLighted;
-        }
+        
     }
 
-    //charge 만큼 배터리를 채우는 메소드
+    public float getBattery() {
+        return Battery;
+    }
+    public void setBattery(float battery) {
+        Battery = battery;
+    }
+    public bool getIsLighted() {
+        return isLighted;
+    }
+    /// <summary>
+    /// 배터리 충전 메서드
+    /// </summary>
+    /// <param name="charge">충전 배터리 양</param>
     public void chargeBattery(int charge) {
         Battery += charge;
         if (Battery >= Battery_max) Battery = Battery_max;
     }
 
-    //setLight true->킨다, false->끈다
+    /// <summary>
+    /// 손전등 키고 끄기
+    /// </summary>
+    /// <param name="value">true->on false->off</param>
     public void setLight(bool value) {
         if (value) {
             Light_p.intensity = Light_power_on_ch;
             Light_o.intensity = Light_power_on_obj;
+            isLighted = true;
         } else {
             Light_p.intensity = Light_power_off_ch;
             Light_o.intensity = Light_power_off_obj;
+            isLighted = false;
         }
     }
 
-    //For Flashed in some time
+    /// <summary>
+    /// 깜박깜박지지직해줌
+    /// </summary>
+    /// <param name="time">지속시간 time second</param>
     public void flashedLight(float time) {
         isFlashed = true;
         StartCoroutine(coroutineFlash());
         Invoke("coroutineEnd", time);
     }
 
-    void coroutineEnd() {
+    private void coroutineEnd() {
         isFlashed = false;
     }
 
-    IEnumerator coroutineFlash() {
+    private IEnumerator coroutineFlash() {
         bool toggle = false;
         while (isFlashed) {
             setLight(toggle);
             toggle = !toggle;
             yield return new WaitForSeconds(Random.Range(0.001f, 0.15f));
         }
-        setLight(true);
+        setLight(isLighted);
         yield break;
 
     }

@@ -3,44 +3,89 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public enum PlayerPrefsIndex {hp = 0, x = 1, y = 2, z = 3, room = 4, spot = 5 };
+    public readonly string[] PlayerPrefsKey = {"Player_hp", "Player_x", "Player_y", "Player_z",
+        "Player_Pos_room", "Player_Pos_spot"};
+
     public static GameObject Player_obj;//호빈추가
     public readonly float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
     public readonly int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
     public float Hp, Speed;
     public bool Tire;
+    public ISpot SpotInfo;
 
     public Animator Animator;
     public Move move;
 
     public GameObject Flash_Prefab;
-    public FlashLight Flash;
+    public FlashLight Flash = null;
 
-    public GameObject Inventory_Prefab; //inventory open
-    public bool isOpenInven = false;
+    private void Awake() {
+        //게임중정보 초기화
+        Hp = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.hp], Hp_max);
+        Vector3 pos = new Vector3();
+        pos.x = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], 0);
+        pos.y = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], 0);
+        pos.z = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], 0);
 
-	// Use this for initialization
-	void Start () {
+        //임시
+        int room = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room], 0);
+        int spot = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], 0);
+        SpotInfo = new ISpot((Room)room, spot);
+    }
 
+    /// <summary>
+    /// 게임 Load시 플레이어 정보 설정
+    /// </summary>
+    /// <param name="pHp">체력</param>
+    /// <param name="pPosition">위치정보</param>
+    /// <param name="pSpot">현재 씬 정보</param>
+    public void Init(float pHp, Vector3 pPosition, ISpot pSpot) {
+        this.Hp = pHp;
+        this.transform.position = pPosition;
+        this.SpotInfo._room = pSpot._room;
+        this.SpotInfo._spot = pSpot._spot;
+    }
+
+    //프로그램 종료시 임시데이터 삭제
+    private void OnApplicationQuit() {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+        Debug.Log("Delete");
+    }
+
+    private void Start () {
         /*정원추가*/
         GameObject prefab = Resources.Load("Prefabs/Canvas_UI") as GameObject;
         GameObject GameUI = MonoBehaviour.Instantiate(prefab) as GameObject;
         GameUI.name = "GameUI";
 
         Player_obj = this.gameObject;//호빈추가
-        Hp = Hp_max;
         Tire = false;
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
 
+        //Flash 생성 및 초기화
         GameObject f = Instantiate(Flash_Prefab);
+        f.name = "Flash";
         Flash = f.GetComponent<FlashLight>();
-        Flash.LinkUser(this.gameObject);
+        Flash.Init(this.gameObject);
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+    private void OnDestroy() {
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], this.transform.position.x);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], this.transform.position.y);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], this.transform.position.z);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.hp], this.Hp);
+        PlayerPrefs.SetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room], (int)this.SpotInfo._room);
+        PlayerPrefs.SetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], this.SpotInfo._spot);
+        PlayerPrefs.Save();
+    }
+
+    // Update is called once per frame
+    private void Update () {
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (15f * Time.deltaTime); //시간에따른 hp회복
@@ -62,20 +107,18 @@ public class Player : MonoBehaviour {
             Invoke("heal", 2.0f);
         }
 
-        //test(inventory open)
-        if (Input.GetKeyDown(KeyCode.I)) {
-            if (isOpenInven) {
-                GameObject.Destroy(GameObject.Find("TTTTEST"));
-                isOpenInven = false;
-            }else {
-                GameObject test = Instantiate(Inventory_Prefab);
-                test.name = "TTTTEST";
-                isOpenInven = true;
-            }
+        //손전등
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            Flash.setLight(!Flash.getIsLighted());
         }
+        //인벤토리
+        if (Input.GetKeyDown(KeyCode.I)) {
+            GameObject.Find("GameUI").GetComponent<GameUIManager>().Btn_Inven();
+        }
+        
     }
 
-    void movement() {
+    private void movement() {
         //둘다입력없는 경우 움직이지않음
         if (move.Horizontal == 0 && move.Vertical == 0) {
             return;
@@ -111,25 +154,27 @@ public class Player : MonoBehaviour {
 
     }
 
-    void action() {
+    private void action() {
         GameObject nearObject = findNearObject();
         if(nearObject != null) {
-            //gameObject.SendMessage("action");
             Debug.Log(nearObject.name + " Player_action");
+            nearObject.SendMessage("action");
         }
     }
 
-    void action_item() {
+    private void action_item() {
+        int itemKey = Inventory.getInstance().curEquipItem;
+        if (itemKey == -1) return;
         GameObject nearObject = findNearObject();
         if (nearObject != null) {
-            //gameObject.SendMessage("action");
+            //nearObject.SendMessage("action", itemKey);
             Debug.Log(nearObject.name +" Player_action");
         }
     }
 
-    GameObject findNearObject() {
+    private GameObject findNearObject() {
         //오브젝트 검사 범위 지정
-        Vector2 examdistance = new Vector2(-0.01513481f * transform.localScale.x, -0.7239494f);
+        Vector2 examdistance = new Vector2(-0.04468793f * transform.localScale.x, 0.006384373f);
         Vector2 examPosition = transform.position;
         examPosition += examdistance;
         Collider2D[] objects = Physics2D.OverlapBoxAll(examPosition, new Vector2(0.1f, 0.1f), 
@@ -153,13 +198,17 @@ public class Player : MonoBehaviour {
         return objects[nearObjectIndex].gameObject;
     }
 
-    void heal() {
+    private void heal() {
         Animator.speed = Speed_walk;
         Tire = false;
     }
 
-    void setLight(bool value) {
+    public void setLight(bool value) {
+        Flash.setLight(value);
+    }
 
+    public float getFlashBattery() {
+        return Flash.getBattery();
     }
 
     //호빈추가
