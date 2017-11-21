@@ -108,11 +108,11 @@ public class Player : MonoBehaviour {
         }
 
         //손전등
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetButtonDown("Flash")) {
             Flash.setLight(!Flash.getIsLighted());
         }
         //인벤토리
-        if (Input.GetKeyDown(KeyCode.I)) {
+        if (Input.GetButtonDown("Inventory")) {
             GameObject.Find("GameUI").GetComponent<GameUIManager>().Btn_Inven();
         }
         
