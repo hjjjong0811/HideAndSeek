@@ -16,7 +16,7 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Start() // 게임시작
     {
-        SceneManager.LoadScene("1_Hall");
+        GameManager.getInstance().CheckMainChapter();
     }
 
     public void Btn_Load() // 이어하기
