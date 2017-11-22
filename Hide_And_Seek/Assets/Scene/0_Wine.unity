@@ -1482,7 +1482,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1355341159}
   - component: {fileID: 1355341160}
-  - component: {fileID: 1355341161}
   m_Layer: 9
   m_Name: woodbox
   m_TagString: Untagged
@@ -1545,34 +1544,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!60 &1355341161
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1355341158}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.21907131}
-    oldSize: {x: 1.24, y: 1.21}
-    newSize: {x: 1.24, y: 1.21}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.009791851, y: -0.2359457}
-      - {x: 0.5332893, y: 0.063449144}
-      - {x: -0.015160561, y: 0.2315023}
-      - {x: -0.6049521, y: 0.037079096}
 --- !u!1 &1387179275
 GameObject:
   m_ObjectHideFlags: 0
@@ -1752,6 +1723,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1450961531}
   - component: {fileID: 1450961532}
+  - component: {fileID: 1450961533}
   m_Layer: 9
   m_Name: Oak_and_Box
   m_TagString: Untagged
@@ -1785,6 +1757,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!60 &1450961533
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1450961530}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.7453337, y: -2.5671852}
+      - {x: -3.2592351, y: -2.8559856}
+      - {x: -2.1615436, y: -3.4669194}
+      - {x: -1.5630168, y: -3.1346815}
 --- !u!1 &1470746371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2400,7 +2400,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1930807012}
   - component: {fileID: 1930807013}
-  - component: {fileID: 1930807014}
   m_Layer: 9
   m_Name: wine_standing
   m_TagString: Untagged
@@ -2463,21 +2462,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!70 &1930807014
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1930807011}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.008094244, y: -0.069990404}
-  m_Size: {x: 0.52363163, y: 0.16068317}
-  m_Direction: 1
 --- !u!1 &1997202555
 GameObject:
   m_ObjectHideFlags: 0
