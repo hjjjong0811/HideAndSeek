@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveWayPoint : MonoBehaviour {
-    public readonly float Speed_walk = 1, Speed_run = 2.5f;         //for animation
-    public readonly int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
+    public const float Speed_walk = 1, Speed_run = 2.5f;         //for animation
+    public const int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
     public bool isCharacter;    //isCharacter?, is Setted at Prefab inspector, And if true set Animator
     public Animator animator;
@@ -21,8 +21,7 @@ public class MoveWayPoint : MonoBehaviour {
             animator.SetInteger("State", Ani_Idle);
             animator.speed = Speed_walk;
         }
-            pointIndex = 0;
-        speed = Speed_walk;
+        pointIndex = 0;
         
 	}
 
@@ -88,5 +87,10 @@ public class MoveWayPoint : MonoBehaviour {
         pointIndex = 0;
         wayPoint = pWayPoints;
         this.speed = pSpeed;
+    }
+
+    public bool isIdle() {
+        if (wayPoint == null) return true;
+        return false;
     }
 }

@@ -72,6 +72,9 @@ public class GameManager
     
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
+        if(GetMainChapter() == 0 && EndScene[0] != 1) {
+            PlayScene.getInstance().playScene(PlayScene.numScene.tutorial);
+        }
         /*M=0 튜토리얼*/
         if (GetMainChapter() == 0 && EndScene[0] == 1)
             SetMainChapter(1);
