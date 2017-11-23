@@ -30,10 +30,10 @@ public class PlayScene {
     public void playScene(numScene sceneNumber) {
         switch (sceneNumber) {
             case numScene.tutorial:
-                GameObject go = new GameObject();
-                go.name = "SceneController";
-                PlaySceneController pc = go.AddComponent<PlaySceneController>();
-                pc.setScene(numScene.tutorial);
+                GameObject sc_pre = Resources.Load("Prefabs/Char_Player") as GameObject;
+                GameObject sc = MonoBehaviour.Instantiate(sc_pre);
+                sc.GetComponent<PlaySceneController>().setScene(numScene.tutorial);
+                
                 break;
             case numScene.hide_1_end:
                 break;

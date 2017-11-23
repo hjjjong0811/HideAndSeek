@@ -32,9 +32,6 @@ public class PlaySceneController : MonoBehaviour {
     //튜토리얼 씬
     private void playTutorial() {
         if (stateInScene == 0) {
-            //튜토에서 필요한 리소스 로드
-            mainch_pre = Resources.Load("Prefabs/Char_Player") as GameObject;
-            light_direc_pre = Resources.Load("Prefabs/Light_directional") as GameObject;
             //배경 씬 로딩
             SceneManager.LoadScene("S_BBQ");
 
