@@ -27,7 +27,7 @@ public class MoveWayPoint : MonoBehaviour {
 
     private void Update() {
         //목표 웨이포인트 존재시
-        if(wayPoint != null) {
+        if(wayPoint != null && wayPoint.Length > 0) {
             //이동
             transform.position = Vector2.MoveTowards(transform.position, wayPoint[pointIndex], speed * Time.deltaTime);
             //캐릭터면 애니메이션

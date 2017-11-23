@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
+public class Player : MonoBehaviour {
     public enum PlayerPrefsIndex { hp = 0, x = 1, y = 2, z = 3, room = 4, spot = 5 };
-    public readonly string[] PlayerPrefsKey = {"Player_hp", "Player_x", "Player_y", "Player_z",
+    public static string[] PlayerPrefsKey = {"Player_hp", "Player_x", "Player_y", "Player_z",
         "Player_Pos_room", "Player_Pos_spot"};
 
     public static GameObject Player_obj;//호빈추가
@@ -20,6 +19,9 @@ public class Player : MonoBehaviour
     public Move move;
 
     public GameObject Flash_Prefab;
+    /// <summary>
+    /// Flash->setLight, getBattery, Flashed...etc
+    /// </summary>
     public FlashLight Flash = null;
 
 
@@ -27,8 +29,7 @@ public class Player : MonoBehaviour
     static RaycastHit2D[] hits_up = new RaycastHit2D[] { },
                             hits_down = new RaycastHit2D[] { };
 
-    private void Awake()
-    {
+    private void Awake() {
         //게임중정보 초기화
         Hp = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.hp], Hp_max);
         Vector3 pos = new Vector3();
@@ -47,25 +48,32 @@ public class Player : MonoBehaviour
     /// </summary>
     /// <param name="pHp">체력</param>
     /// <param name="pPosition">위치정보</param>
-    /// <param name="pSpot">현재 씬 정보</param>
-    public void Init(float pHp, Vector3 pPosition, ISpot pSpot)
-    {
-        this.Hp = pHp;
-        this.transform.position = pPosition;
-        this.SpotInfo._room = pSpot._room;
-        this.SpotInfo._spot = pSpot._spot;
+    /// <param name="pSpot">위치한 씬 정보</param>
+    public static void Init(float pHp, Vector3 pPosition, ISpot pSpot) {
+
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], pPosition.x);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], pPosition.y);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], pPosition.z);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.hp], pHp);
+        PlayerPrefs.SetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room], (int)pSpot._room);
+        PlayerPrefs.SetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], pSpot._spot);
+        PlayerPrefs.Save();
+        GameObject pl = GameObject.Find("Player");
+        if (pl != null) {
+            pl.transform.position = pPosition;
+            pl.GetComponent<Player>().SpotInfo = pSpot;
+            pl.GetComponent<Player>().Hp = pHp;
+        }
     }
 
     //프로그램 종료시 임시데이터 삭제
-    private void OnApplicationQuit()
-    {
+    private void OnApplicationQuit() {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         Debug.Log("Delete");
     }
 
-    private void Start()
-    {
+    private void Start() {
         /*정원추가*/
         GameObject prefab = Resources.Load("Prefabs/Canvas_UI") as GameObject;
         GameObject GameUI = MonoBehaviour.Instantiate(prefab) as GameObject;
@@ -81,11 +89,10 @@ public class Player : MonoBehaviour
         GameObject f = Instantiate(Flash_Prefab);
         f.name = "Flash";
         Flash = f.GetComponent<FlashLight>();
-        Flash.Init(this.gameObject);
+        Flash.LinkUser(this.gameObject);
     }
 
-    private void OnDestroy()
-    {
+    private void OnDestroy() {
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], this.transform.position.x);
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], this.transform.position.y);
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], this.transform.position.z);
@@ -96,26 +103,22 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
-    {
+    private void Update() {
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (15f * Time.deltaTime); //시간에따른 hp회복
         Animator.SetBool("Back", false);
 
         //지치지 않아야 이동, 액션 가능
-        if (!Tire)
-        {
+        if (!Tire) {
             movement();
             Animator.speed = Speed;
-            if (Input.GetButtonDown("Action"))
-            {
+            if (Input.GetButtonDown("Action")) {
                 action();
             }
         }
 
-        if (Hp <= 0)
-        {
+        if (Hp <= 0) {
             Tire = true;
             Animator.speed = Speed_run;
             Animator.SetInteger("State", Ani_Idle);
@@ -123,13 +126,11 @@ public class Player : MonoBehaviour
         }
 
         //손전등
-        if (Input.GetButtonDown("Flash"))
-        {
+        if (Input.GetButtonDown("Flash")) {
             Flash.setLight(!Flash.getIsLighted());
         }
         //인벤토리
-        if (Input.GetButtonDown("Inventory"))
-        {
+        if (Input.GetButtonDown("Inventory")) {
             GameObject.Find("GameUI").GetComponent<GameUIManager>().Btn_Inven();
         }
 
@@ -138,55 +139,45 @@ public class Player : MonoBehaviour
     }
 
     //호빈추가_오브젝트 앞뒤구분용
-    void Raycasting()
-    {
+    void Raycasting() {
         hits_up = Physics2D.RaycastAll(this.transform.position, Vector3.up);
         hits_down = Physics2D.RaycastAll(this.transform.position, Vector3.down);
     }
 
     //호빈추가
-    public static Object_State check_up_down(string s)
-    {
+    public static Object_State check_up_down(string s) {
         int i;
-        Debug.Log(hits_up.Length);
-        for (i = 0; i < hits_up.Length; i++)
-        {
-            if (hits_up[i].collider.name == s)
-            {
-                Debug.Log(hits_up[i].collider.name + " / " + s);
+        //Debug.Log(hits_up.Length);
+        for (i = 0; i < hits_up.Length; i++) {
+            if (hits_up[i].collider.name == s) {
+                //Debug.Log(hits_up[i].collider.name + " / " + s);
                 return Object_State.Object_back;
             }
         }
-        for (i = 0; i < hits_down.Length; i++)
-        {
-            if (hits_down[i].collider.name == s)
-            {
-                Debug.Log(hits_down[i].collider.name + " / " + s);
+        for (i = 0; i < hits_down.Length; i++) {
+            if (hits_down[i].collider.name == s) {
+                //Debug.Log(hits_down[i].collider.name + " / " + s);
                 return Object_State.Object_front;
             }
         }
         return Object_State.too_far;
     }
 
-    private void movement()
-    {
+    private void movement() {
         //둘다입력없는 경우 움직이지않음
-        if (move.Horizontal == 0 && move.Vertical == 0)
-        {
+        if (move.Horizontal == 0 && move.Vertical == 0) {
             return;
         }
 
         Animator.SetInteger("State", Ani_Walk);
         //달리는 경우 체력감소, 달리기모션
-        if (move.Run)
-        {
+        if (move.Run) {
             Hp -= 2;
             Animator.SetInteger("State", Ani_Run);
             Speed = Speed_run;
             Animator.speed = Speed_run;
         }
-        if (move.Vertical > 0 && (move.Horizontal < 0.4 && move.Horizontal > -0.4))
-        {
+        if (move.Vertical > 0 && (move.Horizontal < 0.4 && move.Horizontal > -0.4)) {
             Animator.SetBool("Back", true);
         }
 
@@ -196,14 +187,11 @@ public class Player : MonoBehaviour
 
 
         //좌우반전
-        if (move.Horizontal > 0)
-        {
+        if (move.Horizontal > 0) {
             Vector3 scale = transform.localScale;
             scale.x = -Mathf.Abs(scale.x);
             transform.localScale = scale;
-        }
-        else if (move.Horizontal < 0)
-        {
+        } else if (move.Horizontal < 0) {
             Vector3 scale = transform.localScale;
             scale.x = Mathf.Abs(scale.x);
             transform.localScale = scale;
@@ -211,30 +199,25 @@ public class Player : MonoBehaviour
 
     }
 
-    private void action()
-    {
+    private void action() {
         GameObject nearObject = findNearObject();
-        if (nearObject != null)
-        {
+        if (nearObject != null) {
             Debug.Log(nearObject.name + " Player_action");
             nearObject.SendMessage("action");
         }
     }
 
-    private void action_item()
-    {
+    private void action_item() {
         int itemKey = Inventory.getInstance().curEquipItem;
         if (itemKey == -1) return;
         GameObject nearObject = findNearObject();
-        if (nearObject != null)
-        {
+        if (nearObject != null) {
             //nearObject.SendMessage("action", itemKey);
             Debug.Log(nearObject.name + " Player_action");
         }
     }
 
-    private GameObject findNearObject()
-    {
+    private GameObject findNearObject() {
         //오브젝트 검사 범위 지정
         Vector2 examdistance = new Vector2(-0.04468793f * transform.localScale.x, 0.006384373f);
         Vector2 examPosition = transform.position;
@@ -243,19 +226,16 @@ public class Player : MonoBehaviour
             0, 1 << LayerMask.NameToLayer("Object"));   //Layer이름 Object인 경우만 조사
 
         //범위내 오브젝트 X
-        if (objects.Length == 0)
-        {
+        if (objects.Length == 0) {
             return null;
         }
 
         //가장 가까운 오브젝트 조사
         float minDistance = 10;
         int nearObjectIndex = 0;
-        for (int i = 0; i < objects.Length; i++)
-        {
+        for (int i = 0; i < objects.Length; i++) {
             Vector2 heading = objects[i].transform.position - this.transform.position;
-            if (minDistance > heading.sqrMagnitude)
-            {
+            if (minDistance > heading.sqrMagnitude) {
                 minDistance = heading.sqrMagnitude;
                 nearObjectIndex = i;
             }
@@ -263,29 +243,16 @@ public class Player : MonoBehaviour
         return objects[nearObjectIndex].gameObject;
     }
 
-    private void heal()
-    {
+    private void heal() {
         Animator.speed = Speed_walk;
         Tire = false;
     }
 
-    public void setLight(bool value)
-    {
-        Flash.setLight(value);
-    }
-
-    public float getFlashBattery()
-    {
-        return Flash.getBattery();
-    }
-
     //호빈추가
-    public void set_player_pos(Vector3 v)
-    {
+    public void set_player_pos(Vector3 v) {
         this.transform.position = v;
     }
-    public Vector3 get_player_pos()
-    {
+    public Vector3 get_player_pos() {
         return this.transform.position;
     }
 }

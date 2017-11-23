@@ -18,8 +18,25 @@ public class FlashLight : MonoBehaviour {
     private bool isFlashed = false;     //현재 깜박임중?
     private float batteryleft = 0.5f;   //배터리 닳는 속도(값이 커지면 빨라짐)
 
+    /// <summary>
+    /// 게임 불러오기시 손전등 데이터 설정
+    /// </summary>
+    /// <param name="pBattery">배터리 잔량</param>
+    /// <param name="pIsLighted">on, off</param>
+    public static void Init(float pBattery, bool pIsLighted) {
+        PlayerPrefs.SetFloat("Flash_Battery", pBattery);
+        if (pIsLighted) PlayerPrefs.SetInt("Flash_IsLighted", 1);
+        else PlayerPrefs.SetInt("Flash_IsLighted", 0);
+        PlayerPrefs.Save();
 
-    public void Init(GameObject user) {
+        GameObject fl = GameObject.Find("Flash");
+        if (fl != null) {
+            fl.GetComponent<FlashLight>().setBattery(pBattery);
+            fl.GetComponent<FlashLight>().setLight(pIsLighted);
+        }
+    }
+
+    public void LinkUser(GameObject user) {
         Player = user;
     }
     private void Awake() {
