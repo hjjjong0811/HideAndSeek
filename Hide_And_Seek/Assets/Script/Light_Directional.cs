@@ -51,8 +51,8 @@ public class Light_Directional : MonoBehaviour {
     private IEnumerator coroutineFadeout(float time) {
         setLight(true);
         while (isFade) {
-            Light_p.intensity -= Light_power_on_ch / (time / 0.1f);
-            Light_o.intensity -= Light_power_on_obj / (time / 0.1f);
+            Light_p.intensity -= Light_power_on_ch / (time * 10f);
+            Light_o.intensity -= Light_power_on_obj / (time * 10f);
             yield return new WaitForSeconds(0.1f);
         }
         setLight(false);
