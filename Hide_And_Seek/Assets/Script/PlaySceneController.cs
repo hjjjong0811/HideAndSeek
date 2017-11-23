@@ -77,20 +77,27 @@ public class PlaySceneController : MonoBehaviour {
         myChar = null;
         light.fadeOut(3.0f);
 
-        //씬 로드
+        //숨바곡질 시작 씬 로드
         SceneManager.LoadScene("1_Hall");
         yield return new WaitForSeconds(0.01f);
-        //숨바곡질 시작 씬 로드
+
         ch_main = Instantiate(pre_ch_mainch);
         ch_hyojung = Instantiate(pre_ch_hj);
         ch_habin = Instantiate(pre_ch_hb);
         ch_jungyeon = Instantiate(pre_ch_jy);
         ch_suun = Instantiate(pre_ch_su);
         light_obj = Instantiate(pre_light_direc);
-        yield return new WaitForSeconds(0.01f);                 //instantiate후 지연
+        yield return new WaitForSeconds(0.01f);         //instantiate후 지연
+
+        Vector3 pos = new Vector3(-4f, -2.5f, 0f);      //위치 설정
+        ch_main.transform.position = pos;
+        ch_habin.transform.position = pos;
+        ch_hyojung.transform.position = pos;
+        ch_suun.transform.position = pos;
+        ch_jungyeon.transform.position = pos;
 
         light = light_obj.GetComponent<Light_Directional>();
-        light.fadeIn(2.0f);   //페이드인
+        light.fadeIn(2.0f);        //페이드인
         yield return new WaitForSeconds(1f);    //대사 전 딜레이
 
         //ScriptManager 1차숨바꼭질시작 대사 진행 요청
@@ -105,12 +112,6 @@ public class PlaySceneController : MonoBehaviour {
         myChar.Add(ch_jungyeon.GetComponent<MoveWayPoint>());
         myChar.Add(ch_suun.GetComponent<MoveWayPoint>());
 
-        Vector3 pos = new Vector3(-4f, -2.5f, 0f);
-        ch_main.transform.position = pos;
-        ch_habin.transform.position = pos;
-        ch_hyojung.transform.position = pos;
-        ch_suun.transform.position = pos;
-        ch_jungyeon.transform.position = pos;
         for (int i = 0; i < myChar.Count; i++) {
             myChar[i].move(new Vector2[] { new Vector2(0.5f, 0) }, MoveWayPoint.Speed_run);
         }
@@ -133,13 +134,6 @@ public class PlaySceneController : MonoBehaviour {
         GameObject player = Instantiate(pre_player);
         yield return new WaitForSeconds(0.01f);
         player.transform.position = new Vector3(0f, 0f, 0f);
-        player.GetComponent<Player>().setLight(false);
-
-        light_obj = Instantiate(pre_light_direc);
-        yield return new WaitForSeconds(0.01f);
-        light = light_obj.GetComponent<Light_Directional>();
-        light.fadeIn(2.0f);   //페이드인
-
 
         yield break;
     }
