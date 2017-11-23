@@ -30,7 +30,7 @@ public class PlayScene {
     public void playScene(numScene sceneNumber) {
         switch (sceneNumber) {
             case numScene.tutorial:
-                GameObject sc_pre = Resources.Load("Prefabs/Char_Player") as GameObject;
+                GameObject sc_pre = Resources.Load("Prefabs/SceneController") as GameObject;
                 GameObject sc = MonoBehaviour.Instantiate(sc_pre);
                 sc.GetComponent<PlaySceneController>().setScene(numScene.tutorial);
                 
