@@ -66,13 +66,6 @@ public class Player : MonoBehaviour {
         }
     }
 
-    //프로그램 종료시 임시데이터 삭제
-    private void OnApplicationQuit() {
-        PlayerPrefs.DeleteAll();
-        PlayerPrefs.Save();
-        Debug.Log("Delete");
-    }
-
     private void Start() {
         /*정원추가*/
         GameObject prefab = Resources.Load("Prefabs/Canvas_UI") as GameObject;
