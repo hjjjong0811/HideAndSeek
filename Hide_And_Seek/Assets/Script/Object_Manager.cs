@@ -27,22 +27,34 @@ public class Portal : IObject
     {
         this.key_num = key_num;
     }
+
+    public void for_start()
+    {
+    }
+
+    public void for_update()
+    {
+    }
 }
-public class Object : IObject
+public class Thing : IObject
 {
     GameObject obj;
     int key_num = 1;
     static string[] object_sorting = new string[] { "Object_back", "Object_front" };
     List<SpriteRenderer> sr_list = new List<SpriteRenderer>();
 
-    public Object(int key_num, GameObject obj)
+    public Thing(int key_num, GameObject obj)
     {
         this.key_num = key_num;
         this.obj = obj;
     }
 
     //update()용 함수
-    void for_update()
+    public void for_update()
+    {
+        change_childs();
+    }
+    void change_childs()
     {
         Object_State obj_loc = Player.check_up_down(obj.name);
 
@@ -58,7 +70,7 @@ public class Object : IObject
     }
 
     //start()용 함수
-    void for_start()
+    public void for_start()
     {
         Transform[] child_objects = obj.GetComponentsInChildren<Transform>();
         foreach (Transform t in child_objects)
