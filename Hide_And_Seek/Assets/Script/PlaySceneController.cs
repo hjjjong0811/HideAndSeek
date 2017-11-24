@@ -137,29 +137,29 @@ public class PlaySceneController : MonoBehaviour {
         }
 
         //이제 진행끝 숨바꼭질시작.//씬 로드
+        GameManager.getInstance().isScenePlay = false;
         SceneManager.LoadScene("1_Hall");
-        yield return new WaitForSeconds(0.01f);
-
-        GameObject player = Instantiate(pre_player);
-        yield return new WaitForSeconds(0.01f);
-        player.transform.position = new Vector3(0f, 0f, 0f);
 
         yield break;
     }
 
     private IEnumerator playHide1() {
+        GameManager.getInstance().isScenePlay = false;
         yield break;
     }
 
     private IEnumerator playHide2Ready() {
+        GameManager.getInstance().isScenePlay = false;
         yield break;
     }
 
     private IEnumerator ringPhone() {
+        GameManager.getInstance().isScenePlay = false;
         yield break;
     }
 
     private IEnumerator end_1() {
+        GameManager.getInstance().isScenePlay = false;
         yield break;
     }
 }

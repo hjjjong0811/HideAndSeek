@@ -8,9 +8,18 @@ public class GameUIManager : MonoBehaviour {
 
     public GameObject Inventory_Prefab;
     public GameObject Setting_Prefab;
+    public Image ImgItem;
 
     public bool isOpenInven = false;
 
+    private void Start() {
+        int chapter = GameManager.getInstance().GetMainChapter();
+
+        if (GameManager.getInstance().isScenePlay) {
+            Destroy(this.gameObject);
+            Destroy(this);
+        }
+    }
     public void Btn_Inven()
     {
         if (isOpenInven)
@@ -33,5 +42,9 @@ public class GameUIManager : MonoBehaviour {
            
     }
 
+    //현정추가
+    public void DisplayEquipItem(Sprite s) {
+        ImgItem.sprite = s;
+    }
 
 }
