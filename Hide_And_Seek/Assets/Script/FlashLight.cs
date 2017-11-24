@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class FlashLight : MonoBehaviour {
-    private readonly int Battery_max = 100, Battery_lack = 30;              //battery
+    private const int Battery_max = 100, Battery_lack = 30;              //battery
     private readonly float Light_power_on_ch = 8.0f, Light_power_off_ch = 0.0f;   //on off 시 intensity value
     private readonly float Light_power_on_obj = 180.0f, Light_power_off_obj = 10.0f;   //on off 시 intensity value
 
@@ -16,13 +16,13 @@ public class FlashLight : MonoBehaviour {
     private float timeleft = 3.0f;      //일정시간마다 깜박이기 위함
     private float nexttime = 0.0f;
     private bool isFlashed = false;     //현재 깜박임중?
-    private float batteryleft = 0.5f;   //배터리 닳는 속도(값이 커지면 빨라짐)
+    private float batteryleft = 0.01f;   //배터리 닳는 속도(값이 커지면 빨라짐)
 
     /// <summary>
     /// 게임 불러오기시 손전등 데이터 설정
     /// </summary>
     /// <param name="pBattery">배터리 잔량</param>
-    /// <param name="pIsLighted">on, off</param>
+    /// <param name="pIsLighted">on, off(default true)</param>
     public static void Init(float pBattery, bool pIsLighted) {
         PlayerPrefs.SetFloat("Flash_Battery", pBattery);
         if (pIsLighted) PlayerPrefs.SetInt("Flash_IsLighted", 1);
@@ -33,6 +33,19 @@ public class FlashLight : MonoBehaviour {
         if (fl != null) {
             fl.GetComponent<FlashLight>().setBattery(pBattery);
             fl.GetComponent<FlashLight>().setLight(pIsLighted);
+        }
+    }
+
+    /// <summary>
+    /// 게임 Save시 손전등 데이터 가져가기
+    /// </summary>
+    /// <returns>Battery</returns>
+    public static float getFlashData() {
+        GameObject fl = GameObject.Find("Flash");
+        if(fl != null) {
+            return fl.GetComponent<FlashLight>().getBattery();
+        } else {
+            return PlayerPrefs.GetFloat("Flash_Battery", Battery_max);
         }
     }
 
@@ -64,7 +77,7 @@ public class FlashLight : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
-        Battery = (Battery > 0) ? Battery - (batteryleft * Time.deltaTime) : 0; //시간경과시 배터리 방전
+        Battery = Battery - (batteryleft * Time.deltaTime); //시간경과시 배터리 방전
         transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -3f);
 
         //timeleft마다
@@ -76,6 +89,9 @@ public class FlashLight : MonoBehaviour {
             }
         }
         
+        if(Battery <= 0) {
+            //GameManager에 엔딩 요청
+        }
     }
 
     public float getBattery() {

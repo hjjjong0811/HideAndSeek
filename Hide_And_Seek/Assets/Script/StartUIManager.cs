@@ -13,6 +13,11 @@ public class StartUIManager : MonoBehaviour {
     public GameObject Save_Prefab; // 저장하기
     public GameObject Sound_Prefab; // 사운드설정
 
+    //프로그램 시작시 임시데이터 삭제
+    private void Start() {
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save();
+    }
 
     public void Btn_Start() // 게임시작
     {

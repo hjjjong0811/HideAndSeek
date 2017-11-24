@@ -2,49 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Object_State
-{
-    too_far = -1,
-    Object_back = 0,
-    Object_front = 1
-}
 public class Objects : MonoBehaviour
 {
-    string[] object_sorting = new string[] { "Object_back", "Object_front" };
-    List<SpriteRenderer> sr_list = new List<SpriteRenderer>();
+    public int _key_num;
+    public bool _t_thing_f_portal = false;//오브젝트 구분용 (true : 씬이동용 포탈 / false : 스크립트용 물건)
+    IObject _obj;
 
     // Use this for initialization
     void Start()
     {
-        Transform[] child_objects = GetComponentsInChildren<Transform>();
-        foreach (Transform t in child_objects)
+        if (_t_thing_f_portal)
         {
-            if (t.gameObject.GetComponent<SpriteRenderer>() != null)
-            {
-                sr_list.Add(t.gameObject.GetComponent<SpriteRenderer>());
-            }
+            _obj = new Thing(_key_num, this.gameObject);
+            _obj.for_start();
+        }
+        else
+        {
+            _obj = Scene_Manager.getInstance()._get_portal(_key_num);
+            _obj.for_start();
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        check_back_front();
+        _obj.for_update();
     }
 
-    void change_childs_back_fround(string order)
-    {
-        foreach (SpriteRenderer sr in sr_list)
-        {
-            sr.sortingLayerName = order;
-        }
-    }
-
-    void check_back_front()
-    {
-        Object_State obj_loc = Player.check_up_down(this.gameObject.name);
-
-        if (obj_loc == Object_State.too_far) return;
-        change_childs_back_fround(object_sorting[(int)obj_loc]);
-    }
 }

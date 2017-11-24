@@ -52,6 +52,9 @@ public class Inventory {
             return false;
         }
         curEquipItem = itemkey;
+        Item item = ItemManager.getInstance().getItemInfo(itemkey);
+        GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().DisplayEquipItem(
+            ItemManager.getInstance().LoadSpriteFromBytes(item.Img_data));
         return true;
     }
 

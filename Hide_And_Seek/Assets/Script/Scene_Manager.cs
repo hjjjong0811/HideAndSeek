@@ -29,9 +29,32 @@ public class Scene_Manager
 {
     public static int MAX_ROUTE_LENGTH = 100;//가장 긴 최단거리의 길이 (ex
     public static int MAX_FLOOR1_IDX = 9, MAX_FLOOR2_IDX = 19;
+    public static string[] scene_name = new string[]{
+    "0_Wine",
+    "1_Bath",
+    "1_Dining",
+    "1_Front",
+    "1_Hall",
+    "1_Kitchen",
+    "1_Laundry",
+    "1_Living",
+    "1_Pantry",
+    "1_Reception",
+    "2_Baby",
+    "2_Bath",
+    "2_Bed",
+    "2_Dress",
+    "2_Empty",
+    "2_Hall",
+    "2_Library",
+    "2_Photo",
+    "2_Swimming",
+    "3_Garret"
+    };
     int[] spot_num = new int[] { 2, 2, 4, 1, 3, 3, 2, 3, 2, 2, 2, 2, 3, 2, 1, 7, 3, 1, 3, 2 };//맵당 spot갯수
     Map_Graph _map_graph;
     private static Scene_Manager instance = null;
+    private static List<Portal> _portal_list = new List<Portal>();
 
     private Scene_Manager()
     {
@@ -101,6 +124,29 @@ public class Scene_Manager
         _map_graph.spot_link(new ISpot(Room.Hall_2, 6), new ISpot(Room.Swimming_2, 2));
         _map_graph.spot_link(new ISpot(Room.Bath_2, 0), new ISpot(Room.Bed_2, 0));
         _map_graph.spot_link(new ISpot(Room.Bed_2, 2), new ISpot(Room.Dress_2, 1));
+
+        //포탈
+        _portal_list.Add(new Portal(1, Room.Wine_0, Room.Living_1));
+        _portal_list.Add(new Portal(2, Room.Hall_1, Room.Front_1));
+        _portal_list.Add(new Portal(3, Room.Hall_1, Room.Living_1));
+        _portal_list.Add(new Portal(4, Room.Bath_1, Room.Laundry_1));
+        _portal_list.Add(new Portal(5, Room.Hall_1, Room.Laundry_1));
+        _portal_list.Add(new Portal(6, Room.Hall_1, Room.Kitchen_1));
+        _portal_list.Add(new Portal(7, Room.Pantry_1, Room.Kitchen_1));
+        _portal_list.Add(new Portal(8, Room.Hall_1, Room.Dining_1));
+        _portal_list.Add(new Portal(9, Room.Hall_1, Room.Reception_1));
+        _portal_list.Add(new Portal(10, Room.Hall_1, Room.Hall_2));
+        _portal_list.Add(new Portal(11, Room.Hall_2, Room.Bath_2));
+        _portal_list.Add(new Portal(12, Room.Bath_2, Room.Bed_2));
+        _portal_list.Add(new Portal(13, Room.Hall_2, Room.Bed_2));
+        _portal_list.Add(new Portal(14, Room.Dress_2, Room.Bed_2));
+        _portal_list.Add(new Portal(15, Room.Dress_2, Room.Baby_2));
+        _portal_list.Add(new Portal(16, Room.Hall_2, Room.Baby_2));
+        _portal_list.Add(new Portal(17, Room.Hall_2, Room.Swimming_2));
+        _portal_list.Add(new Portal(18, Room.Hall_2, Room.Garret_3));
+        _portal_list.Add(new Portal(19, Room.Hall_2, Room.Library_2));
+        _portal_list.Add(new Portal(20, Room.Photo_2, Room.Library_2));
+        _portal_list.Add(new Portal(21, Room.Hall_2, Room.Empty_2));
     }
     public static Scene_Manager getInstance()
     {
@@ -155,6 +201,14 @@ public class Scene_Manager
             _route._next = min_route;
         }
         return _route;
+    }
+    public Portal _get_portal(int key)
+    {
+        foreach (var v in _portal_list)
+        {
+            if (v.get_key() == key) return v;
+        }
+        return null;
     }
 }
 
