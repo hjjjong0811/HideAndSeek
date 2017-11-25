@@ -35,8 +35,8 @@ public class ObjectManager {
 
 
     //키값으로 오브젝트 검색
-    public Obj findObj(int key)
-    { return obj ; }
+    //public Obj findObj(int key)
+    //{ return obj ; } 현정 임시주석처리함, obj를찾을수없음
 
     //바뀐 오브젝트 리스트 반환
     public List<Obj> getObjChange()
