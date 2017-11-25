@@ -9,9 +9,7 @@ using UnityEngine.EventSystems; // 버튼 클릭이벤트
 using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour {
-    public enum PlayerPrefsIndex { hp = 0, x = 1, y = 2, z = 3, room = 4, spot = 5 };
-    public static string[] PlayerPrefsKey = {"Player_hp", "Player_x", "Player_y", "Player_z",
-        "Player_Pos_room", "Player_Pos_spot"};
+
 
     /*화면구성용*/
     public Text[] Text_Name = new Text[3];
@@ -27,12 +25,17 @@ public class SaveManager : MonoBehaviour {
 
     public GameObject Player_Prefab;
 
+   
     public Vector3 PlayerPos;
     public int NowScene = 0;
     public float Player_x;
     public float Player_y;
     public List<String> Player_Object;
-    
+    public float Player_hp;
+    public ISpot Player_Ispot;
+    public int Player_Spot;
+    public ISpot Enemy_Ispot;
+
 
 
     [Serializable]
@@ -44,13 +47,18 @@ public class SaveManager : MonoBehaviour {
         public int SaveScene;
         public List<int> Inventory;
         public List<String> Object;
-        public float P_x;
-        public float P_y;
+        public float x;
+        public float y;
+        public float z;
+        public float hp;
+        public int P_Ispot;
+    //    public ISpot E_Ispot;
     }
 
 
     public void Start()
     {
+
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
@@ -66,17 +74,10 @@ public class SaveManager : MonoBehaviour {
     {
         DataCheck();
         StateButtonChange();
-        GetPlayerPos();
 
     }
 
-    public void GetPlayerPos()
-    {
-        NowScene = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room]);
-        Player_x = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x]);
-        Player_y = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y]);
 
-    }
 
     public void DataCheck() // 기존 데이터 확인
     {
@@ -144,13 +145,20 @@ public class SaveManager : MonoBehaviour {
 
         PlayerData data = new PlayerData();
 
+        Player.getPlayerData(ref Player_hp,ref PlayerPos,ref Player_Ispot);
+        
         data.Name = "주인공";
+        data.hp = Player_hp;
         data.SaveScene = NowScene;
         data.MainChapter = GameManager.getInstance().GetMainChapter();
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss");
         data.Inventory = Inventory.getInstance().inventory;
-        data.P_x = Player_x;
-        data.P_y = Player_y;
+        data.x = PlayerPos.x;
+        data.y = PlayerPos.y;
+        data.z = PlayerPos.z;
+        
+        //data.P_Ispot = Player_Ispot;
+        //data.E_Ispot = Enemy.get_enemy_spot();
         data.Object = Player_Object;
         
 
@@ -169,41 +177,13 @@ public class SaveManager : MonoBehaviour {
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
+                PlayerPos.x = data.x;
+                PlayerPos.y = data.y;
+                PlayerPos.z = data.z;
+               // Player_Ispot = (ISpot)data.P_Ispot;
 
-
-                //SceneManager.LoadScene(data.SaveScene);
-
-                Scene MoveScene = SceneManager.GetSceneByBuildIndex(data.SaveScene);
-                SceneManager.MoveGameObjectToScene(GameObject.Find("Player"),MoveScene);
-              //  SceneManager.LoadScene(data.SaveScene);
-
-               
-                    PlayerPos.x = data.P_x;
-                    PlayerPos.y = data.P_y;
-                    GameObject.Find("Player").transform.position = PlayerPos;
+                Player.Init(data.hp, PlayerPos, Player_Ispot);
                 Inventory.getInstance().inventory = data.Inventory; // 인벤토리
-
-
-              
-             
-
-              
-
-
-                /*
-                if (GameObject.Find("Player") == false)
-                {
-                    GameObject temp = Instantiate(Player_Prefab, new Vector3(data.P_x, data.P_y, 0), transform.rotation);
-                    temp.name = "Player";
-                }
-                else
-                    Destroy(GameObject.Find("Player"));
-                    */
-
-                
-                
-
-                Player_Object = data.Object;
 
 
 
