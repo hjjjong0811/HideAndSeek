@@ -87,7 +87,7 @@ public class EditUIManager_Compose : EditUIManager {
 
 
     //item 클릭
-    public void itemClick(int clickedIndex) {
+    public override void itemClick(int clickedIndex) {
         editPanelCloseClick();
         isNewItem = false;
         ComposeItem item = dataManager.list_Compose[clickedIndex];
@@ -96,7 +96,7 @@ public class EditUIManager_Compose : EditUIManager {
     }
 
     //수정창 OK 클릭
-    public void editPanelOKClick() {
+    public override void editPanelOKClick() {
         //UI로부터 정보얻음
         ComposeItem item = new ComposeItem();
         item.Key_Compose = int.Parse(GameObject.Find("EditItem_key").GetComponent<InputField>().text);
@@ -128,7 +128,7 @@ public class EditUIManager_Compose : EditUIManager {
         displayItemList();
     }
     //아이템삭제
-    public void editPanelDeleteClick() {
+    public override void editPanelDeleteClick() {
         if (!isNewItem) {
             dataManager.list_Compose.RemoveAt(nClikedIndex);
             editPanelCloseClick();
@@ -137,7 +137,7 @@ public class EditUIManager_Compose : EditUIManager {
 
     }
     //item 수정창 Close 클릭
-    public void editPanelCloseClick() {
+    public override void editPanelCloseClick() {
         Destroy(pnlEdit);
     }
 

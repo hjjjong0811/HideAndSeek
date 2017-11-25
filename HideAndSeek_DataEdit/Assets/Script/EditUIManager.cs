@@ -8,4 +8,9 @@ public abstract class EditUIManager : MonoBehaviour {
     public abstract void editPanelSetting(object arg);
     public abstract void CreateClick();
     public abstract void displayItemList();
+
+    public abstract void itemClick(int clickedIndex);
+    public abstract void editPanelOKClick();
+    public abstract void editPanelDeleteClick();
+    public abstract void editPanelCloseClick();
 }
