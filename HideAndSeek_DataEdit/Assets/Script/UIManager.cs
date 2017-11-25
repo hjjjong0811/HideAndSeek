@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private readonly int code_item = 0, code_compose = 1;
+    private readonly int code_item = 0, code_compose = 1, code_script = 2;
 
     DataManager dataManager = null;
     EditUIManager editUIManager = null;
@@ -31,10 +31,15 @@ public class UIManager : MonoBehaviour
             dataManager.LoadData(inputPath.text);
             editUIManager = GameObject.Find("Manager_Item").GetComponent<EditUIManager_Item>();
             editUIManager.Init();
-        }else if(dropdown.value == code_compose) {
+        } else if (dropdown.value == code_compose) {
             dataManager = GameObject.Find("Manager_Compose").GetComponent<DataManager_Compose>();
             dataManager.LoadData(inputPath.text);
             editUIManager = GameObject.Find("Manager_Compose").GetComponent<EditUIManager_Compose>();
+            editUIManager.Init();
+        } else if (dropdown.value == code_script) {
+            dataManager = GameObject.Find("Manager_Script").GetComponent<DataManager_Script>();
+            dataManager.LoadData(inputPath.text);
+            editUIManager = GameObject.Find("Manager_Script").GetComponent<EditUIManager_Script>();
             editUIManager.Init();
         }
     }

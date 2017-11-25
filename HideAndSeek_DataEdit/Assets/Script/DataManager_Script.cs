@@ -7,11 +7,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public class DataManager_Script : DataManager {
     public enum char_sprite {
-        hyojung = 0,
-        habin = 1,
-        jungyeon = 2,
-        suun = 3,
-        pension = 4
+        non = 0,
+        hyojung = 1,
+        habin = 2,
+        jungyeon = 3,
+        suun = 4,
+        pension = 5
     }
     public List<Sprite> list_char_sprite;
 
@@ -47,6 +48,7 @@ public class DataManager_Script : DataManager {
         file.Close();
     }
     public Sprite getObjImg(int num) {
+        if (num == 0) return null;
         return list_char_sprite[num];
     }
     public byte[] LoadBytefromImgPath(String path) {
@@ -61,6 +63,7 @@ public class DataManager_Script : DataManager {
         return imageData;
     }
     public Sprite LoadSpriteFromBytes(byte[] data) {
+        if (data == null) return null;
         Texture2D texture2D = new Texture2D(500, 500);
         texture2D.LoadImage(data);
         Sprite sprite = Sprite.Create(texture2D, new Rect(0, 0, texture2D.width, texture2D.height), new Vector2(0, 0));
