@@ -2,6 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+enum WHO
+{
+    HYO_JUNG=0,
+    JUNG_YEON,
+    SU_UN,
+    HA_BIN
+}
+struct sTalkScript
+{
+    int key;    //대화 순서 키값   
+    string str; //대화내용
+    WHO who;    //말한사람
+}
+
 public class ScriptManager : MonoBehaviour {
 
     /*
@@ -16,10 +30,21 @@ public class ScriptManager : MonoBehaviour {
 	}
 	*/
 
-    public Vector2 a;
-
 
 	private static ScriptManager instance = null;
+
+    /// <summary>
+    /// 오브젝트 스크립트 모음
+    /// </summary>
+    private string[] objScriptList;
+
+    /// <summary>
+    /// 대화 스크립트 모음
+    /// </summary>
+    private sTalkScript[] talkScriptList; 
+
+
+
 
 	public static ScriptManager getInstance()
 	{
@@ -42,9 +67,20 @@ public class ScriptManager : MonoBehaviour {
 	}
 
 
-    public void showScript()
+    /// <summary>
+    /// 오브젝트 클릭시 나타나는 스크립트
+    /// </summary>
+    public void showObjScript()
     {
 
+    }
+
+    /// <summary>
+    /// 대화시 나타나는 스크립트
+    /// </summary>
+    public void showTalkScript()
+    {
+        
     }
     
 
