@@ -12,7 +12,6 @@ public class SaveManager : MonoBehaviour {
 
 
     /*화면구성용*/
-    public Text[] Text_Name = new Text[3];
     public Text[] Text_Chapter = new Text[3];
     public Text[] Text_SaveTime = new Text[3];
 
@@ -22,18 +21,18 @@ public class SaveManager : MonoBehaviour {
 
     public GameObject[] Img_CheckMark = new GameObject[3];
     public int SlotNumber = 0;
-
-    public GameObject Player_Prefab;
+    
 
    
     public Vector3 PlayerPos;
-    public int NowScene = 0;
     public float Player_x;
     public float Player_y;
     public List<String> Player_Object;
     public float Player_hp;
-    public ISpot Player_Ispot;
     public int Player_Spot;
+
+    public Room Player_Room;
+    public ISpot Player_Ispot;
     public ISpot Enemy_Ispot;
 
 
@@ -41,24 +40,24 @@ public class SaveManager : MonoBehaviour {
     [Serializable]
     class PlayerData
     {
-        public String Name;
         public int MainChapter;
         public String SaveTime;
-        public int SaveScene;
         public List<int> Inventory;
         public List<String> Object;
         public float x;
         public float y;
         public float z;
         public float hp;
-        public int P_Ispot;
+        public int P_Room;
+        public int P_Spot;
     //    public ISpot E_Ispot;
     }
 
 
     public void Start()
     {
-
+        Player_Room = 0;
+        Player_Ispot = new ISpot(0, 0);
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
@@ -91,8 +90,7 @@ public class SaveManager : MonoBehaviour {
                 if (file != null && file.Length > 0)
                 {
                     PlayerData data = (PlayerData)bf.Deserialize(file);
-
-                    Text_Name[i - 1].text = "name." + data.Name;
+                    
                     Text_Chapter[i - 1].text = "ep. " + data.MainChapter.ToString();
                     Text_SaveTime[i - 1].text = "Save.T " + data.SaveTime;
 
@@ -140,27 +138,29 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_SaveData() // 데이터 저장하기
     {
+        Player.getPlayerData(ref Player_hp,ref PlayerPos,ref Player_Ispot);
+
+        
+
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + SlotNumber + ".dat");
 
+
+       
         PlayerData data = new PlayerData();
 
-        Player.getPlayerData(ref Player_hp,ref PlayerPos,ref Player_Ispot);
-        
-        data.Name = "주인공";
+
+      
         data.hp = Player_hp;
-        data.SaveScene = NowScene;
         data.MainChapter = GameManager.getInstance().GetMainChapter();
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss");
         data.Inventory = Inventory.getInstance().inventory;
         data.x = PlayerPos.x;
         data.y = PlayerPos.y;
         data.z = PlayerPos.z;
-        
-        //data.P_Ispot = Player_Ispot;
-        //data.E_Ispot = Enemy.get_enemy_spot();
-        data.Object = Player_Object;
-        
+        data.P_Room = (int)Player_Ispot._room;
+        data.P_Spot = Player_Ispot._spot;
+        Debug.Log("세이브저장" + data.P_Room);
 
         bf.Serialize(file, data);
         file.Close();
@@ -176,12 +176,18 @@ public class SaveManager : MonoBehaviour {
             if (file != null && file.Length > 0)
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
+                
+                
+                Player_Ispot._room = (Room)data.P_Room;
+                Player_Ispot._spot = data.P_Spot;
 
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
-               // Player_Ispot = (ISpot)data.P_Ispot;
 
+
+                SceneManager.LoadScene(data.P_Room);
+                Debug.Log("load"+data.P_Room);
                 Player.Init(data.hp, PlayerPos, Player_Ispot);
                 Inventory.getInstance().inventory = data.Inventory; // 인벤토리
 
@@ -212,8 +218,7 @@ public class SaveManager : MonoBehaviour {
     public void Btn_DeleteData() // 데이터삭제
     {
         File.Delete(Application.persistentDataPath + "/" + SlotNumber + ".dat");
-
-        Text_Name[SlotNumber - 1].text = "name. ";
+        
         Text_Chapter[SlotNumber - 1].text = "ep. ";
         Text_SaveTime[SlotNumber - 1].text = "Save.T. ";
 
