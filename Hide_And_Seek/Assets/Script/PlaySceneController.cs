@@ -12,6 +12,8 @@ public class PlaySceneController : MonoBehaviour {
     
     delegate IEnumerator del_type_test();
     del_type_test play;
+
+    private bool isWaitScript;
     
     public void setScene(PlayScene.numScene n) {
         if (n == PlayScene.numScene.tutorial) play = playTutorial;
@@ -27,15 +29,19 @@ public class PlaySceneController : MonoBehaviour {
         StartCoroutine(play());
     }
 
+    public void wake() {
+        isWaitScript = false;
+    }
+
     private IEnumerator playTutorial() {
         //씬 로드
         SceneManager.LoadScene("S_BBQ");
         yield return new WaitForSeconds(2f);
 
         //대사 진행
-        //ScriptManager 펜션도착 대사 진행 요청
-
-        //while(ScriptManager 대사 요청 완료 확인)
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 1, 2, 3, 4, 5 }, wake);
+        yield return new WaitUntil(()=>!isWaitScript);
 
         //바베큐장 씬 로드
         GameObject ch_main = Instantiate(pre_ch_mainch);
@@ -60,8 +66,9 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(3f);    //대사 전 딜레이
 
         //ScriptManager 바베큐장 대사 진행 요청
-
-        //while(ScriptManager 대사 요청 완료 확인)
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 6, 7}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
 
         //펜션 내부로 이동
         myChar = new List<MoveWayPoint>();
