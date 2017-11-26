@@ -79,6 +79,8 @@ public class ScriptManager : MonoBehaviour {
             scripts.Remove(curScript);
         }
         this.gameObject.SetActive(false);
+        GameObject go = GameObject.Find("Canvas_UI");
+        if (go != null) go.GetComponent<CanvasGroup>().interactable = true;
         if (wake != null) wake();
         yield break;
     }
@@ -97,6 +99,8 @@ public class ScriptManager : MonoBehaviour {
             scripts.Add(findScript(isObj, scripts_key[i]));
         }
         this.gameObject.SetActive(true);
+        GameObject go = GameObject.Find("Canvas_UI");
+        if (go != null) go.GetComponent<CanvasGroup>().interactable = false;
         StartCoroutine(playScript(scripts, null));
     }
 
