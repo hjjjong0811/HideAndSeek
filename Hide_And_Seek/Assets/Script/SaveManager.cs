@@ -20,6 +20,7 @@ public class SaveManager : MonoBehaviour {
     public Button Btn_Delete;
 
     public GameObject[] Img_CheckMark = new GameObject[3];
+    public bool isSlot = false;
     public int SlotNumber = 0;
     
 
@@ -30,42 +31,46 @@ public class SaveManager : MonoBehaviour {
     public List<String> Player_Object;
     public float Player_hp;
     public int Player_Spot;
+    public float Player_Battery;
 
     public Room Player_Room;
-    public ISpot Player_Ispot;
-    public ISpot Enemy_Ispot;
+    public Room Enemy_Room;
 
+    public ISpot Player_ISpot;
+    public ISpot Enemy_ISpot;
 
-
+    
     [Serializable]
     class PlayerData
     {
         public int MainChapter;
         public String SaveTime;
         public List<int> Inventory;
-        public List<String> Object;
         public float x;
         public float y;
         public float z;
         public float hp;
+        public float Battery;
         public int P_Room;
         public int P_Spot;
-    //    public ISpot E_Ispot;
+        public int E_Room;
+        public int E_Spot;
     }
-
+    
 
     public void Start()
     {
-        Player_Room = 0;
-        Player_Ispot = new ISpot(0, 0);
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
 
+        isSlot = false;
+        SlotNumber = 0;
+        
         for (int i=0; i<3; i++)
             Img_CheckMark[i].SetActive(false);
+
         
-       
         DataCheck();
     }
 
@@ -115,22 +120,31 @@ public class SaveManager : MonoBehaviour {
             Img_CheckMark[i].SetActive(false);
         
         Img_CheckMark[SlotNumber - 1].SetActive(true);
-
-        StateButtonChange();
+        isSlot = true;
 
     }
 
     public void StateButtonChange() // 상태에 따른 버튼바꾸기
     {
-        if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+        if (isSlot == true)
         {
-            Btn_Save.interactable = true;
-            Btn_Load.interactable = true;
-            Btn_Delete.interactable = true;
+            if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+            {
+                Btn_Save.interactable = true;
+                Btn_Load.interactable = true;
+                Btn_Delete.interactable = true;
+            }
+
+            else
+            {
+                Btn_Save.interactable = true;
+                Btn_Load.interactable = false;
+                Btn_Delete.interactable = false;
+            }
         }
         else
         {
-            Btn_Save.interactable = true;
+            Btn_Save.interactable = false;
             Btn_Load.interactable = false;
             Btn_Delete.interactable = false;
         }
@@ -138,19 +152,17 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_SaveData() // 데이터 저장하기
     {
-        Player.getPlayerData(ref Player_hp,ref PlayerPos,ref Player_Ispot);
-
-        
-
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/" + SlotNumber + ".dat");
-
 
        
         PlayerData data = new PlayerData();
 
 
-      
+        Player.getPlayerData(ref Player_hp,ref PlayerPos,ref Player_ISpot);
+        Enemy_ISpot = Enemy.get_enemy_spot();
+     
+
         data.hp = Player_hp;
         data.MainChapter = GameManager.getInstance().GetMainChapter();
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss");
@@ -158,10 +170,14 @@ public class SaveManager : MonoBehaviour {
         data.x = PlayerPos.x;
         data.y = PlayerPos.y;
         data.z = PlayerPos.z;
-        data.P_Room = (int)Player_Ispot._room;
-        data.P_Spot = Player_Ispot._spot;
-        Debug.Log("세이브저장" + data.P_Room);
 
+        data.P_Room = (int)Player_ISpot._room;
+        data.P_Spot = Player_ISpot._spot;
+        data.E_Room = (int)Enemy_ISpot._room;
+        data.E_Spot = Enemy_ISpot._spot;
+
+        data.Battery = FlashLight.getFlashData();
+       
         bf.Serialize(file, data);
         file.Close();
     }
@@ -178,8 +194,8 @@ public class SaveManager : MonoBehaviour {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
                 
                 
-                Player_Ispot._room = (Room)data.P_Room;
-                Player_Ispot._spot = data.P_Spot;
+                Player_ISpot._room = (Room)data.P_Room;
+                Player_ISpot._spot = data.P_Spot;
 
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
@@ -187,8 +203,11 @@ public class SaveManager : MonoBehaviour {
 
 
                 SceneManager.LoadScene(data.P_Room);
-                Debug.Log("load"+data.P_Room);
-                Player.Init(data.hp, PlayerPos, Player_Ispot);
+                Player.Init(data.hp, PlayerPos, Player_ISpot);
+                FlashLight.Init(data.Battery, true);
+                
+              
+
                 Inventory.getInstance().inventory = data.Inventory; // 인벤토리
 
 
