@@ -136,6 +136,8 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+        if (ScriptManager.getInstance().isPlaying) return;
+
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (30f * Time.deltaTime); //시간에따른 hp회복
