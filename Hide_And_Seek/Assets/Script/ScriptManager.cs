@@ -33,7 +33,13 @@ public class ScriptManager : MonoBehaviour {
     private bool isClicked = false;
     private List<Script> scripts;
 
+    public bool isPlaying;
 
+    private void Update() {
+        if (Input.GetButtonDown("Action")) {
+            OnClicked();
+        }
+    }
 
     private void Awake() {
         if (instance == null) instance = this;
@@ -45,6 +51,7 @@ public class ScriptManager : MonoBehaviour {
         LoadData();
         scripts = new List<Script>();
         this.gameObject.SetActive(false);
+        isPlaying = false;
     }
 
     public static ScriptManager getInstance() {
@@ -82,6 +89,7 @@ public class ScriptManager : MonoBehaviour {
         GameObject go = GameObject.Find("Canvas_UI");
         if (go != null) go.GetComponent<CanvasGroup>().interactable = true;
         if (wake != null) wake();
+        isPlaying = false;
         yield break;
     }
 
@@ -95,6 +103,7 @@ public class ScriptManager : MonoBehaviour {
     /// <param name="isObj"></param>
     /// <param name="scripts_key"></param>
     public void showScript(bool isObj, int[] scripts_key) {
+        isPlaying = true;
         for (int i = 0; i < scripts_key.Length; i++) {
             scripts.Add(findScript(isObj, scripts_key[i]));
         }
@@ -111,6 +120,7 @@ public class ScriptManager : MonoBehaviour {
     /// <param name="scripts_key"></param>
     /// <param name="wake">if want call Method at end of scripts</param>
     public void showScript(bool isObj, int[] scripts_key, del wake) {
+        isPlaying = true;
         for (int i = 0; i < scripts_key.Length; i++) {
             scripts.Add(findScript(isObj, scripts_key[i]));
         }
