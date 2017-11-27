@@ -28,20 +28,23 @@ public class PlayScene {
     /// </summary>
     /// <param name="sceneNumber">enum으로 씬번호 전달</param>
     public void playScene(numScene sceneNumber) {
+        GameObject sc_pre = Resources.Load("Prefabs/SceneController") as GameObject;
+        GameObject sc = MonoBehaviour.Instantiate(sc_pre);
         switch (sceneNumber) {
             case numScene.tutorial:
-                GameObject sc_pre = Resources.Load("Prefabs/SceneController") as GameObject;
-                GameObject sc = MonoBehaviour.Instantiate(sc_pre);
                 sc.GetComponent<PlaySceneController>().setScene(numScene.tutorial);
-                
                 break;
             case numScene.hide_1_end:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.hide_1_end);
                 break;
             case numScene.hide_2_ready:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.hide_2_ready);
                 break;
             case numScene.ringPhone:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.ringPhone);
                 break;
             case numScene.ending_exit:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.ending_exit);
                 break;
         }
     }

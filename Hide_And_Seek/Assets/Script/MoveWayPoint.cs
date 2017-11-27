@@ -13,6 +13,8 @@ public class MoveWayPoint : MonoBehaviour {
     public int pointIndex;
     public float speed;
 
+    private bool isMoving;
+
 	// Use this for initialization
 	void Start () {
         //캐릭터인경우 애니메이션 초기화
@@ -27,7 +29,7 @@ public class MoveWayPoint : MonoBehaviour {
 
     private void Update() {
         //목표 웨이포인트 존재시
-        if(wayPoint != null && wayPoint.Length > 0) {
+        if(wayPoint != null && wayPoint.Length > 0 && isMoving) {
             //이동
             transform.position = Vector2.MoveTowards(transform.position, wayPoint[pointIndex], speed * Time.deltaTime);
             //캐릭터면 애니메이션
@@ -47,7 +49,7 @@ public class MoveWayPoint : MonoBehaviour {
                 }
             }
 
-        }
+        } //if
     }
 
     private void setAni(Vector2 target) {
@@ -81,8 +83,15 @@ public class MoveWayPoint : MonoBehaviour {
 
     }
 
+    public void stop() {
+        isMoving = false;
+        animator.SetInteger("State", Ani_Idle);
+        animator.speed = Speed_walk;
+    }
+
     //이동 함수. 이동하고싶은 점 배열로 줘
     public void move(Vector2[] pWayPoints, float pSpeed) {
+        isMoving = true;
         wayPoint = null;
         pointIndex = 0;
         wayPoint = pWayPoints;

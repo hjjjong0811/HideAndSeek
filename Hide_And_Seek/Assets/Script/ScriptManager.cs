@@ -108,8 +108,10 @@ public class ScriptManager : MonoBehaviour {
             scripts.Add(findScript(isObj, scripts_key[i]));
         }
         this.gameObject.SetActive(true);
-        GameObject go = GameObject.Find("Canvas_UI");
-        if (go != null) go.GetComponent<CanvasGroup>().interactable = false;
+        GameObject gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
+        GameObject inven = GameObject.Find("Inven");
+        if (inven != null) gameUI.GetComponent<GameUIManager>().Btn_Inven();
         StartCoroutine(playScript(scripts, null));
     }
 
@@ -125,6 +127,10 @@ public class ScriptManager : MonoBehaviour {
             scripts.Add(findScript(isObj, scripts_key[i]));
         }
         this.gameObject.SetActive(true);
+        GameObject gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
+        GameObject inven = GameObject.Find("Inven");
+        if (inven != null) gameUI.GetComponent<GameUIManager>().Btn_Inven();
         StartCoroutine(playScript(scripts, wake));
     }
 

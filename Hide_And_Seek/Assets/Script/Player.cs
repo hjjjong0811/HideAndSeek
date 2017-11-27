@@ -103,6 +103,7 @@ public class Player : MonoBehaviour {
         if(GameManager.getInstance().isScenePlay) {
             Destroy(this.gameObject);
             Destroy(this);
+            return;
         }
 
         Player_obj = this.gameObject;//호빈추가
