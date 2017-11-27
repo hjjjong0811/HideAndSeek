@@ -148,6 +148,7 @@ public class Scene_Manager
         _portal_list.Add(new Portal(19, Room.Hall_2, Room.Library_2));
         _portal_list.Add(new Portal(20, Room.Photo_2, Room.Library_2));
         _portal_list.Add(new Portal(21, Room.Hall_2, Room.Empty_2));
+        _portal_list.Add(new Portal(22, Room.Hall_2, Room.Library_2));
     }
     public static Scene_Manager getInstance()
     {
