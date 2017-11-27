@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum Room
 {
+    None = -1,
     Wine_0 = 0,
     Bath_1 = 1,
     Dining_1 = 2,
@@ -209,6 +210,15 @@ public class Scene_Manager
             if (v.get_key() == key) return v;
         }
         return null;
+    }
+    public Room get_room_info(string s_name)
+    {
+        Room result = Room.None;
+        for (int i = 0; i < scene_name.Length; i++)
+        {
+            if (s_name == scene_name[i]) result = (Room)i;
+        }
+        return result;
     }
 }
 
