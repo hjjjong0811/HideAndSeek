@@ -238,10 +238,14 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(0f, -1f), 4);
 
-        //대사 진행
+        //대사 진행, 소주를찾으러
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 6, 7 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
+
+        MoveWayPoint move = obj_char[(int)char_num.main].GetComponent<MoveWayPoint>();
+        move.move(new Vector2[] {new Vector2(0.07f, -0.24f) , new Vector2(3.46f, -1.48f) }, MoveWayPoint.Speed_run);
+        yield return new WaitUntil(()=>move.isIdle());
 
         //씬종료
         GameManager.getInstance().isScenePlay = false;
