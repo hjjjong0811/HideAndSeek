@@ -29,4 +29,9 @@ public class Objects : MonoBehaviour
         _obj.for_update();
     }
 
+    public void action()
+    {
+        _obj.action();
+    }
+
 }

@@ -30,8 +30,16 @@ public class Portal : IObject
         scene_name2 = Scene_Manager.scene_name[(int)r2];
     }
 
-    public void action(){
-        Debug.Log("Portal : " + key_num);
+    public void action()
+    {
+        if (SceneManager.GetActiveScene().name == scene_name1)
+        {
+            SceneManager.LoadScene(scene_name2);
+        }
+        else
+        {
+            SceneManager.LoadScene(scene_name1);
+        }
     }
     public void for_start()
     {
