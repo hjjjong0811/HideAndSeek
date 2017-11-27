@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public enum PlayerPrefsIndex { hp = 0, x = 1, y = 2, z = 3, room = 4, spot = 5 };
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour {
     }
 
     private void Start() {
+        SpotInfo._room = Scene_Manager.getInstance().get_room_info(SceneManager.GetActiveScene().name);
         int chapter = GameManager.getInstance().GetMainChapter();
 
         if(GameManager.getInstance().isScenePlay) {
