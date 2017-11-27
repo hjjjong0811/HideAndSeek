@@ -14,7 +14,7 @@ public class Object_Manager{
 
 public interface IObject
 {
-    void object_action();
+    void action();
     void for_start();
     void for_update();
 }
@@ -30,8 +30,16 @@ public class Portal : IObject
         scene_name2 = Scene_Manager.scene_name[(int)r2];
     }
 
-    public void object_action(){
-
+    public void action()
+    {
+        if (SceneManager.GetActiveScene().name == scene_name1)
+        {
+            SceneManager.LoadScene(scene_name2);
+        }
+        else
+        {
+            SceneManager.LoadScene(scene_name1);
+        }
     }
     public void for_start()
     {
@@ -76,7 +84,8 @@ public class Thing : IObject
     }
 
     //player에서 호출하는 함수
-    public void object_action(){
+    public void action(){
+        Debug.Log("Thing");
     }
     //start()용 함수
     public void for_start()
