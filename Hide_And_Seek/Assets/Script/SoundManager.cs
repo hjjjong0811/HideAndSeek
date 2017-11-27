@@ -406,7 +406,7 @@ public class SoundManager :MonoBehaviour{
     public void walkSound()
     {
         int i = 0;
-        Scene_Manager.find_shortest(start, end, ref i, new List<>());
+        //Scene_Manager.find_shortest(start, end, ref i, new List<>());
     }
     
     
