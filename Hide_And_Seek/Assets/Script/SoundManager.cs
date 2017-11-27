@@ -397,7 +397,7 @@ public class SoundManager :MonoBehaviour{
         Debug.Log(audioList[(int)key]);
         bgmSource.Stop();
         bgmSource.clip = audioList[(int)key];
-        bgmSource.pitch = 1.0f;
+        bgmSource.volume = 1.0f;
         bgmSource.Play();
         bgmSource.loop = true;  //반복재생
         nowClip = (int)key;
@@ -424,8 +424,8 @@ public class SoundManager :MonoBehaviour{
     /// </summary>
     public void volumeControl(SOUND_TYPE type, int volume)
     {
-        bgmSource.pitch = volume;
-        effectSource.pitch = volume;
+        bgmSource.volume = volume;
+        effectSource.volume = volume;
 
     }
 
