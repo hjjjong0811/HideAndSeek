@@ -18,10 +18,20 @@ public class CameraScript : MonoBehaviour {
             this.transform.position = new Vector3(Player.position.x, Player.position.y, -10);
         }
         isEffect = false;
+        MyCamera.backgroundColor = Color.black;
+        MyCamera.orthographicSize = 4;
 
         shakeCamera();
     }
-    
+
+    public void setPosition(Vector2 v) {
+        this.transform.position = new Vector3(v.x, v.y, -10);
+    }
+
+    public void setSize(int s) {
+        MyCamera.orthographicSize = s;
+    }
+
     private void LateUpdate() {
         if (isEffect) return;
         if(Player != null) {
