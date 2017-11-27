@@ -117,7 +117,6 @@ GameObject:
   m_Component:
   - component: {fileID: 156451456}
   - component: {fileID: 156451457}
-  - component: {fileID: 156451458}
   m_Layer: 9
   m_Name: food
   m_TagString: Untagged
@@ -180,19 +179,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &156451458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 156451455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &179308166
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +188,6 @@ GameObject:
   m_Component:
   - component: {fileID: 179308167}
   - component: {fileID: 179308168}
-  - component: {fileID: 179308169}
   m_Layer: 9
   m_Name: table
   m_TagString: Untagged
@@ -265,19 +250,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &179308169
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 179308166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &375443843
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +259,6 @@ GameObject:
   m_Component:
   - component: {fileID: 375443844}
   - component: {fileID: 375443845}
-  - component: {fileID: 375443846}
   m_Layer: 9
   m_Name: chair_back
   m_TagString: Untagged
@@ -350,19 +321,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &375443846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 375443843}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &378255836
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +501,6 @@ GameObject:
   m_Component:
   - component: {fileID: 441200774}
   - component: {fileID: 441200775}
-  - component: {fileID: 441200776}
   m_Layer: 9
   m_Name: lights (0)
   m_TagString: Untagged
@@ -606,19 +563,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &441200776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 441200773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &443156375
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +643,6 @@ GameObject:
   m_Component:
   - component: {fileID: 531732416}
   - component: {fileID: 531732417}
-  - component: {fileID: 531732418}
   m_Layer: 9
   m_Name: chair_back (1)
   m_TagString: Untagged
@@ -762,19 +705,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &531732418
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 531732415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &605318031
 GameObject:
   m_ObjectHideFlags: 0
@@ -784,7 +714,6 @@ GameObject:
   m_Component:
   - component: {fileID: 605318032}
   - component: {fileID: 605318033}
-  - component: {fileID: 605318034}
   m_Layer: 9
   m_Name: chair_front (3)
   m_TagString: Untagged
@@ -847,19 +776,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &605318034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 605318031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &640475161
 GameObject:
   m_ObjectHideFlags: 0
@@ -1111,7 +1027,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1171,7 +1087,6 @@ GameObject:
   m_Component:
   - component: {fileID: 927438755}
   - component: {fileID: 927438756}
-  - component: {fileID: 927438757}
   m_Layer: 9
   m_Name: chair_front (4)
   m_TagString: Untagged
@@ -1234,19 +1149,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &927438757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 927438754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &955659719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1256,7 +1158,6 @@ GameObject:
   m_Component:
   - component: {fileID: 955659720}
   - component: {fileID: 955659721}
-  - component: {fileID: 955659722}
   m_Layer: 9
   m_Name: chair_back (4)
   m_TagString: Untagged
@@ -1319,19 +1220,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &955659722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 955659719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &1001315998
 GameObject:
   m_ObjectHideFlags: 0
@@ -1445,7 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1 &1004791641
 GameObject:
   m_ObjectHideFlags: 0
@@ -1526,6 +1414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1067673121}
   - component: {fileID: 1067673122}
+  - component: {fileID: 1067673123}
   m_Layer: 9
   m_Name: Table_Stuff
   m_TagString: Untagged
@@ -1595,6 +1484,48 @@ PolygonCollider2D:
       - {x: 2.7594543, y: -1.4313555}
       - {x: 2.8942585, y: -1.043457}
       - {x: 2.865278, y: -0.39204895}
+--- !u!114 &1067673123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1067673120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key_num: 0
+  _t_thing_f_portal: 1
+--- !u!1 &1118331899
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1118331900}
+  m_Layer: 0
+  m_Name: Portals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1118331900
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1118331899}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0521953, y: -0.8392302, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1515727972}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1159662264
 GameObject:
   m_ObjectHideFlags: 0
@@ -1604,7 +1535,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1159662265}
   - component: {fileID: 1159662266}
-  - component: {fileID: 1159662267}
   m_Layer: 9
   m_Name: lights (1)
   m_TagString: Untagged
@@ -1667,19 +1597,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1159662267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1159662264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &1301498197
 GameObject:
   m_ObjectHideFlags: 0
@@ -1751,7 +1668,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1437144773}
   - component: {fileID: 1437144774}
-  - component: {fileID: 1437144775}
   m_Layer: 9
   m_Name: chair_front (1)
   m_TagString: Untagged
@@ -1814,19 +1730,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1437144775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1437144772}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &1474740028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1902,6 +1805,77 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &1515727971
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1515727972}
+  - component: {fileID: 1515727974}
+  - component: {fileID: 1515727973}
+  m_Layer: 0
+  m_Name: portal_to_hall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1515727972
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1515727971}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1118331900}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &1515727973
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1515727971}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 1.9100801, y: -2.3550963}
+      - {x: 0.8925853, y: -1.7339381}
+      - {x: 0.42538738, y: -2.0547214}
+      - {x: 1.5013021, y: -2.6360493}
+--- !u!114 &1515727974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1515727971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key_num: 8
+  _t_thing_f_portal: 0
 --- !u!1001 &1524578369
 Prefab:
   m_ObjectHideFlags: 0
@@ -2064,7 +2038,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1582854485}
   - component: {fileID: 1582854486}
-  - component: {fileID: 1582854487}
   m_Layer: 9
   m_Name: chair_front
   m_TagString: Untagged
@@ -2127,19 +2100,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1582854487
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1582854484}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &1596440464
 GameObject:
   m_ObjectHideFlags: 0
@@ -2149,7 +2109,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1596440465}
   - component: {fileID: 1596440466}
-  - component: {fileID: 1596440467}
   m_Layer: 9
   m_Name: chair_front (2)
   m_TagString: Untagged
@@ -2212,19 +2171,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1596440467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1596440464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1001 &1660382729
 Prefab:
   m_ObjectHideFlags: 0
@@ -2334,7 +2280,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1669718181}
   - component: {fileID: 1669718182}
-  - component: {fileID: 1669718183}
   m_Layer: 9
   m_Name: chair_back (2)
   m_TagString: Untagged
@@ -2397,19 +2342,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1669718183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1669718180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
 --- !u!1 &1946477826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2419,7 +2351,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1946477827}
   - component: {fileID: 1946477828}
-  - component: {fileID: 1946477829}
   m_Layer: 9
   m_Name: chair_back (3)
   m_TagString: Untagged
@@ -2482,16 +2413,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1946477829
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1946477826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0

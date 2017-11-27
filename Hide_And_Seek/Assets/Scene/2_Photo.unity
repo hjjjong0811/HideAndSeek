@@ -187,6 +187,10 @@ Prefab:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1952515282279402, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
@@ -274,7 +278,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
+--- !u!1 &240884407
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 240884408}
+  m_Layer: 0
+  m_Name: Portals
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &240884408
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 240884407}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0535378, y: -0.2632771, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 510291873}
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &248650696
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +473,77 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &510291872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 510291873}
+  - component: {fileID: 510291875}
+  - component: {fileID: 510291874}
+  m_Layer: 0
+  m_Name: portal_to_library
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &510291873
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510291872}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 240884408}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &510291874
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510291872}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0.4900005, y: -1.221503}
+      - {x: 0.7983597, y: -1.0358176}
+      - {x: -0.11277878, y: -0.569179}
+      - {x: -0.45472538, y: -0.74248713}
+--- !u!114 &510291875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 510291872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key_num: 20
+  _t_thing_f_portal: 0
 --- !u!1 &525350601
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,7 +628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1 &673931925
 GameObject:
   m_ObjectHideFlags: 0
@@ -609,7 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1 &1099441547
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +764,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -795,7 +899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1001 &1250942022
 Prefab:
   m_ObjectHideFlags: 0
@@ -1248,7 +1352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1 &1810293022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1333,7 +1437,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
 --- !u!1 &1997547268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1418,4 +1522,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _key_num: 0
-  _t_thing_f_portal: 0
+  _t_thing_f_portal: 1
