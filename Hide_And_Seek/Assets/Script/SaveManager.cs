@@ -164,7 +164,7 @@ public class SaveManager : MonoBehaviour {
      
 
         data.hp = Player_hp;
-        data.MainChapter = 1;//GameManager.getInstance().GetMainChapter();
+        data.MainChapter = GameManager.getInstance().GetMainChapter();
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss");
         data.Inventory = Inventory.getInstance().inventory;
         data.x = PlayerPos.x;

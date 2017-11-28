@@ -20,11 +20,11 @@ public class PlayScene {
     /// </summary>
     public enum numScene {
 
-        Invalid_Obj = -1,
-        JeongYeon = -2,
+        Invalid_Obj = -1, // 잘못된 오브젝트사용
+        JeongYeon = -2, // 정연엔딩
         ending_exit = -3, // 탈출엔딩
-        suspectDoll = -4,
-        suspectKim = -5,
+        suspectDoll = -4, // 인형인줄
+        suspectKim = -5, // 아저씨인거 알게됨
 
 
 
