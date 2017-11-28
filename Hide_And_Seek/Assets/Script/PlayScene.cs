@@ -15,13 +15,28 @@ public class PlayScene {
         return instance;
     }
 
+    /// <summary>
+    /// 정원추가(엔딩)
+    /// </summary>
     public enum numScene {
+
+        Invalid_Obj = -1,
+        JeongYeon = -2,
+        ending_exit = -3, // 탈출엔딩
+        suspectDoll = -4,
+        suspectKim = -5,
+
+
+
         tutorial = 0,       //도착
         hide_1_end = 1,     //1차끝 혼숨제안
         hide_2_ready = 2,   //2차 준비완료(소주)
         ringPhone = 3,      //문자오고 전화거는씬
-        ending_exit = 4    //탈출엔딩(?)
+       // ending_exit = 4    //탈출엔딩(?)
     }
+
+ 
+
 
     /// <summary>
     /// 씬 재생해주는 메서드
@@ -43,10 +58,26 @@ public class PlayScene {
             case numScene.ringPhone:
                 sc.GetComponent<PlaySceneController>().setScene(numScene.ringPhone);
                 break;
-            case numScene.ending_exit:
-                sc.GetComponent<PlaySceneController>().setScene(numScene.ending_exit);
+
+                //정원엔딩추가
+            case numScene.Invalid_Obj:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.Invalid_Obj);
                 break;
+            case numScene.JeongYeon:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.JeongYeon);
+                break;
+            case numScene.ending_exit:
+                 sc.GetComponent<PlaySceneController>().setScene(numScene.ending_exit);
+                break;
+            case numScene.suspectDoll:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.suspectDoll);
+                break;
+            case numScene.suspectKim:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.suspectKim);
+                break;
+
         }
+
     }
 
 
