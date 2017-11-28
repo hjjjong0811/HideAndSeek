@@ -60,6 +60,7 @@ public class SaveManager : MonoBehaviour {
 
     public void Start()
     {
+        
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
@@ -126,21 +127,42 @@ public class SaveManager : MonoBehaviour {
 
     public void StateButtonChange() // 상태에 따른 버튼바꾸기
     {
-        if (isSlot == true)
+        if (isSlot)
         {
-            if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+            if (SceneManager.GetActiveScene().name != "UI_Start")
             {
-                Btn_Save.interactable = true;
-                Btn_Load.interactable = true;
-                Btn_Delete.interactable = true;
+                if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+                {
+                    Btn_Save.interactable = true;
+                    Btn_Load.interactable = true;
+                    Btn_Delete.interactable = true;
+                }
+
+                else
+                {
+                    Btn_Save.interactable = true;
+                    Btn_Load.interactable = false;
+                    Btn_Delete.interactable = false;
+                }
             }
 
             else
             {
-                Btn_Save.interactable = true;
-                Btn_Load.interactable = false;
-                Btn_Delete.interactable = false;
+                if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+                {
+                    Btn_Save.interactable = false;
+                    Btn_Load.interactable = true;
+                    Btn_Delete.interactable = true;
+                }
+
+                else
+                {
+                    Btn_Save.interactable = false;
+                    Btn_Load.interactable = false;
+                    Btn_Delete.interactable = false;
+                }
             }
+
         }
         else
         {
@@ -194,11 +216,12 @@ public class SaveManager : MonoBehaviour {
             if (file != null && file.Length > 0)
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
-                
-                
-                Player_ISpot._room = (Room)data.P_Room;
-                Player_ISpot._spot = data.P_Spot;
 
+                if (data.P_Room == null)
+                {
+                    Player_ISpot._room = (Room)data.P_Room;
+                    Player_ISpot._spot = data.P_Spot;
+                }
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
