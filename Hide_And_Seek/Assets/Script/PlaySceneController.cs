@@ -400,9 +400,7 @@ public class PlaySceneController : MonoBehaviour {
         Vector3 scale = pl.transform.localScale;
         scale.x = -Mathf.Abs(scale.x);
         pl.transform.localScale = scale;
-
-        pl.GetComponent<Player>().Light.fadeIn(1.0f);
-
+        
         ScriptManager.getInstance().showScript(false, new int[] { 203 });
 
         Destroy(this.gameObject);
@@ -412,12 +410,108 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator ringPhone() {
+
         GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
 
-    private IEnumerator end_jy() {
+    private IEnumerator nosalt() {
+
         GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator havesalt() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator nojy() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator nohb() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator hbd() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator breakcabi() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator afterbreak() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator jyd() {
+
+        GameManager.getInstance().isScenePlay = false;
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator end_jy() {
+        //Sound 비명
+
+        yield return new WaitForSeconds(0.5f);
+        //Sound 쿵쿵
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 250 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //까매진다 (+피있음조을듯)
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 251 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("UI_Start");
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
 

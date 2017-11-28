@@ -25,14 +25,20 @@ public class PlayScene {
         ending_exit = -3, // 탈출엔딩
         suspectDoll = -4, // 인형인줄
         suspectKim = -5, // 아저씨인거 알게됨
-
-
-
+        
         tutorial = 0,       //도착
         hide_1_end = 1,     //1차끝 혼숨제안
         hide_2_ready = 2,   //2차 준비완료(소주)
         ringPhone = 3,      //문자오고 전화거는씬
-       // ending_exit = 4    //탈출엔딩(?)
+        habin_nosalt = 4,       //소금가져와
+        habin_havesalt = 5,     //정연가져와
+        no_jy = 6,      //정연없어
+        no_hb = 7,      //하빈없네
+        hb_die = 8,     //주거써
+        break_cabinet = 9,  //장식장부심
+        after_break = 10,   //장식장 부시고난 후 숨은경우
+        jy_die = 11,    //정연주거써?
+        
     }
 
  
@@ -57,6 +63,30 @@ public class PlayScene {
                 break;
             case numScene.ringPhone:
                 sc.GetComponent<PlaySceneController>().setScene(numScene.ringPhone);
+                break;
+            case numScene.habin_nosalt:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.habin_nosalt);
+                break;
+            case numScene.habin_havesalt:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.habin_havesalt);
+                break;
+            case numScene.no_jy:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.no_jy);
+                break;
+            case numScene.no_hb:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.no_hb);
+                break;
+            case numScene.hb_die:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.hb_die);
+                break;
+            case numScene.break_cabinet:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.break_cabinet);
+                break;
+            case numScene.after_break:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.after_break);
+                break;
+            case numScene.jy_die:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.jy_die);
                 break;
 
                 //정원엔딩추가
