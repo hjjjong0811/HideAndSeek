@@ -25,7 +25,12 @@ public class PlaySceneController : MonoBehaviour {
         else if (n == PlayScene.numScene.hide_1_end) play = playHide1;
         else if (n == PlayScene.numScene.hide_2_ready) play = playHide2Ready;
         else if (n == PlayScene.numScene.ringPhone) play = ringPhone;
-        else if (n == PlayScene.numScene.ending_exit) play = end_1;
+
+        else if (n == PlayScene.numScene.JeongYeon) play = end_jy;
+        else if (n == PlayScene.numScene.Invalid_Obj) play = end_obj;
+        else if (n == PlayScene.numScene.suspectDoll) play = end_d;
+        else if (n == PlayScene.numScene.suspectKim) play = end_k;
+        else if (n == PlayScene.numScene.ending_exit) play = end_exit;
     }
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -72,6 +77,7 @@ public class PlaySceneController : MonoBehaviour {
 
         obj_char[(int)char_num.hj].transform.localScale = new Vector3(-1f, 1f, 1f);
         obj_char[(int)char_num.jy].transform.localScale = new Vector3(-1f, 1f, 1f);
+        obj_char[(int)char_num.ps].transform.localScale = new Vector3(-1f, 1f, 1f);
 
         Light_Directional light = light_obj.GetComponent<Light_Directional>();
         light.fadeIn(2.0f);   //페이드인
@@ -79,7 +85,11 @@ public class PlaySceneController : MonoBehaviour {
 
         //ScriptManager 바베큐장 대사 진행 요청
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 6, 7 }, wake);
+        int[] scripts = new int[27];
+        for (int i = 0; i <= 26; i++) {
+            scripts[i] = i+6;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //펜션 내부로 이동
@@ -133,8 +143,22 @@ public class PlaySceneController : MonoBehaviour {
 
         //ScriptManager 1차숨바꼭질시작 대사 진행 요청
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 1, 2}, wake);
+        scripts = new int[8];
+        for (int i = 0; i <= 7; i++) {
+            scripts[i] = i+50;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
+
+        //정적
+        yield return new WaitForSeconds(1.5f);
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(-2f, -0.5f), 2);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 58, 59, 60 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(0f, -1f), 4);
 
         //Player빼고 전부 숨으러간다
         moveWaitChar.Remove(obj_char[(int)char_num.main].GetComponent<MoveWayPoint>());
@@ -158,14 +182,7 @@ public class PlaySceneController : MonoBehaviour {
             yield return new WaitForSeconds(0.05f);
         }
         yield return new WaitForSeconds(1f);
-
-        GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(-2f, -0.5f), 2);
-
-        //찾는다!
-        isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 1, 2 }, wake);
-        yield return new WaitUntil(() => !isWaitScript);
-
+        
         //이제 진행끝 숨바꼭질시작.//씬 로드
         for (int i = 0; i < obj_char.Length; i++) {
             try { Destroy(obj_char[i]); } catch { }
@@ -219,7 +236,11 @@ public class PlaySceneController : MonoBehaviour {
 
         //대사 진행
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 6, 7 }, wake);
+        int[] scripts = new int[9];
+        for (int i = 0; i <= 8; i++) {
+            scripts[i] = i + 100;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //인형
@@ -234,13 +255,17 @@ public class PlaySceneController : MonoBehaviour {
 
         //대사 진행
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 6, 7 }, wake);
+        ScriptManager.getInstance().showScript(false, new int[] { 109, 110, 111 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(0f, -1f), 4);
 
         //대사 진행, 소주를찾으러
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 6, 7 }, wake);
+        scripts = new int[10];
+        for (int i = 0; i <= 9; i++) {
+            scripts[i] = i + 112;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         MoveWayPoint move = obj_char[(int)char_num.main].GetComponent<MoveWayPoint>();
@@ -277,7 +302,27 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
 
-    private IEnumerator end_1() {
+    private IEnumerator end_jy() {
+        GameManager.getInstance().isScenePlay = false;
+        yield break;
+    }
+
+    private IEnumerator end_obj() {
+        GameManager.getInstance().isScenePlay = false;
+        yield break;
+    }
+
+    private IEnumerator end_d() {
+        GameManager.getInstance().isScenePlay = false;
+        yield break;
+    }
+
+    private IEnumerator end_k() {
+        GameManager.getInstance().isScenePlay = false;
+        yield break;
+    }
+
+    private IEnumerator end_exit() {
         GameManager.getInstance().isScenePlay = false;
         yield break;
     }
