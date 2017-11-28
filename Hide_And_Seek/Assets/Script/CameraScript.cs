@@ -20,8 +20,6 @@ public class CameraScript : MonoBehaviour {
         isEffect = false;
         MyCamera.backgroundColor = Color.black;
         MyCamera.orthographicSize = 4;
-
-        shakeCamera();
     }
 
     public void zoom(Vector2 position, float size) {

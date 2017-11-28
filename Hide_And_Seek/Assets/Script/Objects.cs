@@ -26,7 +26,13 @@ public class Objects : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _obj.for_update();
+        //NullException
+        try {
+            _obj.for_update();
+
+        } catch {
+
+        }
     }
 
     public void action()
