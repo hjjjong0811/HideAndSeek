@@ -61,6 +61,7 @@ public class SaveManager : MonoBehaviour {
     public void Start()
     {
         
+
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
@@ -220,11 +221,10 @@ public class SaveManager : MonoBehaviour {
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
-                if (data.P_Room == null)
-                {
-                    Player_ISpot._room = (Room)data.P_Room;
-                    Player_ISpot._spot = data.P_Spot;
-                }
+              
+                Player_ISpot._room = (Room)data.P_Room;
+                Player_ISpot._spot = data.P_Spot;
+
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
