@@ -25,8 +25,20 @@ public class PlaySceneController : MonoBehaviour {
         if (n == PlayScene.numScene.tutorial) play = playTutorial;
         else if (n == PlayScene.numScene.hide_1_end) play = playHide1;
         else if (n == PlayScene.numScene.hide_2_ready) play = playHide2Ready;
+
         else if (n == PlayScene.numScene.ringPhone) play = ringPhone;
 
+        else if (n == PlayScene.numScene.habin_nosalt) play = nosalt;
+        else if (n == PlayScene.numScene.habin_havesalt) play = havesalt;
+        else if (n == PlayScene.numScene.no_jy) play = nojy;
+
+        else if (n == PlayScene.numScene.no_hb) play = nohb;
+        else if (n == PlayScene.numScene.hb_die) play = hbd;
+
+        else if (n == PlayScene.numScene.break_cabinet) play = breakcabi;
+        else if (n == PlayScene.numScene.after_break) play = afterbreak;
+        else if (n == PlayScene.numScene.jy_die) play = jyd;
+        
         else if (n == PlayScene.numScene.JeongYeon) play = end_jy;
         else if (n == PlayScene.numScene.Invalid_Obj) play = end_obj;
         else if (n == PlayScene.numScene.suspectDoll) play = end_d;
@@ -204,7 +216,6 @@ public class PlaySceneController : MonoBehaviour {
         Destroy(this);
         yield break;
     }
-
     private IEnumerator playHide1() {
         obj_char = new GameObject[6];
 
@@ -292,7 +303,6 @@ public class PlaySceneController : MonoBehaviour {
 
         yield break;
     }
-
     private IEnumerator playHide2Ready() {
         obj_char = new GameObject[6];
 
@@ -420,8 +430,41 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator nosalt() {
+        obj_char = new GameObject[6];
+        //씬로드
+        SceneManager.LoadScene("2_Hall");
+        yield return new WaitForSeconds(0.001f);
 
+        obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
+        obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
+        FlashLight flash = Instantiate(pre_light_flash).GetComponent<FlashLight>();
+        yield return new WaitForSeconds(0.001f);
+
+        //위치 설정
+        obj_char[(int)char_num.main].transform.position = new Vector3(3f, -0.2f, 0);
+        obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
+        obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
+        flash.LinkUser(obj_char[(int)char_num.main]);
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().linkUser(obj_char[(int)char_num.main]);
+        
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 300, 301, 350, 351, 353 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 354,355,356,357 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        
+        //씬종료
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("1_Hall");
+        yield return new WaitForSeconds(0.001f);
+
+        ////플레이어 위치설정
+        GameObject pl = GameObject.Find("Player");
+        pl.transform.position = new Vector3(2.28f, 0, 0);
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -429,8 +472,36 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator havesalt() {
+        obj_char = new GameObject[6];
+        //씬로드
+        SceneManager.LoadScene("2_Hall");
+        yield return new WaitForSeconds(0.001f);
 
+        obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
+        obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
+        FlashLight flash = Instantiate(pre_light_flash).GetComponent<FlashLight>();
+        yield return new WaitForSeconds(0.001f);
+
+        //위치 설정
+        obj_char[(int)char_num.main].transform.position = new Vector3(3f, -0.2f, 0);
+        obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
+        obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
+        flash.LinkUser(obj_char[(int)char_num.main]);
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().linkUser(obj_char[(int)char_num.main]);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {300,301, 400,401,402,403,404,405 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //씬종료
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("1_Hall");
+        yield return new WaitForSeconds(0.001f);
+
+        ////플레이어 위치설정
+        GameObject pl = GameObject.Find("Player");
+        pl.transform.position = new Vector3(2.28f, 0, 0);
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -438,14 +509,25 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator nojy() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        SceneManager.LoadScene("1_Hall");
+        yield return new WaitForSeconds(0.001f);
+
+        ////플레이어 위치설정
+        GameObject pl = GameObject.Find("Player");
+        pl.transform.position = new Vector3(2.28f, 0, 0);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 450,451 }, wake);
 
         Destroy(this.gameObject);
         Destroy(this);
 
         yield break;
     }
+
     private IEnumerator nohb() {
 
         GameManager.getInstance().isScenePlay = false;
@@ -464,6 +546,7 @@ public class PlaySceneController : MonoBehaviour {
 
         yield break;
     }
+
     private IEnumerator breakcabi() {
 
         GameManager.getInstance().isScenePlay = false;
@@ -491,8 +574,10 @@ public class PlaySceneController : MonoBehaviour {
 
         yield break;
     }
+
     private IEnumerator end_jy() {
         //Sound 비명
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
 
         yield return new WaitForSeconds(0.5f);
         //Sound 쿵쿵
@@ -514,22 +599,18 @@ public class PlaySceneController : MonoBehaviour {
 
         yield break;
     }
-
     private IEnumerator end_obj() {
         GameManager.getInstance().isScenePlay = false;
         yield break;
     }
-
     private IEnumerator end_d() {
         GameManager.getInstance().isScenePlay = false;
         yield break;
     }
-
     private IEnumerator end_k() {
         GameManager.getInstance().isScenePlay = false;
         yield break;
     }
-
     private IEnumerator end_exit() {
         GameManager.getInstance().isScenePlay = false;
         yield break;
