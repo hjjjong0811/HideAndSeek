@@ -19,7 +19,7 @@ public class GameManager
     public int[] DeadCharacter; // 죽은 친구 배열
     public int[] MeetCharacter; // 만난 친구 배열
     public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
-    public int[] CheckOverlap; 
+    public int[] CheckOverlap; // 중복방지배열 
 
    /*획득 아이템*/
     public int Soju;
@@ -217,6 +217,17 @@ public class GameManager
     public void ResetGame() // 새로 시작시 초기화
     {
         MainChapter = -1;
+
+        EndScene = new int[2] { 0, 0 };
+        FindCharacter = new int[4] { 0, 0, 0, 0 };
+        DeadCharacter = new int[4] { 0, 0, 0, 0 };
+        MeetCharacter = new int[4] { 0, 0, 0, 0 };
+        FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        CheckOverlap = new int[3] { 0, 0, 0 };
+
+
+        Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
+        BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
     }
 
     public int GetMainChapter() // 현재 챕터 반환
