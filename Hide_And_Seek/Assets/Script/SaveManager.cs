@@ -164,7 +164,7 @@ public class SaveManager : MonoBehaviour {
      
 
         data.hp = Player_hp;
-        data.MainChapter = GameManager.getInstance().GetMainChapter();
+        data.MainChapter = 1;//GameManager.getInstance().GetMainChapter();
         data.SaveTime = DateTime.Now.ToString("HH-mm-ss");
         data.Inventory = Inventory.getInstance().inventory;
         data.x = PlayerPos.x;
@@ -173,9 +173,10 @@ public class SaveManager : MonoBehaviour {
 
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
+        /*
         data.E_Room = (int)Enemy_ISpot._room;
         data.E_Spot = Enemy_ISpot._spot;
-
+        */
         data.Battery = FlashLight.getFlashData();
        
         bf.Serialize(file, data);
@@ -184,6 +185,7 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_LoadData() // 데이터 불러오기
     {
+      
         if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -201,7 +203,7 @@ public class SaveManager : MonoBehaviour {
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
 
-
+                GameManager.getInstance().SetMainChapter(data.MainChapter);
                 SceneManager.LoadScene(data.P_Room);
                 Player.Init(data.hp, PlayerPos, Player_ISpot);
                 FlashLight.Init(data.Battery, true);

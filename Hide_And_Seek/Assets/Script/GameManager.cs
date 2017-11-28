@@ -19,6 +19,7 @@ public class GameManager
     public int[] DeadCharacter; // 죽은 친구 배열
     public int[] MeetCharacter; // 만난 친구 배열
     public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
+    public int[] CheckOverlap; 
 
    /*획득 아이템*/
     public int Soju;
@@ -43,6 +44,7 @@ public class GameManager
         DeadCharacter = new int[4] { 0, 0, 0, 0 };
         MeetCharacter = new int[4] { 0, 0, 0, 0 };
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        CheckOverlap = new int[3] { 0, 0, 0 };
 
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
@@ -110,6 +112,7 @@ public class GameManager
         else if (MainChapter == 5 && MeetCharacter[1] == 5) { // 정연엔딩
             SetMainChapter(-2);
             isScenePlay = true;
+            EndingPlay(-2);
             //PlayScene
         } else if (MainChapter == 5 && DeadCharacter[0] == 1)
             SetMainChapter(6);
@@ -124,16 +127,32 @@ public class GameManager
             SetMainChapter(9);
 
         //하빈gg
-        else if (MainChapter >= 9 && SaltyWater == 1) {
-            SetMainChapter(MainChapter + 1);
-            //현정 : 두번실행방지필요!!!!!!!!
-        } else if (MainChapter >= 9 && BreakDisplay == 1) {
-            SetMainChapter(MainChapter + 1);
-            //여기두!
-        } else if (MainChapter >= 9 && DeadCharacter[2] == 1) {
-            SetMainChapter(MainChapter + 1);
-            //여기두!
+        else if (MainChapter >= 9 && SaltyWater == 1)
+        {
+            if(CheckOverlap[0] == 0)
+            {       
+                CheckOverlap[0] = 1;
+                SetMainChapter(MainChapter + 1);
+            }
+
         }
+
+        else if (MainChapter >= 9 && BreakDisplay == 1) {
+            if (CheckOverlap[1] == 0)
+            {
+                CheckOverlap[1] = 1;
+                SetMainChapter(MainChapter + 1);
+            }
+
+        } else if (MainChapter >= 9 && DeadCharacter[2] == 1) {
+            if (CheckOverlap[2] == 0)
+            {
+                CheckOverlap[2] = 1;
+                SetMainChapter(MainChapter + 1);
+            }
+        }
+
+
         /*M= 11 서운 죽음*/
         else if (MainChapter == 12 && DeadCharacter[3] == 1) {
             SetMainChapter(13);
@@ -158,10 +177,24 @@ public class GameManager
         else if (MainChapter == 17 && CorrectPassword == 1) {
             SetMainChapter(18);
             isScenePlay = true;
-            PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit);
+            EndingPlay(-3);
         }
 
     }
+
+    public void EndingPlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
+    {
+        switch(EndingNum)
+        {
+            case -1: PlayScene.getInstance().playScene(PlayScene.numScene.Invalid_Obj); break;
+            case -2: PlayScene.getInstance().playScene(PlayScene.numScene.JeongYeon); break;
+            case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit);break;
+            case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
+            case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
+        }
+
+    }
+
 
     public bool CheckArray(int[] TestArray, int ArrayNum)
     {
@@ -179,6 +212,11 @@ public class GameManager
 
         else
             return false;
+    }
+
+    public void ResetGame() // 새로 시작시 초기화
+    {
+        MainChapter = -1;
     }
 
     public int GetMainChapter() // 현재 챕터 반환
