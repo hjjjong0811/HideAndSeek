@@ -17,12 +17,12 @@ public class StartUIManager : MonoBehaviour {
     private void Start() {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        GameManager.getInstance().ResetGame();
+        GameManager.getInstance().ResetGame();// -1로 세팅
     }
 
     public void Btn_Start() // 게임시작
     {
-        GameManager.getInstance().CheckMainChapter();
+        PlayScene.getInstance().playScene(PlayScene.numScene.tutorial);
     }
 
     public void Btn_Load() // 이어하기
