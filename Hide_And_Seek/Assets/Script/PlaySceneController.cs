@@ -7,9 +7,10 @@ public class PlaySceneController : MonoBehaviour {
     //스토리 진행에 필요한 프리팹
     private enum char_num { hj = 0, hb = 1, jy = 2, su = 3, ps = 4, main = 5 };
     public GameObject[] pre_char;
-    public GameObject pre_light_direc;
+    public GameObject pre_light_direc, pre_light_flash;
 
     private enum sprite_num { doll1 = 0, doll2 = 1};
+    public GameObject pre_obj;
     public List<Sprite> pre_sprite;
     //재생중 필요한 오브젝트
     private List<MoveWayPoint> moveWaitChar;
@@ -293,7 +294,120 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator playHide2Ready() {
+        obj_char = new GameObject[6];
+
+        //씬 로드
+        SceneManager.LoadScene("1_Bath");
+        yield return new WaitForSeconds(0.001f);
+
+        for (int i = 0; i < 6; i++) {
+            if (i == (int)char_num.ps) continue;
+            obj_char[i] = Instantiate(pre_char[i]);
+        }
+        GameObject light_obj = Instantiate(pre_light_direc);
+        GameObject doll = Instantiate(pre_obj);
+
+        yield return new WaitForSeconds(0.001f);                 //instantiate후 지연
+
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().setPosition(new Vector2(1.5f, -2.3f));
+        SpriteRenderer doll_sp = doll.GetComponent<SpriteRenderer>();
+        doll_sp.sprite = pre_sprite[(int)sprite_num.doll1];
+        doll_sp.sortingLayerName = "Object_front";
+        doll.transform.position = new Vector3(1.41f, -2.09f, 0f);
+
+        //위치 설정
+        obj_char[(int)char_num.main].transform.position = new Vector3(0.09f, -2.3f, 0);
+        obj_char[(int)char_num.hj].transform.position = new Vector3(2.32f, -2.77f, 0);
+        obj_char[(int)char_num.hb].transform.position = new Vector3(1.715f, -1.589f, 0);
+        obj_char[(int)char_num.jy].transform.position = new Vector3(0.74f, -1.8f, 0);
+        obj_char[(int)char_num.su].transform.position = new Vector3(2.94f, -2.08f, 0);
+        Destroy(obj_char[(int)char_num.ps]);
+
+        obj_char[(int)char_num.jy].transform.localScale = new Vector3(-1f, 1f, 1f);
+        obj_char[(int)char_num.main].transform.localScale = new Vector3(-1f, 1f, 1f);
+
+        Light_Directional light = light_obj.GetComponent<Light_Directional>();
+        light.fadeIn(2.0f);   //페이드인
+        yield return new WaitForSeconds(3f);    //대사 전 딜레이
+
+        //대사 진행
+        isWaitScript = true;
+        int[] scripts = new int[7];
+        for (int i = 0; i <= 6; i++) {
+            scripts[i] = i + 150;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(1.5f, -2.3f), 1.5f);
+        yield return new WaitForSeconds(0.5f);
+
+        for (int i = 0; i < 3; i++) {
+            doll_sp.sprite = pre_sprite[(int)sprite_num.doll1];
+            yield return new WaitForSeconds(0.5f);
+            //Sound 푹
+            isWaitScript = true;
+            ScriptManager.getInstance().showScript(false, new int[] { 157 }, wake);
+            doll_sp.sprite = pre_sprite[(int)sprite_num.doll2];
+            yield return new WaitUntil(() => !isWaitScript);
+        }
+        yield return new WaitForSeconds(0.5f);
+        for (int i = 0; i < 3; i++) {
+            yield return new WaitForSeconds(0.5f);
+            isWaitScript = true;
+            ScriptManager.getInstance().showScript(false, new int[] { 158 }, wake);
+            yield return new WaitUntil(() => !isWaitScript);
+        }
+        light.fadeOut(1.0f);
+        yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("1_Reception");
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {160, 161, 162}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound 비명
+
+        ////대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 200, 201}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
+        FlashLight flash = Instantiate(pre_light_flash).GetComponent<FlashLight>();
+        yield return new WaitForSeconds(0.001f);
+        obj_char[(int)char_num.main].transform.position = new Vector3(1.26f, 0.04f, 0);
+        flash.LinkUser(obj_char[(int)char_num.main]);
+
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().setPosition(new Vector2(-0.5f, -0.5f));
+        
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 202 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        MoveWayPoint move = obj_char[(int)char_num.main].GetComponent<MoveWayPoint>();
+        move.move(new Vector2[] { new Vector2(-3.37f, -1.79f) }, MoveWayPoint.Speed_walk);
+        yield return new WaitUntil(() => move.isIdle());
+        
+        //씬종료
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("1_Hall");
+        yield return new WaitForSeconds(0.001f);
+
+        ////플레이어 위치설정
+        GameObject pl = GameObject.Find("Player");
+        pl.transform.position = new Vector3(2.28f, 0, 0);
+        Vector3 scale = pl.transform.localScale;
+        scale.x = -Mathf.Abs(scale.x);
+        pl.transform.localScale = scale;
+
+        pl.GetComponent<Player>().Light.fadeIn(1.0f);
+
+        ScriptManager.getInstance().showScript(false, new int[] { 203 });
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
 
