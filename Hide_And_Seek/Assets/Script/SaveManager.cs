@@ -127,37 +127,40 @@ public class SaveManager : MonoBehaviour {
 
     public void StateButtonChange() // 상태에 따른 버튼바꾸기
     {
-        if (isSlot)
+        bool FileExists = File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"); // 파일 존재여부.
+
+        if (isSlot) // 버튼 눌렀나.
         {
-            if (SceneManager.GetActiveScene().name != "UI_Start")
+            if (SceneManager.GetActiveScene().name == "UI_Start") // 스타트고
             {
-                if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+                if (FileExists)
                 {
-                    Btn_Save.interactable = true;
+                    Btn_Save.interactable = false;
                     Btn_Load.interactable = true;
                     Btn_Delete.interactable = true;
                 }
 
                 else
                 {
-                    Btn_Save.interactable = true;
+                    Btn_Save.interactable = false;
                     Btn_Load.interactable = false;
                     Btn_Delete.interactable = false;
                 }
+
             }
 
-            else
+            else // 스타트 아닐때
             {
-                if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
+                if (FileExists) // 파일이 있으면 
                 {
-                    Btn_Save.interactable = false;
+                    Btn_Save.interactable = true;
                     Btn_Load.interactable = true;
                     Btn_Delete.interactable = true;
                 }
 
                 else
                 {
-                    Btn_Save.interactable = false;
+                    Btn_Save.interactable = true;
                     Btn_Load.interactable = false;
                     Btn_Delete.interactable = false;
                 }
