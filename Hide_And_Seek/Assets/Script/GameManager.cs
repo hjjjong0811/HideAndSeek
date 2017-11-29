@@ -191,6 +191,19 @@ public class GameManager
             case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit);break;
             case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
             case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
+            case 0: PlayScene.getInstance().playScene(PlayScene.numScene.tutorial); break;
+            case 1: PlayScene.getInstance().playScene(PlayScene.numScene.hide_1_end); break;
+            case 2: PlayScene.getInstance().playScene(PlayScene.numScene.hide_2_ready); break;
+            case 3: PlayScene.getInstance().playScene(PlayScene.numScene.ringPhone); break;
+            case 4: PlayScene.getInstance().playScene(PlayScene.numScene.habin_nosalt); break;
+            case 5: PlayScene.getInstance().playScene(PlayScene.numScene.habin_havesalt); break;
+            case 6: PlayScene.getInstance().playScene(PlayScene.numScene.no_jy); break;
+            case 7: PlayScene.getInstance().playScene(PlayScene.numScene.no_hb); break;
+            case 8: PlayScene.getInstance().playScene(PlayScene.numScene.hb_die); break;
+            case 9: PlayScene.getInstance().playScene(PlayScene.numScene.break_cabinet); break;
+            case 10: PlayScene.getInstance().playScene(PlayScene.numScene.after_break); break;
+            case 11: PlayScene.getInstance().playScene(PlayScene.numScene.jy_die); break;
+
         }
 
     }
