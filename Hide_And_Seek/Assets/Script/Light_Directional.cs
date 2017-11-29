@@ -16,6 +16,7 @@ public class Light_Directional : MonoBehaviour {
         Light_o = transform.GetChild(0).GetComponent<Light>();
         Light_o.intensity = Light_power_on_obj;
 
+        fadeIn(1.0f);
     }
     public void setLight(bool value) {
         if (value) {

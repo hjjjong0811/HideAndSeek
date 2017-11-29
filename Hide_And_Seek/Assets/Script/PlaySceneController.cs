@@ -53,7 +53,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     public void wake() {
-        Debug.Log("wake");
         isWaitScript = false;
     }
 
@@ -421,8 +420,66 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator ringPhone() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        SceneManager.LoadScene("2_Bed");
+        yield return new WaitForSeconds(0.001f);
+
+        //필요 오브젝트 불러오기
+        GameObject pl = GameObject.Find("Player");
+        FlashLight flash = GameObject.Find("Flash").GetComponent<FlashLight>();
+        CameraScript camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+
+        //설정
+        pl.transform.position = new Vector3(0.79f, -1.46f, 0);
+        flash.LinkUser(null);
+        flash.setPosition(new Vector2(0.79f, -1.46f));
+        flash.fadeIn(1.0f);
+        yield return new WaitForSeconds(1f);
+
+        //하이라이트 이동
+        flash.move(new Vector2(-1.19f, -0.98f));
+        camera.linkUser(null);
+        camera.zoom(new Vector2(-1.19f, -0.98f), 4f);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 750,751 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //하이라이트 이동
+        flash.move(new Vector2(0.79f, -1.46f));
+        camera.linkUser(null);
+        camera.zoom(new Vector2(0.79f, -1.46f), 4f);
+        yield return new WaitForSeconds(0.5f);
+        flash.LinkUser(pl);
+        camera.linkUser(pl);
+
+        //대사진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 752,753,754,755,756,757 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        for (int i = 758; i <= 761; i++) {
+            //sound
+            isWaitScript = true;
+            ScriptManager.getInstance().showScript(false, new int[] {i }, wake);
+            yield return new WaitUntil(() => !isWaitScript);
+        }
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {762, 763}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound 두루루
+        yield return new WaitForSeconds(2f);
+        //Sound 띠리링
+        yield return new WaitForSeconds(1f);
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 764,765 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        //Sound 크큭
+        ScriptManager.getInstance().showScript(false, new int[] { 766 });
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -700,7 +757,20 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_exit() {
+        yield return new WaitForSeconds(0.001f);
+        SceneManager.LoadScene("EmptyScene");
+        yield return new WaitForSeconds(0.001f);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 800, 801, 802, 803 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("UI_Start");
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
 }
