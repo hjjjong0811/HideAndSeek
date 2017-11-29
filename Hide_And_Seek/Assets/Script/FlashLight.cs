@@ -183,12 +183,21 @@ public class FlashLight : MonoBehaviour {
 
     private IEnumerator coroutineFlash() {
         bool toggle = false;
-        while (isFlashed) {
-            setLight(toggle);
+        while (isFlashed && isLighted) {
+            if (toggle) {
+                Light_p.intensity = Light_power_on_ch;
+                Light_o.intensity = Light_power_on_obj;
+            } else {
+                Light_p.intensity = Light_power_off_ch;
+                Light_o.intensity = Light_power_off_obj;
+            }
             toggle = !toggle;
             yield return new WaitForSeconds(Random.Range(0.001f, 0.15f));
         }
         setLight(isLighted);
+        isFlashed = false;
+        isFade = false;
+        CancelInvoke();
         yield break;
 
     }
