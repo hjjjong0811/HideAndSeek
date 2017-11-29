@@ -60,9 +60,12 @@ public class SoundUIManager : MonoBehaviour {
     } // 효과음 ONOFF
 
  
-public void Btn_SoundOff()
+public void Btn_SoundOff()// 씬종료
     {
+
+        GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = true;
         GameObject.Destroy(GameObject.Find("Sound"));
-    } // 씬종료
+        
+    } 
 
 }

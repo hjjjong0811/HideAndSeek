@@ -18,12 +18,14 @@ public class SettingUIManager : MonoBehaviour {
 
     public void Btn_Sound() // 소리설정
     {
+        GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Sound_Prefab);
         temp.name = "Sound";
     } 
 
     public void Btn_Save() // 저장하기
     {
+        GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Save_Prefab);
         temp.name = "Save";
     }
@@ -46,6 +48,7 @@ public class SettingUIManager : MonoBehaviour {
 
     public void Btn_MenuOff() // 메뉴창 끄기 
     {
+        GameObject.Find("Canvas_UI").GetComponent<CanvasGroup>().interactable = true;
         GameObject.Destroy(GameObject.Find("Setting"));
        
     }
