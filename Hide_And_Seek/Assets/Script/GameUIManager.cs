@@ -39,18 +39,22 @@ public class GameUIManager : MonoBehaviour {
         }
         else
         {
+         
             GameObject test = Instantiate(Inventory_Prefab);
             test.name = "Inven";
             isOpenInven = true;
+            
         }
     }
 
     public void Btn_Setting()
     {
+        GameObject.Find("Canvas_UI").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Setting_Prefab);
         temp.name = "Setting";
            
     }
+
 
     public void BatteryState() // 배터리 상태에 따른 배터리 이미지 바꾸기
     {
