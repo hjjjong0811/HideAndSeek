@@ -778,7 +778,26 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_k() {
+        //Sound 비명
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
+        yield return new WaitForSeconds(0.5f);
+
+        //까매진다 (+피있음조을듯)
+        SceneManager.LoadScene("empty");
+        yield return new WaitForSeconds(0.5f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2f);
+
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("UI_Start");
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
     private IEnumerator end_exit() {
