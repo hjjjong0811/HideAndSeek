@@ -9,9 +9,11 @@ public class SoundUIManager : MonoBehaviour {
     public AudioSource Effect;
     public AudioSource FootStep;
    
-    public Toggle BGMtoggle;
-    public Toggle EffectToggle;
+    public Toggle BGM_toggle;
+    public Toggle Effect_Toggle;
 
+    public Slider BGM_Slider;
+    public Slider Effect_Slider;
 
     public void Awake()
     {
@@ -22,58 +24,45 @@ public class SoundUIManager : MonoBehaviour {
 
     public void Start()
     {
-        audioSource.Play();
-    
+        BGM.Play();
     }
 
-    public void SaveData()
+    public void BGM_Volume() // BGM 볼륨조절
     {
-        SceneManager.LoadScene("save");
-
+        BGM.volume = BGM_Slider.value;
     }
 
-
-    public void Btn_Setting()
+    public void Effect_Volume() // 효과음 볼륨조절
     {
-        SettingPanel.SetActive(true);
-
+        Effect.volume = Effect_Slider.value;
     }
 
-    public void Btn_SettingDelete()
+    public void BGM_ONOFF()
     {
-        SettingPanel.SetActive(false);
-    }
+        if (BGM_toggle.isOn.Equals(true))
+            BGM.Play();
+        else
+            BGM.Stop();
+    } // BGM ONOFF
 
-    public void Btn_Developer()
+    public void Effect_ONOFF()
     {
-        DeveloperPanel.SetActive(true);
-    }
-
-    public void Btn_DeveloperDelete()
-    {
-        DeveloperPanel.SetActive(false);
-    }
-
-    public void SoundOnOff()
-    {
-        if (SoundControll.isOn.Equals(true))
+        if (Effect_Toggle.isOn.Equals(true))
         {
-
-            audioSource.Play();
+            Effect.Play();
+            FootStep.Play();
         }
         else
         {
-            audioSource.Stop();
+            Effect.Stop();
+            FootStep.Stop();
         }
-    }
+    } // 효과음 ONOFF
 
-
-
-
-
+ 
 public void Btn_SoundOff()
     {
         GameObject.Destroy(GameObject.Find("Sound"));
-    }
+    } // 씬종료
 
 }
