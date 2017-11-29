@@ -60,8 +60,7 @@ public class GameUIManager : MonoBehaviour {
     {
 
         float charge = FlashLight.getFlashData();
-        //Debug.Log(charge);
-
+     
         if(charge <= 100 && charge >75 ) 
         {
             ImgBattery.sprite = Battery_ImgSource[0];
@@ -82,7 +81,7 @@ public class GameUIManager : MonoBehaviour {
             ImgBattery.sprite = Battery_ImgSource[3];
         }
 
-        else if (charge == 0)
+        else if (charge <= 0)
         {
             ImgBattery.sprite = Battery_ImgSource[4];
         }
