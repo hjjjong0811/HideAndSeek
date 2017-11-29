@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class EditUIManager_Object : EditUIManager {
+    public const int defaultValue = -404;
+
     public DataManager_Object dataManager;
     public GameObject pnlEdit, scrollList;
 
@@ -38,16 +40,18 @@ public class EditUIManager_Object : EditUIManager {
             Text bot = btn.transform.GetChild(2).GetComponent<Text>();
             bot.text = item.DetailList.Count + ">>";
             for (int j = 0; j < item.DetailList.Count; j++) {
-                bot.text += item.DetailList[j].StartChapter + "~";
-                bot.text += item.DetailList[j].SpriteNum + ", At:";
-                bot.text += item.DetailList[j].Auto.script_key + "," + item.DetailList[j].Auto.sound_key + ",";
-                bot.text += item.DetailList[j].Auto.item_use_key + "," + item.DetailList[j].Auto.item_result_key + ",";
+                bot.text += "(" + item.DetailList[j].StartChapter + ",";
+                bot.text += item.DetailList[j].SpriteNum + ")";
 
-                bot.text += ", Ac:" + item.DetailList[j].Action.script_key + "," + item.DetailList[j].Action.sound_key + ",";
-                bot.text += item.DetailList[j].Action.item_use_key + "," + item.DetailList[j].Action.item_result_key + ",";
 
-                bot.text += ", Us:" + item.DetailList[j].Action.script_key + "," + item.DetailList[j].Action.sound_key + ",";
-                bot.text += item.DetailList[j].Action.item_use_key + "," + item.DetailList[j].Action.item_result_key + "/";
+                //bot.text += ", At:" + item.DetailList[j].Auto.script_key + "," + item.DetailList[j].Auto.sound_key + ",";
+                //bot.text += item.DetailList[j].Auto.item_use_key + "," + item.DetailList[j].Auto.item_result_key + ",";
+
+                //bot.text += ", Ac:" + item.DetailList[j].Action.script_key + "," + item.DetailList[j].Action.sound_key + ",";
+                //bot.text += item.DetailList[j].Action.item_use_key + "," + item.DetailList[j].Action.item_result_key + ",";
+
+                //bot.text += ", Us:" + item.DetailList[j].Action.script_key + "," + item.DetailList[j].Action.sound_key + ",";
+                //bot.text += item.DetailList[j].Action.item_use_key + "," + item.DetailList[j].Action.item_result_key + "/";
                 
             }
 
@@ -132,23 +136,56 @@ public class EditUIManager_Object : EditUIManager {
         item.DetailList = new List<Object_Data_detail>();
         for (int i = 0; i < detailScrollList.transform.childCount; i++) {
             GameObject go = detailScrollList.transform.GetChild(i).gameObject;
-            item.DetailList[i].StartChapter = int.Parse(go.transform.GetChild(0).GetComponent<InputField>().text);
-            item.DetailList[i].SpriteNum = int.Parse(go.transform.GetChild(1).GetComponent<InputField>().text);
+            Object_Data_detail detail = new Object_Data_detail();
+            detail.StartChapter = int.Parse(go.transform.GetChild(0).GetComponent<InputField>().text);
+            detail.SpriteNum = int.Parse(go.transform.GetChild(1).GetComponent<InputField>().text);
+
             //Auto
-            item.DetailList[i].Auto.script_key = int.Parse(go.transform.GetChild(2).GetChild(0).GetComponent<InputField>().text);
-            item.DetailList[i].Auto.sound_key = int.Parse(go.transform.GetChild(2).GetChild(1).GetComponent<InputField>().text);
-            item.DetailList[i].Auto.item_use_key = int.Parse(go.transform.GetChild(2).GetChild(2).GetComponent<InputField>().text);
-            item.DetailList[i].Auto.item_result_key = int.Parse(go.transform.GetChild(2).GetChild(3).GetComponent<InputField>().text);
-            //Action                                                            
-            item.DetailList[i].Action.script_key = int.Parse(go.transform.GetChild(3).GetChild(0).GetComponent<InputField>().text);
-            item.DetailList[i].Action.sound_key = int.Parse(go.transform.GetChild(3).GetChild(1).GetComponent<InputField>().text);
-            item.DetailList[i].Action.item_use_key = int.Parse(go.transform.GetChild(3).GetChild(2).GetComponent<InputField>().text);
-            item.DetailList[i].Action.item_result_key = int.Parse(go.transform.GetChild(3).GetChild(3).GetComponent<InputField>().text);
-            //UseItem                                                           
-            item.DetailList[i].UseItem.script_key = int.Parse(go.transform.GetChild(4).GetChild(0).GetComponent<InputField>().text);
-            item.DetailList[i].UseItem.sound_key = int.Parse(go.transform.GetChild(4).GetChild(2).GetComponent<InputField>().text);
-            item.DetailList[i].UseItem.item_use_key = int.Parse(go.transform.GetChild(4).GetChild(3).GetComponent<InputField>().text);
-            item.DetailList[i].UseItem.item_result_key = int.Parse(go.transform.GetChild(4).GetChild(1).GetComponent<InputField>().text);
+            detail.Auto = new Object_Output();
+            string s = go.transform.GetChild(2).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.script_key = defaultValue;
+            else detail.Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.sound_key = defaultValue;
+            else detail.Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_use_key = defaultValue;
+            else detail.Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_result_key = defaultValue;
+            else detail.Auto.item_result_key = int.Parse(s);
+
+            //Action
+            detail.Auto = new Object_Output();
+            s = go.transform.GetChild(3).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.script_key = defaultValue;
+            else detail.Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.sound_key = defaultValue;
+            else detail.Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_use_key = defaultValue;
+            else detail.Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_result_key = defaultValue;
+            else detail.Auto.item_result_key = int.Parse(s);
+
+            //Action
+            detail.Auto = new Object_Output();
+            s = go.transform.GetChild(4).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.script_key = defaultValue;
+            else detail.Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.sound_key = defaultValue;
+            else detail.Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_use_key = defaultValue;
+            else detail.Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) detail.Auto.item_result_key = defaultValue;
+            else detail.Auto.item_result_key = int.Parse(s);
+
+            item.DetailList.Add(detail);
         }
 
         //Create의 경우
@@ -197,26 +234,58 @@ public class EditUIManager_Object : EditUIManager {
         if (int.Parse(txtLength.text) < 1) {
             txtLength.text = "1";
         }
-        List<Object_Data_detail> temp = new List<Object_Data_detail>();
+        Object_Data_detail[] temp = new Object_Data_detail[detailScrollList.transform.childCount];
         for (int i = 0; i < detailScrollList.transform.childCount; i++) {
             GameObject go = detailScrollList.transform.GetChild(i).gameObject;
+            temp[i] = new Object_Data_detail();
             temp[i].StartChapter = int.Parse(go.transform.GetChild(0).GetComponent<InputField>().text);
             temp[i].SpriteNum = int.Parse(go.transform.GetChild(1).GetComponent<InputField>().text);
+
             //Auto
-            temp[i].Auto.script_key = int.Parse(go.transform.GetChild(2).GetChild(0).GetComponent<InputField>().text);
-            temp[i].Auto.sound_key = int.Parse(go.transform.GetChild(2).GetChild(1).GetComponent<InputField>().text);
-            temp[i].Auto.item_use_key = int.Parse(go.transform.GetChild(2).GetChild(2).GetComponent<InputField>().text);
-            temp[i].Auto.item_result_key = int.Parse(go.transform.GetChild(2).GetChild(3).GetComponent<InputField>().text);
-            //Action                                                            
-            temp[i].Action.script_key = int.Parse(go.transform.GetChild(3).GetChild(0).GetComponent<InputField>().text);
-            temp[i].Action.sound_key = int.Parse(go.transform.GetChild(3).GetChild(1).GetComponent<InputField>().text);
-            temp[i].Action.item_use_key = int.Parse(go.transform.GetChild(3).GetChild(2).GetComponent<InputField>().text);
-            temp[i].Action.item_result_key = int.Parse(go.transform.GetChild(3).GetChild(3).GetComponent<InputField>().text);
-            //UseItem                                                           
-            temp[i].UseItem.script_key = int.Parse(go.transform.GetChild(4).GetChild(0).GetComponent<InputField>().text);
-            temp[i].UseItem.sound_key = int.Parse(go.transform.GetChild(4).GetChild(2).GetComponent<InputField>().text);
-            temp[i].UseItem.item_use_key = int.Parse(go.transform.GetChild(4).GetChild(3).GetComponent<InputField>().text);
-            temp[i].UseItem.item_result_key = int.Parse(go.transform.GetChild(4).GetChild(1).GetComponent<InputField>().text);
+            temp[i].Auto = new Object_Output();
+            string s = go.transform.GetChild(2).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.script_key = defaultValue;
+            else temp[i].Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.sound_key = defaultValue;
+            else temp[i].Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_use_key = defaultValue;
+            else temp[i].Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(2).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_result_key= defaultValue;
+            else temp[i].Auto.item_result_key = int.Parse(s);
+
+            //Action
+            temp[i].Auto = new Object_Output();
+            s = go.transform.GetChild(3).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.script_key = defaultValue;
+            else temp[i].Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.sound_key = defaultValue;
+            else temp[i].Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_use_key = defaultValue;
+            else temp[i].Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(3).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_result_key = defaultValue;
+            else temp[i].Auto.item_result_key = int.Parse(s);
+
+            //Action
+            temp[i].Auto = new Object_Output();
+            s = go.transform.GetChild(4).GetChild(0).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.script_key = defaultValue;
+            else temp[i].Auto.script_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(1).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.sound_key = defaultValue;
+            else temp[i].Auto.sound_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(2).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_use_key = defaultValue;
+            else temp[i].Auto.item_use_key = int.Parse(s);
+            s = go.transform.GetChild(4).GetChild(3).GetComponent<InputField>().text;
+            if (s.Equals("")) temp[i].Auto.item_result_key = defaultValue;
+            else temp[i].Auto.item_result_key = int.Parse(s);
+
         }
         for (int i = detailScrollList.transform.childCount - 1; i >= 0; i--) {
             Destroy(detailScrollList.transform.GetChild(i).gameObject);
@@ -227,7 +296,7 @@ public class EditUIManager_Object : EditUIManager {
         for (int i = 0; i < len; i++) {
             GameObject go = Instantiate(pre_detailPanel, detailScrollList.transform);
 
-            if (i < temp.Count) {
+            if (i < temp.Length) {
                 go.name = i + "";
                 go.transform.GetChild(0).GetComponent<InputField>().text = temp[i].StartChapter + "";
                 go.transform.GetChild(1).GetComponent<InputField>().text = temp[i].SpriteNum + "";
