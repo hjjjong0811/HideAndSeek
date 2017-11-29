@@ -23,7 +23,7 @@ public class Spots : MonoBehaviour {
             if (pl != null)
             {
                 pl.GetComponent<Player>().SpotInfo._spot = int.Parse(this.gameObject.name);
-                Debug.Log("플레이어 spot넘버 : "+pl.GetComponent<Player>().SpotInfo._spot);//test
+                //Debug.Log("플레이어 spot넘버 : "+pl.GetComponent<Player>().SpotInfo._spot);//test
             }
         }
     }

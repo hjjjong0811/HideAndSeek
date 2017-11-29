@@ -38,12 +38,13 @@ public class PlaySceneController : MonoBehaviour {
         else if (n == PlayScene.numScene.break_cabinet) play = breakcabi;
         else if (n == PlayScene.numScene.after_break) play = afterbreak;
         else if (n == PlayScene.numScene.jy_die) play = jyd;
-        
+
         else if (n == PlayScene.numScene.JeongYeon) play = end_jy;
         else if (n == PlayScene.numScene.Invalid_Obj) play = end_obj;
         else if (n == PlayScene.numScene.suspectDoll) play = end_d;
         else if (n == PlayScene.numScene.suspectKim) play = end_k;
         else if (n == PlayScene.numScene.ending_exit) play = end_exit;
+        else if (n == PlayScene.numScene.batteryLack) play = end_battery;
     }
     private void Awake() {
         DontDestroyOnLoad(this.gameObject);
@@ -728,13 +729,18 @@ public class PlaySceneController : MonoBehaviour {
         //Sound 쿵쿵
 
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 250 }, wake);
+        ScriptManager.getInstance().showScript(false, new int[] { 250, 251 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //까매진다 (+피있음조을듯)
-        isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 251 }, wake);
-        yield return new WaitUntil(() => !isWaitScript);
+        SceneManager.LoadScene("empty");
+        yield return new WaitForSeconds(0.1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2f);
 
         GameManager.getInstance().isScenePlay = false;
         SceneManager.LoadScene("UI_Start");
@@ -749,7 +755,26 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_d() {
+        //Sound 비명
+        GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
+        yield return new WaitForSeconds(0.5f);
+
+        //까매진다 (+피있음조을듯)
+        SceneManager.LoadScene("empty");
+        yield return new WaitForSeconds(0.5f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2f);
+
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("UI_Start");
+
+        Destroy(this.gameObject);
+        Destroy(this);
+
         yield break;
     }
     private IEnumerator end_k() {
@@ -758,7 +783,7 @@ public class PlaySceneController : MonoBehaviour {
     }
     private IEnumerator end_exit() {
         yield return new WaitForSeconds(0.001f);
-        SceneManager.LoadScene("EmptyScene");
+        SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.001f);
 
         isWaitScript = true;
@@ -768,6 +793,50 @@ public class PlaySceneController : MonoBehaviour {
         GameManager.getInstance().isScenePlay = false;
         SceneManager.LoadScene("UI_Start");
 
+        Destroy(this.gameObject);
+        Destroy(this);
+
+        yield break;
+    }
+    private IEnumerator end_battery() {
+        yield return new WaitForSeconds(0.001f);
+        Player pl = GameObject.Find("Player").GetComponent<Player>();
+        yield return new WaitForSeconds(0.001f);
+        FlashLight flash = pl.Flash;
+        yield return new WaitForSeconds(0.001f);
+        flash.setLight(true);
+        flash.flashedLight(100f);
+        yield return new WaitForSeconds(3f);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 850}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        flash.setLight(false);
+        yield return new WaitForSeconds(0.5f);
+        //Sound 종료음
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 851 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        //Sound 발소리
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 852,853 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //까매진다
+        SceneManager.LoadScene("empty");
+        yield return new WaitForSeconds(0.1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(1f);
+        //Sound 철퍽
+        GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
+        yield return new WaitForSeconds(2f);
+
+        GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("UI_Start");
+
+        CancelInvoke();
         Destroy(this.gameObject);
         Destroy(this);
 

@@ -295,4 +295,8 @@ public class Player : MonoBehaviour {
     public Vector3 get_player_pos() {
         return this.transform.position;
     }
+    public static ISpot get_player_spot()
+    {
+        return Player.Player_obj.GetComponent<Player>().SpotInfo;
+    }
 }

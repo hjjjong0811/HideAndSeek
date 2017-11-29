@@ -25,6 +25,7 @@ public class PlayScene {
         ending_exit = -3, // 탈출엔딩
         suspectDoll = -4, // 인형인줄
         suspectKim = -5, // 아저씨인거 알게됨
+        batteryLack = -6,   //배터리부족
         
         tutorial = 0,       //도착
         hide_1_end = 1,     //1차끝 혼숨제안
@@ -104,6 +105,9 @@ public class PlayScene {
                 break;
             case numScene.suspectKim:
                 sc.GetComponent<PlaySceneController>().setScene(numScene.suspectKim);
+                break;
+            case numScene.batteryLack:
+                sc.GetComponent<PlaySceneController>().setScene(numScene.batteryLack);
                 break;
 
         }
