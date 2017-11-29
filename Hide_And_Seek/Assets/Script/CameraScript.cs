@@ -21,7 +21,8 @@ public class CameraScript : MonoBehaviour {
     }
 
     public void linkUser(GameObject go) {
-        Player = go.transform;
+        if (go != null) Player = go.transform;
+        else Player = null;
     }
 
     public void zoom(Vector2 position, float size) {

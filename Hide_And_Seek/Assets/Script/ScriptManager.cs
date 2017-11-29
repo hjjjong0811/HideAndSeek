@@ -34,6 +34,7 @@ public class ScriptManager : MonoBehaviour {
     private List<Script> scripts;
 
     public bool isPlaying;
+    private List<del> function;
 
     private void Update() {
         if (Input.GetButtonDown("Action")) {
@@ -47,6 +48,7 @@ public class ScriptManager : MonoBehaviour {
             Destroy(this.gameObject);
             Destroy(this);
         }
+        function = new List<del>();
         DontDestroyOnLoad(this.gameObject);
         LoadData();
         scripts = new List<Script>();
@@ -61,21 +63,23 @@ public class ScriptManager : MonoBehaviour {
         return instance;
     }
 
-    private IEnumerator playScript(List<Script> scripts, del wake) {
+    private IEnumerator playScript(List<Script> scripts) {
         while (scripts.Count >0) {
             Script curScript = scripts[0];
+            //일러스트표시
             if(curScript.Picture != null) {
                 imgIllust.sprite = LoadSpriteFromBytes(curScript.Picture);
                 imgIllust_obj.SetActive(true);
             } else {
                 imgIllust_obj.SetActive(false);
             }
+            //캐릭터표시
             if (curScript.Obj_Img == (int)numCharImg.no) imgChar_obj.SetActive(false);
             else {
                 imgChar.sprite = sprite_charImg[curScript.Obj_Img];
                 imgChar_obj.SetActive(true);
             }
-
+            //대사차례로표시
             for (int j = 0; j < curScript.Scripts.Length; j++) {
                 isClicked = false;
                 if (curScript.Name != "") txtScript.text = curScript.Name + "\n";
@@ -88,7 +92,10 @@ public class ScriptManager : MonoBehaviour {
         this.gameObject.SetActive(false);
         GameObject go = GameObject.Find("Canvas_UI");
         if (go != null) go.GetComponent<CanvasGroup>().interactable = true;
-        if (wake != null) wake();
+        while(function.Count > 0) {
+            function[0]();
+            function.RemoveAt(0);
+        }
         isPlaying = false;
         yield break;
     }
@@ -112,7 +119,7 @@ public class ScriptManager : MonoBehaviour {
         if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
         GameObject inven = GameObject.Find("Inven");
         if (inven != null) gameUI.GetComponent<GameUIManager>().Btn_Inven();
-        StartCoroutine(playScript(scripts, null));
+        StartCoroutine(playScript(scripts));
     }
 
     /// <summary>
@@ -131,7 +138,9 @@ public class ScriptManager : MonoBehaviour {
         if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
         GameObject inven = GameObject.Find("Inven");
         if (inven != null) gameUI.GetComponent<GameUIManager>().Btn_Inven();
-        StartCoroutine(playScript(scripts, wake));
+
+        function.Add(wake);
+        StartCoroutine(playScript(scripts));
     }
 
     private Script findScript(bool isObj,int key) {
