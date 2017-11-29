@@ -30,7 +30,7 @@ public class Object_Data_detail {
 
 [Serializable]
 public class Object_Output {
-    public int type;
+    public Object_Type type;
     public int sound_key;
     public int script_key;
     public int item_use_key;
