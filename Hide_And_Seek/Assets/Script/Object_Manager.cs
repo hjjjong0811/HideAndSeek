@@ -127,12 +127,12 @@ public class Portal : IObject
         if (SceneManager.GetActiveScene().name == scene_name1)
         {
             SceneManager.LoadScene(scene_name2);
-            Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
+            if (Player.Player_obj != null) Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
         }
         else
         {
             SceneManager.LoadScene(scene_name1);
-            Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
+            if (Player.Player_obj != null) Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
         }
         
     }
@@ -142,27 +142,11 @@ public class Portal : IObject
 
     public void for_update()
     {
-        testing();//test
     }
 
     public int get_key()
     {
         return key_num;
-    }
-
-    void testing()
-    {
-        if (Input.GetKey(KeyCode.A))
-        {
-            if (SceneManager.GetActiveScene().name == scene_name1)
-            {
-                SceneManager.LoadScene(scene_name2);
-            }
-            else
-            {
-                SceneManager.LoadScene(scene_name1);
-            }
-        }
     }
 }
 public class Thing : IObject
@@ -180,8 +164,10 @@ public class Thing : IObject
 
     //player에서 호출하는 함수
     public void action(){
-        Debug.Log("Thing");
+        //Debug.Log("Thing");
     }
+
+    ///////////[오브젝트 앞뒤 정렬용 start, update함수]
     //start()용 함수
     public void for_start()
     {
@@ -199,9 +185,6 @@ public class Thing : IObject
     {
         change_childs();
     }
-
-
-
     void change_childs()
     {
         Object_State obj_loc = Player.check_up_down(obj.name);
