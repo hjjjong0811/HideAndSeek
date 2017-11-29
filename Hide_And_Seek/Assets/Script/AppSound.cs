@@ -70,7 +70,6 @@ public class AppSound : MonoBehaviour
 
         // 배경음
         fm.CreateGroup("BGM");
-        fm.SoundFolder = "Sound/BGM/";
         BGM = fm.LoadResourcesSound("BGM", "001");
         
         
@@ -78,7 +77,7 @@ public class AppSound : MonoBehaviour
         instance = this;
     }
 
-    void Update()
+    void Start()
     {
         // 씬이 바뀌었는지 검사
         if (sceneName != Application.loadedLevelName)

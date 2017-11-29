@@ -8,15 +8,22 @@ public class SoundManager : MonoBehaviour
     // === 외부 파라미터(Inspector 표시) =====================
     public bool DebugLog = false;
     public bool DontDestroyObjectOnLoad = true;
-    public string SoundFolder = "";
+    private string SoundFolder;
 
     // === 내부 파라미터 ======================================
     const string FoxSoundGroupNID = "";//"FoxSoundGroup_";
 
+    /// <summary>
+    /// BGM, Effect 의 폴더명 변경시 메서드로
+    /// </summary>
+    public void setFolder(string name) {
+        SoundFolder = "Sounds/" + name;
+    }
+
     // === 코드(Monobehaviour 기본 기능 구현) ================
     void Awake()
     {
-        
+        SoundFolder = "Sounds/";    //Resources/Sounds/"filename"
         if (DontDestroyObjectOnLoad)
         {
             DontDestroyOnLoad(this);
@@ -45,7 +52,10 @@ public class SoundManager : MonoBehaviour
         AudioSource audioSource = goSound.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
-        AudioClip audioClip = Resources.Load(SoundFolder + fileName, typeof(AudioClip)) as AudioClip;
+        //Debug 찍어봄! 경로명확인
+        string path = SoundFolder + fileName;
+        Debug.Log(path);
+        AudioClip audioClip = Resources.Load(path, typeof(AudioClip)) as AudioClip;
         audioSource.clip = audioClip;
 
         return audioSource;
