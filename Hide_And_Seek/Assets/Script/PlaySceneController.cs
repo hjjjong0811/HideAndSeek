@@ -589,17 +589,27 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator breakcabi() {
-
         GameManager.getInstance().isScenePlay = false;
 
+        //쨍
+        //Sound
+        ScriptManager.getInstance().showScript(false, new int[] {600 });
+
+        //대사진행
+        ScriptManager.getInstance().showScript(false, new int[] { 601, 602 });
+        
         Destroy(this.gameObject);
         Destroy(this);
 
         yield break;
     }
     private IEnumerator afterbreak() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        yield return new WaitForSeconds(0.5f);
+
+        //Sound 웅웅
+        ScriptManager.getInstance().showScript(false, new int[] { 650, 651, 652 });
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -607,8 +617,45 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator jyd() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        SceneManager.LoadScene("1_Laundry");
+        yield return new WaitForSeconds(0.001f);
+
+        //필요 오브젝트 불러오기
+        GameObject pl = GameObject.Find("Player");
+        FlashLight flash = GameObject.Find("Flash").GetComponent<FlashLight>();
+        CameraScript camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+
+        //설정
+        pl.transform.position = new Vector3(1.38f, -2.69f, 0);
+        flash.LinkUser(null);
+        flash.setPosition(new Vector2(1.38f, -2.69f));
+        flash.fadeIn(1.0f);
+        yield return new WaitForSeconds(1f);
+
+        //하이라이트 이동
+        flash.move(new Vector2(-0.31f, -1.2f));
+        camera.linkUser(null);
+        camera.zoom(new Vector2(-0.31f, -1.2f), 4f);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 700}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //하이라이트 이동
+        flash.move(new Vector2(-1f, -0.3f));
+        camera.linkUser(null);
+        camera.zoom(new Vector2(-1f, -0.3f), 4f);
+        yield return new WaitForSeconds(0.5f);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 701,702 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        flash.LinkUser(pl);
+        camera.linkUser(pl);
 
         Destroy(this.gameObject);
         Destroy(this);
