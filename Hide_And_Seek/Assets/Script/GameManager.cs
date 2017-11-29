@@ -6,14 +6,11 @@ public class GameManager
 {
     private static GameManager instance = null;
 
-    public enum StoryItem
-    {
-        SOJU = 12,
-        SALT = 18,
-        SALTYWATER = 22,
-        GROUNDKEY = 43,
-    }
-   
+    public const int SOJU = 12;
+    public const int SALT = 18;
+    public const int SALTYWATER = 22;
+    public const int GROUNDKEY = 43;
+
 
     public static int MainChapter; // 전체 메인 에피소드 관리
 
@@ -71,14 +68,14 @@ public class GameManager
         StoryPlayScene();
     }
 
-    public void GetItem(StoryItem ItemKey) // 스토리에 관련된 아이템 얻을때
+    public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
         switch (ItemKey)
         {
-            case StoryItem.SOJU : Soju = 1; break;
-            case StoryItem.SALT: Salt = 1; break;
-            case StoryItem.SALTYWATER: SaltyWater = 1; break;
-            case StoryItem.GROUNDKEY: GroundKey = 1; break;
+            case SOJU: Soju = 1; break;
+            case SALT: Salt = 1; break;
+            case SALTYWATER: SaltyWater = 1; break;
+            case GROUNDKEY: GroundKey = 1; break;
         }
     }
     
