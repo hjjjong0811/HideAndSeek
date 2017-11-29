@@ -12,12 +12,6 @@ public class Object_Data {
     public String Name;
     public List<Object_Data_detail> DetailList;
 }
-
-[Serializable]
-public enum Object_Type {
-    script = 0, sound_effect = 1, sound_default = 2, item = 3, 
-}
-
 [Serializable]
 public class Object_Data_detail {
     [SerializeField]
@@ -25,14 +19,12 @@ public class Object_Data_detail {
     public int SpriteNum;
     public Object_Output Auto;
     public Object_Output Action;
-    public Object_Output[] UseItem;
+    public Object_Output UseItem;
 }
-
 [Serializable]
 public class Object_Output {
-    public Object_Type type;
-    public int sound_key;
     public int script_key;
+    public int sound_key;
     public int item_use_key;
     public int item_result_key;
 }

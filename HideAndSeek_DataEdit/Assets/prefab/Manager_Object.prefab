@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1593970401868224}
+  m_IsPrefabParent: 1
+--- !u!1 &1593970401868224
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4237105343827466}
+  - component: {fileID: 114006733060884918}
+  - component: {fileID: 114226132473520802}
+  m_Layer: 0
+  m_Name: Manager_Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4237105343827466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593970401868224}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114006733060884918
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593970401868224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ad81d4fe8e8fad4197610637857a855, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  list_Object: []
+--- !u!114 &114226132473520802
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1593970401868224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49d6ed8d2043d4b42b007586a0239391, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataManager: {fileID: 114006733060884918}
+  pnlEdit: {fileID: 0}
+  scrollList: {fileID: 0}
+  detailScrollList: {fileID: 0}
+  pre_detailPanel: {fileID: 1724953188468444, guid: f36bb98cfee528a48884ca3819d6d5a2,
+    type: 2}
+  txtKey: {fileID: 0}
+  txtName: {fileID: 0}
+  txtLength: {fileID: 0}
+  pre_btnObject: {fileID: 1720313306759194, guid: 28b4f0e17377075469b76fe01b654935,
+    type: 2}
+  isNewItem: 1
+  nClikedIndex: 0
+  curObject:
+    Key: 0
+    Name: 
+    DetailList: []
