@@ -82,13 +82,17 @@
     <Compile Include="Assets\Script\DataManager.cs" />
     <Compile Include="Assets\Script\DataManager_Compose.cs" />
     <Compile Include="Assets\Script\DataManager_Item.cs" />
+    <Compile Include="Assets\Script\DataManager_Object.cs" />
     <Compile Include="Assets\Script\DataManager_Script.cs" />
     <Compile Include="Assets\Script\EditUIManager.cs" />
     <Compile Include="Assets\Script\EditUIManager_Compose.cs" />
     <Compile Include="Assets\Script\EditUIManager_Item.cs" />
+    <Compile Include="Assets\Script\EditUIManager_Object.cs" />
     <Compile Include="Assets\Script\EditUIManager_Script.cs" />
     <Compile Include="Assets\Script\Item.cs" />
+    <Compile Include="Assets\Script\Object_Data.cs" />
     <Compile Include="Assets\Script\Script.cs" />
+    <Compile Include="Assets\Script\test.cs" />
     <Compile Include="Assets\Script\UIManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
