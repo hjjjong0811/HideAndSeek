@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    private readonly int code_item = 0, code_compose = 1, code_script = 2;
+    private readonly int code_item = 0, code_compose = 1, code_script = 2, code_object = 3;
 
     DataManager dataManager = null;
     EditUIManager editUIManager = null;
@@ -40,6 +40,11 @@ public class UIManager : MonoBehaviour
             dataManager = GameObject.Find("Manager_Script").GetComponent<DataManager_Script>();
             dataManager.LoadData(inputPath.text);
             editUIManager = GameObject.Find("Manager_Script").GetComponent<EditUIManager_Script>();
+            editUIManager.Init();
+        } else if (dropdown.value == code_object) {
+            dataManager = GameObject.Find("Manager_Object").GetComponent<DataManager_Object>();
+            dataManager.LoadData(inputPath.text);
+            editUIManager = GameObject.Find("Manager_Object").GetComponent<EditUIManager_Object>();
             editUIManager.Init();
         }
     }
