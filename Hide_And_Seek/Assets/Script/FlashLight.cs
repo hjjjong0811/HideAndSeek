@@ -13,8 +13,6 @@ public class FlashLight : MonoBehaviour {
     private Light Light_p, Light_o;
 
     private bool isLighted = true;      //on off?
-    private float timeleft = 3.0f;      //일정시간마다 깜박이기 위함
-    private float nexttime = 0.0f;
     private bool isFlashed = false;     //현재 깜박임중?
     private bool isFade = false;
     private bool isMoved = false;
@@ -69,6 +67,7 @@ public class FlashLight : MonoBehaviour {
         
         setLight(isLighted);
         if (isLighted) fadeIn(1.0f);
+        StartCoroutine(UpdateFlash());
     }
 
     private void OnDestroy() {
@@ -77,24 +76,29 @@ public class FlashLight : MonoBehaviour {
         else PlayerPrefs.SetInt("Flash_IsLighted", 0);
         PlayerPrefs.Save();
     }
+    
+    private IEnumerator UpdateFlash() {
+        while (true) {
+            if(isLighted)
+                Battery = Battery - (batteryleft); //시간경과시 배터리 방전
+            
+            if (isLighted && Battery < Battery_lack) {
+                if (!isFlashed && Random.value < 0.1) {
+                    flashedLight(2f);
+                }
+            }
+        
+            if(Battery <= 0) {
+                GameManager.getInstance().ScenePlay(-6);
+                yield break;
+            }
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
 
-    // Update is called once per frame
-    void Update () {
-        Battery = Battery - (batteryleft * Time.deltaTime); //시간경과시 배터리 방전
+    private void LateUpdate() {
         if (Player != null) {
             transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -3f);
-        }
-        //timeleft마다
-        if (isLighted && Battery < Battery_lack && Time.time > nexttime) {
-            nexttime = Time.time + timeleft;
-            //30퍼확률로 꿈벅
-            if (!isFlashed && Random.value < 0.3) {
-                flashedLight(2f);
-            }
-        }
-        
-        if(Battery <= 0) {
-            //GameManager에 엔딩 요청
         }
     }
 
