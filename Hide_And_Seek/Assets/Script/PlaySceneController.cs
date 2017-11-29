@@ -53,6 +53,7 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     public void wake() {
+        Debug.Log("wake");
         isWaitScript = false;
     }
 
@@ -529,8 +530,17 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator nohb() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        SceneManager.LoadScene("2_Hall");
+        yield return new WaitForSeconds(0.001f);
+
+        ////플레이어 위치설정
+        GameObject pl = GameObject.Find("Player");
+        pl.transform.position = new Vector3(3f, -0.2f, 0);
+
+        //대사 진행
+        ScriptManager.getInstance().showScript(false, new int[] { 500, 501 });
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -538,8 +548,39 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator hbd() {
-
         GameManager.getInstance().isScenePlay = false;
+
+        SceneManager.LoadScene("2_Swimming");
+        yield return new WaitForSeconds(0.001f);
+
+        //필요 오브젝트 불러오기
+        GameObject pl = GameObject.Find("Player");
+        FlashLight flash = GameObject.Find("Flash").GetComponent<FlashLight>();
+        CameraScript camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
+
+        //설정
+        pl.transform.position = new Vector3(-1.8f, -4.25f, 0);
+        flash.LinkUser(null);
+        flash.setPosition(new Vector2(-1.8f, -4.25f));
+        flash.fadeIn(1.0f);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 550, 551 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //하이라이트 이동
+        ScriptManager.getInstance().showScript(false, new int[] { 552 });
+        flash.move(new Vector2(-1.9f, -1.47f));
+        camera.linkUser(null);
+        camera.zoom(new Vector2(-1.9f, -2.35f), 4f);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 553,554,555 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        
+        flash.LinkUser(pl);
+        camera.linkUser(pl);
 
         Destroy(this.gameObject);
         Destroy(this);
