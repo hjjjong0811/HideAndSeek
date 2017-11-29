@@ -11,7 +11,7 @@ public class GameManager
         SOJU = 12,
         SALT = 18,
         SALTYWATER = 22,
-        GROUNDKEY = 43
+        GROUNDKEY = 43,
     }
    
 
@@ -71,14 +71,14 @@ public class GameManager
         StoryPlayScene();
     }
 
-    public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
+    public void GetItem(StoryItem ItemKey) // 스토리에 관련된 아이템 얻을때
     {
         switch (ItemKey)
         {
-            case SOJU: Soju = 1; break;
-            case SALT: Salt = 1; break;
-            case SALTYWATER: SaltyWater = 1; break;
-            case GROUNDKEY: GroundKey = 1; break;
+            case StoryItem.SOJU : Soju = 1; break;
+            case StoryItem.SALT: Salt = 1; break;
+            case StoryItem.SALTYWATER: SaltyWater = 1; break;
+            case StoryItem.GROUNDKEY: GroundKey = 1; break;
         }
     }
     
