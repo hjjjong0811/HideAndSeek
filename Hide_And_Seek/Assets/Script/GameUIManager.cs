@@ -60,7 +60,7 @@ public class GameUIManager : MonoBehaviour {
     {
 
         float charge = FlashLight.getFlashData();
-        Debug.Log(charge);
+        //Debug.Log(charge);
 
         if(charge <= 100 && charge >75 ) 
         {
