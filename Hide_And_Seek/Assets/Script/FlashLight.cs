@@ -16,6 +16,8 @@ public class FlashLight : MonoBehaviour {
     private float timeleft = 3.0f;      //일정시간마다 깜박이기 위함
     private float nexttime = 0.0f;
     private bool isFlashed = false;     //현재 깜박임중?
+    private bool isFade = false;
+    private bool isMoved = false;
     private float batteryleft = 0.01f;   //배터리 닳는 속도(값이 커지면 빨라짐)
 
     /// <summary>
@@ -66,6 +68,7 @@ public class FlashLight : MonoBehaviour {
         Light_o.intensity = Light_power_on_obj;
         
         setLight(isLighted);
+        if (isLighted) fadeIn(1.0f);
     }
 
     private void OnDestroy() {
@@ -78,8 +81,9 @@ public class FlashLight : MonoBehaviour {
     // Update is called once per frame
     void Update () {
         Battery = Battery - (batteryleft * Time.deltaTime); //시간경과시 배터리 방전
-        transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -3f);
-
+        if (Player != null) {
+            transform.position = new Vector3(Player.transform.position.x, Player.transform.position.y, -3f);
+        }
         //timeleft마다
         if (isLighted && Battery < Battery_lack && Time.time > nexttime) {
             nexttime = Time.time + timeleft;
@@ -94,6 +98,10 @@ public class FlashLight : MonoBehaviour {
         }
     }
 
+    public void setPosition(Vector2 v) {
+        if (Player != null) return;
+        transform.position = new Vector3(v.x, v.y, -3f);
+    }
     public float getBattery() {
         return Battery;
     }
@@ -138,8 +146,39 @@ public class FlashLight : MonoBehaviour {
         Invoke("coroutineEnd", time);
     }
 
+    /// <summary>
+    /// 페이드인
+    /// </summary>
+    public void fadeIn(float time) {
+        if (isFade) return;
+        isFade = true;
+        StartCoroutine(coroutineFadein(time));
+        Invoke("coroutineEnd", time);
+    }
+
+    /// <summary>
+    /// 천천히 무브
+    /// </summary>
+    public void move(Vector2 position) {
+        if (Player != null) return;
+        StartCoroutine(moveSlow(position));
+    }
+
+    private IEnumerator moveSlow(Vector2 position) {
+        isMoved = true;
+        float x_p = (position.x - this.transform.position.x) * 0.1f;
+        float y_p = (position.y - this.transform.position.y) * 0.1f;
+        for (int i = 0; i < 10; i++) {
+            this.transform.position = new Vector3(transform.position.x + x_p, transform.position.y + y_p, -3f);
+            yield return new WaitForSeconds(0.05f);
+        }
+        isMoved = false;
+        yield break;
+    }
+
     private void coroutineEnd() {
         isFlashed = false;
+        isFade = false;
     }
 
     private IEnumerator coroutineFlash() {
@@ -150,6 +189,19 @@ public class FlashLight : MonoBehaviour {
             yield return new WaitForSeconds(Random.Range(0.001f, 0.15f));
         }
         setLight(isLighted);
+        yield break;
+
+    }
+
+    private IEnumerator coroutineFadein(float time) {
+        Light_p.intensity = Light_power_off_ch;
+        Light_o.intensity = Light_power_off_obj;
+        while (isFade) {
+            Light_p.intensity += (Light_power_on_ch - Light_power_off_ch) / (time / 0.1f);
+            Light_o.intensity += (Light_power_on_obj - Light_power_off_obj) / (time / 0.1f);
+            yield return new WaitForSeconds(0.1f);
+        }
+        setLight(true);
         yield break;
 
     }
