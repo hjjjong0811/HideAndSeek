@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Camera _camera;
     public static GameObject _enemy;
 
     //normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
@@ -137,12 +136,8 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_chasing
     void do_chasing()
     {
-        //플레이어 위치 가져오기
+        //플레이어 따라다니기
         _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
-
-        //마우스 따라 가게 만들기
-        //_player_pos = _camera.ScreenToWorldPoint(Input.mousePosition);
-        //_player_pos.z = 0f;
         float distance = Vector3.Distance(_player_pos, _enemy_pos);
         if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
     }
