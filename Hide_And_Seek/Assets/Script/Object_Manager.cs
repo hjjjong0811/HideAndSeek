@@ -126,12 +126,7 @@ public class Portal : IObject
     {
         if (SceneManager.GetActiveScene().name == scene_name1)
         {
-            SceneManager.LoadScene(scene_name2);
-            /*
-            while(SceneManager.GetActiveScene().name != scene_name1)
-            {
-            }
-             */
+            SceneManager.LoadScene(scene_name1);
             Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
         }
         else
