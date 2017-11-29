@@ -274,8 +274,8 @@ public class PlaySceneController : MonoBehaviour {
 
         //대사 진행, 소주를찾으러
         isWaitScript = true;
-        scripts = new int[10];
-        for (int i = 0; i <= 9; i++) {
+        scripts = new int[11];
+        for (int i = 0; i <= 10; i++) {
             scripts[i] = i + 112;
         }
         ScriptManager.getInstance().showScript(false, scripts, wake);

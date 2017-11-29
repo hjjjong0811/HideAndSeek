@@ -41,6 +41,7 @@ public class Light_Directional : MonoBehaviour {
     /// </summary>
     /// <param name="time">during second</param>
     public void fadeIn(float time) {
+        if (isFade) return;
         isFade = true;
         StartCoroutine(coroutineFadein(time));
         Invoke("coroutineEnd", time);
@@ -68,6 +69,7 @@ public class Light_Directional : MonoBehaviour {
             Light_o.intensity += Light_power_on_obj / (time / 0.1f);
             yield return new WaitForSeconds(0.1f);
         }
+        isFade = false;
         setLight(true);
         yield break;
 
