@@ -14,6 +14,7 @@ public class Player : MonoBehaviour {
 
     public float Hp, Speed;
     public bool Tire;
+    private static bool hiding;//호빈추가
     public ISpot SpotInfo;
 
     public Animator Animator;
@@ -108,6 +109,7 @@ public class Player : MonoBehaviour {
 
         Player_obj = this.gameObject;//호빈추가
         Tire = false;
+        hiding = false;//호빈추가
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
@@ -141,6 +143,13 @@ public class Player : MonoBehaviour {
     private void Update() {
         if (ScriptManager.getInstance().isPlaying) return;
 
+        //호빈추가
+        if (hiding)
+        {
+            if (Input.GetButtonDown("Action")) hiding = false;
+            return;
+        }
+
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (30f * Time.deltaTime); //시간에따른 hp회복
@@ -151,6 +160,7 @@ public class Player : MonoBehaviour {
             movement();
             Animator.speed = Speed;
             if (Input.GetButtonDown("Action")) {
+                //호빈_ 숨을수 있는 오브젝트인지 GameObject에서 확인하고, true면 -> 숨고, false면 -> action되게 나중에 바꾸기
                 action();
             }
             if (Input.GetButtonDown("UseItem")) {
