@@ -83,6 +83,7 @@ public class GameManager
     {
 
 
+       
         //현정 컷신으로인한 챕터 번호수정있음! 주석추가있음
         //현정 추가
         if (MainChapter == -1)
@@ -181,6 +182,9 @@ public class GameManager
         else if (MainChapter == 15 && CorrectPassword == 1)
             SetMainChapter(16);
 
+        //배터리 부족시 엔딩
+        if (FlashLight.getFlashData() <= 0)
+            SetMainChapter(-6);
 
     }
 
@@ -247,6 +251,7 @@ public class GameManager
             case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit);break;
             case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
             case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
+            case -6: PlayScene.getInstance().playScene(PlayScene.numScene.batteryLack); break;
             case 0: PlayScene.getInstance().playScene(PlayScene.numScene.tutorial); break;
             case 1: PlayScene.getInstance().playScene(PlayScene.numScene.hide_1_end); break;
             case 2: PlayScene.getInstance().playScene(PlayScene.numScene.hide_2_ready); break;
