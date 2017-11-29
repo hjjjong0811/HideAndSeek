@@ -48,6 +48,8 @@ public class Player : MonoBehaviour {
         int room = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room], 0);
         int spot = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], 0);
         SpotInfo = new ISpot((Room)room, spot);
+
+        Debug.Log(transform.position.x + ", " + transform.position.y + "Awake");
     }
 
     /// <summary>
@@ -130,6 +132,7 @@ public class Player : MonoBehaviour {
     }
 
     private void OnDestroy() {
+        Debug.Log("destroy");
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], this.transform.position.x);
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], this.transform.position.y);
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], this.transform.position.z);
@@ -299,8 +302,16 @@ public class Player : MonoBehaviour {
     }
 
     //호빈추가
-    public void set_player_pos(Vector3 v) {
-        this.transform.position = v;
+    public static void set_player_pos(Vector3 v) {
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], v.x);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], v.y);
+        PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], v.z);
+        PlayerPrefs.Save();
+        GameObject pl = GameObject.Find("Player");
+        if (pl != null) {
+            pl.transform.position = v;
+        }
+        Debug.Log(v.x + ", " + v.y + "set");
     }
     public Vector3 get_player_pos() {
         return this.transform.position;

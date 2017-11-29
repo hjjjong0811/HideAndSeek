@@ -126,13 +126,14 @@ public class Portal : IObject
     {
         if (SceneManager.GetActiveScene().name == scene_name1)
         {
+            MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name2);
-            if (Player.Player_obj != null) Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
+            Player.set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
         }
-        else
-        {
+        else {
+            MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name1);
-            if (Player.Player_obj != null) Player.Player_obj.GetComponent<Player>().set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
+            Player.set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
         }
         
     }
