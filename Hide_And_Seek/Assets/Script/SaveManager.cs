@@ -198,6 +198,7 @@ public class SaveManager : MonoBehaviour {
         data.z = PlayerPos.z;
 
         data.P_Room = (int)Player_ISpot._room;
+        Debug.Log("save" + data.P_Room);
         data.P_Spot = Player_ISpot._spot;
         /*
         data.E_Room = (int)Enemy_ISpot._room;
@@ -211,6 +212,8 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_LoadData() // 데이터 불러오기
     {
+        int Room_Build_num;
+        String Room_Name;
       
         if (File.Exists(Application.persistentDataPath + "/" + SlotNumber + ".dat"))
         {
@@ -223,21 +226,29 @@ public class SaveManager : MonoBehaviour {
 
               
                 Player_ISpot._room = (Room)data.P_Room;
+                Debug.Log("load"+data.P_Room);
+                /*
                 Player_ISpot._spot = data.P_Spot;
 
+               
+                Room_Name = Player_ISpot._room.ToString();
+                Debug.Log(Room_Name);
+
+               
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
 
                 GameManager.getInstance().SetMainChapter(data.MainChapter);
-                SceneManager.LoadScene(data.P_Room);
+                SceneManager.LoadScene(Room_Name);
+
                 Player.Init(data.hp, PlayerPos, Player_ISpot);
                 FlashLight.Init(data.Battery, true);
-                
+             
               
 
                 Inventory.getInstance().inventory = data.Inventory; // 인벤토리
-
+                */
 
 
             }

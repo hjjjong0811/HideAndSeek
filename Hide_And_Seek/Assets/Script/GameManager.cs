@@ -6,11 +6,14 @@ public class GameManager
 {
     private static GameManager instance = null;
 
-    /*아이템 상수선언*/
-    public const int SOJU = 12;
-    public const int SALT = 18;
-    public const int SALTYWATER = 22;
-    public const int GROUNDKEY = 43;
+    public enum StoryItem
+    {
+        SOJU = 12,
+        SALT = 18,
+        SALTYWATER = 22,
+        GROUNDKEY = 43
+    }
+   
 
     public static int MainChapter; // 전체 메인 에피소드 관리
 
