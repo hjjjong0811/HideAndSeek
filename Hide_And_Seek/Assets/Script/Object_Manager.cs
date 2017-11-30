@@ -19,7 +19,7 @@ public interface IObject
 public class Portal : IObject
 {
     int key_num=0;
-    string scene_name1, scene_name2;
+    public string scene_name1, scene_name2;
     public Vector2 portal_loc1, portal_loc2;
 
     public Portal(int key_num, Room r1, Room r2)

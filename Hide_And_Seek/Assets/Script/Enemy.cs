@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     public static GameObject _enemy;
     private static readonly int CHASING_START_DISTANCE = 3;//같은방에서 Enemy~Player spot 거리차이가 이 변수값 이하면 enemy가 쫓아옴
-    private static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
+    public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
     enum Enemy_State { in_dest, going_hall, going_dest, in_hall };//[normal 상태] 내부상태
     private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f };//[normal 상태] 내부상태에 따른 활동시간
     public float _enemy_speed = 1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
     public static bool _enemy_working;//아저씨 발동상태
     private static bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
     private static ISpot _enemy_spot;//아저씨 위치
+    private static ISpot _enemy_last_spot;//아저씨 이전 위치
     //[normal 상태]
     private static Enemy_State _enemy_state;//현재 내부상태
     //[chasing 상태]
@@ -33,6 +34,8 @@ public class Enemy : MonoBehaviour
         _f_normal_t_chasing = false;
         //_enemy_spot = new ISpot(Room.Wine_0, 0);
         _enemy_spot = new ISpot(Room.Hall_1, 1);//test
+        //_enemy_last_spot = new ISpot(Room.Wine_0, 0);
+        _enemy_last_spot = new ISpot(Room.Hall_1, 1);//test
         _enemy_state = Enemy_State.going_hall;
         _enemy_dest = Room.None;
         _enemy_route = null;
@@ -63,21 +66,31 @@ public class Enemy : MonoBehaviour
     {
         switch (_f_normal_t_chasing)
         {
-            case false://normal
-                GameObject spot=null;
-                GameObject[] spot_objects = GameObject.FindGameObjectsWithTag("Spot");
-                for (int i = 0; i < spot_objects.Length; i++)
+            case false://normal -> chasing
+                //i) 아저씨가 같은방에서부터 chasing상태되는 경우 -> spot위치에서부터 쫓아다님
+                if (_enemy_spot._room == _enemy_last_spot._room)
                 {
-                    if (int.Parse(spot_objects[i].name) == _enemy_spot._spot)
+                    GameObject spot = null;
+                    GameObject[] spot_objects = GameObject.FindGameObjectsWithTag("Spot");
+                    for (int i = 0; i < spot_objects.Length; i++)
                     {
-                        spot = spot_objects[i];
-                        break;
+                        if (int.Parse(spot_objects[i].name) == _enemy_spot._spot)
+                        {
+                            spot = spot_objects[i];
+                            break;
+                        }
                     }
+                    _enemy.transform.position = spot.transform.position;
                 }
-                _enemy.transform.position = spot.transform.position;
+                //ii) 아저씨가 포탈타고와서 chasing상태되는 경우 -> portal위치에서부터 쫓아다님
+                else
+                {
+                    _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(_enemy_last_spot._room, _enemy_spot._room);
+                }
                 _f_normal_t_chasing = true;
                 break;
-            case true://chasing
+
+            case true://chasing -> normal
                 _f_normal_t_chasing = false;
                 break;
         }
@@ -167,6 +180,7 @@ public class Enemy : MonoBehaviour
     }
     static void move_next_route()
     {
+        _enemy_last_spot = _enemy_spot;//이전 위치 정보 저장
         _enemy_spot = _enemy_route.get_data();
         _enemy_route = _enemy_route._next;
         Debug.Log(">>>" + "이동 : " + _enemy_spot._room + "/" + _enemy_spot._spot);//test
