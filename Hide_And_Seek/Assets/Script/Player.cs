@@ -111,7 +111,7 @@ public class Player : MonoBehaviour {
 
         Player_obj = this.gameObject;//호빈추가
         Tire = false;
-        hiding = false;//호빈추가
+        hiding = true;//호빈추가_test
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
@@ -146,8 +146,7 @@ public class Player : MonoBehaviour {
     private void Update() {
         if (ScriptManager.getInstance().isPlaying) return;
 
-        //호빈추가
-        if (hiding)
+        if (hiding)//호빈추가
         {
             if (Input.GetButtonDown("Action")) hiding = false;
             return;
