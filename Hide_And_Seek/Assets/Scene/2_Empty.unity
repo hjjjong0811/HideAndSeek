@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 1612106577}
   m_Layer: 10
   m_Name: 0
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -894,6 +894,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 21
   _t_thing_f_portal: 0
+  Key: 0
+  InfoByChapter: []
+  usingItem: []
 --- !u!60 &2003675273
 PolygonCollider2D:
   m_ObjectHideFlags: 0

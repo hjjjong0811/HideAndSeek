@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 50112029}
   m_Layer: 10
   m_Name: 3
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -331,7 +331,7 @@ GameObject:
   - component: {fileID: 318251173}
   m_Layer: 10
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -926,7 +926,7 @@ GameObject:
   - component: {fileID: 608283570}
   m_Layer: 10
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1066,7 +1066,7 @@ GameObject:
   - component: {fileID: 723311667}
   m_Layer: 10
   m_Name: 0
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2216,6 +2216,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 8
   _t_thing_f_portal: 0
+  Key: 0
+  InfoByChapter: []
+  usingItem: []
 --- !u!1001 &1524578369
 Prefab:
   m_ObjectHideFlags: 0
