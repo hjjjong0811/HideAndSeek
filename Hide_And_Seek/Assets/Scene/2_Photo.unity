@@ -591,7 +591,24 @@ MonoBehaviour:
   _key_num: 20
   _t_thing_f_portal: 0
   Key: 0
-  InfoByChapter: []
+  InfoByChapter:
+  - chapter: 0
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 0
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
   usingItem: []
 --- !u!1 &525350601
 GameObject:
