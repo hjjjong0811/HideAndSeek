@@ -154,8 +154,6 @@ public class Thing : IObject
 {
     GameObject obj;
     int key_num=0;
-    static string[] object_sorting = new string[] { "Object_back", "Object_front" };
-    List<SpriteRenderer> sr_list = new List<SpriteRenderer>();
 
     public Thing(int key_num, GameObject obj)
     {
@@ -168,36 +166,13 @@ public class Thing : IObject
         //Debug.Log("Thing");
     }
 
-    ///////////[오브젝트 앞뒤 정렬용 start, update함수]
     //start()용 함수
     public void for_start()
     {
-        Transform[] child_objects = obj.GetComponentsInChildren<Transform>();
-        foreach (Transform t in child_objects)
-        {
-            if (t.gameObject.GetComponent<SpriteRenderer>() != null)
-            {
-                sr_list.Add(t.gameObject.GetComponent<SpriteRenderer>());
-            }
-        }
     }
     //update()용 함수
     public void for_update()
     {
-        change_childs();
     }
-    void change_childs()
-    {
-        Object_State obj_loc = Player.check_up_down(obj.name);
-
-        if (obj_loc == Object_State.too_far) return;
-        change_childs_back_fround(object_sorting[(int)obj_loc]);
-    }
-    void change_childs_back_fround(string order)
-    {
-        foreach (SpriteRenderer sr in sr_list)
-        {
-            sr.sortingLayerName = order;
-        }
-    }
+    
 }
