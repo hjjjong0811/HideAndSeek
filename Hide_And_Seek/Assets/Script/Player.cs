@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
     public bool Tire;
     private static bool hiding;//호빈추가
     public ISpot SpotInfo;
+    public static Room Player_Last_Room;//호빈추가
 
     public Animator Animator;
     public Move move;
