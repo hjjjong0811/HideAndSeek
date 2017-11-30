@@ -111,7 +111,7 @@ public class Player : MonoBehaviour {
 
         Player_obj = this.gameObject;//호빈추가
         Tire = false;
-        hiding = true;//호빈추가_test
+        hiding = false;//호빈추가_test
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
