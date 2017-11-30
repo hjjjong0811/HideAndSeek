@@ -88,6 +88,7 @@ public class GameManager
         //현정 추가
         if (MainChapter == -1)
         {
+            SetMainChapter(0);
             //테스트해야하는데 자꾸 튜토링러 진행돼서 잠깐 아래 세줄 주석처리함;;
             //SetMainChapter(0);
             //isScenePlay = true;
