@@ -24,6 +24,7 @@ public class Objects : MonoBehaviour, IObject {
     [System.Serializable]
     public struct Detail_useItem {
         public int chapter_canUse;     //chapter부터 사용가능
+        public int materialItem_key;
         public output outputByUsingItem;
     }
 
@@ -43,24 +44,26 @@ public class Objects : MonoBehaviour, IObject {
     public Detail_useItem[] usingItem;  //사용가능아이템정보
 
     private const int mode_detail = 0, mode_detail_useitem = 1;
-    private const int invalidValue = -1;
+    private const int invalidValue = 0;
 
     private SpriteRenderer spriteRenderer;
 
     // Use this for initialization
     void Start() {
+        int index = findIndexByChapter(mode_detail);
+        if (!InfoByChapter[index].isActive) {
+            this.gameObject.SetActive(false);
+            return;
+        } else {
+            this.gameObject.SetActive(true);
+        }
+
         if (!_t_thing_f_portal) {
             _obj = Scene_Manager.getInstance()._get_portal(_key_num);
         } else {
-            spriteRenderer = GetComponent<SpriteRenderer>();
-            int index = findIndexByChapter(mode_detail);
-            if (!InfoByChapter[index].isActive) {
-                this.gameObject.SetActive(false);
-                return;
-            } else {
-                this.gameObject.SetActive(true);
-            }
-            spriteRenderer.sprite = InfoByChapter[index].sprite;
+            spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            
+            if(InfoByChapter[index].sprite != null) spriteRenderer.sprite = InfoByChapter[index].sprite;
             if(InfoByChapter[index].sound_default != null) {
                 //Sound재생
             }
@@ -69,11 +72,17 @@ public class Objects : MonoBehaviour, IObject {
 
     public void action() {
         if (!_t_thing_f_portal) {
+            int index = findIndexByChapter(mode_detail);
+            Detail curInfo = InfoByChapter[index];
+            if (!curInfo.isActByCall) return;
+
             _obj.action();
             return;
         } else {
             int index = findIndexByChapter(mode_detail);
             Detail curInfo = InfoByChapter[index];
+            if (!curInfo.isActByCall) return;
+
             if (curInfo.type == Type.hide) {
                 //hide
             } else if (curInfo.type == Type.no) {
@@ -95,23 +104,50 @@ public class Objects : MonoBehaviour, IObject {
         }
     } //action()
 
-    public void useItem() {
+    public void useitem(int item_key) {
+        Debug.Log("actionitemtest");
+        for (int i = 0; i < usingItem.Length; i++) {
+            if(usingItem[i].materialItem_key == item_key) {
+                if(usingItem[i].chapter_canUse > GameManager.getInstance().GetMainChapter()) {
+                    continue;
+                } else {
+                    output curOutput = usingItem[i].outputByUsingItem;
+                    //Sound 있으면재생
+                    if (curOutput.sound != null)
+                        //Sound
+                        Debug.Log("SoundCall");
+                    //Script 있으면 재생
+                    if (curOutput.script_key != invalidValue)
+                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                    //Item 획득가능하면 획득
+                    if (curOutput.item_key != invalidValue)
+                        Inventory.getInstance().addItem(curOutput.item_key);
+
+                    GameManager.getInstance().CheckMainChapter();
+                }
+            } //if
+        }
+        
+    } //action
+    
+    private void OnTriggerEnter2D(Collider2D collision) {
         if (!_t_thing_f_portal) {
             return;
         } else {
-            int index = findIndexByChapter(mode_detail_useitem);
-            output curOutput = usingItem[index].outputByUsingItem;
-
-            //Sound 있으면재생
-            if (curOutput.sound != null)
-                //Sound
-                Debug.Log("SoundCall");
-            //Script 있으면 재생
-            if (curOutput.script_key != invalidValue)
-                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
-            //Item 획득가능하면 획득
-            if (curOutput.item_key != invalidValue)
-                Inventory.getInstance().addItem(curOutput.item_key);
+            int index = findIndexByChapter(mode_detail);
+            Detail curInfo = InfoByChapter[index];
+            if (curInfo.isActByCollision)  {
+                //Sound 있으면재생
+                if (curInfo.outputByCollision.sound != null)
+                    //Sound
+                    Debug.Log("SoundCall");
+                //Script 있으면 재생
+                if (curInfo.outputByCollision.script_key != invalidValue)
+                    ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCollision.script_key });
+                //Item 획득가능하면 획득
+                if (curInfo.outputByCollision.item_key != invalidValue)
+                    Inventory.getInstance().addItem(curInfo.outputByCollision.item_key);
+            }
 
             GameManager.getInstance().CheckMainChapter();
         }
