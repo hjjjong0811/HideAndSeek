@@ -33,6 +33,7 @@ public class Objects : MonoBehaviour, IObject {
         public int script_key;
         public AudioClip sound;
         public int item_key;
+        public bool isBlockPortal;
     }
 
     public enum Type {
@@ -76,7 +77,11 @@ public class Objects : MonoBehaviour, IObject {
             Detail curInfo = InfoByChapter[index];
             if (!curInfo.isActByCall) return;
 
-            _obj.action();
+            if (curInfo.outputByCall.script_key != invalidValue)
+                ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
+
+            if (!curInfo.outputByCall.isBlockPortal) _obj.action();
+            
             return;
         } else {
             int index = findIndexByChapter(mode_detail);
