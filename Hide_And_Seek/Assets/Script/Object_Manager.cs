@@ -15,8 +15,6 @@ public class Object_Manager{
 public interface IObject
 {
     void action();
-    void for_start();
-    void for_update();
 }
 public class Portal : IObject
 {
@@ -137,42 +135,9 @@ public class Portal : IObject
         }
         
     }
-    public void for_start()
-    {
-    }
-
-    public void for_update()
-    {
-    }
 
     public int get_key()
     {
         return key_num;
     }
-}
-public class Thing : IObject
-{
-    GameObject obj;
-    int key_num=0;
-
-    public Thing(int key_num, GameObject obj)
-    {
-        this.key_num = key_num;
-        this.obj = obj;
-    }
-
-    //player에서 호출하는 함수
-    public void action(){
-        //Debug.Log("Thing");
-    }
-
-    //start()용 함수
-    public void for_start()
-    {
-    }
-    //update()용 함수
-    public void for_update()
-    {
-    }
-    
 }

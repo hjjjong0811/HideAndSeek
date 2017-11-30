@@ -11,13 +11,7 @@ public class Inventory {
     private Inventory() {
         inventory = new List<int>();
         curEquipItem = -1;
-
-
-        //test Data
-        ItemManager mng = ItemManager.getInstance();
-        for (int i = 0; i < mng.ListItem.Count; i++) {
-            inventory.Add(mng.ListItem[i].Key);
-        }
+        
     }
 
     public static Inventory getInstance() {

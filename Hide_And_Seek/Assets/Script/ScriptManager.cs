@@ -168,7 +168,7 @@ public class ScriptManager : MonoBehaviour {
         script_story = new List<Script>();
 
         TextAsset DataStory_sc = Resources.Load("GameData/script_story") as TextAsset;
-        //TextAsset DataObj_sc = Resources.Load("GameData/script_obj") as TextAsset;
+        TextAsset DataObj_sc = Resources.Load("GameData/script_obj") as TextAsset;
 
         BinaryFormatter bf = new BinaryFormatter();
 
@@ -178,11 +178,11 @@ public class ScriptManager : MonoBehaviour {
         }
         ms.Close();
 
-        //ms = new MemoryStream(DataObj_sc.bytes);
-        //if (ms != null && ms.Length > 0) {
-        //    script_obj = (List<Script>)bf.Deserialize(ms);
-        //}
-        //ms.Close();
+        ms = new MemoryStream(DataObj_sc.bytes);
+        if (ms != null && ms.Length > 0) {
+            script_obj = (List<Script>)bf.Deserialize(ms);
+        }
+        ms.Close();
     }
 
     private Sprite LoadSpriteFromBytes(byte[] data) {
