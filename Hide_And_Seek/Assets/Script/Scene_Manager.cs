@@ -221,6 +221,21 @@ public class Scene_Manager
         }
         return result;
     }
+    public Vector3 _get_portal_loc(Room start, Room end)
+    {
+        foreach (var v in _portal_list)
+        {
+            if (scene_name[(int)start] == v.scene_name1 && scene_name[(int)end] == v.scene_name2)
+            {
+                return new Vector3(v.portal_loc2.x,v.portal_loc2.y,0f);
+            }
+            else if (scene_name[(int)start] == v.scene_name2 && scene_name[(int)end] == v.scene_name1)
+            {
+                return new Vector3(v.portal_loc1.x, v.portal_loc1.y, 0f);
+            }
+        }
+        return Enemy.ENEMY_INIT_LOC;
+    }
 }
 
 public class ISpot
