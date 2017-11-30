@@ -284,7 +284,15 @@ public class SaveManager : MonoBehaviour {
 
     public void Btn_Off() // 세이브 창 끄기
     {
-        GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = true;
+        if(GameObject.Find("Setting"))
+        {
+            GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = true;
+        }
+        else if (SceneManager.GetActiveScene().name=="UI_Start")
+        {
+            GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = true;
+
+        }
         GameObject.Destroy(GameObject.Find("Save"));
     }
 }

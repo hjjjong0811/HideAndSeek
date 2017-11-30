@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SoundUIManager : MonoBehaviour {
 
@@ -62,8 +63,14 @@ public class SoundUIManager : MonoBehaviour {
  
 public void Btn_SoundOff()// 씬종료
     {
-
-        GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = true;
+        if (GameObject.Find("Setting"))
+        {
+            GameObject.Find("Setting").GetComponent<CanvasGroup>().interactable = true;
+        }
+        else if(SceneManager.GetActiveScene().name=="UI_Start")
+        {
+            GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = true;
+        }
         GameObject.Destroy(GameObject.Find("Sound"));
         
     } 

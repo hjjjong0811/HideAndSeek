@@ -22,11 +22,12 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Start() // 게임시작
     {
-        PlayScene.getInstance().playScene(PlayScene.numScene.tutorial);
+        GameManager.getInstance().CheckMainChapter();
     }
 
     public void Btn_Load() // 이어하기
     {
+        GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Save_Prefab);
         temp.name = "Save";
       
@@ -34,7 +35,7 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Sound() // 세팅창 열기
     {
-
+        GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Sound_Prefab);
         temp.name = "Sound";
  
