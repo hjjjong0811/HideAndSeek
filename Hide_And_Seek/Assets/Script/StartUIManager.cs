@@ -22,7 +22,7 @@ public class StartUIManager : MonoBehaviour {
 
     public void Btn_Start() // 게임시작
     {
-        GameManager.getInstance().CheckMainChapter();
+        GameManager.getInstance().StoryPlayScene();
     }
 
     public void Btn_Load() // 이어하기
