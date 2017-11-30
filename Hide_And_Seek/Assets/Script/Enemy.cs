@@ -1,19 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
     public static GameObject _enemy;
     private static readonly int CHASING_START_DISTANCE = 3;//같은방에서 Enemy~Player spot 거리차이가 이 변수값 이하면 enemy가 쫓아옴
     public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
-    enum Enemy_State { in_dest, going_hall, going_dest, in_hall };//[normal 상태] 내부상태
-    private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f };//[normal 상태] 내부상태에 따른 활동시간
+    private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
+    enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3, finding = 4};//내부상태
+    private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f, 1f};//[normal,chasing 상태] 내부상태에 따른 활동시간
     public float _enemy_speed = 1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
 
     //[아저씨 상태 변수]
     public static bool _enemy_working;//아저씨 발동상태
-    private static bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
+    public static bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
     private static ISpot _enemy_spot;//아저씨 위치
     private static ISpot _enemy_last_spot;//아저씨 이전 위치
     //[normal 상태]
@@ -22,6 +24,9 @@ public class Enemy : MonoBehaviour
     private static Room _enemy_dest;
     private static Route _enemy_route;
     private static bool _enemy_looking;//[normal상태] 둘러보기 세마포어용 변수
+    //public static bool _enemy_taking_portal;////////////////test
+    private static bool _enemy_finding;
+    private static float _enemy_finding_time;
     Vector3 _enemy_pos;
     Vector3 _player_pos;
 
@@ -32,14 +37,17 @@ public class Enemy : MonoBehaviour
         //test
         _enemy_working = true;
         _f_normal_t_chasing = false;
-        //_enemy_spot = new ISpot(Room.Wine_0, 0);
-        _enemy_spot = new ISpot(Room.Hall_1, 1);//test
-        //_enemy_last_spot = new ISpot(Room.Wine_0, 0);
-        _enemy_last_spot = new ISpot(Room.Hall_1, 1);//test
+        //_f_normal_t_chasing = true;
+        _enemy_spot = new ISpot(Room.Wine_0, 1);
+        //_enemy_spot = new ISpot(Room.Hall_1, 1);//test
+        _enemy_last_spot = _enemy_spot;
         _enemy_state = Enemy_State.going_hall;
         _enemy_dest = Room.None;
         _enemy_route = null;
         _enemy_looking = false;
+        _enemy_finding = false;
+        _enemy_finding_time = 0f;
+
         _enemy.transform.position = ENEMY_INIT_LOC;
 
         DontDestroyOnLoad(this.gameObject);//test
@@ -48,13 +56,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("_f_normal_t_chasing : " + _f_normal_t_chasing);//test
         if (!_enemy_working) return;
 
         _enemy_pos = _enemy.transform.position;
 
         if (_f_normal_t_chasing)
         {
-            do_chasing();
+            do_chasing(Time.deltaTime);
         }
         else
         {
@@ -62,6 +71,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// normal 상태면, chasing 상태로...
+    /// chasing 상태면, normal 상태로...
+    /// => 상태 전환해주는 함수!
+    /// </summary>
     static void change_state()
     {
         switch (_f_normal_t_chasing)
@@ -87,19 +101,29 @@ public class Enemy : MonoBehaviour
                 {
                     _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(_enemy_last_spot._room, _enemy_spot._room);
                 }
+                
                 _f_normal_t_chasing = true;
+                _enemy_finding_time = 0f;
                 break;
 
             case true://chasing -> normal
+                _enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+                //_enemy_spot = 
+                _enemy_last_spot = _enemy_spot;
+
+                int tmp_i = 0;
+                if ((int)Player.get_player_spot()._room <= Scene_Manager.MAX_FLOOR1_IDX)//1층이면
+                { _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref tmp_i, new List<ISpot>())._next; }
+                else if ((int)Player.get_player_spot()._room <= Scene_Manager.MAX_FLOOR2_IDX)//2층이면
+                { _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_2, 0), ref tmp_i, new List<ISpot>())._next; }
+                _enemy_state = Enemy_State.going_hall;
                 _f_normal_t_chasing = false;
                 break;
         }
     }
-    /// <summary>
-    /// 1. 플레이어 찾는 상태
-    ///  -> 플레이어와 같은 방에 있고, 플레이어와 spot차이값이 CHASING_START_DISTANCE 이하면, chasing상태로 바뀜
-    ///  -> 찾는동안에는 활동시간 후, 다음 spot으로 이동
-    /// </summary>
+
+
+    /////////////////////////////////////////////do_normal
     void do_normal()
     {
         if (!_enemy_looking)
@@ -109,7 +133,7 @@ public class Enemy : MonoBehaviour
         }
 
         //chasing 상태로 바꾸는 조건
-        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && _enemy_spot._room == Player.get_player_spot()._room)
+        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room())
         {
             change_state();
         }
@@ -149,9 +173,9 @@ public class Enemy : MonoBehaviour
             if (_enemy_route == null)
             {
                 int i = 0;
-                if ((int)_enemy_spot._room <= Scene_Manager.MAX_FLOOR1_IDX)//1층이면
+                if ((int)Player.get_player_spot()._room <= Scene_Manager.MAX_FLOOR1_IDX)//1층이면
                 { _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref i, new List<ISpot>())._next; }
-                else if ((int)_enemy_spot._room <= Scene_Manager.MAX_FLOOR2_IDX)//2층이면
+                else if ((int)Player.get_player_spot()._room <= Scene_Manager.MAX_FLOOR2_IDX)//2층이면
                 { _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_2, 0), ref i, new List<ISpot>())._next; }
                 _enemy_state = Enemy_State.going_hall;
                 //Debug.Log(">>>" + "목적지 다 둘러봄");//test
@@ -184,19 +208,85 @@ public class Enemy : MonoBehaviour
         _enemy_spot = _enemy_route.get_data();
         _enemy_route = _enemy_route._next;
         Debug.Log(">>>" + "이동 : " + _enemy_spot._room + "/" + _enemy_spot._spot);//test
-        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && _enemy_spot._room == Player.get_player_spot()._room)
+        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room())
         {
             change_state();
         }
     }
 
     /////////////////////////////////////////////do_chasing
-    void do_chasing()
+    void do_chasing(float spent_time)
     {
-        //플레이어 따라다니기
-        _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
-        float distance = Vector3.Distance(_player_pos, _enemy_pos);
-        if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
+        if (check_in_same_room()) //chasing하고있고, 같은방인 상태
+        {
+            _enemy_finding_time = 0f;
+
+            //플레이어 따라다니기
+            _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
+            float distance = Vector3.Distance(_player_pos, _enemy_pos);
+            if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
+
+            //가장 가까운 Spot확인하기  = 플레이어 쫓아다니면서 ISpot정보 갱신하기
+            GameObject[] spots = GameObject.FindGameObjectsWithTag("Spot");
+            float nearest_distance = 10000f;
+            GameObject nearest_spot = null;
+            for (int i = 0; i < spots.Length; i++)
+            {
+                if (Vector3.Distance(_enemy_pos, spots[i].transform.position) <= nearest_distance)
+                {
+                    nearest_distance = Vector3.Distance(_enemy_pos, spots[i].transform.position);
+                    nearest_spot = spots[i];
+                }
+            }
+            _enemy_last_spot = _enemy_spot;
+            _enemy_spot = new ISpot(Scene_Manager.getInstance().get_room_info(SceneManager.GetActiveScene().name), int.Parse(nearest_spot.name));
+        }
+        else //chasing하고있는데, 다른방인 상태
+        {
+            _enemy.transform.position = ENEMY_INIT_LOC;
+            _enemy_finding_time += spent_time;
+            if (_enemy_finding_time > 10f) //10초이상 플레이어 안보이면, normal상태로 돌아감
+            {
+                change_state();
+                return;
+            }
+
+            if (!_enemy_finding)
+            {
+                //1초 후, 다음포탈타기
+                StartCoroutine(finding_player());
+            }
+        }
+    }
+
+    IEnumerator finding_player()
+    {
+        _enemy_finding = true;
+        Debug.Log("finding : " + _enemy_spot._room + "/" + _enemy_spot._spot);//test
+        yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
+        _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
+        
+        int tmp = 0;
+        ISpot next_move = Scene_Manager.getInstance().find_shortest(_enemy_spot, Player.get_player_spot(), ref tmp, new List<ISpot>())._next.get_data();
+        _enemy_last_spot = _enemy_spot;
+        _enemy_spot = next_move;
+        _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(Player.Player_Last_Room, Player.get_player_spot()._room);
+        
+        if (_enemy_finding_time > 10f)
+        {
+            change_state();
+        }
+        _enemy_finding = false;
+    }
+
+    /// <summary>
+    /// 플레이어랑 적이랑 같은 방인지 체크하는 함수
+    /// </summary>
+    /// <returns></returns>
+    private static bool check_in_same_room()
+    {
+        if (Player.get_player_spot()._room == _enemy_spot._room) return true;
+        else return false;
     }
 
     private static Room random_destination()
