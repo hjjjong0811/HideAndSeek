@@ -1473,7 +1473,7 @@ GameObject:
   - component: {fileID: 1117912501}
   m_Layer: 10
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2511,7 +2511,7 @@ GameObject:
   - component: {fileID: 1615370883}
   m_Layer: 10
   m_Name: 0
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3546,6 +3546,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d02aec8cc8dd1e14aa32455c4aea2c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemy_speed: 1
 --- !u!212 &2113780084
 SpriteRenderer:
   m_ObjectHideFlags: 0

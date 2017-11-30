@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 50567176}
   m_Layer: 10
   m_Name: 2
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 151865416}
   m_Layer: 10
   m_Name: 1
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1014,6 +1014,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 13
   _t_thing_f_portal: 0
+  Key: 0
+  InfoByChapter: []
+  usingItem: []
 --- !u!1001 &777117023
 Prefab:
   m_ObjectHideFlags: 0
@@ -1756,6 +1759,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 12
   _t_thing_f_portal: 0
+  Key: 0
+  InfoByChapter: []
+  usingItem: []
 --- !u!1 &1562892260
 GameObject:
   m_ObjectHideFlags: 0
@@ -2130,6 +2136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 14
   _t_thing_f_portal: 0
+  Key: 0
+  InfoByChapter: []
+  usingItem: []
 --- !u!1 &2002527285
 GameObject:
   m_ObjectHideFlags: 0
@@ -2213,7 +2222,7 @@ GameObject:
   - component: {fileID: 2090277649}
   m_Layer: 10
   m_Name: 0
-  m_TagString: Untagged
+  m_TagString: Spot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
