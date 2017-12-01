@@ -616,7 +616,7 @@ SpriteRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1628,7 +1628,7 @@ MonoBehaviour:
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 1
+    type: 4
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -1640,9 +1640,9 @@ MonoBehaviour:
     outputByCall:
       script_key: 88
       sound: {fileID: 0}
-      item_key: 0
+      item_key: 16
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 1085
   usingItem: []
 --- !u!1 &1154686854
 GameObject:

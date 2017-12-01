@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Objects : MonoBehaviour, IObject {
     public int _key_num;
@@ -123,13 +124,20 @@ public class Objects : MonoBehaviour, IObject {
 
                 if (_key_num == 83 && GameManager.getInstance().Wallpaper==1) {
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key_isExistitem });
+                    this.gameObject.SetActive(false);
                 }
                 //Script 있으면 재생
                 else if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
             }
 
+
             if (_key_num == 110) this.gameObject.SetActive(false);
+            else if(_key_num == 116 && GameManager.getInstance().GetMainChapter() == 12) {
+                GameManager.getInstance().Wallpaper = 1;
+                GameManager.getInstance().CheckMainChapter();
+                SceneManager.LoadScene("2_Baby");
+            }
 
             GameManager.getInstance().CheckMainChapter();
         }
