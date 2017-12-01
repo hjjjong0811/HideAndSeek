@@ -140,13 +140,23 @@ public class Objects : MonoBehaviour, IObject {
                     if (curOutput.sound != null)
                         //Sound
                         Debug.Log("SoundCall");
-                    //Script 있으면 재생
-                    if (curOutput.script_key != invalidValue)
-                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
-                    //Item 획득가능하면 획득
-                    if (curOutput.item_key != invalidValue)
-                        Inventory.getInstance().addItem(curOutput.item_key);
 
+                    //Item 획득가능하면 획득
+                    if (curOutput.item_key != invalidValue) {
+                        if (!Inventory.getInstance().addItem(curOutput.item_key)) {
+                            //이미존재
+                            if (curOutput.script_key_isExistitem != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key_isExistitem });
+                        } else {
+                            //Script 획득
+                            if (curOutput.script_key != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                        }
+                    }
+                    //Script 있으면 재생
+                    else if (curOutput.script_key != invalidValue)
+                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                    
                     if (!_t_thing_f_portal && !curOutput.isBlockPortal) {
                         _obj.action();
 
