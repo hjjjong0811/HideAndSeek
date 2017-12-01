@@ -34,13 +34,13 @@ public class Objects : MonoBehaviour, IObject {
         public AudioClip sound;
         public int item_key;
         public bool isBlockPortal;
+        public int script_key_isExistitem;
     }
 
     public enum Type {
         no = 0, script = 1, sound = 2, hide = 3, getItem = 4
     }
-
-    public int Key;
+    
     public Detail[] InfoByChapter;      //챕터에따른 오브젝트정보
     public Detail_useItem[] usingItem;  //사용가능아이템정보
 
@@ -69,6 +69,7 @@ public class Objects : MonoBehaviour, IObject {
                 //Sound재생
             }
         }
+        
     } //Start()
 
     public void action() {
@@ -92,17 +93,31 @@ public class Objects : MonoBehaviour, IObject {
                 //hide
             } else if (curInfo.type == Type.no) {
                 return;
+            } else if (curInfo.type == Type.getItem) {
+                //Sound 있으면재생
+                if (curInfo.outputByCall.sound != null)
+                    //Sound
+                    Debug.Log("SoundCall");
+                //Item 획득가능하면 획득
+                if (curInfo.outputByCall.item_key != invalidValue) {
+                    if (!Inventory.getInstance().addItem(curInfo.outputByCall.item_key)) {
+                        //이미존재
+                        if (curInfo.outputByCall.script_key_isExistitem != invalidValue)
+                            ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key_isExistitem });
+                    } else {
+                        //Script 획득
+                        if (curInfo.outputByCall.script_key != invalidValue)
+                            ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
+                    }
+                }
             } else {
                 //Sound 있으면재생
                 if (curInfo.outputByCall.sound != null)
                     //Sound
                     Debug.Log("SoundCall");
                 //Script 있으면 재생
-                if(curInfo.outputByCall.script_key != invalidValue)
+                if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
-                //Item 획득가능하면 획득
-                if (curInfo.outputByCall.item_key != invalidValue)
-                    Inventory.getInstance().addItem(curInfo.outputByCall.item_key);
             }
 
             GameManager.getInstance().CheckMainChapter();
@@ -127,6 +142,11 @@ public class Objects : MonoBehaviour, IObject {
                     //Item 획득가능하면 획득
                     if (curOutput.item_key != invalidValue)
                         Inventory.getInstance().addItem(curOutput.item_key);
+
+                    if (!_t_thing_f_portal && !curOutput.isBlockPortal) {
+                        _obj.action();
+
+                    } 
 
                     GameManager.getInstance().CheckMainChapter();
                 }
