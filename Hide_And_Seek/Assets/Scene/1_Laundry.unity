@@ -643,6 +643,48 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &475066451
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.395743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.22297083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &508214528
 GameObject:
   m_ObjectHideFlags: 0
@@ -2068,11 +2110,22 @@ EdgeCollider2D:
   - {x: 0.13593751, y: -2.528564}
   - {x: -0.87793094, y: -1.9045743}
   - {x: -2.134367, y: -1.3140373}
-  - {x: -3.3675942, y: -0.55919546}
+  - {x: -3.5737271, y: -0.42668155}
+  - {x: -3.046976, y: -0.095771864}
+  - {x: -2.8907285, y: 0.1460941}
+  - {x: -2.3592224, y: 0.01960427}
   - {x: -2.054213, y: 0.13240199}
-  - {x: -1.1511543, y: -0.31484294}
+  - {x: -2.0560305, y: 0.34212017}
+  - {x: -2.2522776, y: 0.5931128}
+  - {x: -2.0989552, y: 0.67075026}
+  - {x: -0.72416484, y: -0.020367544}
   - {x: -0.6080858, y: -0.042468112}
-  - {x: 2.1357987, y: -1.5639652}
+  - {x: -0.44027996, y: -0.03580014}
+  - {x: 0.0041933656, y: -0.10855821}
+  - {x: 0.9947639, y: -0.5676876}
+  - {x: 1.2348361, y: -0.7111559}
+  - {x: 1.016496, y: -0.8962904}
+  - {x: 2.1357987, y: -1.4903464}
   - {x: 2.613703, y: -1.2219104}
   - {x: 4.0822353, y: -1.8535253}
 --- !u!1 &1308923939
@@ -2174,7 +2227,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5202133, y: 0.1899416}
+    pivot: {x: 0.5, y: 0.2}
     oldSize: {x: 1.24, y: 1.48}
     newSize: {x: 1.24, y: 1.48}
     adaptiveTilingThreshold: 0.5
@@ -2564,7 +2617,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1066
+      script_key: 1065
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -2583,7 +2636,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 66
+      script_key: 65
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -2592,7 +2645,7 @@ MonoBehaviour:
     isActive: 1
     sprite: {fileID: 21300008, guid: 0985c816d7c7fbb4492fa44aafd44c12, type: 3}
     sound_default: {fileID: 0}
-    type: 1
+    type: 4
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -2602,11 +2655,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 78
+      script_key: 2009
       sound: {fileID: 0}
-      item_key: 0
+      item_key: 8
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 77
   usingItem: []
 --- !u!1 &1558725006
 GameObject:
