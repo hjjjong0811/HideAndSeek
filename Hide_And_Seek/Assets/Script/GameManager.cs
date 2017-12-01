@@ -39,7 +39,7 @@ public class GameManager
 
     private GameManager()
     {
-        MainChapter = 7;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -363,7 +363,7 @@ public class GameManager
 
     public void ResetGame() // 새로 시작시 초기화
     {
-        MainChapter = 7;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
