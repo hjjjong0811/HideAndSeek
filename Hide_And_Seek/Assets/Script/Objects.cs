@@ -196,6 +196,9 @@ public class Objects : MonoBehaviour, IObject {
                 return 2;
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
             return 1;
+        }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
+            Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))) {
+            return 1;
         }
 
         if (mode == mode_detail) {
