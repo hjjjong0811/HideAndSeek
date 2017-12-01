@@ -127,14 +127,15 @@ public class Portal : IObject
             MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name2);
             Player.set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
-            Player.Player_Last_Room = Scene_Manager.getInstance().get_room_info(scene_name1);
         }
         else {
             MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name1);
             Player.set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
-            Player.Player_Last_Room = Scene_Manager.getInstance().get_room_info(scene_name2);
         }
+        Player.Player_Last_Portal_num = key_num;
+        Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+        Debug.Log("포탈발동 -> 아저씨 위치초기화");
     }
 
     public int get_key()

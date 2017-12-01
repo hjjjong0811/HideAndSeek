@@ -149,7 +149,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1184261850150828, guid: dad1ef84c44fd3b4780acbc7a819df24, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dad1ef84c44fd3b4780acbc7a819df24, type: 2}
@@ -2428,7 +2428,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 1
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2441,12 +2440,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &1529277943
 GameObject:
