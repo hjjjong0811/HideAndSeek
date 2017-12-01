@@ -220,6 +220,8 @@ public class Objects : MonoBehaviour, IObject {
                 return 2;
         } else if (_key_num == 1005 && false) {
             return 2;
+        }else if (_key_num == 3001 && GameManager.getInstance().FindCharacter[0] == 1) {
+            return 1;
         }
 
         if (mode == mode_detail) {
@@ -264,6 +266,21 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(false);
         }else if(_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
+        }else if(_key_num == 401) {
+            GameManager.getInstance().MeetCharacter[1]++;
+            GameManager.getInstance().CheckMainChapter();
+        }else if(_key_num == 3001) {
+            GameManager.getInstance().FindCharacter[0] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3002) {
+            GameManager.getInstance().FindCharacter[2] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3003) {
+            GameManager.getInstance().FindCharacter[3] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3004) {
+            GameManager.getInstance().FindCharacter[1] = 1;
+            this.gameObject.SetActive(false);
         }
     }
 
