@@ -226,8 +226,7 @@ public enum SOUND_NAME
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance = null;
-
-    public string[] audioName;
+    
     public AudioClip[] audioClipList;
 
     public AudioSource bgmSource;
@@ -236,10 +235,10 @@ public class SoundManager : MonoBehaviour
 
     public AudioClip audioClip;
 
-    float soundVolume;
-    int walkVolume;//(0~100) 발소리 사운드 볼륨*퍼센트
+    public float soundVolume;
+    public int walkVolume;//(0~100) 발소리 사운드 볼륨*퍼센트
 
-    bool isMute = false;//true면 음소거
+    public bool isMute = false;//true면 음소거
 
     //접근용
     public static SoundManager getInstance()
@@ -288,6 +287,9 @@ public class SoundManager : MonoBehaviour
         walkSource = gameObject.AddComponent<AudioSource>();
 
 
+        //변수초기화
+        effectSource.loop = false;
+        walkVolume = 0;
 
         //-------리소스 긁어오기-------------------------
         object[] temp = new object[54];
@@ -303,15 +305,21 @@ public class SoundManager : MonoBehaviour
         //--------------------------------------------
 
         playBgm(audioClipList[(int)SOUND_NAME.STARTBGM]);
-        playEffect(audioClipList[8]);
+        walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
 
         bgmSource.PlayOneShot(audioClip);
+
+        muteAll();
     }
 
     // Update is called once per frame
     void Update()
     {
         //walkSound 갱신
+        if (!isMute)
+        {
+            updateWalkSoundVolume();
+        }
     }
 
 
@@ -321,26 +329,19 @@ public class SoundManager : MonoBehaviour
         return audioClipList[(int)s];
     }
 
-    public AudioClip findAudioClip(string s)
-    {
-        for (int i = 0; i<audioClipList.Length; i++)
-        {
-            if (s == audioName[i])
-            {
-                return audioClipList[i];
-            }
-        }
 
-        return null;
-    }
-    
-
-    public void setWalkVolume(float volume)
-    {
-        soundVolume = volume;
-    }
 
     //------------소스를 재생시키는것
+    public void playBgm()
+    {
+        if (!isMute)
+        {
+            bgmSource.Play();
+            bgmSource.loop = true;
+            bgmSource.volume = soundVolume;
+        }
+    }
+
     public void playBgm(AudioClip audio)
     {
         bgmSource.clip = audio;
@@ -353,6 +354,16 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void playEffect()
+    {
+        if (!isMute)
+        {
+            effectSource.Play();
+            effectSource.volume = soundVolume;
+
+        }
+    }
+
     public void playEffect(AudioClip audio)
     {
 
@@ -361,32 +372,45 @@ public class SoundManager : MonoBehaviour
         if (!isMute)
         {
             effectSource.Play();
-            effectSource.loop = false;
             effectSource.volume = soundVolume;
 
         }
     }
 
+    public void setVolumeAll(float volume)
+    {
+        soundVolume = volume;
+        effectSource.volume = volume;
+        bgmSource.volume = volume;
+    }
+
     public void muteAll()
     {
         isMute = true;
-        bgmSource.Stop();
-        effectSource.Stop();
-        walkSource.Stop();
+        bgmSource.volume = 0;
+        effectSource.volume = 0;
+        walkSource.volume = 0;
     }
 
     public void unMute()
     {
         isMute = false;
-        bgmSource.Play();
-        walkSource.Play();
+        bgmSource.volume = soundVolume;
+        effectSource.volume = soundVolume;
+        walkSource.volume = soundVolume;
     }
 
-    public void playWalkSound()
+    public void playWalkSoundStart()
     {
-        
+        walkSource.Play();
+        walkSource.loop = true;
     }
-    
+
+    public void updateWalkSoundVolume()
+    {
+        walkSource.volume = walkVolume * soundVolume;
+
+    }
 
 
 
