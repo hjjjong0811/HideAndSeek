@@ -35,6 +35,7 @@ public class SaveManager : MonoBehaviour
     public float Player_Battery;
     public int Player_MainChapter;
     public List<int> Player_Inventory;
+    public int[] Player_EndScene;
 
     public Room Player_Room;
     public Room Enemy_Room;
@@ -58,6 +59,7 @@ public class SaveManager : MonoBehaviour
         public int P_Spot;
         public int E_Room;
         public int E_Spot;
+        public int[] EndScene;
 
 
     }
@@ -77,6 +79,8 @@ public class SaveManager : MonoBehaviour
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
+
+        Player_EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         isSlot = false;
         SlotNumber = 0;
@@ -211,6 +215,7 @@ public class SaveManager : MonoBehaviour
         data.Inventory = Inventory.getInstance().inventory;
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
+        data.EndScene = GameManager.getInstance().EndScene;
        // data.E_Room = (int)Enemy_ISpot._room;
        // data.E_Spot = Enemy_ISpot._spot;
         
@@ -252,10 +257,12 @@ public class SaveManager : MonoBehaviour
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
                 Player_Inventory = data.Inventory;
-               // Enemy_ISpot._room = (Room)data.E_Room;
+                Player_EndScene = data.EndScene;
+                // Enemy_ISpot._room = (Room)data.E_Room;
                 //Enemy_ISpot._spot = data.E_Spot;
 
 
+                GameManager.getInstance().EndScene = Player_EndScene;
                 Inventory.getInstance().inventory = Player_Inventory;
                 GameManager.getInstance().SetMainChapter(Player_MainChapter);
                 FlashLight.Init(Player_Battery, true);
