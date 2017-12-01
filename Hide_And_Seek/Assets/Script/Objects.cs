@@ -237,7 +237,7 @@ public class Objects : MonoBehaviour, IObject {
             } //for
         }
         if (_key_num == 1501 && (InfoByChapter[index].chapter == 5)) {
-            if (GameManager.getInstance().CheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
+            if (GameManager.getInstance().isCheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
                 return 1;
             }else if (GameManager.getInstance().Salt == 1) {
                 return 2;
