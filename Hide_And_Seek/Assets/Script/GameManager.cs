@@ -80,6 +80,15 @@ public class GameManager
         }
     }
 
+    public void CheckObject(string objName)
+    {
+        switch(objName)
+        {
+            case "wallpaper": Wallpaper = 1; break;
+            case "cabinet": if (Inventory.getInstance().inventory.Contains(10)) BreakDisplay = 1; break;
+        }
+    }
+
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
         StoryPlayScene(); // 스토리 씬인지 확인
