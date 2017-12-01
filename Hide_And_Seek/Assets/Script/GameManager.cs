@@ -224,10 +224,10 @@ public class GameManager
                 break;
 
             case 9: case 10:
-                //장식장 뿌심
+                //장식장 뿌시는씬
                 if (!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(9); }
 
-                //장롱에 숨는씬
+                //뿌신후 다음 장롱에 숨는씬
                 else if (!isScenePlay && EndScene[10] == 0) { EndScene[10] = 1; isScenePlay = true; ScenePlay(10); }
                 break;
 
