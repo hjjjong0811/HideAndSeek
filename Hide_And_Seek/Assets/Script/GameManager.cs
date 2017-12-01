@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager
 {
@@ -196,49 +197,59 @@ public class GameManager
         switch (Chapter)
         {
             // 튜토리얼일때 튜토리얼 씬진행
-            case 0: if (!isScenePlay && EndScene[0] == 0) { EndScene[0] = 1; isScenePlay = true; ScenePlay(0); } break;
+            case 0: if (!isScenePlay && EndScene[0] == 0) {  isScenePlay = true; ScenePlay(0); EndScene[0] = 1;} break;
 
             // 친구들 다 찾은 챕터. hide_1_end 씬 진행
-            case 2: if (!isScenePlay && EndScene[1] == 0) { EndScene[1] = 1; isScenePlay = true; ScenePlay(1); } break;
+            case 2: if (!isScenePlay && EndScene[1] == 0) {  isScenePlay = true; ScenePlay(1); EndScene[1] = 1;} break;
 
             // 소주 찾은 챕터. hide_2_ready 진행
-            case 3: if (!isScenePlay && EndScene[2] == 0) { EndScene[2] = 1; isScenePlay = true; ScenePlay(2); } break;
+            case 3: if (!isScenePlay && EndScene[2] == 0) {  isScenePlay = true; ScenePlay(2); EndScene[2] = 1;} break;
 
             //하빈이 만난 챕터. 소금이 없음 씬 진행
-            case 6: if (!isScenePlay && EndScene[4] == 0) { EndScene[4] = 1; isScenePlay = true; ScenePlay(4); } break;
+            case 6: if (!isScenePlay && EndScene[4] == 0) {  isScenePlay = true; ScenePlay(4); EndScene[4] = 1;} break;
 
-            // 소금이 있음. 정연이 찾아오라는 씬진행
-            case 7: if (!isScenePlay && EndScene[5] == 0) { EndScene[5] = 1; isScenePlay = true; ScenePlay(5); } break;
+            // 소금이 있음.
+            case 7:
+                //정연이 찾아와 씬
+                if (!isScenePlay && EndScene[5] == 0) { isScenePlay = true; ScenePlay(5); EndScene[5] = 1; }
 
+                //정연이 없네 씬
+                else if (!isScenePlay && EndScene[5] == 1 && EndScene[6] == 0) { isScenePlay = true; ScenePlay(6); EndScene[6] = 1; }
+                    break;
 
             // 방 다 뒤져서 정연이없는상태임
+            case 8:
+                  //하빈이도 없네
+                  if (!isScenePlay && CheckNowRoomName("2_Hall") && EndScene[7] == 0) {  isScenePlay = true; ScenePlay(7); EndScene[7] = 1;}
 
-            case 8://정연이 없네 씬
-                if (!isScenePlay && EndScene[6] == 0) { EndScene[6] = 1; isScenePlay = true; ScenePlay(6); }
-
-                //하빈이도 없네
-                else if (!isScenePlay && EndScene[7] == 0) { EndScene[7] = 1; isScenePlay = true; ScenePlay(7); }
-
-                //하빈이 죽었자나?!씬 
-                else if (!isScenePlay && EndScene[8] == 0) { EndScene[8] = 1; isScenePlay = true; ScenePlay(8); }
-                break;
+                  //하빈이 죽었자나?!씬 
+                  else if (!isScenePlay && EndScene[7] == 1 && CheckNowRoomName("2_Swimming") && EndScene[8] == 0) { isScenePlay = true; ScenePlay(8);EndScene[8] = 1;  }
+                  break;
 
             case 9: case 10:
                 //장식장 뿌시는씬
-                if (!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(9); }
+                if (!isScenePlay && EndScene[9] == 0 && BreakDisplay == 1) { isScenePlay = true; ScenePlay(9); EndScene[9] = 1; }
 
                 //뿌신후 다음 장롱에 숨는씬
-                else if (!isScenePlay && EndScene[10] == 0) { EndScene[10] = 1; isScenePlay = true; ScenePlay(10); }
+                else if (!isScenePlay && EndScene[9] == 1 && EndScene[10] == 0) {  isScenePlay = true; ScenePlay(10); EndScene[10] = 1;}
                 break;
 
             // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
-            case 11: if (!isScenePlay && EndScene[11] == 0) { EndScene[11] = 1; isScenePlay = true; ScenePlay(11); } break;
+            case 11: if (!isScenePlay && EndScene[11] == 0) { isScenePlay = true; ScenePlay(11); EndScene[11] = 1; } break;
 
             //  서운이 죽음확인 한 상태. 아저씨한테 전화씬
-            case 12: if (!isScenePlay && EndScene[3] == 0) { EndScene[3] = 1; isScenePlay = true; ScenePlay(3); } break;
+            case 12: if (!isScenePlay && EndScene[3] == 0) {  isScenePlay = true; ScenePlay(3);EndScene[3] = 1; } break;
 
         }
 
+    }
+
+    public bool CheckNowRoomName(string RoomName) // 현재 방이름이 룸네임과 일치하면true/아니면false
+    {
+        if (SceneManager.GetActiveScene().name == RoomName)
+            return true;
+        else
+            return false;
     }
 
 
