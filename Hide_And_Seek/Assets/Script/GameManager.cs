@@ -117,7 +117,7 @@ public class GameManager
             SetMainChapter(-2);
 
         // 하빈이 만나면 ->6
-        else if (MainChapter == 5 && MeetCharacter[2] == 1)
+        else if (MainChapter == 5 && MeetCharacter[0] == 1)
             SetMainChapter(6);
 
         // 소금있으면 ->7
