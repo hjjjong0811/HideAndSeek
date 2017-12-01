@@ -37,7 +37,7 @@ public class Enemy : MonoBehaviour
         //test
         _enemy_working = true;
         _f_normal_t_chasing = false;
-        //_f_normal_t_chasing = true;
+        //_f_normal_t_chasing = true;//test
         _enemy_spot = new ISpot(Room.Wine_0, 0);
         //_enemy_spot = new ISpot(Room.Hall_1, 1);//test
         _enemy_last_spot = _enemy_spot;
@@ -126,7 +126,7 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_normal
     void do_normal()
     {
-        Debug.Log("enemy_looking : "+_enemy_looking);//test
+        //Debug.Log("enemy_looking : "+_enemy_looking);//test
         if (!_enemy_looking)
         {
             StartCoroutine(looking_around(_enemy_stay_time[(int)_enemy_state]));
@@ -137,7 +137,7 @@ public class Enemy : MonoBehaviour
         if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room())
         {
             change_state();
-            Debug.Log("change_state");//test
+            //Debug.Log("change_state");//test
         }
         
         //소리나면 route, dest바꾸기
@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
     {
         _enemy_looking = true;//세마포어 설정
         yield return new WaitForSeconds(f);
-        Debug.Log("아저씨 상태 : " + _enemy_state);//test
+        //Debug.Log("아저씨 상태 : " + _enemy_state);//test
 
         //1. in_hall
         if (_enemy_state == Enemy_State.in_hall)
@@ -272,7 +272,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds((float)distance);
         _enemy_finding_time += (float)distance;
          */
-        Debug.Log("포탈앞에서 1초기다리기");
+        //Debug.Log("포탈앞에서 1초기다리기");
         yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
         _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
         _enemy_spot._room = Player.get_player_spot()._room;
@@ -283,7 +283,7 @@ public class Enemy : MonoBehaviour
         _enemy_spot = next_move;
         Debug.Log("test>>>>"+Player.Player_Last_Portal_num+" / "+Player.get_player_spot()._room);
          */
-        Debug.Log("아저씨 위치 이동");
+        //Debug.Log("아저씨 위치 이동");
         _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(Player.Player_Last_Portal_num, Player.get_player_spot()._room);
         
         if (_enemy_finding_time > 10f)

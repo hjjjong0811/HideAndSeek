@@ -135,7 +135,7 @@ public class Portal : IObject
         }
         Player.Player_Last_Portal_num = key_num;
         Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
-        Debug.Log("포탈발동 -> 아저씨 위치초기화");
+        //Debug.Log("포탈발동 -> 아저씨 위치초기화");
     }
 
     public int get_key()
