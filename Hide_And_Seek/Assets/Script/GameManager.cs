@@ -125,11 +125,11 @@ public class GameManager
             SetMainChapter(6);
 
         // 소금있으면 ->7
-        else if (MainChapter == 6 && !isScenePlay && EndScene[3] == 1 && Salt == 1)
+        else if (MainChapter == 6 && !isScenePlay && EndScene[4] == 1 && Salt == 1)
             SetMainChapter(7);
 
-        // 정연이 찾으면 ->8
-        else if (MainChapter == 7 && !isScenePlay && EndScene[4] == 1 && CheckArray(FindJeongyeon, 8))
+        // 정연이 찾으려고 1층다돌면 ->8
+        else if (MainChapter == 7 && !isScenePlay && EndScene[5] == 1 && CheckArray(FindJeongyeon, 8))
             SetMainChapter(8);
 
         // 소금물 보유시 챕터 증가 -> 8+1
@@ -142,8 +142,8 @@ public class GameManager
             }
         }
 
-        // 장식장 깨져있으면 챕터증가 -> 8+1
-        else if (MainChapter >= 8 && !isScenePlay && EndScene[8] == 1 && BreakDisplay == 1)
+        // 장식장 뿌시는 씬 재생후, 장식장 깨져있으면 챕터증가 -> 8+1
+        else if (MainChapter >= 8 && !isScenePlay && EndScene[9] == 1 && BreakDisplay == 1)
         {
             if (CheckOverlap[1] == 0)
             {
@@ -153,7 +153,7 @@ public class GameManager
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
-        else if (MainChapter >= 8 && DeadCharacter[2] == 1 && !isScenePlay && EndScene[10] == 1)
+        else if (MainChapter >= 9 && DeadCharacter[2] == 1 && !isScenePlay && EndScene[10] == 1)
         {
             if (CheckOverlap[2] == 0)
             {
@@ -162,7 +162,7 @@ public class GameManager
             }
         }
 
-        // 씬종료후 서운이 죽음 확인하면 -> 12
+        // (세탁기)씬종료후 서운이 죽음 확인하면 -> 12
         else if (MainChapter == 11 && DeadCharacter[3] == 1 && !isScenePlay && EndScene[11] == 1)
             SetMainChapter(12);
 
@@ -205,35 +205,37 @@ public class GameManager
             case 3: if (!isScenePlay && EndScene[2] == 0) { EndScene[2] = 1; isScenePlay = true; ScenePlay(2); } break;
 
             //하빈이 만난 챕터. 소금이 없음 씬 진행
-            case 6: if (!isScenePlay && EndScene[3] == 0) { EndScene[3] = 1; isScenePlay = true; ScenePlay(4); } break;
+            case 6: if (!isScenePlay && EndScene[4] == 0) { EndScene[4] = 1; isScenePlay = true; ScenePlay(4); } break;
 
             // 소금이 있음. 정연이 찾아오라는 씬진행
-            case 7: if (!isScenePlay && EndScene[4] == 0) { EndScene[4] = 1; isScenePlay = true; ScenePlay(5); } break;
+            case 7: if (!isScenePlay && EndScene[5] == 0) { EndScene[5] = 1; isScenePlay = true; ScenePlay(5); } break;
 
 
             // 방 다 뒤져서 정연이없는상태임
-            case 8:
-            case 9:
-            case 10:
-                //정연이 없네 씬
-                if (!isScenePlay && EndScene[5] == 0) { EndScene[5] = 1; isScenePlay = true; ScenePlay(6); }
+
+            case 8://정연이 없네 씬
+                if (!isScenePlay && EndScene[6] == 0) { EndScene[6] = 1; isScenePlay = true; ScenePlay(6); }
 
                 //하빈이도 없네
-                else if (!isScenePlay && EndScene[6] == 0) { EndScene[6] = 1; isScenePlay = true; ScenePlay(7); }
+                else if (!isScenePlay && EndScene[7] == 0) { EndScene[7] = 1; isScenePlay = true; ScenePlay(7); }
 
                 //하빈이 죽었자나?!씬 
-                else if (!isScenePlay && EndScene[7] == 0) { EndScene[7] = 1; isScenePlay = true; ScenePlay(8); }
+                else if (!isScenePlay && EndScene[8] == 0) { EndScene[8] = 1; isScenePlay = true; ScenePlay(8); }
+                break;
 
+            case 9: case 10:
                 //장식장 뿌심
-                else if (!isScenePlay && EndScene[8] == 0) { EndScene[8] = 1; isScenePlay = true; ScenePlay(9); }
+                if (!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(9); }
 
                 //장롱에 숨는씬
-                else if (!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(10); }
+                else if (!isScenePlay && EndScene[10] == 0) { EndScene[10] = 1; isScenePlay = true; ScenePlay(10); }
                 break;
 
             // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
-            case 11: if (!isScenePlay && EndScene[10] == 0) { EndScene[10] = 1; isScenePlay = true; ScenePlay(11); } break;
+            case 11: if (!isScenePlay && EndScene[11] == 0) { EndScene[11] = 1; isScenePlay = true; ScenePlay(11); } break;
 
+            //  서운이 죽음확인 한 상태. 아저씨한테 전화씬
+            case 12: if (!isScenePlay && EndScene[3] == 0) { EndScene[3] = 1; isScenePlay = true; ScenePlay(3); } break;
 
         }
 
