@@ -59,6 +59,10 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(true);
         }
 
+        if(_key_num == 110) {
+            if (Inventory.getInstance().isExitItem(3) || Inventory.getInstance().isExitItem(5)) this.gameObject.SetActive(false);
+        }
+
         if (!_t_thing_f_portal) {
             _obj = Scene_Manager.getInstance()._get_portal(_key_num);
         } else {
@@ -124,6 +128,8 @@ public class Objects : MonoBehaviour, IObject {
                 else if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
             }
+
+            if (_key_num == 110) this.gameObject.SetActive(false);
 
             GameManager.getInstance().CheckMainChapter();
         }

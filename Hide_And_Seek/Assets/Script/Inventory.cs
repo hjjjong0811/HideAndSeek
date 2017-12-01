@@ -21,6 +21,12 @@ public class Inventory {
         return instance;
     }
 
+    public bool isExitItem(int itemkey) {
+        if (inventory.Contains(itemkey))
+            return true;
+        else return false;
+    }
+
     public bool addItem(int itemkey) {
         //이미 존재하는 아이템
         if (inventory.Contains(itemkey)) {

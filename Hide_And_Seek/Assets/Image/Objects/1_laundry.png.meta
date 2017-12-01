@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 9684161494269a949b5a05bf353e02c6
-timeCreated: 1509024701
+timeCreated: 1512121649
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,8 @@ TextureImporter:
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
     mipMapFadeDistanceStart: 1
     mipMapFadeDistanceEnd: 3
   bumpmap:
@@ -42,10 +44,13 @@ TextureImporter:
   textureFormat: 1
   maxTextureSize: 2048
   textureSettings:
+    serializedVersion: 2
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
@@ -101,9 +106,10 @@ TextureImporter:
         width: 72
         height: 91
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: ventilator
@@ -114,9 +120,10 @@ TextureImporter:
         width: 58
         height: 86
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: door
@@ -127,9 +134,10 @@ TextureImporter:
         width: 104
         height: 190
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: cleaning_tool
@@ -140,9 +148,10 @@ TextureImporter:
         width: 125
         height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: box_close
@@ -156,6 +165,7 @@ TextureImporter:
       pivot: {x: 0.51735973, y: 0.2186747}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: box_open
@@ -169,6 +179,7 @@ TextureImporter:
       pivot: {x: 0.51063466, y: 0.22284785}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: basket
@@ -182,6 +193,7 @@ TextureImporter:
       pivot: {x: 0.4794102, y: 0.2417738}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: pail
@@ -195,6 +207,7 @@ TextureImporter:
       pivot: {x: 0.54818225, y: 0.19434412}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: pigeon
@@ -208,6 +221,7 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.18380465}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: sprayer
@@ -221,6 +235,7 @@ TextureImporter:
       pivot: {x: 0.55207914, y: 0.17899685}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: soap
@@ -234,6 +249,7 @@ TextureImporter:
       pivot: {x: 0.5262326, y: 0.2659428}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: shelf_big
@@ -247,6 +263,7 @@ TextureImporter:
       pivot: {x: 0.5365091, y: 0.1509383}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: shelf_small
@@ -257,9 +274,10 @@ TextureImporter:
         width: 141
         height: 82
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: vacuum
@@ -273,6 +291,7 @@ TextureImporter:
       pivot: {x: 0.47189367, y: 0.12886943}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
       name: washer
@@ -283,11 +302,13 @@ TextureImporter:
         width: 124
         height: 148
       alignment: 9
-      pivot: {x: 0.5202133, y: 0.1899416}
+      pivot: {x: 0.5, y: 0.2}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      physicsShape: []
       tessellationDetail: 0
     outline: []
+    physicsShape: []
   spritePackingTag: 
   userData: 
   assetBundleName: 
