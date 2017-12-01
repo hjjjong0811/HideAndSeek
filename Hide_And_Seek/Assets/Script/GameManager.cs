@@ -283,7 +283,7 @@ public class GameManager
     public void scenePlayAndEnd(PlayScene.numScene sceneNumber)
     {
         isScenePlay = true;
-        scenePlay((int)sceneNumber);
+        ScenePlay((int)sceneNumber);
         EndScene[(int)sceneNumber] = 1;
     }
 
@@ -321,7 +321,7 @@ public class GameManager
     /// GameManager.getInstance().ScenePlay(int EndingNum)
     /// </summary>
     /// <param name="EndingNum"></param>
-    public void scenePlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
+    public void ScenePlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
     {
         switch (EndingNum)
         {
