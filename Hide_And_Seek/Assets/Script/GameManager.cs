@@ -21,7 +21,7 @@ public class GameManager
     public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
     public int[] CheckOverlap; // 중복방지배열 
 
-   /*획득 아이템*/
+    /*획득 아이템*/
     public int Soju;
     public int Salt;
     public int SaltyWater;
@@ -34,13 +34,13 @@ public class GameManager
     public int CorrectPassword; // 비밀번호 일치 여부
 
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
- 
+
 
     private GameManager()
     {
         MainChapter = -1;
 
-        EndScene = new int[15] {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
         DeadCharacter = new int[4] { 0, 0, 0, 0 };
         MeetCharacter = new int[4] { 0, 0, 0, 0 };
@@ -78,12 +78,11 @@ public class GameManager
             case GROUNDKEY: GroundKey = 1; break;
         }
     }
-    
+
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
+        StoryPlayScene(); // 스토리 씬인지 확인
 
-
-       
         //현정 컷신으로인한 챕터 번호수정있음! 주석추가있음
         //현정 추가
         if (MainChapter == -1)
@@ -192,31 +191,33 @@ public class GameManager
 
     public void StoryPlayScene()
     {
-        int Chapter = GetMainChapter();
+        int Chapter = MainChapter;
 
-        switch(Chapter)
+        switch (Chapter)
         {
             // 튜토리얼일때 튜토리얼 씬진행
             case 0: if (!isScenePlay && EndScene[0] == 0) { EndScene[0] = 1; isScenePlay = true; ScenePlay(0); } break;
-                
+
             // 친구들 다 찾은 챕터. hide_1_end 씬 진행
             case 2: if (!isScenePlay && EndScene[1] == 0) { EndScene[1] = 1; isScenePlay = true; ScenePlay(1); } break;
 
             // 소주 찾은 챕터. hide_2_ready 진행
             case 3: if (!isScenePlay && EndScene[2] == 0) { EndScene[2] = 1; isScenePlay = true; ScenePlay(2); } break;
 
-                //하빈이 만난 챕터. 소금이 없음 씬 진행
-            case 6: if(!isScenePlay && EndScene[3] == 0) { EndScene[3] = 1; isScenePlay = true; ScenePlay(4); } break;
-                
-                // 소금이 있음. 정연이 찾아오라는 씬진행
-            case 7: if(!isScenePlay && EndScene[4] == 0) { EndScene[4] = 1; isScenePlay = true; ScenePlay(5); } break;
+            //하빈이 만난 챕터. 소금이 없음 씬 진행
+            case 6: if (!isScenePlay && EndScene[3] == 0) { EndScene[3] = 1; isScenePlay = true; ScenePlay(4); } break;
+
+            // 소금이 있음. 정연이 찾아오라는 씬진행
+            case 7: if (!isScenePlay && EndScene[4] == 0) { EndScene[4] = 1; isScenePlay = true; ScenePlay(5); } break;
 
 
             // 방 다 뒤져서 정연이없는상태임
-            case 8: case 9: case 10:
+            case 8:
+            case 9:
+            case 10:
                 //정연이 없네 씬
                 if (!isScenePlay && EndScene[5] == 0) { EndScene[5] = 1; isScenePlay = true; ScenePlay(6); }
-                
+
                 //하빈이도 없네
                 else if (!isScenePlay && EndScene[6] == 0) { EndScene[6] = 1; isScenePlay = true; ScenePlay(7); }
 
@@ -224,13 +225,13 @@ public class GameManager
                 else if (!isScenePlay && EndScene[7] == 0) { EndScene[7] = 1; isScenePlay = true; ScenePlay(8); }
 
                 //장식장 뿌심
-                else if(!isScenePlay && EndScene[8] == 0) { EndScene[8] = 1; isScenePlay = true; ScenePlay(9); }
+                else if (!isScenePlay && EndScene[8] == 0) { EndScene[8] = 1; isScenePlay = true; ScenePlay(9); }
 
                 //장롱에 숨는씬
-                else if(!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(10); }
+                else if (!isScenePlay && EndScene[9] == 0) { EndScene[9] = 1; isScenePlay = true; ScenePlay(10); }
                 break;
 
-                // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
+            // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
             case 11: if (!isScenePlay && EndScene[10] == 0) { EndScene[10] = 1; isScenePlay = true; ScenePlay(11); } break;
 
 
@@ -245,11 +246,11 @@ public class GameManager
     /// <param name="EndingNum"></param>
     public void ScenePlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
     {
-        switch(EndingNum)
+        switch (EndingNum)
         {
             case -1: PlayScene.getInstance().playScene(PlayScene.numScene.Invalid_Obj); break;
             case -2: PlayScene.getInstance().playScene(PlayScene.numScene.JeongYeon); break;
-            case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit);break;
+            case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit); break;
             case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
             case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
             case -6: PlayScene.getInstance().playScene(PlayScene.numScene.batteryLack); break;
@@ -317,6 +318,5 @@ public class GameManager
 
 
 }
-
 
 
