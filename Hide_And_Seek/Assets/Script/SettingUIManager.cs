@@ -40,10 +40,10 @@ public class SettingUIManager : MonoBehaviour {
     public void DeveloperInfoView()
     {
 
-        DeveloperList.Add("최정원/세종대학교/컴퓨터공학과");
-        DeveloperList.Add("안현정/세종대학교/컴퓨터공학과");
-        DeveloperList.Add("한호빈/세종대학교/컴퓨터공학과");
-        DeveloperList.Add("김소은/세종대학교/컴퓨터공학과");
+        DeveloperList.Add("Choi JungWon. Sejong Univ. Computer Engineering");
+        DeveloperList.Add("Ahn HyunJung. Sejong Univ. Computer Engineering");
+        DeveloperList.Add("Han HoBin. Sejong Univ. Computer Engineering");
+        DeveloperList.Add("Kim SoEun. Sejong Univ. Computer Engineering");
 
         for (int i = 0; i < DeveloperList.Count; i++)
             Developter.text += DeveloperList[i] + "\n";
@@ -52,8 +52,14 @@ public class SettingUIManager : MonoBehaviour {
 
     public void SoundInfoView()
     {
-        SoundList.Add("소리이름/제공자/사이트");
-        SoundList.Add("소리이름/제공자/사이트2");
+        SoundList.Add("http://FreeSound.org");
+        SoundList.Add("Water-Swirl-Small-23 / inspertorj");
+        SoundList.Add("Glass-Smash-Bottle-C/ inspertorj");
+        SoundList.Add("Music-Box-Happy-Birthday / inspertorj");
+        SoundList.Add("RockingChair4 / stevelalonde");
+        SoundList.Add("Metal-Lid-Thumps-01 / joedeshon");
+        SoundList.Add("Gramophone / setuniman");
+  
 
         for (int i = 0; i < SoundList.Count; i++)
             Sound.text += SoundList[i] + "\n";
