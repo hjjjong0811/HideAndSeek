@@ -40,7 +40,7 @@ public class GameManager
 
     private GameManager()
     {
-        MainChapter = 7;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -86,7 +86,7 @@ public class GameManager
 
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
-        StoryPlayScene(); // 스토리 씬인지 확인
+    
 
         //게임시작시 -> 0
         if (MainChapter == -1)
@@ -182,6 +182,9 @@ public class GameManager
         if (FlashLight.getFlashData() <= 0)
             SetMainChapter(-6);
 
+
+        StoryPlayScene(); // 스토리 씬인지 확인
+
     }
 
 
@@ -191,10 +194,15 @@ public class GameManager
 
         switch (Chapter)
         {
+            case -1:
+                if (isFirstTime(PlayScene.numScene.Invalid_Obj))
+                    scenePlayAndEnd(PlayScene.numScene.Invalid_Obj);
+                break;
             case -2:
                 if (isFirstTime(PlayScene.numScene.JeongYeon))
                     scenePlayAndEnd(PlayScene.numScene.JeongYeon);
                 break;
+
             // 튜토리얼일때 튜토리얼 씬진행
             case 0: if (isFirstTime(PlayScene.numScene.tutorial))
                     scenePlayAndEnd(PlayScene.numScene.tutorial);
@@ -388,7 +396,7 @@ public class GameManager
 
     public void ResetGame() // 새로 시작시 초기화
     {
-        MainChapter = 7;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
