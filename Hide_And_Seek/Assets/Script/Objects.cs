@@ -49,6 +49,8 @@ public class Objects : MonoBehaviour, IObject {
     private const int invalidValue = 0;
 
     private SpriteRenderer spriteRenderer;
+    private bool isInputPassword;
+    private bool isValidPassword;
 
     // Use this for initialization
     void Start() {
@@ -72,7 +74,8 @@ public class Objects : MonoBehaviour, IObject {
             }
         }
 
-        
+        isInputPassword = false;
+        isValidPassword = false;
     } //Start()
 
     public void action() {
@@ -209,6 +212,9 @@ public class Objects : MonoBehaviour, IObject {
         }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
             Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))) {
             return 1;
+        }else if(_key_num == 1903) {
+            if (!isInputPassword) return 0;
+            else if (isInputPassword && isValidPassword) return 2;
         }
 
         if (mode == mode_detail) {
@@ -250,6 +256,8 @@ public class Objects : MonoBehaviour, IObject {
             SceneManager.LoadScene("2_Baby");
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
             this.gameObject.SetActive(false);
+        }else if(_key_num == 1903) {
+            if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
         }
     }
 
@@ -257,6 +265,21 @@ public class Objects : MonoBehaviour, IObject {
         if(_key_num == 13002 && item_Key == 15) {
             GameManager.getInstance().BreakDisplay = 1;
             SceneManager.LoadScene("2_Dress");
+        }
+    }
+
+    public void inputPassword(bool isValid) {
+        isInputPassword = true;
+        isValidPassword = isValid;
+
+        if(_key_num == 1903) {
+            if (isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[1].outputByCall.script_key });
+                spriteRenderer.sprite = InfoByChapter[2].sprite;
+            } else if (!isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[3].outputByCall.script_key });
+                isInputPassword = false;
+            }
         }
     }
 }
