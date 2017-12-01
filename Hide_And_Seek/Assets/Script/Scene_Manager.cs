@@ -236,6 +236,18 @@ public class Scene_Manager
         }
         return Enemy.ENEMY_INIT_LOC;
     }
+    public Vector3 _get_portal_loc(int portal_key_num, Room end)
+    {
+        foreach (var v in _portal_list)
+        {
+            if (v.get_key() == portal_key_num)
+            {
+                if (v.scene_name1 == scene_name[(int)end]) return v.portal_loc1;
+                else if (v.scene_name2 == scene_name[(int)end]) return v.portal_loc2;
+            }
+        }
+        return Enemy.ENEMY_INIT_LOC;
+    }
 }
 
 public class ISpot
