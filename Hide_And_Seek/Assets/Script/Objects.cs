@@ -215,6 +215,11 @@ public class Objects : MonoBehaviour, IObject {
         }else if(_key_num == 1903) {
             if (!isInputPassword) return 0;
             else if (isInputPassword && isValidPassword) return 2;
+        }else if(_key_num == 702) {
+            if (Inventory.getInstance().isExitItem(1) || Inventory.getInstance().isExitItem(5))
+                return 2;
+        } else if (_key_num == 1005 && false) {
+            return 2;
         }
 
         if (mode == mode_detail) {
@@ -250,6 +255,7 @@ public class Objects : MonoBehaviour, IObject {
     private void afterAction() {
 
         if (_key_num == 110) this.gameObject.SetActive(false);
+        else if (_key_num == 702) this.gameObject.SetActive(false);
         else if (_key_num == 116 && GameManager.getInstance().GetMainChapter() == 12) {
             GameManager.getInstance().Wallpaper = 1;
             GameManager.getInstance().CheckMainChapter();
@@ -265,6 +271,8 @@ public class Objects : MonoBehaviour, IObject {
         if(_key_num == 13002 && item_Key == 15) {
             GameManager.getInstance().BreakDisplay = 1;
             SceneManager.LoadScene("2_Dress");
+        }else if(_key_num == 1005 && item_Key == 10) {
+            spriteRenderer.sprite = InfoByChapter[2].sprite;
         }
     }
 

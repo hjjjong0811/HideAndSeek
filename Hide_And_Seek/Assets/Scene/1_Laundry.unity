@@ -643,48 +643,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &475066451
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -6.395743
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: -0.22297083
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &508214528
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +1914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246259858}
   - component: {fileID: 1246259859}
+  - component: {fileID: 1246259860}
   m_Layer: 9
   m_Name: Basket
   m_TagString: Untagged
@@ -2011,6 +1970,35 @@ MonoBehaviour:
       isBlockPortal: 0
       script_key_isExistitem: 0
   usingItem: []
+--- !u!60 &1246259860
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246259857}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.1230005, y: 0.47724748}
+      - {x: -0.8434311, y: 0.13989115}
+      - {x: -0.049657464, y: -0.19401407}
+      - {x: 0.3879094, y: -0.42464018}
+      - {x: 0.6896802, y: 0.07839084}
 --- !u!1 &1287097087
 GameObject:
   m_ObjectHideFlags: 0
@@ -2485,7 +2473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 605
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -2502,12 +2490,12 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1075
+      script_key: 6052
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-  - chapter: 5
+  - chapter: 8
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
@@ -2521,7 +2509,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 75
+      script_key: 6051
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -3269,7 +3257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 606
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -3286,16 +3274,16 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 0
     outputByCall:
-      script_key: 1067
+      script_key: 6062
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-  - chapter: 4
+  - chapter: 8
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 2
+    type: 4
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -3305,11 +3293,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 67
+      script_key: 6061
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 6063
   usingItem: []
 --- !u!1 &2037122393
 GameObject:

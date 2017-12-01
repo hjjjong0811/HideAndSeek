@@ -1256,6 +1256,48 @@ EdgeCollider2D:
   m_Points:
   - {x: -1.0504981, y: 0.041225314}
   - {x: 1.1879867, y: 0.0034173727}
+--- !u!1001 &1074617972
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -6.395743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.22297083
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4199349716646670, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+      propertyPath: m_RootOrder
+      value: 9
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 1ddc596c35062b84f92ae1b210888173, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1198900127
 GameObject:
   m_ObjectHideFlags: 0
@@ -2264,7 +2306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 114
+  _key_num: 1005
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -2281,7 +2323,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1112
+      script_key: 10051
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -2300,7 +2342,26 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 112
+      script_key: 10052
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter: 9999999
+    isActive: 1
+    sprite: {fileID: 21300030, guid: 7607480607420c341a690cd9259d2f1d, type: 3}
+    sound_default: {fileID: 0}
+    type: 1
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 10054
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -2309,7 +2370,7 @@ MonoBehaviour:
   - chapter_canUse: 4
     materialItem_key: 10
     outputByUsingItem:
-      script_key: 1602
+      script_key: 10053
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
