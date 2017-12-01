@@ -206,60 +206,110 @@ public class GameManager
         switch (Chapter)
         {
             // 튜토리얼일때 튜토리얼 씬진행
-            case 0: if (!isScenePlay && EndScene[0] == 0) {  isScenePlay = true; ScenePlay(0); EndScene[0] = 1;} break;
+            case 0: if (Check_First_Time(PlayScene.numScene.tutorial))
+                    ScenePlayAndEnd(PlayScene.numScene.tutorial);
+                break;
 
             // 친구들 다 찾은 챕터. hide_1_end 씬 진행
-            case 2: if (!isScenePlay && EndScene[1] == 0) {  isScenePlay = true; ScenePlay(1); EndScene[1] = 1;} break;
+            case 2: if (Check_First_Time(PlayScene.numScene.hide_1_end))
+                    ScenePlayAndEnd(PlayScene.numScene.hide_1_end);
+                break;
 
             // 소주 찾은 챕터. hide_2_ready 진행
-            case 3: if (!isScenePlay && EndScene[2] == 0) {  isScenePlay = true; ScenePlay(2); EndScene[2] = 1;} break;
+            case 3: if (Check_First_Time(PlayScene.numScene.hide_2_ready))
+                    ScenePlayAndEnd(PlayScene.numScene.hide_2_ready);
+                break;
 
             //하빈이 만난 챕터. 소금이 없음 씬 진행
-            case 6: if (!isScenePlay && EndScene[4] == 0) {  isScenePlay = true; ScenePlay(4); EndScene[4] = 1;} break;
+            case 6: if (Check_First_Time(PlayScene.numScene.habin_nosalt))
+                ScenePlayAndEnd(PlayScene.numScene.habin_nosalt);
+                break;
 
             // 소금이 있음.
             case 7:
                 //정연이 찾아와 씬
-                if (!isScenePlay && EndScene[5] == 0) { isScenePlay = true; ScenePlay(5); EndScene[5] = 1; }
+                if (Check_First_Time(PlayScene.numScene.habin_havesalt))
+                    ScenePlayAndEnd(PlayScene.numScene.habin_havesalt); 
 
                 //정연이 없네 씬
-                else if (!isScenePlay && EndScene[5] == 1 && EndScene[6] == 0) { isScenePlay = true; ScenePlay(6); EndScene[6] = 1; }
+                else if (Check_First_Time(PlayScene.numScene.no_jy) && EndScene[5] == 1 )
+                 ScenePlayAndEnd(PlayScene.numScene.no_jy); 
                     break;
 
             // 방 다 뒤져서 정연이없는상태임
             case 8:
                   //하빈이도 없네
-                  if (!isScenePlay && CheckNowRoomName("2_Hall") && EndScene[7] == 0) {  isScenePlay = true; ScenePlay(7); EndScene[7] = 1;}
+                  if (Check_First_Time(PlayScene.numScene.no_hb) && CheckNowRoomName("2_Hall") )
+                      ScenePlayAndEnd(PlayScene.numScene.no_hb); 
 
                   //하빈이 죽었자나?!씬 
-                  else if (!isScenePlay && EndScene[7] == 1 && CheckNowRoomName("2_Swimming") && EndScene[8] == 0) { isScenePlay = true; ScenePlay(8);EndScene[8] = 1;  }
+                  else if (Check_First_Time(PlayScene.numScene.hb_die) && CheckNowRoomName("2_Swimming") && EndScene[7] == 1)
+                    ScenePlayAndEnd(PlayScene.numScene.hb_die); 
                   break;
 
             case 9: case 10:
                 //장식장 뿌시는씬
-                if (!isScenePlay && EndScene[9] == 0 && BreakDisplay == 1) { isScenePlay = true; ScenePlay(9); EndScene[9] = 1; }
+                if (Check_First_Time(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
+                ScenePlayAndEnd(PlayScene.numScene.break_cabinet);
 
                 //뿌신후 다음 장롱에 숨는씬
-                else if (!isScenePlay && EndScene[9] == 1 && EndScene[10] == 0) {  isScenePlay = true; ScenePlay(10); EndScene[10] = 1;}
+                else if (Check_First_Time(PlayScene.numScene.after_break) && EndScene[9] == 1 )
+                ScenePlayAndEnd(PlayScene.numScene.after_break);
                 break;
 
             // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
-            case 11: if (!isScenePlay && EndScene[11] == 0) { isScenePlay = true; ScenePlay(11); EndScene[11] = 1; } break;
+            case 11: if (Check_First_Time(PlayScene.numScene.jy_die))
+                ScenePlayAndEnd(PlayScene.numScene.jy_die);
+                break;
 
             //  서운이 죽음확인 한 상태. 아저씨한테 전화씬
-            case 12: if (!isScenePlay && EndScene[3] == 0) {  isScenePlay = true; ScenePlay(3);EndScene[3] = 1; } break;
+            case 12: if (Check_First_Time(PlayScene.numScene.ringPhone))
+                     ScenePlayAndEnd(PlayScene.numScene.ringPhone);
+                 break;
 
         }
 
     }
 
-    public bool CheckNowRoomName(string RoomName) // 현재 방이름이 룸네임과 일치하면true/아니면false
+    /// <summary>
+    /// // 현재 방이름이 룸네임과 일치하면true/아니면false
+    /// </summary>
+    /// <param name="RoomName">방이름</param>
+    /// <returns></returns>
+    public bool CheckNowRoomName(string RoomName) 
     {
         if (SceneManager.GetActiveScene().name == RoomName)
             return true;
         else
             return false;
     }
+
+    /// <summary>
+    /// 씬 재생하기(EndScene = 1, isScenePlay = true)
+    /// </summary>
+    /// <param name="sceneNumber">씬 번호</param>
+    public void ScenePlayAndEnd(PlayScene.numScene sceneNumber)
+    {
+        isScenePlay = true;
+        ScenePlay((int)sceneNumber);
+        EndScene[(int)sceneNumber] = 1;
+    }
+
+
+    /// <summary>
+    /// 씬을 처음 실행하는 건지 확인.  처음이면 true / 아니면 false
+    /// </summary>
+    /// <param name="sceneNumber">씬 enum값</param>
+    /// <returns></returns>
+    public bool Check_First_Time(PlayScene.numScene sceneNumber)
+    {
+        if (!isScenePlay && EndScene[(int)sceneNumber] == 0)
+            return true;
+        else
+            return false;
+
+    }
+        
 
 
     /// <summary>
