@@ -306,7 +306,7 @@ public class GameManager
     public void scenePlayAndEnd(PlayScene.numScene sceneNumber)
     {
         isScenePlay = true;
-        ScenePlay((int)sceneNumber);
+        PlayScene.getInstance().playScene(sceneNumber);
         EndScene[(int)sceneNumber] = 1;
     }
 
@@ -324,8 +324,6 @@ public class GameManager
             return false;
 
     }
-
-
 
 
     /// <summary>
@@ -365,36 +363,7 @@ public class GameManager
     }
 
 
-    /// <summary>
-    /// GameManager.getInstance().ScenePlay(int EndingNum)
-    /// </summary>
-    /// <param name="EndingNum"></param>
-    public void ScenePlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
-    {
-        switch (EndingNum)
-        {
-            case -1: PlayScene.getInstance().playScene(PlayScene.numScene.Invalid_Obj); break;
-            case -2: PlayScene.getInstance().playScene(PlayScene.numScene.JeongYeon); break;
-            case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit); break;
-            case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
-            case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
-            case -6: PlayScene.getInstance().playScene(PlayScene.numScene.batteryLack); break;
-            case 0: PlayScene.getInstance().playScene(PlayScene.numScene.tutorial); break;
-            case 1: PlayScene.getInstance().playScene(PlayScene.numScene.hide_1_end); break;
-            case 2: PlayScene.getInstance().playScene(PlayScene.numScene.hide_2_ready); break;
-            case 3: PlayScene.getInstance().playScene(PlayScene.numScene.ringPhone); break;
-            case 4: PlayScene.getInstance().playScene(PlayScene.numScene.habin_nosalt); break;
-            case 5: PlayScene.getInstance().playScene(PlayScene.numScene.habin_havesalt); break;
-            case 6: PlayScene.getInstance().playScene(PlayScene.numScene.no_jy); break;
-            case 7: PlayScene.getInstance().playScene(PlayScene.numScene.no_hb); break;
-            case 8: PlayScene.getInstance().playScene(PlayScene.numScene.hb_die); break;
-            case 9: PlayScene.getInstance().playScene(PlayScene.numScene.break_cabinet); break;
-            case 10: PlayScene.getInstance().playScene(PlayScene.numScene.after_break); break;
-            case 11: PlayScene.getInstance().playScene(PlayScene.numScene.jy_die); break;
 
-        }
-
-    }
 
     public bool isCheckArray(int[] TestArray, int ArrayNum)
     {

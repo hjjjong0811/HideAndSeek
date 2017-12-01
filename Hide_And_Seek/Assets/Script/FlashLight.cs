@@ -89,7 +89,7 @@ public class FlashLight : MonoBehaviour {
             }
         
             if(Battery <= 0) {
-                GameManager.getInstance().ScenePlay(-6);
+                PlayScene.getInstance().playScene(PlayScene.numScene.batteryLack);
                 yield break;
             }
             yield return new WaitForSeconds(0.5f);
