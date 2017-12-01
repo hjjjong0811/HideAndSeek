@@ -53,8 +53,7 @@ public class Objects : MonoBehaviour, IObject {
     // Use this for initialization
     void Start() {
         int index = findIndexByChapter(mode_detail);
-
-
+        
         if (!InfoByChapter[index].isActive) {
             this.gameObject.SetActive(false);
             return;
@@ -218,6 +217,14 @@ public class Objects : MonoBehaviour, IObject {
                 }
             } //for
         }
+        if (_key_num == 1501 && (InfoByChapter[index].chapter == 5)) {
+            if (GameManager.getInstance().CheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
+                return 1;
+            }else if (GameManager.getInstance().Salt == 1) {
+                return 2;
+            }
+        }
+
         return index;
     }
 
