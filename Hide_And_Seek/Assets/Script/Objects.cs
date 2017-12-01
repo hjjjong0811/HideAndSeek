@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Objects : MonoBehaviour, IObject {
     public int _key_num;
@@ -48,10 +49,13 @@ public class Objects : MonoBehaviour, IObject {
     private const int invalidValue = 0;
 
     private SpriteRenderer spriteRenderer;
+    private bool isInputPassword;
+    private bool isValidPassword;
 
     // Use this for initialization
     void Start() {
         int index = findIndexByChapter(mode_detail);
+        
         if (!InfoByChapter[index].isActive) {
             this.gameObject.SetActive(false);
             return;
@@ -69,7 +73,9 @@ public class Objects : MonoBehaviour, IObject {
                 //Sound재생
             }
         }
-        
+
+        isInputPassword = false;
+        isValidPassword = false;
     } //Start()
 
     public void action() {
@@ -88,7 +94,7 @@ public class Objects : MonoBehaviour, IObject {
             int index = findIndexByChapter(mode_detail);
             Detail curInfo = InfoByChapter[index];
             if (!curInfo.isActByCall) return;
-
+            
             if (curInfo.type == Type.hide) {
                 //hide
             } else if (curInfo.type == Type.no) {
@@ -115,12 +121,13 @@ public class Objects : MonoBehaviour, IObject {
                 if (curInfo.outputByCall.sound != null)
                     //Sound
                     Debug.Log("SoundCall");
+
                 //Script 있으면 재생
                 if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
             }
-
             GameManager.getInstance().CheckMainChapter();
+            afterAction();
         }
     } //action()
 
@@ -136,23 +143,34 @@ public class Objects : MonoBehaviour, IObject {
                     if (curOutput.sound != null)
                         //Sound
                         Debug.Log("SoundCall");
-                    //Script 있으면 재생
-                    if (curOutput.script_key != invalidValue)
-                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
-                    //Item 획득가능하면 획득
-                    if (curOutput.item_key != invalidValue)
-                        Inventory.getInstance().addItem(curOutput.item_key);
 
+                    //Item 획득가능하면 획득
+                    if (curOutput.item_key != invalidValue) {
+                        if (!Inventory.getInstance().addItem(curOutput.item_key)) {
+                            //이미존재
+                            if (curOutput.script_key_isExistitem != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key_isExistitem });
+                        } else {
+                            //Script 획득
+                            if (curOutput.script_key != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                        }
+                    }
+                    //Script 있으면 재생
+                    else if (curOutput.script_key != invalidValue)
+                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                    
                     if (!_t_thing_f_portal && !curOutput.isBlockPortal) {
                         _obj.action();
 
                     } 
 
                     GameManager.getInstance().CheckMainChapter();
+                    afterUsingItem(item_key);
+                    break;
                 }
             } //if
         }
-        
     } //action
     
     private void OnTriggerEnter2D(Collider2D collision) {
@@ -181,7 +199,32 @@ public class Objects : MonoBehaviour, IObject {
     private int findIndexByChapter(int mode) {
         int chapter = GameManager.getInstance().GetMainChapter();
         int index = 0;
-        if(mode == mode_detail) {
+        
+        if (_key_num == 13002 && GameManager.getInstance().BreakDisplay == 1) {
+            return 2;
+        }else if (_key_num == 13001 && GameManager.getInstance().BreakDisplay == 1) {
+            return 1;
+        }else if (_key_num == 110) {
+            if (Inventory.getInstance().isExitItem(3) || Inventory.getInstance().isExitItem(5))
+                return 2;
+        }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
+            return 1;
+        }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
+            Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))) {
+            return 1;
+        }else if(_key_num == 1903) {
+            if (!isInputPassword) return 0;
+            else if (isInputPassword && isValidPassword) return 2;
+        }else if(_key_num == 702) {
+            if (Inventory.getInstance().isExitItem(1) || Inventory.getInstance().isExitItem(5))
+                return 2;
+        } else if (_key_num == 1005 && false) {
+            return 2;
+        }else if (_key_num == 3001 && GameManager.getInstance().FindCharacter[0] == 1) {
+            return 1;
+        }
+
+        if (mode == mode_detail) {
             for (int i = 0; i < InfoByChapter.Length; i++) {
                 index = i;
                 if (i + 1 < InfoByChapter.Length) {
@@ -200,7 +243,68 @@ public class Objects : MonoBehaviour, IObject {
                 }
             } //for
         }
+        if (_key_num == 1501 && (InfoByChapter[index].chapter == 5)) {
+            if (GameManager.getInstance().isCheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
+                return 1;
+            }else if (GameManager.getInstance().Salt == 1) {
+                return 2;
+            }
+        }
+
         return index;
     }
 
+    private void afterAction() {
+
+        if (_key_num == 110) this.gameObject.SetActive(false);
+        else if (_key_num == 702) this.gameObject.SetActive(false);
+        else if (_key_num == 116 && GameManager.getInstance().GetMainChapter() == 12) {
+            GameManager.getInstance().Wallpaper = 1;
+            GameManager.getInstance().CheckMainChapter();
+            SceneManager.LoadScene("2_Baby");
+        }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
+            this.gameObject.SetActive(false);
+        }else if(_key_num == 1903) {
+            if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
+        }else if(_key_num == 401) {
+            GameManager.getInstance().MeetCharacter[1]++;
+            GameManager.getInstance().CheckMainChapter();
+        }else if(_key_num == 3001) {
+            GameManager.getInstance().FindCharacter[0] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3002) {
+            GameManager.getInstance().FindCharacter[2] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3003) {
+            GameManager.getInstance().FindCharacter[3] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3004) {
+            GameManager.getInstance().FindCharacter[1] = 1;
+            this.gameObject.SetActive(false);
+        }
+    }
+
+    private void afterUsingItem(int item_Key) {
+        if(_key_num == 13002 && item_Key == 15) {
+            GameManager.getInstance().BreakDisplay = 1;
+            SceneManager.LoadScene("2_Dress");
+        }else if(_key_num == 1005 && item_Key == 10) {
+            spriteRenderer.sprite = InfoByChapter[2].sprite;
+        }
+    }
+
+    public void inputPassword(bool isValid) {
+        isInputPassword = true;
+        isValidPassword = isValid;
+
+        if(_key_num == 1903) {
+            if (isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[1].outputByCall.script_key });
+                spriteRenderer.sprite = InfoByChapter[2].sprite;
+            } else if (!isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[3].outputByCall.script_key });
+                isInputPassword = false;
+            }
+        }
+    }
 }

@@ -321,7 +321,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -334,12 +333,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1040
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 0
     isActive: 1
     sprite: {fileID: 0}
@@ -351,12 +352,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 40
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &179308166
 GameObject:
@@ -1348,7 +1351,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1361,12 +1363,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1038
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 5
     isActive: 1
     sprite: {fileID: 0}
@@ -1378,12 +1382,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 0
+      script_key: 2002
       sound: {fileID: 0}
-      item_key: 2002
+      item_key: 10
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &797957151
 PolygonCollider2D:
@@ -2430,9 +2436,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
-  Key: 0
+  _key_num: 204
+  _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2445,12 +2450,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1038
+      script_key: 2042
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 5
     isActive: 1
     sprite: {fileID: 0}
@@ -2462,12 +2469,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 2001
+      script_key: 2041
       sound: {fileID: 0}
       item_key: 2
       isBlockPortal: 0
+      script_key_isExistitem: 2042
   usingItem: []
 --- !u!1 &1439959560
 GameObject:
@@ -2542,7 +2551,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2555,12 +2563,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 37
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &1474740028
 GameObject:
@@ -2708,7 +2718,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 8
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2721,12 +2730,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1001 &1524578369
 Prefab:
@@ -3434,7 +3445,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -3447,10 +3457,12 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 41
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []

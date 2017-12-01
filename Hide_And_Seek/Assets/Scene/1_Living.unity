@@ -140,8 +140,9 @@ Transform:
   - {fileID: 729854307}
   - {fileID: 285713281}
   - {fileID: 464259898}
-  - {fileID: 2130458614}
   - {fileID: 464852873}
+  - {fileID: 624868927}
+  - {fileID: 2130458614}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -216,7 +217,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 3
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -229,12 +229,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1001 &141702443
 Prefab:
@@ -555,7 +557,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 5
   _t_thing_f_portal: 1
-  Key: 5
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -568,12 +569,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1005
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -585,12 +588,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 5
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &285713280
 GameObject:
@@ -665,7 +670,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -678,12 +682,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1008
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -695,12 +701,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 8
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &433601975
 GameObject:
@@ -878,7 +886,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -891,12 +898,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1012
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -908,12 +917,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 12
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &464852872
 GameObject:
@@ -946,7 +957,7 @@ Transform:
   - {fileID: 1136929685}
   - {fileID: 616318662}
   m_Father: {fileID: 73413981}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &464852874
 SpriteRenderer:
@@ -1064,7 +1075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1077,12 +1087,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1004
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -1094,12 +1106,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 4
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &616318664
 PolygonCollider2D:
@@ -1159,6 +1173,119 @@ PolygonCollider2D:
       - {x: -1.8755338, y: -0.60870063}
       - {x: -1.4439957, y: -0.95210004}
       - {x: -0.9519496, y: -0.7497982}
+--- !u!1 &624868926
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 624868927}
+  - component: {fileID: 624868928}
+  - component: {fileID: 624868929}
+  m_Layer: 9
+  m_Name: Paper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &624868927
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 624868926}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.83, y: -0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 2087514206}
+  m_Father: {fileID: 73413981}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!60 &624868928
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 624868926}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.56934154, y: 0.061356097}
+      - {x: -0.9510566, y: -0.13722418}
+      - {x: -0.92631257, y: -0.4397143}
+      - {x: -0.6586112, y: -0.48587674}
+      - {x: -0.31072748, y: -0.16799872}
+--- !u!114 &624868929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 624868926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _key_num: 702
+  _t_thing_f_portal: 1
+  InfoByChapter:
+  - chapter: 4
+    isActive: 0
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 4
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 0
+    outputByCall:
+      script_key: 7021
+      sound: {fileID: 0}
+      item_key: 1
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter: 9999999
+    isActive: 0
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 0
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 0
+    outputByCall:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  usingItem: []
 --- !u!1001 &647107623
 Prefab:
   m_ObjectHideFlags: 0
@@ -1442,7 +1569,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 7
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 0
@@ -1455,12 +1581,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 0
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -1472,12 +1600,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 7
       sound: {fileID: 0}
       item_key: 6
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 5
     isActive: 1
     sprite: {fileID: 0}
@@ -1489,12 +1619,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 7
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &729854306
 GameObject:
@@ -1569,7 +1701,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 10
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1582,12 +1713,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1010
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -1599,12 +1732,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 10
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 14
     isActive: 1
     sprite: {fileID: 0}
@@ -1616,12 +1751,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 0
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &873229743
 GameObject:
@@ -1976,7 +2113,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1989,12 +2125,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1001
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -2006,12 +2144,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &972431713
 PolygonCollider2D:
@@ -2433,7 +2573,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2446,12 +2585,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1003
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -2463,12 +2604,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 3
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &1203322527
 GameObject:
@@ -2614,7 +2757,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2627,12 +2769,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1002
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
@@ -2644,12 +2788,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 2
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &1293050661
 GameObject:
@@ -3201,7 +3347,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 1
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 0
@@ -3214,12 +3359,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 0
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 14
     isActive: 1
     sprite: {fileID: 0}
@@ -3231,12 +3378,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 0
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 15
     isActive: 1
     sprite: {fileID: 0}
@@ -3248,12 +3397,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem:
   - chapter_canUse: 14
     materialItem_key: 43
@@ -3262,6 +3413,7 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
 --- !u!1 &1841570895
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,6 +3585,77 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!1 &2087514205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2087514206}
+  - component: {fileID: 2087514207}
+  m_Layer: 0
+  m_Name: newspaper2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2087514206
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087514205}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.63, y: -0.14, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 624868927}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2087514207
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2087514205}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ca2f06cd317ffce4389a7d85f1c1a2a1, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: -1878039297
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300006, guid: 7607480607420c341a690cd9259d2f1d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 0.39, y: 0.25}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
 --- !u!1 &2103192833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3533,7 +3756,7 @@ Transform:
   m_Children:
   - {fileID: 1124869290}
   m_Father: {fileID: 73413981}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &2130458615
 PolygonCollider2D:
@@ -3576,9 +3799,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 701
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -3591,13 +3813,15 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 11
+      script_key: 7011
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
-  - chapter: 0
+      script_key_isExistitem: 0
+  - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
@@ -3608,10 +3832,12 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 11
+      script_key: 7012
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
