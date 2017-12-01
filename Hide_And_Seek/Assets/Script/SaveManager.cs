@@ -203,8 +203,8 @@ public class SaveManager : MonoBehaviour
         data.Inventory = Inventory.getInstance().inventory;
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
-        data.E_Room = (int)Enemy_ISpot._room;
-        data.E_Spot = Enemy_ISpot._spot;
+       // data.E_Room = (int)Enemy_ISpot._room;
+       // data.E_Spot = Enemy_ISpot._spot;
         
         Debug.Log("save " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
 
@@ -244,8 +244,8 @@ public class SaveManager : MonoBehaviour
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
                 Player_Inventory = data.Inventory;
-                Enemy_ISpot._room = (Room)data.E_Room;
-                Enemy_ISpot._spot = data.E_Spot;
+               // Enemy_ISpot._room = (Room)data.E_Room;
+                //Enemy_ISpot._spot = data.E_Spot;
 
 
                 Inventory.getInstance().inventory = Player_Inventory;
