@@ -204,7 +204,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
   - chapter: 9999999
     isActive: 1
-    sprite: {fileID: 21300018, guid: 965dceefb15489d47a1795389583891d, type: 3}
+    sprite: {fileID: 0}
     sound_default: {fileID: 0}
     type: 1
     isActByCollision: 0
@@ -236,6 +236,25 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 19033
+      sound: {fileID: 0}
+      item_key: 43
+      isBlockPortal: 0
+      script_key_isExistitem: 19034
+  - chapter: 9999999
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 4
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 19035
       sound: {fileID: 0}
       item_key: 43
       isBlockPortal: 0
