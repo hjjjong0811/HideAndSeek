@@ -53,8 +53,7 @@ public class Objects : MonoBehaviour, IObject {
     // Use this for initialization
     void Start() {
         int index = findIndexByChapter(mode_detail);
-
-
+        
         if (!InfoByChapter[index].isActive) {
             this.gameObject.SetActive(false);
             return;
@@ -141,13 +140,23 @@ public class Objects : MonoBehaviour, IObject {
                     if (curOutput.sound != null)
                         //Sound
                         Debug.Log("SoundCall");
-                    //Script 있으면 재생
-                    if (curOutput.script_key != invalidValue)
-                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
-                    //Item 획득가능하면 획득
-                    if (curOutput.item_key != invalidValue)
-                        Inventory.getInstance().addItem(curOutput.item_key);
 
+                    //Item 획득가능하면 획득
+                    if (curOutput.item_key != invalidValue) {
+                        if (!Inventory.getInstance().addItem(curOutput.item_key)) {
+                            //이미존재
+                            if (curOutput.script_key_isExistitem != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key_isExistitem });
+                        } else {
+                            //Script 획득
+                            if (curOutput.script_key != invalidValue)
+                                ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                        }
+                    }
+                    //Script 있으면 재생
+                    else if (curOutput.script_key != invalidValue)
+                        ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
+                    
                     if (!_t_thing_f_portal && !curOutput.isBlockPortal) {
                         _obj.action();
 
@@ -197,6 +206,9 @@ public class Objects : MonoBehaviour, IObject {
                 return 2;
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
             return 1;
+        }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
+            Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))) {
+            return 1;
         }
 
         if (mode == mode_detail) {
@@ -218,6 +230,14 @@ public class Objects : MonoBehaviour, IObject {
                 }
             } //for
         }
+        if (_key_num == 1501 && (InfoByChapter[index].chapter == 5)) {
+            if (GameManager.getInstance().CheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
+                return 1;
+            }else if (GameManager.getInstance().Salt == 1) {
+                return 2;
+            }
+        }
+
         return index;
     }
 
