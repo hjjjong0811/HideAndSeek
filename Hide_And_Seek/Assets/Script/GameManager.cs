@@ -39,7 +39,7 @@ public class GameManager
 
     private GameManager()
     {
-        MainChapter = -1;
+        MainChapter = 7;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -64,10 +64,6 @@ public class GameManager
         return instance;
     }
 
-    public void Update()
-    {
-        StoryPlayScene();
-    }
 
     public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
@@ -314,7 +310,32 @@ public class GameManager
         else
             return false;
     }
-        
+
+    public void changeArrayState()
+    {
+        int Chapter = MainChapter;
+
+        if(Chapter == 4) // 정연이 찾는 챕터일때
+        {
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "1_Bath": FindJeongyeon[0] = 1; break;
+                case "1_Dining": FindJeongyeon[1] = 1; break;
+                case "1_Front": FindJeongyeon[2] = 1; break;
+                case "1_Hall": FindJeongyeon[3] = 1; break;
+                case "1_Kitchen": FindJeongyeon[4] = 1; break;
+                case "1_Laundry": FindJeongyeon[5] = 1; break;
+                case "1_Living": FindJeongyeon[6] = 1; break;
+                case "1_Reception": FindJeongyeon[7] = 1; break;
+            }
+        }
+
+        else if(Chapter == 1)
+        { }
+
+
+           
+    }
 
 
     /// <summary>
@@ -368,7 +389,7 @@ public class GameManager
 
     public void ResetGame() // 새로 시작시 초기화
     {
-        MainChapter = -1;
+        MainChapter = 7;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
