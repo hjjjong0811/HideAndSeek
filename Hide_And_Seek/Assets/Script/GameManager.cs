@@ -285,7 +285,7 @@ public class GameManager
     }
 
     /// <summary>
-    /// 씬 재생하기(EndScene, isScenePlay)
+    /// 씬 재생하기(EndScene = 1, isScenePlay = true)
     /// </summary>
     /// <param name="sceneNumber">씬 번호</param>
     public void ScenePlayAndEnd(PlayScene.numScene sceneNumber)
