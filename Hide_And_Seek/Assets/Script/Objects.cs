@@ -69,6 +69,7 @@ public class Objects : MonoBehaviour, IObject {
                 //Sound재생
             }
         }
+
         
     } //Start()
 
@@ -115,8 +116,12 @@ public class Objects : MonoBehaviour, IObject {
                 if (curInfo.outputByCall.sound != null)
                     //Sound
                     Debug.Log("SoundCall");
+
+                if (_key_num == 83 && GameManager.getInstance().Wallpaper==1) {
+                    ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key_isExistitem });
+                }
                 //Script 있으면 재생
-                if (curInfo.outputByCall.script_key != invalidValue)
+                else if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
             }
 
