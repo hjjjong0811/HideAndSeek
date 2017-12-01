@@ -65,6 +65,14 @@ public class SaveManager : MonoBehaviour
 
     public void Start()
     {
+        //저장오류날때이걸로 일단 모든파일지우고 그담에 다시 제거한후에 테스트하세욤
+        /*
+        File.Delete(Application.persistentDataPath + "/0.dat");
+        File.Delete(Application.persistentDataPath + "/1.dat");
+        File.Delete(Application.persistentDataPath + "/2.dat");
+        File.Delete(Application.persistentDataPath + "/3.dat");
+        */
+
 
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
