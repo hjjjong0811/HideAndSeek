@@ -166,8 +166,8 @@ public class GameManager
         else if (MainChapter == 11 && DeadCharacter[3] == 1 && !isScenePlay && EndScene[11] == 1)
             SetMainChapter(12);
 
-        // 띠벽지 확인하면 ->13
-        else if (MainChapter == 12 && Wallpaper == 1)
+        // 아저씨한테 전화하는씬 후 띠벽지 확인하면 ->13
+        else if (MainChapter == 12 && !isScenePlay && EndScene[3] == 1 && Wallpaper == 1)
             SetMainChapter(13);
 
         // 집구조도 확인가능 -> 14
