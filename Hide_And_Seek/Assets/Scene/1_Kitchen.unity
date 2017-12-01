@@ -1259,10 +1259,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 501
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 1
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 5011
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter: 2
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
@@ -1276,7 +1295,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 0
+      script_key: 5012
       sound: {fileID: 0}
       item_key: 12
       isBlockPortal: 0
@@ -1295,11 +1314,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 2005
+      script_key: 5013
       sound: {fileID: 0}
       item_key: 30
       isBlockPortal: 0
-      script_key_isExistitem: 2006
+      script_key_isExistitem: 5014
   usingItem: []
 --- !u!60 &285631311
 PolygonCollider2D:
