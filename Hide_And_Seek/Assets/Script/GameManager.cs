@@ -194,14 +194,36 @@ public class GameManager
 
         switch (Chapter)
         {
+            //잘못된 오브젝트 사용 엔딩
             case -1:
                 if (isFirstTime(PlayScene.numScene.Invalid_Obj))
                     scenePlayAndEnd(PlayScene.numScene.Invalid_Obj);
                 break;
+    
+            //정연엔딩
             case -2:
                 if (isFirstTime(PlayScene.numScene.JeongYeon))
                     scenePlayAndEnd(PlayScene.numScene.JeongYeon);
                 break;
+
+                // 진엔딩(꿈)
+            case -3:
+                if (isFirstTime(PlayScene.numScene.ending_exit))
+                    scenePlayAndEnd(PlayScene.numScene.ending_exit);
+                break;
+
+                //인형인줄 엔딩
+            case -4:
+                if (isFirstTime(PlayScene.numScene.suspectDoll))
+                    scenePlayAndEnd(PlayScene.numScene.suspectDoll);
+                break;
+
+                //아저씨 범인일때 엔딩
+            case -5:
+                if (isFirstTime(PlayScene.numScene.suspectKim))
+                    scenePlayAndEnd(PlayScene.numScene.suspectKim);
+                break;
+            
 
             // 튜토리얼일때 튜토리얼 씬진행
             case 0: if (isFirstTime(PlayScene.numScene.tutorial))
