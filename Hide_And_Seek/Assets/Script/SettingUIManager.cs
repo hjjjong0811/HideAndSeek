@@ -10,7 +10,6 @@ public class SettingUIManager : MonoBehaviour {
     public GameObject InfoPanel; // 개발자 정보 패널(음악 리소스...)
     public GameObject Sound_Prefab; // 사운드 설정
     public GameObject Save_Prefab;
-    public List<string> DeveloperList;
     public List<string> SoundList;
     public Text Developter;
     public Text Sound;
@@ -18,7 +17,6 @@ public class SettingUIManager : MonoBehaviour {
     public void Start()
     {
         InfoPanel.SetActive(false);
-        DeveloperInfoView();
         SoundInfoView();
 
     }
@@ -37,18 +35,6 @@ public class SettingUIManager : MonoBehaviour {
         temp.name = "Save";
     }
 
-    public void DeveloperInfoView()
-    {
-
-        DeveloperList.Add("Choi JungWon. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Ahn HyunJung. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Han HoBin. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Kim SoEun. Sejong Univ. Computer Engineering");
-
-        for (int i = 0; i < DeveloperList.Count; i++)
-            Developter.text += DeveloperList[i] + "\n";
-       
-    }
 
     public void SoundInfoView()
     {
