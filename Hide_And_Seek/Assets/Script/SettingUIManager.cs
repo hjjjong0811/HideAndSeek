@@ -38,7 +38,7 @@ public class SettingUIManager : MonoBehaviour {
 
     public void SoundInfoView()
     {
-        SoundList.Add("http://FreeSound.org");
+        SoundList.Add("((http://FreeSound.org))");
         SoundList.Add("Water-Swirl-Small-23 / inspertorj");
         SoundList.Add("Glass-Smash-Bottle-C/ inspertorj");
         SoundList.Add("Music-Box-Happy-Birthday / inspertorj");
