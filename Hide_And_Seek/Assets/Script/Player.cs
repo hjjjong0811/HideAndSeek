@@ -149,29 +149,15 @@ public class Player : MonoBehaviour {
     private void Update() {
         if (ScriptManager.getInstance().isPlaying) return;
 
-        /*
-        //H키 테스트하고 주석풀어두기
-        if (hiding)//호빈추가
-        {
-            if (Input.GetButtonDown("Action")) hiding = false;
-            return;
-        }
-         */
-
-        //호빈추가 'H'키로 hiding테스트중
+        //호빈추가_ 숨기해제
         if (hiding)
         {
-            if (Input.GetKeyDown(KeyCode.H))
+            if (Input.GetButtonDown("Action"))//hiding상태에서 Action키 누르면
             {
                 hiding = false;
-                //Debug.Log("숨기UI삭제");//test
                 Destroy(Hiding_UI_Obj);
             }
             return;
-        }
-        if (Input.GetKeyDown(KeyCode.H))
-        {
-            player_hide();
         }
 
         Animator.SetInteger("State", Ani_Idle);
@@ -342,9 +328,8 @@ public class Player : MonoBehaviour {
         return Player.Player_obj.GetComponent<Player>().SpotInfo;
     }
 
-    private void player_hide(){
+    public void player_hide(){
         hiding = true;
-        //Debug.Log("숨기UI생성");//test
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
         Enemy.player_start_hiding();
     }
