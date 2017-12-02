@@ -11,6 +11,7 @@ public class GameManager
     public const int SALT = 18;
     public const int SALTYWATER = 22;
     public const int GROUNDKEY = 43;
+    
 
 
     public static int MainChapter; // 전체 메인 에피소드 관리
@@ -44,7 +45,7 @@ public class GameManager
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
         DeadCharacter = new int[4] { 0, 0, 0, 0 };
-        MeetCharacter = new int[4] { 0, 0, 0, 0 };
+        MeetCharacter = new int[2] { 0, 0 };
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         CheckOverlap = new int[3] { 0, 0, 0 };
 
@@ -64,10 +65,6 @@ public class GameManager
         return instance;
     }
 
-    public void Update()
-    {
-        StoryPlayScene();
-    }
 
     public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
@@ -77,22 +74,19 @@ public class GameManager
             case SALT: Salt = 1; break;
             case SALTYWATER: SaltyWater = 1; break;
             case GROUNDKEY: GroundKey = 1; break;
+
+            //머리카락(효정/하빈/정연/서운)
+            case 6: DeadCharacter[0] = 1; break;
+            case 7: DeadCharacter[1] = 1; break;
+            case 8: DeadCharacter[2] = 1; break;
+            case 9: DeadCharacter[3] = 1; break;
         }
     }
 
-    public void checkObject(string objName)
-    {
-        switch(objName)
-        {
-            case "wallpaper": Wallpaper = 1; break;
-            case "cabinet": if (Inventory.getInstance().inventory.Contains(10)) // 부지깽이있으면
-                    BreakDisplay = 1; break;
-        }
-    }
 
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
-        StoryPlayScene(); // 스토리 씬인지 확인
+    
 
         //게임시작시 -> 0
         if (MainChapter == -1)
@@ -123,7 +117,7 @@ public class GameManager
             SetMainChapter(-2);
 
         // 하빈이 만나면 ->6
-        else if (MainChapter == 5 && MeetCharacter[2] == 1)
+        else if (MainChapter == 5 && MeetCharacter[0] == 1)
             SetMainChapter(6);
 
         // 소금있으면 ->7
@@ -188,6 +182,9 @@ public class GameManager
         if (FlashLight.getFlashData() <= 0)
             SetMainChapter(-6);
 
+
+        StoryPlayScene(); // 스토리 씬인지 확인
+
     }
 
 
@@ -197,6 +194,32 @@ public class GameManager
 
         switch (Chapter)
         {
+            //잘못된 오브젝트 사용 엔딩
+            case -1:
+                    scenePlayAndEnd(PlayScene.numScene.Invalid_Obj);
+                break;
+    
+            //정연엔딩
+            case -2:
+                    scenePlayAndEnd(PlayScene.numScene.JeongYeon);
+                break;
+
+                // 진엔딩(꿈)
+            case -3:
+                    scenePlayAndEnd(PlayScene.numScene.ending_exit);
+                break;
+
+                //인형인줄 엔딩
+            case -4:
+                    scenePlayAndEnd(PlayScene.numScene.suspectDoll);
+                break;
+
+                //아저씨 범인일때 엔딩
+            case -5:
+                    scenePlayAndEnd(PlayScene.numScene.suspectKim);
+                break;
+            
+
             // 튜토리얼일때 튜토리얼 씬진행
             case 0: if (isFirstTime(PlayScene.numScene.tutorial))
                     scenePlayAndEnd(PlayScene.numScene.tutorial);
@@ -283,7 +306,7 @@ public class GameManager
     public void scenePlayAndEnd(PlayScene.numScene sceneNumber)
     {
         isScenePlay = true;
-        ScenePlay((int)sceneNumber);
+        PlayScene.getInstance().playScene(sceneNumber);
         EndScene[(int)sceneNumber] = 1;
     }
 
@@ -302,6 +325,7 @@ public class GameManager
 
     }
 
+
     /// <summary>
     /// 씬 종료했는지 확인하는 함수. 종료했으면 true 아니면 false 
     /// </summary>
@@ -314,39 +338,32 @@ public class GameManager
         else
             return false;
     }
-        
 
-
-    /// <summary>
-    /// GameManager.getInstance().ScenePlay(int EndingNum)
-    /// </summary>
-    /// <param name="EndingNum"></param>
-    public void ScenePlay(int EndingNum) // 엔딩번호 전달받는 경우 playScene 호출 -> 해당스토리 재생
+    public void changeArrayState()
     {
-        switch (EndingNum)
-        {
-            case -1: PlayScene.getInstance().playScene(PlayScene.numScene.Invalid_Obj); break;
-            case -2: PlayScene.getInstance().playScene(PlayScene.numScene.JeongYeon); break;
-            case -3: PlayScene.getInstance().playScene(PlayScene.numScene.ending_exit); break;
-            case -4: PlayScene.getInstance().playScene(PlayScene.numScene.suspectDoll); break;
-            case -5: PlayScene.getInstance().playScene(PlayScene.numScene.suspectKim); break;
-            case -6: PlayScene.getInstance().playScene(PlayScene.numScene.batteryLack); break;
-            case 0: PlayScene.getInstance().playScene(PlayScene.numScene.tutorial); break;
-            case 1: PlayScene.getInstance().playScene(PlayScene.numScene.hide_1_end); break;
-            case 2: PlayScene.getInstance().playScene(PlayScene.numScene.hide_2_ready); break;
-            case 3: PlayScene.getInstance().playScene(PlayScene.numScene.ringPhone); break;
-            case 4: PlayScene.getInstance().playScene(PlayScene.numScene.habin_nosalt); break;
-            case 5: PlayScene.getInstance().playScene(PlayScene.numScene.habin_havesalt); break;
-            case 6: PlayScene.getInstance().playScene(PlayScene.numScene.no_jy); break;
-            case 7: PlayScene.getInstance().playScene(PlayScene.numScene.no_hb); break;
-            case 8: PlayScene.getInstance().playScene(PlayScene.numScene.hb_die); break;
-            case 9: PlayScene.getInstance().playScene(PlayScene.numScene.break_cabinet); break;
-            case 10: PlayScene.getInstance().playScene(PlayScene.numScene.after_break); break;
-            case 11: PlayScene.getInstance().playScene(PlayScene.numScene.jy_die); break;
+        int Chapter = MainChapter;
 
+        
+        if(Chapter == 7) // 정연이 찾는 챕터일때
+        {
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "1_Bath": FindJeongyeon[0] = 1; break;
+                case "1_Dining": FindJeongyeon[1] = 1; break;
+                case "1_Front": FindJeongyeon[2] = 1; break;
+                case "1_Hall": FindJeongyeon[3] = 1; break;
+                case "1_Kitchen": FindJeongyeon[4] = 1; break;
+                case "1_Laundry": FindJeongyeon[5] = 1; break;
+                case "1_Living": FindJeongyeon[6] = 1; break;
+                case "1_Reception": FindJeongyeon[7] = 1; break;
+            }
         }
 
+           
     }
+
+
+
 
     public bool isCheckArray(int[] TestArray, int ArrayNum)
     {
@@ -373,7 +390,7 @@ public class GameManager
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
         DeadCharacter = new int[4] { 0, 0, 0, 0 };
-        MeetCharacter = new int[4] { 0, 0, 0, 0 };
+        MeetCharacter = new int[2] { 0, 0 };
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         CheckOverlap = new int[3] { 0, 0, 0 };
 
@@ -385,6 +402,7 @@ public class GameManager
     public int GetMainChapter() // 현재 챕터 반환
     {
         CheckMainChapter(); //현정추가 한번체크후 반환필요해보여서
+        changeArrayState(); // 스토리진행변수체크
         return MainChapter;
     }
 

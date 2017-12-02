@@ -1,414 +1,418 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
-/// <summary>
-/// 키값으로 쓰면됨
-/// </summary>
-enum SOUND_RESOURCE
-{ 
-    /// <summary>
-    /// 물웅덩이에 나는소리
-    /// </summary>
-    WATER =0,
-
-    /// <summary>
-    /// 차박차박소리
-    /// </summary>
-    WALK1,
-
-    /// <summary>
-    /// 심장소리 천천히
-    /// </summary>
-    HEART_BEAT1,
-
-    /// <summary>
-    /// 심장소리 빠르게
-    /// </summary>
-    HEART_BEAT2,
-
-    /// <summary>
-    /// 심장소리 점점 빠르게
-    /// </summary>
-    HEART_BEAT3,
-
-    /// <summary>
-    /// 심장소리 점점 빠르게22
-    /// </summary>
-    HEART_BEAT4,
-
-    /// <summary>
-    /// 물 차박
-    /// </summary>
-    WATER_WALK,
-    
-    /// <summary>
-    /// 게임오버시 피튀기는 소리
-    /// </summary>
-    DIE,
-    
-    /// <summary>
-    /// 꺼림칙한 웃음소리
-    /// </summary>
-    LAUGH1,
-
-    /// <summary>
-    /// 낮은 중저음 웃음소리
-    /// </summary>
-    LAUGH2,
-
-
-    /// <summary>
-    /// 미친웃음소리
-    /// </summary>
-    LAUGH3,
-    
-    /// <summary>
-    /// 계단 올라가는 발소리
-    /// </summary>
-    WALK2,
-    
-    /// <summary>
-    /// 노크1
-    /// </summary>
-    KNOCK1,
-    
-    /// <summary>
-    /// 계단올라가는 소리
-    /// </summary>
-    WALK3,
-    
-    /// <summary>
-    /// 계단 올라가는소리, 발소리
-    /// </summary>
-    WALK4,
-    
-    /// <summary>
-    /// 울리는 발소리
-    /// </summary>
-    WALK5,
-    
-    
-    /// <summary>
-    /// 조용히 발소리
-    /// </summary>
-    WALK6,
-    
-    /// <summary>
-    /// 노크2
-    /// </summary>
-    KNOCK2,
-    
-    /// <summary>
-    /// 문열리는 소리
-    /// </summary>
-    DOOR,
-    
-    /// <summary>
-    ///여자 흐느끼는 소리
-    /// </summary>
-    CRY,
-    
-    /// <summary>
-    /// 타이핑소리
-    /// </summary>
-    TYPING,
-    
-    /// <summary>
-    /// 비명소리
-    /// </summary>
-    SCREAM,
-    
-    /// <summary>
-    /// 일기장 페이지 넘기는 소리
-    /// </summary>
-    BOOK,
-    
-    /// <summary>
-    /// 티비 켜져있는데 아무것도 안보일때 소리
-    /// </summary>
-    TV,
-    
-    /// <summary>
-    /// 수영장 소리
-    /// </summary>
-    SWIMMING_POOL,
-    
-    /// <summary>
-    /// 물 떨어지는 소리
-    /// </summary>
-    WATER_DROP,
-    
-    /// <summary>
-    /// 연필로 글쓰는 소리
-    /// </summary>
-    WRITE,
-    
-    /// <summary>
-    /// 까마귀 소리
-    /// </summary>
-    KKACK1,
-    
-    /// <summary>
-    /// 까마귀 소리
-    /// </summary>
-    KKACK2,
-
+public enum SOUND_NAME
+{
     /// <summary>
     /// 브금
     /// </summary>
-    BGM
+    STARTBGM=0,
+    /// <summary>
+    /// 심장두근1
+    /// </summary>
+    HEARTBEAT1,
+    /// <summary>
+    /// 심장두근2
+    /// </summary>
+    HEARTBEAT2,
+    /// <summary>
+    /// 심장두근3
+    /// </summary>
+    HEARTBEAT3,
+    /// <summary>
+    /// 노크하는소리
+    /// </summary>
+    KNOCK,
+    /// <summary>
+    /// 문천천히 여는소리
+    /// </summary>
+    DOOR,
+    /// <summary>
+    /// 아저씨 폰벨소리
+    /// </summary>
+    BELLSOUND,
+    /// <summary>
+    /// 아저씨 걷는소리
+    /// </summary>
+    WALK,
+    /// <summary>
+    /// 아저씨 점점 멀어지는소리
+    /// </summary>
+    FAR,
+    /// <summary>
+    /// 아저씨웃음소리
+    /// </summary>
+    LAUGH_ENEMY,
+    /// <summary>
+    /// 수도꼭지 돌리는소리
+    /// </summary>
+    TRUN_PIPE,
+    /// <summary>
+    /// 가스레인지 스토브소리
+    /// </summary>
+    STOVE,
+    /// <summary>
+    /// 그릇놓는소리1
+    /// </summary>
+    DISH1,
+    /// <summary>
+    /// 그릇놓는소리2
+    /// </summary>
+    DISH2,
+    /// <summary>
+    /// 문닫는소리
+    /// </summary>
+    DOOR_CLOSE,
+    /// <summary>
+    /// 문여는소리
+    /// </summary>
+    DOOR_OPEN,
+    /// <summary>
+    /// 물웅덩이소리1
+    /// </summary>
+    WATER1,
+    /// <summary>
+    /// 시계 똑딱소리1
+    /// </summary>
+    CLOCK1,
+    /// <summary>
+    /// 변기내리는소리
+    /// </summary>
+    TOILET,
+    /// <summary>
+    /// 세면대 물튼소리
+    /// </summary>
+    TURN_WATER,
+    /// <summary>
+    /// 수화기 드는소리
+    /// </summary>
+    PHONE_UP,
+    /// <summary>
+    /// 식기건드는소리(냄비?)
+    /// </summary>
+    POT,
+    /// <summary>
+    /// 식기건드리는소리(잔)
+    /// </summary>
+    CUP1,
+    /// <summary>
+    /// 책 페이지 넘기는소리
+    /// </summary>
+    BOOK,
+    /// <summary>
+    /// 전화연결중소리
+    /// </summary>
+    CALLING,
+    /// <summary>
+    /// 컵건드는소리
+    /// </summary>
+    CUP2,
+    /// <summary>
+    /// 와인잔 짠
+    /// </summary>
+    GLASS,
+    /// <summary>
+    /// 키 얻었을때(짤랑)
+    /// </summary>
+    GET_KEY,
+    /// <summary>
+    /// 튜브나 공 밟는소리
+    /// </summary>
+    TUBE,
+    /// <summary>
+    /// 티비 지지직 소리
+    /// </summary>
+    TV,
+    /// <summary>
+    /// 괘종시계
+    /// </summary>
+    BIG_CLOCK,
+    /// <summary>
+    /// 유리깨지는소리
+    /// </summary>
+    CRASH,
+    /// <summary>
+    /// 냉장고여는소리
+    /// </summary>
+    REFRI,
+    /// <summary>
+    /// 여자웃음소리(마네킹)
+    /// </summary>
+    LAUGH,
+    /// <summary>
+    /// 물웅덩이소리2
+    /// </summary>
+    WATER2,
+    /// <summary>
+    /// 서랍장 문여는 소리
+    /// </summary>
+    DESK,
+    /// <summary>
+    /// 시계 똑딱소리2
+    /// </summary>
+    CLOCK2,
+    /// <summary>
+    /// 세탁기 소리
+    /// </summary>
+    WASHER,
+    /// <summary>
+    /// 청소기소리
+    /// </summary>
+    VACUUM,
+    /// <summary>
+    /// 키보드타이핑소리1
+    /// </summary>
+    TYPING1,
+    /// <summary>
+    /// 환기구소리
+    /// </summary>
+    VENT,
+    /// <summary>
+    /// 물에 담궜다 손 빼는소리 water-swirl-small-23
+    /// </summary>
+    WATER_HAND,
+    /// <summary>
+    /// 흔들의자 소리 rockingchair4
+    /// </summary>
+    ROCKING_CHAIR,
+    /// <summary>
+    ///  양동이 소리 metal-lid-thumps-01
+    /// </summary>
+    BUCKET,
+    /// <summary>
+    /// 축음기 소리 gramophone
+    /// </summary>
+    GRAMOPHONE,
+    /// <summary>
+    /// 장식장 깨는소리 glass-smash-bottle-c
+    /// </summary>
+    HUTCH_CRASH,
+    /// <summary>
+    /// 생일축하 오르골 소리 music-box-happy-birthday
+    /// </summary>
+    MUSICBOX,
+    /// <summary>
+    /// 물 넘쳐서 흐르는 소리(졸졸)
+    /// </summary>
+    WATER_OVERFLOW,
+    /// <summary>
+    /// 키보드타이핑소리2
+    /// </summary>
+    TYPING2,
+    /// <summary>
+    /// 효정이비명소리
+    /// </summary>
+    HYOJUNG_KKYAK,
+    /// <summary>
+    /// 물웅덩이3
+    /// </summary>
+    WATER3,
+    /// <summary>
+    /// 까마귀소리
+    /// </summary>
+    CROW,
+    /// <summary>
+    /// 종이에 글쓰는소리
+    /// </summary>
+    WRITE,
+    /// <summary>
+    /// 게임내 브금
+    /// </summary>
+    GAMEBGM
 
-}
+};
 
-
-public class SoundManager :MonoBehaviour{
-
-    public static int BGM_MAX = 4;
-    public static int EFFECT_MAX = 30;
+public class SoundManager : MonoBehaviour
+{
+    public static SoundManager instance = null;
     
+    public AudioClip[] audioClipList;
 
-    public static SoundManager Instance = null;
+    public AudioSource bgmSource;
+    public AudioSource effectSource;
+    public AudioSource walkSource;
 
-    public AudioClip[] audioList= new AudioClip[EFFECT_MAX];//효과음 저장
-    public AudioClip[] bgmList = new AudioClip[BGM_MAX];
-    public AudioSource bgmSource, effectSource , walkSource;
+    public AudioClip audioClip;
 
-    float _volume = 0.5f;    //볼륨값
-    int _nowBgm;    //지금 재생중인 브금 키값
-    float _walkVolume=0.0f; //발소리 볼륨
+    public float soundVolume;
+    public int walkVolume;//(0~100) 발소리 사운드 볼륨*퍼센트
 
+    public bool isMute = false;//true면 음소거
 
-    
-
-    private void Awake()
+    //접근용
+    public static SoundManager getInstance()
     {
-       
-        if (Instance == null)
+
+        if (instance == null)
+            instance = new SoundManager();
+        
+        return instance;
+    }
+
+    //스타트보다 먼저실행
+    void Awake()
+    {
+
+
+        if (SoundManager.instance == null) //incetance가 비어있는지 검사합니다.
         {
-            Instance = this;
+            SoundManager.instance = this; //자기자신을 담습니다.
         }
-        else if (Instance != this)
+
+        else
         {
             Destroy(gameObject);
         }
 
-        DontDestroyOnLoad(gameObject);
-
+        DontDestroyOnLoad(this);
     }
 
-    private void Start()
-    {
-
-        addSource();
-
-
-        //브금 틀기
-        BgmPlay(0); 
-
-    }
-
-    /// <summary>
-    /// 리소스 추가
-    /// </summary>
-    private void addSource()
-    {
-        /// <summary>
-        /// 물웅덩이에 나는소리
-        /// </summary>
-        audioList[0] = Resources.Load("001", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 차박차박소리
-        /// </summary>
-        audioList[0] = Resources.Load("002", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 심장소리 천천히
-        /// </summary>
-        audioList[0] = Resources.Load("003", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 심장소리 빠르게
-        /// </summary>
-        audioList[0] = Resources.Load("004", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 심장소리 점점 빠르게
-        /// </summary>
-        audioList[0] = Resources.Load("005", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 심장소리 점점 빠르게22
-        /// </summary>
-        audioList[0] = Resources.Load("006", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 물 차박
-        /// </summary>
-        audioList[0] = Resources.Load("007", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 게임오버시 피튀기는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("008", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 꺼림칙한 웃음소리
-        /// </summary>
-        audioList[0] = Resources.Load("100", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 낮은 중저음 웃음소리
-        /// </summary>
-        audioList[0] = Resources.Load("101", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 미친웃음소리
-        /// </summary>
-        audioList[0] = Resources.Load("102", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 계단 올라가는 발소리
-        /// </summary>
-        audioList[0] = Resources.Load("103", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 노크1
-        /// </summary>
-        audioList[0] = Resources.Load("104", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 계단올라가는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("105", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 계단 올라가는소리, 발소리
-        /// </summary>
-        audioList[0] = Resources.Load("106", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 울리는 발소리
-        /// </summary>
-        audioList[0] = Resources.Load("107", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 조용히 발소리
-        /// </summary>
-        audioList[0] = Resources.Load("108", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 노크2
-        /// </summary>
-        audioList[0] = Resources.Load("109", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 문열리는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("110", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        ///여자 흐느끼는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("200", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 타이핑소리
-        /// </summary>
-        audioList[0] = Resources.Load("201", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 비명소리
-        /// </summary>
-        audioList[0] = Resources.Load("202", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 일기장 페이지 넘기는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("203", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 티비 켜져있는데 아무것도 안보일때 소리
-        /// </summary>
-        audioList[0] = Resources.Load("204", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 수영장 소리
-        /// </summary>
-        audioList[0] = Resources.Load("205", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 물 떨어지는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("206", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// 연필로 글쓰는 소리
-        /// </summary>
-        audioList[0] = Resources.Load("207", typeof(AudioClip)) as AudioClip;
-        /// <summary>
-        /// 까마귀 소리
-        /// </summary>
-        audioList[0] = Resources.Load("208", typeof(AudioClip)) as AudioClip;
-        /// <summary>
-        /// 까마귀 소리
-        /// </summary>
-        audioList[0] = Resources.Load("209", typeof(AudioClip)) as AudioClip;
-
-        /// <summary>
-        /// bgm
-        /// </summary>
-        audioList[0] = Resources.Load("BGM", typeof(AudioClip)) as AudioClip;
-
-    }
-
-
-
-
-    /// <summary>
-    ///브금 재생 시작
-    /// </summary>
-    public void BgmPlay(int key)
-    {
-        bgmSource.Pause();
-        bgmSource.clip = bgmList[key];
-        bgmSource.Play();
-        bgmSource.loop = true;  //반복재생
-    }
     
-    
-    /// <summary>
-    ///효과음 재생
-    /// </summary>
-    public void playSound(int key)
+
+    // Use this for initialization
+    void Start()
     {
-        effectSource.clip = audioList[key];
-        effectSource.Play();
+        soundVolume = 1.0f;
+
+
+        bgmSource = new AudioSource();
+        effectSource = new AudioSource();
+        walkSource = new AudioSource();
+
+        audioClipList = new AudioClip[54];
+
+        bgmSource = gameObject.AddComponent<AudioSource>();
+        effectSource = gameObject.AddComponent<AudioSource>();
+        walkSource = gameObject.AddComponent<AudioSource>();
+
+
+        //변수초기화
         effectSource.loop = false;
+        walkVolume = 0;
 
+        //-------리소스 긁어오기-------------------------
+        object[] temp = new object[54];
+        temp = Resources.LoadAll("Sounds");
+
+
+        //226 - 227 / 221- 224 왜 로드안댐?
+        for (int i = 0; i<temp.Length; i++)
+        {
+            audioClipList[i] = temp[i] as AudioClip;
+        }
+
+        //--------------------------------------------
+
+        playBgm(audioClipList[(int)SOUND_NAME.STARTBGM]);
+        walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
+
+        bgmSource.PlayOneShot(audioClip);
+
+        muteAll();
     }
 
-    /// <summary>
-    ///볼륨조절(환경설정)
-    /// </summary>
-    public void volumeControl(int key,int volume)
+    // Update is called once per frame
+    void Update()
     {
-        bgmSource.pitch = volume;
-        effectSource.pitch = volume;
-
+        //walkSound 갱신
+        if (!isMute)
+        {
+            updateWalkSoundVolume();
+        }
     }
 
-    /// <summary>
-    /// 적 발소리 계산해서 볼륨조절
-    /// </summary>
-    public void walkSound()
+
+    //==========재생할거 찾기=============
+    public AudioClip findAudioClip(SOUND_NAME s)
     {
-        int i = 0;
-        //Scene_Manager.find_shortest(start, end, ref i, new List<>());
+        return audioClipList[(int)s];
     }
-    
-    
+
+
+
+    //------------소스를 재생시키는것
+    public void playBgm()
+    {
+        if (!isMute)
+        {
+            bgmSource.Play();
+            bgmSource.loop = true;
+            bgmSource.volume = soundVolume;
+        }
+    }
+
+    public void playBgm(AudioClip audio)
+    {
+        bgmSource.clip = audio;
+
+        if (!isMute)
+        {
+            bgmSource.Play();
+            bgmSource.loop = true;
+            bgmSource.volume = soundVolume;
+        }
+    }
+
+    public void playEffect()
+    {
+        if (!isMute)
+        {
+            effectSource.Play();
+            effectSource.volume = soundVolume;
+
+        }
+    }
+
+    public void playEffect(AudioClip audio)
+    {
+
+        effectSource.clip = audio;
+
+        if (!isMute)
+        {
+            effectSource.Play();
+            effectSource.volume = soundVolume;
+
+        }
+    }
+
+    public void setVolumeAll(float volume)
+    {
+        soundVolume = volume;
+        effectSource.volume = volume;
+        bgmSource.volume = volume;
+    }
+
+    public void muteAll()
+    {
+        isMute = true;
+        bgmSource.volume = 0;
+        effectSource.volume = 0;
+        walkSource.volume = 0;
+    }
+
+    public void unMute()
+    {
+        isMute = false;
+        bgmSource.volume = soundVolume;
+        effectSource.volume = soundVolume;
+        walkSource.volume = soundVolume;
+    }
+
+    public void playWalkSoundStart()
+    {
+        walkSource.Play();
+        walkSource.loop = true;
+    }
+
+    public void updateWalkSoundVolume()
+    {
+        walkSource.volume = walkVolume * soundVolume;
+
+    }
+
+
+
 
 }

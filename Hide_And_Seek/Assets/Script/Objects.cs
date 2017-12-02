@@ -215,6 +215,13 @@ public class Objects : MonoBehaviour, IObject {
         }else if(_key_num == 1903) {
             if (!isInputPassword) return 0;
             else if (isInputPassword && isValidPassword) return 2;
+        }else if(_key_num == 702) {
+            if (Inventory.getInstance().isExitItem(1) || Inventory.getInstance().isExitItem(5))
+                return 2;
+        } else if (_key_num == 1005 && false) {
+            return 2;
+        }else if (_key_num == 3001 && GameManager.getInstance().FindCharacter[0] == 1) {
+            return 1;
         }
 
         if (mode == mode_detail) {
@@ -250,6 +257,7 @@ public class Objects : MonoBehaviour, IObject {
     private void afterAction() {
 
         if (_key_num == 110) this.gameObject.SetActive(false);
+        else if (_key_num == 702) this.gameObject.SetActive(false);
         else if (_key_num == 116 && GameManager.getInstance().GetMainChapter() == 12) {
             GameManager.getInstance().Wallpaper = 1;
             GameManager.getInstance().CheckMainChapter();
@@ -258,6 +266,21 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(false);
         }else if(_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
+        }else if(_key_num == 401) {
+            GameManager.getInstance().MeetCharacter[1]++;
+            GameManager.getInstance().CheckMainChapter();
+        }else if(_key_num == 3001) {
+            GameManager.getInstance().FindCharacter[0] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3002) {
+            GameManager.getInstance().FindCharacter[2] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3003) {
+            GameManager.getInstance().FindCharacter[3] = 1;
+            this.gameObject.SetActive(false);
+        } else if (_key_num == 3004) {
+            GameManager.getInstance().FindCharacter[1] = 1;
+            this.gameObject.SetActive(false);
         }
     }
 
@@ -265,6 +288,8 @@ public class Objects : MonoBehaviour, IObject {
         if(_key_num == 13002 && item_Key == 15) {
             GameManager.getInstance().BreakDisplay = 1;
             SceneManager.LoadScene("2_Dress");
+        }else if(_key_num == 1005 && item_Key == 10) {
+            spriteRenderer.sprite = InfoByChapter[2].sprite;
         }
     }
 

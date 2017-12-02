@@ -36,7 +36,11 @@ public class SaveManager : MonoBehaviour
     public int Player_MainChapter;
     public List<int> Player_Inventory;
     public int[] Player_EndScene;
-
+    public int[] Player_FindCharacter;
+    public int[] Player_DeadCharacter;
+    public int[] Player_MeetCharacter;
+    public int[] Player_FindJeongyeon;
+    
     public Room Player_Room;
     public Room Enemy_Room;
 
@@ -60,6 +64,11 @@ public class SaveManager : MonoBehaviour
         public int E_Room;
         public int E_Spot;
         public int[] EndScene;
+        public int[] FindCharacter;
+        public int[] DeadCharacter;
+        public int[] MeetCharacter;
+        public int[] FindJeongyeon;
+
 
 
     }
@@ -216,9 +225,13 @@ public class SaveManager : MonoBehaviour
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
         data.EndScene = GameManager.getInstance().EndScene;
-       // data.E_Room = (int)Enemy_ISpot._room;
-       // data.E_Spot = Enemy_ISpot._spot;
-        
+        data.FindCharacter = GameManager.getInstance().FindCharacter;
+        data.DeadCharacter = GameManager.getInstance().DeadCharacter;
+        data.MeetCharacter = GameManager.getInstance().MeetCharacter;
+        data.FindJeongyeon = GameManager.getInstance().FindJeongyeon;
+        // data.E_Room = (int)Enemy_ISpot._room;
+        // data.E_Spot = Enemy_ISpot._spot;
+
         Debug.Log("save " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
 
 
@@ -258,13 +271,21 @@ public class SaveManager : MonoBehaviour
                 PlayerPos.z = data.z;
                 Player_Inventory = data.Inventory;
                 Player_EndScene = data.EndScene;
+                Player_FindCharacter = data.FindCharacter;
+                Player_MeetCharacter = data.MeetCharacter;
+                Player_DeadCharacter = data.DeadCharacter;
+                Player_FindJeongyeon = data.FindJeongyeon;
                 // Enemy_ISpot._room = (Room)data.E_Room;
                 //Enemy_ISpot._spot = data.E_Spot;
 
-
                 GameManager.getInstance().EndScene = Player_EndScene;
-                Inventory.getInstance().inventory = Player_Inventory;
+                GameManager.getInstance().FindCharacter = Player_FindCharacter;
+                GameManager.getInstance().MeetCharacter = Player_MeetCharacter;
+                GameManager.getInstance().DeadCharacter = Player_DeadCharacter;
+                GameManager.getInstance().FindJeongyeon = Player_FindJeongyeon;
                 GameManager.getInstance().SetMainChapter(Player_MainChapter);
+                Inventory.getInstance().inventory = Player_Inventory;
+  
                 FlashLight.Init(Player_Battery, true);
                 Player.Init(Player_hp, PlayerPos, Player_ISpot);
 

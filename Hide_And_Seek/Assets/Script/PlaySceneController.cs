@@ -494,15 +494,15 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("2_Hall");
         yield return new WaitForSeconds(0.001f);
 
-        obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
+        //obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
         obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
         FlashLight flash = Instantiate(pre_light_flash).GetComponent<FlashLight>();
         yield return new WaitForSeconds(0.001f);
 
         //위치 설정
         obj_char[(int)char_num.main].transform.position = new Vector3(3f, -0.2f, 0);
-        obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
-        obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
+        //obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
+        //obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
         flash.LinkUser(obj_char[(int)char_num.main]);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().linkUser(obj_char[(int)char_num.main]);
         
@@ -536,15 +536,15 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("2_Hall");
         yield return new WaitForSeconds(0.001f);
 
-        obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
+        //obj_char[(int)char_num.hb] = Instantiate(pre_char[(int)char_num.hb]);
         obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
         FlashLight flash = Instantiate(pre_light_flash).GetComponent<FlashLight>();
         yield return new WaitForSeconds(0.001f);
 
         //위치 설정
         obj_char[(int)char_num.main].transform.position = new Vector3(3f, -0.2f, 0);
-        obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
-        obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
+        //obj_char[(int)char_num.hb].transform.position = new Vector3(1.68f, -0.42f, 0);
+        //obj_char[(int)char_num.hb].transform.localScale = new Vector3(-1f, 1f, 1f);
         flash.LinkUser(obj_char[(int)char_num.main]);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().linkUser(obj_char[(int)char_num.main]);
 
