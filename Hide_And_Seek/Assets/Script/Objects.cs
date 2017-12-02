@@ -272,7 +272,7 @@ public class Objects : MonoBehaviour, IObject {
         } else if (_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
         } else if (_key_num == 2002) {
-            if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 4362); }
+            PasswordUIManager password = new PasswordUIManager(this.gameObject, 4362);
         } else if(_key_num == 401) {
             GameManager.getInstance().MeetCharacter[1]++;
             GameManager.getInstance().CheckMainChapter();
@@ -320,6 +320,15 @@ public class Objects : MonoBehaviour, IObject {
                 spriteRenderer.sprite = InfoByChapter[2].sprite;
             } else if (!isValid) {
                 ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[3].outputByCall.script_key });
+                isInputPassword = false;
+            }
+        }else if (_key_num == 2002) {
+            if (isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[1].outputByCall.script_key });
+                GameManager.getInstance().CorrectPassword = 1;
+                GameManager.getInstance().CheckMainChapter();
+            } else if (!isValid) {
+                ScriptManager.getInstance().showScript(true, new int[] { InfoByChapter[1].outputByCall.script_key_isExistitem });
                 isInputPassword = false;
             }
         }
