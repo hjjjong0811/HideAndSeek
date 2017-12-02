@@ -14,9 +14,11 @@ public class Player : MonoBehaviour {
 
     public float Hp, Speed;
     public bool Tire;
-    private static bool hiding;//호빈추가
+    public static bool hiding;//호빈추가
+    public GameObject Hiding_UI_Prefab;//호빈추가
+    private static GameObject Hiding_UI_Obj;//호빈추가
     public ISpot SpotInfo;
-    public static Room Player_Last_Room;//호빈추가
+    public static int Player_Last_Portal_num;//호빈추가_ 플레이어가 가장최근에 탄 포탈번호
 
     public Animator Animator;
     public Move move;
@@ -112,7 +114,7 @@ public class Player : MonoBehaviour {
 
         Player_obj = this.gameObject;//호빈추가
         Tire = false;
-        hiding = false;//호빈추가_test
+        hiding = false;//호빈추가
         Animator = GetComponent<Animator>();
         move = GetComponent<Move>();
         Speed = Speed_walk;
@@ -147,10 +149,29 @@ public class Player : MonoBehaviour {
     private void Update() {
         if (ScriptManager.getInstance().isPlaying) return;
 
+        /*
+        //H키 테스트하고 주석풀어두기
         if (hiding)//호빈추가
         {
             if (Input.GetButtonDown("Action")) hiding = false;
             return;
+        }
+         */
+
+        //호빈추가 'H'키로 hiding테스트중
+        if (hiding)
+        {
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                hiding = false;
+                //Debug.Log("숨기UI삭제");//test
+                Destroy(Hiding_UI_Obj);
+            }
+            return;
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            player_hide();
         }
 
         Animator.SetInteger("State", Ani_Idle);
@@ -265,7 +286,7 @@ public class Player : MonoBehaviour {
         if (itemKey == -1) return;
         GameObject nearObject = findNearObject();
         if (nearObject != null) {
-            //nearObject.SendMessage("action", itemKey);
+            nearObject.SendMessage("useitem", itemKey);
             Debug.Log(nearObject.name + " Player_action");
         }
     }
@@ -319,5 +340,12 @@ public class Player : MonoBehaviour {
     public static ISpot get_player_spot()
     {
         return Player.Player_obj.GetComponent<Player>().SpotInfo;
+    }
+
+    private void player_hide(){
+        hiding = true;
+        //Debug.Log("숨기UI생성");//test
+        Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
+        Enemy.player_start_hiding();
     }
 }
