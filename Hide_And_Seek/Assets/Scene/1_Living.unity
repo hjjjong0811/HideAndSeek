@@ -3365,7 +3365,7 @@ MonoBehaviour:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
-      isBlockPortal: 0
+      isBlockPortal: 1
       script_key_isExistitem: 0
   - chapter: 14
     isActive: 1
@@ -3384,7 +3384,7 @@ MonoBehaviour:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
-      isBlockPortal: 0
+      isBlockPortal: 1
       script_key_isExistitem: 0
   - chapter: 15
     isActive: 1
@@ -3409,7 +3409,7 @@ MonoBehaviour:
   - chapter_canUse: 14
     materialItem_key: 43
     outputByUsingItem:
-      script_key: 1
+      script_key: 7211
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -3825,7 +3825,7 @@ MonoBehaviour:
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 1
+    type: 4
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -3835,9 +3835,9 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 7012
+      script_key: 7013
       sound: {fileID: 0}
-      item_key: 0
+      item_key: 32
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 7012
   usingItem: []

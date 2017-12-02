@@ -307,6 +307,8 @@ public class Objects : MonoBehaviour, IObject {
             SceneManager.LoadScene("2_Dress");
         }else if(_key_num == 1005 && item_Key == 10) {
             spriteRenderer.sprite = InfoByChapter[2].sprite;
+        }else if(_key_num == 1 && !_t_thing_f_portal && item_Key == 43) {
+            GameManager.getInstance().GroundKey = 1;
         }
     }
 
