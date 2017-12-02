@@ -189,8 +189,9 @@ public class GameManager
         //배터리 부족시 엔딩
         if (FlashLight.getFlashData() <= 0)
             SetMainChapter(-6);
-
+        
         chapterPlayScene(); // 스토리 씬인지 확인
+        
 
 
     }
@@ -256,10 +257,15 @@ public class GameManager
                 if (isFirstTime(PlayScene.numScene.habin_havesalt))
                     scenePlay_End(PlayScene.numScene.habin_havesalt);
 
-                //정연이 없네 씬
+                //하빈이가 정연이 데려오라하는씬 이후에 정연이 없네 씬
                 else if
-                    (isFirstTime(PlayScene.numScene.no_jy) && EndScene[5] == 1)
+                    (isFirstTime(PlayScene.numScene.no_jy) && isSceneEnd(PlayScene.numScene.habin_havesalt))
                     scenePlay_End(PlayScene.numScene.no_jy);
+
+                //정연이 없네 씬 이후에
+                else if (isSceneEnd(PlayScene.numScene.no_jy))
+                    //정연이 모든방 돌아다니면서 찾기
+                    changeArrayState();
                 break;
 
             // 방 다 뒤져서 정연이없는상태임
@@ -269,7 +275,7 @@ public class GameManager
                     scenePlay_End(PlayScene.numScene.no_hb);
 
                 //하빈이 죽었자나?!씬 
-                else if (isFirstTime(PlayScene.numScene.hb_die) && isCheckRoom("2_Swimming") && EndScene[7] == 1)
+                else if (isFirstTime(PlayScene.numScene.hb_die)  && isSceneEnd(PlayScene.numScene.no_hb) && isCheckRoom("2_Swimming"))
                     scenePlay_End(PlayScene.numScene.hb_die);
 
                 //장식장 뿌시는씬
@@ -285,8 +291,9 @@ public class GameManager
                     scenePlay_End(PlayScene.numScene.break_cabinet);
 
                 //뿌신후 장롱안에서 세탁기 웅웅씬
-                else if (isFirstTime(PlayScene.numScene.after_break) && EndScene[9] == 1 && isHide)
+                else if (isFirstTime(PlayScene.numScene.after_break) && isSceneEnd(PlayScene.numScene.break_cabinet) && Player.hiding)
                 {
+                    
                     scenePlay_End(PlayScene.numScene.after_break);
                     Player.hiding = false;
                 }
@@ -362,13 +369,9 @@ public class GameManager
             return false;
     }
 
+
     public void changeArrayState()
     {
-        int Chapter = MainChapter;
-
-
-        if (Chapter == 7) // 정연이 찾는 챕터일때
-        {
             switch (SceneManager.GetActiveScene().name)
             {
                 case "1_Bath": FindJeongyeon[0] = 1; break;
@@ -380,8 +383,6 @@ public class GameManager
                 case "1_Living": FindJeongyeon[6] = 1; break;
                 case "1_Reception": FindJeongyeon[7] = 1; break;
             }
-        }
-
 
     }
 
@@ -425,9 +426,7 @@ public class GameManager
 
     public int GetMainChapter() // 현재 챕터 반환
     {
-
         CheckMainChapter(); //현정추가 한번체크후 반환필요해보여서
-        changeArrayState(); // 스토리진행변수체크
         return MainChapter;
     }
 
