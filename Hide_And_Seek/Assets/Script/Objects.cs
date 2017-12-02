@@ -194,11 +194,12 @@ public class Objects : MonoBehaviour, IObject {
     private int findIndexByChapter(int mode) {
         int chapter = GameManager.getInstance().GetMainChapter();
         int index = 0;
-        
-        if (_key_num == 13002 && GameManager.getInstance().BreakDisplay == 1) {
-            return 2;
-        }else if (_key_num == 13001 && GameManager.getInstance().BreakDisplay == 1) {
-            return 1;
+
+        if (GameManager.getInstance().BreakDisplay == 1) {
+            if (_key_num == 607) return 2;
+            else if (_key_num == 608) return 1;
+            else if (_key_num == 13002) return 2;
+            else if (_key_num == 13001) return 1;
         }else if (_key_num == 110) {
             if (Inventory.getInstance().isExitItem(3) || Inventory.getInstance().isExitItem(5))
                 return 2;
@@ -268,9 +269,11 @@ public class Objects : MonoBehaviour, IObject {
             SceneManager.LoadScene("2_Baby");
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
             this.gameObject.SetActive(false);
-        }else if(_key_num == 1903) {
+        } else if (_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
-        }else if(_key_num == 401) {
+        } else if (_key_num == 2002) {
+            if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 4362); }
+        } else if(_key_num == 401) {
             GameManager.getInstance().MeetCharacter[1]++;
             GameManager.getInstance().CheckMainChapter();
         }else if(_key_num == 3001) {
