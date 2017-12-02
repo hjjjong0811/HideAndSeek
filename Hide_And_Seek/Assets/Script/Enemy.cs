@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3, finding = 4 };//내부상태
 public class Enemy : MonoBehaviour
 {
     public static GameObject _enemy = null;
@@ -11,7 +12,6 @@ public class Enemy : MonoBehaviour
     private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
     private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f, 1f };//[normal,chasing 상태] 내부상태에 따른 활동시간
     public float _enemy_speed = 1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
-    enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3, finding = 4 };//내부상태
 
     //[아저씨 상태 변수]
     private static bool _enemy_working;//아저씨 발동상태
@@ -449,4 +449,44 @@ public class Enemy : MonoBehaviour
         Debug.Log("적 수 : " + enemys.Length);
         if (enemys.Length > 1) Destroy(this.gameObject);
     }
+
+    /// <summary>
+    /// ////////아직 구현미완 -진행중-
+    /// </summary>
+    public void _enemy_save_data(){
+        Enemy_Data result = new Enemy_Data();
+        result._enemy = Enemy._enemy;
+        result._enemy_working = Enemy._enemy_working;
+        result._f_normal_t_chasing = Enemy._f_normal_t_chasing;
+        result._enemy_spot = Enemy._enemy_spot;
+        result._enemy_last_spot = Enemy._enemy_last_spot;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+        result._enemy = Enemy._enemy;
+
+    }
+    public void _enemy_bring_data()
+    {
+
+    }
+}
+
+public class Enemy_Data
+{
+    public GameObject _enemy;
+    public bool _enemy_working;//아저씨 발동상태
+    public bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
+    public ISpot _enemy_spot;//아저씨 위치
+    public ISpot _enemy_last_spot;//아저씨 이전 위치
+    public Enemy_State _enemy_state;//현재 내부상태
+    public Room _enemy_dest;
+    public Route _enemy_route;
+    public bool _enemy_looking;//[normal상태] 둘러보기 세마포어용 변수
+    public bool _enemy_finding;
+    public float _enemy_finding_time;
+    public Vector3 _enemy_pos;
 }

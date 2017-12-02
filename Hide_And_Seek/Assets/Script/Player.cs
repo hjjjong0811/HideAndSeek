@@ -147,6 +147,7 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
+        Debug.Log(hiding);
         if (ScriptManager.getInstance().isPlaying) return;
 
         //호빈추가_ 숨기해제
