@@ -176,110 +176,117 @@ public class GameManager
 
         // 비밀번호 입력후 일치 -> 16(엔딩)
         else if (MainChapter == 15 && CorrectPassword == 1)
-            SetMainChapter(16);
+            SetMainChapter(-3);
 
         //배터리 부족시 엔딩
         if (FlashLight.getFlashData() <= 0)
             SetMainChapter(-6);
 
 
-        StoryPlayScene(); // 스토리 씬인지 확인
+        chapterPlayScene(); // 스토리 씬인지 확인
 
     }
 
 
-    public void StoryPlayScene()
+    public void chapterPlayScene()
     {
         int Chapter = MainChapter;
-
+       
         switch (Chapter)
         {
             //잘못된 오브젝트 사용 엔딩
             case -1:
-                    scenePlayAndEnd(PlayScene.numScene.Invalid_Obj);
+                scenePlay_End(PlayScene.numScene.Invalid_Obj);
                 break;
     
             //정연엔딩
             case -2:
-                    scenePlayAndEnd(PlayScene.numScene.JeongYeon);
+                scenePlay_End(PlayScene.numScene.JeongYeon);
                 break;
 
                 // 진엔딩(꿈)
             case -3:
-                    scenePlayAndEnd(PlayScene.numScene.ending_exit);
+                scenePlay_End(PlayScene.numScene.ending_exit);
                 break;
 
                 //인형인줄 엔딩
             case -4:
-                    scenePlayAndEnd(PlayScene.numScene.suspectDoll);
+                scenePlay_End(PlayScene.numScene.suspectDoll);
                 break;
 
                 //아저씨 범인일때 엔딩
             case -5:
-                    scenePlayAndEnd(PlayScene.numScene.suspectKim);
+                scenePlay_End(PlayScene.numScene.suspectKim);
                 break;
             
 
             // 튜토리얼일때 튜토리얼 씬진행
-            case 0: if (isFirstTime(PlayScene.numScene.tutorial))
-                    scenePlayAndEnd(PlayScene.numScene.tutorial);
+            case 0:
+                if (isFirstTime(PlayScene.numScene.tutorial))
+                    scenePlay_End(PlayScene.numScene.tutorial);
                 break;
 
             // 친구들 다 찾은 챕터. hide_1_end 씬 진행
-            case 2: if (isFirstTime(PlayScene.numScene.hide_1_end))
-                    scenePlayAndEnd(PlayScene.numScene.hide_1_end);
+            case 2:
+                if (isFirstTime(PlayScene.numScene.hide_1_end))
+                    scenePlay_End(PlayScene.numScene.hide_1_end);
                 break;
 
             // 소주 찾은 챕터. hide_2_ready 진행
-            case 3: if (isFirstTime(PlayScene.numScene.hide_2_ready))
-                    scenePlayAndEnd(PlayScene.numScene.hide_2_ready);
+            case 3:
+                if (isFirstTime(PlayScene.numScene.hide_2_ready))
+                    scenePlay_End(PlayScene.numScene.hide_2_ready);
                 break;
 
             //하빈이 만난 챕터. 소금이 없음 씬 진행
-            case 6: if (isFirstTime(PlayScene.numScene.habin_nosalt) && Salt == 0)
-                scenePlayAndEnd(PlayScene.numScene.habin_nosalt);
+            case 6:
+                if (isFirstTime(PlayScene.numScene.habin_nosalt) && Salt == 0)
+                scenePlay_End(PlayScene.numScene.habin_nosalt);
                 break;
 
             // 소금이 있음.
             case 7:
                 //정연이 찾아와 씬
-                if (isFirstTime(PlayScene.numScene.habin_havesalt))
-                    scenePlayAndEnd(PlayScene.numScene.habin_havesalt); 
+                if(isFirstTime(PlayScene.numScene.habin_havesalt))
+                    scenePlay_End(PlayScene.numScene.habin_havesalt); 
 
                 //정연이 없네 씬
-                else if (isFirstTime(PlayScene.numScene.no_jy) && EndScene[5] == 1)
-                 scenePlayAndEnd(PlayScene.numScene.no_jy); 
+                else if
+                    (isFirstTime(PlayScene.numScene.no_jy) && EndScene[5] == 1)
+                 scenePlay_End(PlayScene.numScene.no_jy); 
                     break;
 
             // 방 다 뒤져서 정연이없는상태임
             case 8:
                   //하빈이도 없네
-                  if (isFirstTime(PlayScene.numScene.no_hb) && isCheckRoom("2_Hall"))
-                      scenePlayAndEnd(PlayScene.numScene.no_hb); 
+                  if(isFirstTime(PlayScene.numScene.no_hb) && isCheckRoom("2_Hall"))
+                      scenePlay_End(PlayScene.numScene.no_hb); 
 
                   //하빈이 죽었자나?!씬 
                   else if (isFirstTime(PlayScene.numScene.hb_die) && isCheckRoom("2_Swimming") && EndScene[7] == 1)
-                    scenePlayAndEnd(PlayScene.numScene.hb_die); 
+                    scenePlay_End(PlayScene.numScene.hb_die); 
                   break;
 
             case 9: case 10:
                 //장식장 뿌시는씬
                 if (isFirstTime(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
-                scenePlayAndEnd(PlayScene.numScene.break_cabinet);
+                scenePlay_End(PlayScene.numScene.break_cabinet);
 
                 //뿌신후 다음 장롱에 숨는씬
-                else if (isFirstTime(PlayScene.numScene.after_break) && EndScene[9] == 1 )
-                scenePlayAndEnd(PlayScene.numScene.after_break);
+                else if(isFirstTime(PlayScene.numScene.after_break) && EndScene[9] == 1 )
+                scenePlay_End(PlayScene.numScene.after_break);
                 break;
 
             // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
-            case 11: if (isFirstTime(PlayScene.numScene.jy_die))
-                scenePlayAndEnd(PlayScene.numScene.jy_die);
+            case 11:
+                if (isFirstTime(PlayScene.numScene.jy_die))
+                scenePlay_End(PlayScene.numScene.jy_die);
                 break;
 
             //  서운이 죽음확인 한 상태. 아저씨한테 전화씬
-            case 12: if (isFirstTime(PlayScene.numScene.ringPhone))
-                     scenePlayAndEnd(PlayScene.numScene.ringPhone);
+            case 12:
+                if (isFirstTime(PlayScene.numScene.ringPhone))
+                     scenePlay_End(PlayScene.numScene.ringPhone);
                  break;
 
         }
@@ -299,11 +306,13 @@ public class GameManager
             return false;
     }
 
+ 
+
     /// <summary>
     /// 씬 재생하기(EndScene = 1, isScenePlay = true)
     /// </summary>
     /// <param name="sceneNumber">씬 번호</param>
-    public void scenePlayAndEnd(PlayScene.numScene sceneNumber)
+    public void scenePlay_End(PlayScene.numScene sceneNumber)
     {
         isScenePlay = true;
         PlayScene.getInstance().playScene(sceneNumber);
@@ -383,7 +392,7 @@ public class GameManager
             return false;
     }
 
-    public void ResetGame() // 새로 시작시 초기화
+    public void resetGame() // 새로 시작시 초기화
     {
         MainChapter = -1;
 
