@@ -28,7 +28,6 @@ public class Enemy : MonoBehaviour
     private static bool _enemy_finding;
     private static float _enemy_finding_time;
     private static Vector3 _enemy_pos;
-    Vector3 _player_pos;
 
     // Use this for initialization
     void Start()
@@ -36,12 +35,9 @@ public class Enemy : MonoBehaviour
         if (Enemy._enemy != null) Destroy(this.gameObject);
 
         _enemy = this.gameObject;
-        //test
         _enemy_working = false;
         _f_normal_t_chasing = false;
-        //_f_normal_t_chasing = true;//test
         _enemy_spot = new ISpot(Room.Wine_0, 0);
-        //_enemy_spot = new ISpot(Room.Hall_1, 1);//test
         _enemy_last_spot = _enemy_spot;
         _enemy_state = Enemy_State.going_hall;
         _enemy_dest = Room.None;
@@ -50,7 +46,6 @@ public class Enemy : MonoBehaviour
         _enemy_looking = false;
         _enemy_finding = false;
         _enemy_finding_time = 0f;
-
         _enemy.transform.position = ENEMY_INIT_LOC;
         _enemy_pos = ENEMY_INIT_LOC;
 
@@ -61,8 +56,11 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (!_enemy_working) return;
+        if (ScriptManager.getInstance().isPlaying) _enemy_working = false;
 
         _enemy_pos = _enemy.transform.position;
+        
+        //Enemy에서 볼륨조절하게 되면, 여기에 추가하기!!
 
         if (_f_normal_t_chasing)
         {
@@ -228,7 +226,7 @@ public class Enemy : MonoBehaviour
             _enemy_finding_time = 0f;
 
             //플레이어 따라다니기
-            _player_pos = Player.Player_obj.GetComponent<Player>().get_player_pos();
+            Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
             if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
 
@@ -269,23 +267,10 @@ public class Enemy : MonoBehaviour
     {
         _enemy_finding = true;
 
-        /*
-        int distance = 0;
-        Scene_Manager.getInstance().find_shortest(_enemy_spot, Player.get_player_spot(), ref distance, new List<ISpot>());
-        yield return new WaitForSeconds((float)distance);
-        _enemy_finding_time += (float)distance;
-         */
         //Debug.Log("포탈앞에서 1초기다리기");
         yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
         _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
         _enemy_spot._room = Player.get_player_spot()._room;
-        /*
-        int distance = 0;
-        ISpot next_move = Scene_Manager.getInstance().find_shortest(_enemy_spot, Player.get_player_spot(), ref distance, new List<ISpot>())._next.get_data();
-        _enemy_last_spot = _enemy_spot;
-        _enemy_spot = next_move;
-        Debug.Log("test>>>>"+Player.Player_Last_Portal_num+" / "+Player.get_player_spot()._room);
-         */
         //Debug.Log("아저씨 위치 이동");
         _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(Player.Player_Last_Portal_num, Player.get_player_spot()._room);
 
@@ -451,42 +436,48 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// ////////아직 구현미완 -진행중-
+    /// 세이브파일 데이터 가져오는 함수
     /// </summary>
-    public void _enemy_save_data(){
-        Enemy_Data result = new Enemy_Data();
-        result._enemy = Enemy._enemy;
-        result._enemy_working = Enemy._enemy_working;
-        result._f_normal_t_chasing = Enemy._f_normal_t_chasing;
-        result._enemy_spot = Enemy._enemy_spot;
-        result._enemy_last_spot = Enemy._enemy_last_spot;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
-        result._enemy = Enemy._enemy;
+    /// <param name="result"></param>
+    public void enemy_bring_data(Enemy_Data result){
+
+        Enemy._enemy = this.gameObject;
+        Enemy._enemy_working = result._enemy_working;
+        Enemy._f_normal_t_chasing = false;
+        Enemy._enemy_spot = result._enemy_spot;
+        Enemy._enemy_last_spot = Enemy._enemy_spot;
+        Enemy._enemy_state = result._enemy_state;
+        Enemy._enemy_dest = result._enemy_dest;
+        Enemy._enemy_route = result._enemy_route;
+        Enemy._enemy_looking = false;
+        Enemy._enemy_finding = false;
+        Enemy._enemy_finding_time = 0f;
+        Enemy._enemy_pos = Enemy.ENEMY_INIT_LOC;
 
     }
-    public void _enemy_bring_data()
+    /// <summary>
+    /// 세이브파일 저장용 데이터 반환하는 함수
+    /// </summary>
+    /// <returns></returns>
+    public Enemy_Data enemy_save_data()
     {
+        Enemy_Data result = new Enemy_Data();
 
+        result._enemy_working = Enemy._enemy_working;
+        result._enemy_spot = Enemy._enemy_spot;
+        result._enemy_state = Enemy._enemy_state;
+        result._enemy_dest = Enemy._enemy_dest;
+        result._enemy_route = Enemy._enemy_route;
+
+        return result;
     }
 }
 
 public class Enemy_Data
 {
-    public GameObject _enemy;
     public bool _enemy_working;//아저씨 발동상태
-    public bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
     public ISpot _enemy_spot;//아저씨 위치
-    public ISpot _enemy_last_spot;//아저씨 이전 위치
     public Enemy_State _enemy_state;//현재 내부상태
     public Room _enemy_dest;
     public Route _enemy_route;
-    public bool _enemy_looking;//[normal상태] 둘러보기 세마포어용 변수
-    public bool _enemy_finding;
-    public float _enemy_finding_time;
-    public Vector3 _enemy_pos;
 }
