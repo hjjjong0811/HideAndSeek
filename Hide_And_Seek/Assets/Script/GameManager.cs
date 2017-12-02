@@ -121,7 +121,7 @@ public class GameManager
             SetMainChapter(6);
 
         // 소금있으면 ->7
-        else if (MainChapter == 6 && Salt == 1)
+        else if (MainChapter == 6 && isCheckRoom("2_Hall")&& Salt == 1)
             SetMainChapter(7);
 
         // 정연이 찾으려고 1층다돌면 ->8
