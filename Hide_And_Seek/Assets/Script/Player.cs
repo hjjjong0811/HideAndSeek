@@ -157,6 +157,13 @@ public class Player : MonoBehaviour {
             {
                 hiding = false;
                 Destroy(Hiding_UI_Obj);
+
+                //정원추가_숨을때 씬위해서
+                GameManager tmp = GameManager.getInstance();
+                if (tmp.isFirstTime(PlayScene.numScene.after_break) && tmp.isSceneEnd(PlayScene.numScene.break_cabinet))
+                {
+                    tmp.scenePlay_End(PlayScene.numScene.after_break);
+                }
             }
             return;
         }
@@ -330,8 +337,10 @@ public class Player : MonoBehaviour {
     }
 
     public void player_hide(){
+
         hiding = true;
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
         Enemy.player_start_hiding();
+        
     }
 }
