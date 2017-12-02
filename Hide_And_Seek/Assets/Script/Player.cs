@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public static string[] PlayerPrefsKey = {"Player_hp", "Player_x", "Player_y", "Player_z",
         "Player_Pos_room", "Player_Pos_spot"};
 
-    public static GameObject Player_obj;//호빈추가
+    public static GameObject Player_obj = null;//호빈추가
     public const float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
     public const int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
@@ -339,6 +339,7 @@ public class Player : MonoBehaviour {
     }
     public static ISpot get_player_spot()
     {
+        if (Player_obj == null) return new ISpot(Room.None, 0);
         return Player.Player_obj.GetComponent<Player>().SpotInfo;
     }
 

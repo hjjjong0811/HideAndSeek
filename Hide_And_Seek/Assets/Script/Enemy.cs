@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3, finding = 4 };//내부상태
 
     //[아저씨 상태 변수]
-    public static bool _enemy_working;//아저씨 발동상태
+    private static bool _enemy_working;//아저씨 발동상태
     private static bool _f_normal_t_chasing;//normal 상태(false) 인지 chasing 상태(true) 인지 구분해줌
     private static ISpot _enemy_spot;//아저씨 위치
     private static ISpot _enemy_last_spot;//아저씨 이전 위치
@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
     //public static bool _enemy_taking_portal;////////////////test
     private static bool _enemy_finding;
     private static float _enemy_finding_time;
-    Vector3 _enemy_pos;
+    private static Vector3 _enemy_pos;
     Vector3 _player_pos;
 
     // Use this for initialization
@@ -35,7 +35,7 @@ public class Enemy : MonoBehaviour
     {
         _enemy = this.gameObject;
         //test
-        _enemy_working = true;
+        _enemy_working = false;
         _f_normal_t_chasing = false;
         //_f_normal_t_chasing = true;//test
         _enemy_spot = new ISpot(Room.Wine_0, 0);
@@ -424,5 +424,24 @@ public class Enemy : MonoBehaviour
         _f_normal_t_chasing = false;
         _enemy_route = look_around_route(_enemy_spot, _enemy_dest)._next;
         _enemy_state = Enemy_State.going_dest;
+    }
+
+    public static void start_enemy_working()
+    {
+        if (!_enemy_working) Debug.Log("이미 Enemy working하는 중임!!!");//test
+        _enemy.transform.position = _enemy_pos;
+        _enemy_working = true;
+    }
+    public static void end_enemy_working()
+    {
+        if (!_enemy_working) Debug.Log("이미 Enemy working 안하는 중임!!!");//test
+        _enemy_working = false;
+        _enemy.transform.position = ENEMY_INIT_LOC;
+    }
+    private void check_enemy_created_before()
+    {
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        Debug.Log("적 수 : " + enemys.Length);
+        if (enemys.Length > 1) Destroy(this.gameObject);
     }
 }

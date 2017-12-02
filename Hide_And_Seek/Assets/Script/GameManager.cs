@@ -106,7 +106,10 @@ public class GameManager
 
         // hide_2_ready 씬 종료되면(준비끝) ->4
         else if (MainChapter == 3 && isSceneEnd(PlayScene.numScene.hide_2_ready))
+        {
+            Enemy.start_enemy_working();//호빈추가
             SetMainChapter(4);
+        }
 
         // 게임시작 효정이 만나면 -> 5
         else if (MainChapter == 4 && DeadCharacter[0] == 1)
@@ -121,7 +124,7 @@ public class GameManager
             SetMainChapter(6);
 
         // 소금있으면 ->7
-        else if (MainChapter == 6 && isCheckRoom("2_Hall")&& Salt == 1)
+        else if (MainChapter == 6 && isCheckRoom("2_Hall") && Salt == 1)
             SetMainChapter(7);
 
         // 정연이 찾으려고 1층다돌면 ->8
@@ -149,7 +152,7 @@ public class GameManager
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
-        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break) && DeadCharacter[2] == 1 )
+        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break) && DeadCharacter[2] == 1)
         {
             if (CheckOverlap[2] == 0)
             {
@@ -159,7 +162,7 @@ public class GameManager
         }
 
         // (세탁기)씬종료후 서운이 죽음 확인하면 -> 12
-        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[3] == 1 )
+        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[3] == 1)
             SetMainChapter(12);
 
         // 아저씨한테 전화하는씬 후 띠벽지 확인하면 ->13
