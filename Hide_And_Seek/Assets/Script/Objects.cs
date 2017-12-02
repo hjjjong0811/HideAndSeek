@@ -70,7 +70,7 @@ public class Objects : MonoBehaviour, IObject {
             
             if(InfoByChapter[index].sprite != null) spriteRenderer.sprite = InfoByChapter[index].sprite;
             if(InfoByChapter[index].sound_default != null) {
-                //Sound재생
+                SoundManager.getInstance().playEffect(InfoByChapter[index].sound_default);
             }
         }
 
@@ -102,8 +102,7 @@ public class Objects : MonoBehaviour, IObject {
             } else if (curInfo.type == Type.getItem) {
                 //Sound 있으면재생
                 if (curInfo.outputByCall.sound != null)
-                    //Sound
-                    Debug.Log("SoundCall");
+                    SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
                 //Item 획득가능하면 획득
                 if (curInfo.outputByCall.item_key != invalidValue) {
                     if (!Inventory.getInstance().addItem(curInfo.outputByCall.item_key)) {
@@ -119,8 +118,7 @@ public class Objects : MonoBehaviour, IObject {
             } else {
                 //Sound 있으면재생
                 if (curInfo.outputByCall.sound != null)
-                    //Sound
-                    Debug.Log("SoundCall");
+                    SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
 
                 //Script 있으면 재생
                 if (curInfo.outputByCall.script_key != invalidValue)
@@ -141,8 +139,7 @@ public class Objects : MonoBehaviour, IObject {
                     output curOutput = usingItem[i].outputByUsingItem;
                     //Sound 있으면재생
                     if (curOutput.sound != null)
-                        //Sound
-                        Debug.Log("SoundCall");
+                        SoundManager.getInstance().playEffect(curOutput.sound);
 
                     //Item 획득가능하면 획득
                     if (curOutput.item_key != invalidValue) {
@@ -182,8 +179,7 @@ public class Objects : MonoBehaviour, IObject {
             if (curInfo.isActByCollision)  {
                 //Sound 있으면재생
                 if (curInfo.outputByCollision.sound != null)
-                    //Sound
-                    Debug.Log("SoundCall");
+                    SoundManager.getInstance().playEffect(curInfo.outputByCollision.sound);
                 //Script 있으면 재생
                 if (curInfo.outputByCollision.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCollision.script_key });
@@ -221,6 +217,12 @@ public class Objects : MonoBehaviour, IObject {
         } else if (_key_num == 1005 && false) {
             return 2;
         }else if (_key_num == 3001 && GameManager.getInstance().FindCharacter[0] == 1) {
+            return 1;
+        } else if (_key_num == 3002 && GameManager.getInstance().FindCharacter[2] == 1) {
+            return 1;
+        } else if (_key_num == 3004 && GameManager.getInstance().FindCharacter[1] == 1) {
+            return 1;
+        } else if (_key_num == 3003 && GameManager.getInstance().FindCharacter[3] == 1) {
             return 1;
         }
 
@@ -281,6 +283,14 @@ public class Objects : MonoBehaviour, IObject {
         } else if (_key_num == 3004) {
             GameManager.getInstance().FindCharacter[1] = 1;
             this.gameObject.SetActive(false);
+        } else if(_key_num == 7) {
+            GameManager.getInstance().DeadCharacter[0] = 1;
+        }
+    }
+
+    private void afterCollision() {
+        if(_key_num == 1501) {
+            GameManager.getInstance().MeetCharacter[0] = 1;
         }
     }
 
