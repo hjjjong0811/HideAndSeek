@@ -287,9 +287,7 @@ public class SoundManager : MonoBehaviour
         walkSource = gameObject.AddComponent<AudioSource>();
 
 
-        //변수초기화
-        effectSource.loop = false;
-        walkVolume = 0;
+        
 
         //-------리소스 긁어오기-------------------------
         object[] temp = new object[54];
@@ -303,13 +301,21 @@ public class SoundManager : MonoBehaviour
         }
 
         //--------------------------------------------
+        //변수초기화
+        effectSource.loop = false;
+        walkVolume = 0;
 
-        playBgm(audioClipList[(int)SOUND_NAME.STARTBGM]);
+        bgmSource.playOnAwake = false;
+        effectSource.playOnAwake = false;
+        walkSource.playOnAwake = false;
+
+        //playBgm(audioClipList[(int)SOUND_NAME.STARTBGM]);
+
+        //발소리 미리 넣어둠
         walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
+        //playBgm(SOUND_NAME.GAMEBGM);
 
-        bgmSource.PlayOneShot(audioClip);
-
-        muteAll();
+        //muteAll();
     }
 
     // Update is called once per frame
@@ -354,13 +360,25 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    public void playBgm(SOUND_NAME s)
+    {
+        bgmSource.clip = audioClipList[(int)s];
+
+        if (!isMute)
+        {
+            bgmSource.Play();
+            bgmSource.loop = true;
+            bgmSource.volume = soundVolume;
+        }
+    }
+
     public void playEffect()
     {
         if (!isMute)
         {
             effectSource.Play();
             effectSource.volume = soundVolume;
-
+            effectSource.loop = false;
         }
     }
 
@@ -373,7 +391,20 @@ public class SoundManager : MonoBehaviour
         {
             effectSource.Play();
             effectSource.volume = soundVolume;
+            effectSource.loop = false;
+        }
+    }
 
+    public void playEffect(SOUND_NAME s)
+    {
+
+        effectSource.clip = audioClipList[(int)s];
+
+        if (!isMute)
+        {
+            effectSource.Play();
+            effectSource.volume = soundVolume;
+            effectSource.loop = false;
         }
     }
 
