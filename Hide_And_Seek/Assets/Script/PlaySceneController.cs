@@ -575,8 +575,8 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator nojy() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         SceneManager.LoadScene("1_Hall");
         yield return new WaitForSeconds(0.001f);
@@ -596,8 +596,8 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator nohb() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         SceneManager.LoadScene("2_Hall");
         yield return new WaitForSeconds(0.001f);
@@ -615,8 +615,8 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator hbd() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         SceneManager.LoadScene("2_Swimming");
         yield return new WaitForSeconds(0.001f);
@@ -657,8 +657,9 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator breakcabi() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("2_Dress");
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         //쨍
         //Sound
@@ -673,8 +674,8 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator afterbreak() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         yield return new WaitForSeconds(0.5f);
 
@@ -687,8 +688,8 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator jyd() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
+        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         SceneManager.LoadScene("1_Laundry");
         yield return new WaitForSeconds(0.001f);

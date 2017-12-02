@@ -97,6 +97,10 @@ public class Objects : MonoBehaviour, IObject {
             
             if (curInfo.type == Type.hide) {
                 //hide
+                GameObject pl = GameObject.Find("Player");
+                if (pl != null) {
+                    pl.GetComponent<Player>().player_hide();
+                }
             } else if (curInfo.type == Type.no) {
                 return;
             } else if (curInfo.type == Type.getItem) {
@@ -202,12 +206,12 @@ public class Objects : MonoBehaviour, IObject {
             else if (_key_num == 13001) return 1;
         }else if (_key_num == 110) {
             if (Inventory.getInstance().isExitItem(3) || Inventory.getInstance().isExitItem(5))
-                return 2;
+                return 1;
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
             return 1;
         }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
             Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))) {
-            return 1;
+            return 2;
         }else if(_key_num == 1903) {
             if (!isInputPassword) return 0;
             else if (isInputPassword && isValidPassword) return 2;
@@ -290,6 +294,9 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(false);
         } else if(_key_num == 7) {
             GameManager.getInstance().DeadCharacter[0] = 1;
+        }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
+            Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))){
+            spriteRenderer.sprite = InfoByChapter[2].sprite;
         }
     }
 
@@ -304,11 +311,12 @@ public class Objects : MonoBehaviour, IObject {
         if (_key_num == 13002 && item_Key == 15) {
             GameManager.getInstance().BreakDisplay = 1;
             Inventory.getInstance().deleteItem(15);
-            SceneManager.LoadScene("2_Dress");
-        }else if(_key_num == 1005 && item_Key == 10) {
+        } else if(_key_num == 1005 && item_Key == 10) {
             spriteRenderer.sprite = InfoByChapter[2].sprite;
         }else if(_key_num == 1 && !_t_thing_f_portal && item_Key == 43) {
             GameManager.getInstance().GroundKey = 1;
+        }else if(_key_num == 3201 && item_Key == 20) {
+            Inventory.getInstance().deleteItem(20);
         }
     }
 
