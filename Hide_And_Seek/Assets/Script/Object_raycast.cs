@@ -7,8 +7,9 @@ public class Object_raycast : MonoBehaviour
     static string[] object_sorting = new string[] { "Object_back", "Object_front" };
     List<SpriteRenderer> sr_list = new List<SpriteRenderer>();
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start()
+    {
         Transform[] child_objects = this.gameObject.GetComponentsInChildren<Transform>();
         foreach (Transform t in child_objects)
         {
@@ -17,12 +18,16 @@ public class Object_raycast : MonoBehaviour
                 sr_list.Add(t.gameObject.GetComponent<SpriteRenderer>());
             }
         }
-	}
-	
-	// Update is called once per frame
-	void Update () {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log(check_player_exist());//test
+        if (!check_player_exist()) return;
+
         change_childs();
-	}
+    }
 
     void change_childs()
     {
@@ -37,5 +42,15 @@ public class Object_raycast : MonoBehaviour
         {
             sr.sortingLayerName = order;
         }
+    }
+
+    bool check_player_exist()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            //Debug.Log("플레이어 없음");//test
+            return false;
+        }
+        else return true;
     }
 }
