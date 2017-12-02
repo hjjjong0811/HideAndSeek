@@ -10,7 +10,6 @@ public class SettingUIManager : MonoBehaviour {
     public GameObject InfoPanel; // 개발자 정보 패널(음악 리소스...)
     public GameObject Sound_Prefab; // 사운드 설정
     public GameObject Save_Prefab;
-    public List<string> DeveloperList;
     public List<string> SoundList;
     public Text Developter;
     public Text Sound;
@@ -18,7 +17,6 @@ public class SettingUIManager : MonoBehaviour {
     public void Start()
     {
         InfoPanel.SetActive(false);
-        DeveloperInfoView();
         SoundInfoView();
 
     }
@@ -37,29 +35,20 @@ public class SettingUIManager : MonoBehaviour {
         temp.name = "Save";
     }
 
-    public void DeveloperInfoView()
-    {
-
-        DeveloperList.Add("Choi JungWon. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Ahn HyunJung. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Han HoBin. Sejong Univ. Computer Engineering");
-        DeveloperList.Add("Kim SoEun. Sejong Univ. Computer Engineering");
-
-        for (int i = 0; i < DeveloperList.Count; i++)
-            Developter.text += DeveloperList[i] + "\n";
-       
-    }
 
     public void SoundInfoView()
     {
-        SoundList.Add("http://FreeSound.org");
+        SoundList = new List<string>();
+        SoundList.Add("================= Sound =================");
+        SoundList.Add("-------------------((http://FreeSound.org))-------------------");
         SoundList.Add("Water-Swirl-Small-23 / inspertorj");
         SoundList.Add("Glass-Smash-Bottle-C/ inspertorj");
         SoundList.Add("Music-Box-Happy-Birthday / inspertorj");
         SoundList.Add("RockingChair4 / stevelalonde");
         SoundList.Add("Metal-Lid-Thumps-01 / joedeshon");
         SoundList.Add("Gramophone / setuniman");
-  
+        SoundList.Add("=========================================");
+
 
         for (int i = 0; i < SoundList.Count; i++)
             Sound.text += SoundList[i] + "\n";
