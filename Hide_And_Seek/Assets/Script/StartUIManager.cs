@@ -17,7 +17,7 @@ public class StartUIManager : MonoBehaviour {
     private void Start() {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
-        GameManager.getInstance().ResetGame(); // 데이터 제거
+        GameManager.getInstance().resetGame(); // 데이터 제거
     }
 
     public void Btn_Start() // 게임시작
