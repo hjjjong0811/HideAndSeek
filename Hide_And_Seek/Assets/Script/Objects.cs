@@ -130,7 +130,6 @@ public class Objects : MonoBehaviour, IObject {
     } //action()
 
     public void useitem(int item_key) {
-        Debug.Log("actionitemtest");
         for (int i = 0; i < usingItem.Length; i++) {
             if(usingItem[i].materialItem_key == item_key) {
                 if(usingItem[i].chapter_canUse > GameManager.getInstance().GetMainChapter()) {
@@ -154,16 +153,15 @@ public class Objects : MonoBehaviour, IObject {
                         }
                     }
                     //Script 있으면 재생
-                    else if (curOutput.script_key != invalidValue)
+                    else if (curOutput.script_key != invalidValue) {
                         ScriptManager.getInstance().showScript(true, new int[] { curOutput.script_key });
-                    
+                    }
                     if (!_t_thing_f_portal && !curOutput.isBlockPortal) {
                         _obj.action();
+                    }
 
-                    } 
-
-                    GameManager.getInstance().CheckMainChapter();
                     afterUsingItem(item_key);
+                    GameManager.getInstance().CheckMainChapter();
                     break;
                 }
             } //if
@@ -189,6 +187,7 @@ public class Objects : MonoBehaviour, IObject {
             }
 
             GameManager.getInstance().CheckMainChapter();
+            afterCollision();
         }
     }
 
@@ -246,7 +245,10 @@ public class Objects : MonoBehaviour, IObject {
             } //for
         }
         if (_key_num == 1501 && (InfoByChapter[index].chapter == 5)) {
-            if (GameManager.getInstance().isCheckArray(GameManager.getInstance().FindJeongyeon, 8)) {
+            if(GameManager.getInstance().MeetCharacter[0] != 1 || GameManager.getInstance().isScenePlay) {
+                return 4;
+            }else if (GameManager.getInstance().isCheckArray(GameManager.getInstance().FindJeongyeon, 8)
+                || GameManager.getInstance().Salt == 0) {
                 return 1;
             }else if (GameManager.getInstance().Salt == 1) {
                 return 2;
@@ -291,12 +293,14 @@ public class Objects : MonoBehaviour, IObject {
     private void afterCollision() {
         if(_key_num == 1501) {
             GameManager.getInstance().MeetCharacter[0] = 1;
+            GameManager.getInstance().CheckMainChapter();
         }
     }
 
     private void afterUsingItem(int item_Key) {
-        if(_key_num == 13002 && item_Key == 15) {
+        if (_key_num == 13002 && item_Key == 15) {
             GameManager.getInstance().BreakDisplay = 1;
+            Inventory.getInstance().deleteItem(15);
             SceneManager.LoadScene("2_Dress");
         }else if(_key_num == 1005 && item_Key == 10) {
             spriteRenderer.sprite = InfoByChapter[2].sprite;
