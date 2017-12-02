@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
-    public static GameObject _enemy;
+    public static GameObject _enemy = null;
     private static readonly int CHASING_START_DISTANCE = 3;//같은방에서 Enemy~Player spot 거리차이가 이 변수값 이하면 enemy가 쫓아옴
     public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
     private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
@@ -33,6 +33,8 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (Enemy._enemy != null) Destroy(this.gameObject);
+
         _enemy = this.gameObject;
         //test
         _enemy_working = false;
