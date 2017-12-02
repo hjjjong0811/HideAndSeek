@@ -38,17 +38,14 @@ public class SettingUIManager : MonoBehaviour {
 
     public void SoundInfoView()
     {
-        SoundList = new List<string>();
-        SoundList.Add("================= Sound =================");
-        SoundList.Add("-------------------((http://FreeSound.org))-------------------");
+        SoundList.Add("http://FreeSound.org");
         SoundList.Add("Water-Swirl-Small-23 / inspertorj");
         SoundList.Add("Glass-Smash-Bottle-C/ inspertorj");
         SoundList.Add("Music-Box-Happy-Birthday / inspertorj");
         SoundList.Add("RockingChair4 / stevelalonde");
         SoundList.Add("Metal-Lid-Thumps-01 / joedeshon");
         SoundList.Add("Gramophone / setuniman");
-        SoundList.Add("=========================================");
-
+  
 
         for (int i = 0; i < SoundList.Count; i++)
             Sound.text += SoundList[i] + "\n";

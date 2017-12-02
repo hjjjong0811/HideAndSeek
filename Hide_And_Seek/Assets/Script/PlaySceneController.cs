@@ -58,7 +58,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator playTutorial() {
-        yield return new WaitUntil(()=>!ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
 
         //씬 로드
@@ -219,7 +218,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator playHide1() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
 
         //씬 로드
@@ -307,8 +305,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator playHide2Ready() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
-        Inventory.getInstance().deleteItem(12);
         obj_char = new GameObject[6];
 
         //씬 로드
@@ -425,7 +421,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator ringPhone() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         SceneManager.LoadScene("2_Bed");
@@ -494,7 +489,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator nosalt() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
         //씬로드
         SceneManager.LoadScene("2_Hall");
@@ -537,7 +531,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator havesalt() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
         //씬로드
         SceneManager.LoadScene("2_Hall");
@@ -575,7 +568,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator nojy() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         SceneManager.LoadScene("1_Hall");
@@ -596,7 +588,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator nohb() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         SceneManager.LoadScene("2_Hall");
@@ -615,7 +606,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator hbd() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         SceneManager.LoadScene("2_Swimming");
@@ -657,7 +647,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator breakcabi() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         //쨍
@@ -673,7 +662,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator afterbreak() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         yield return new WaitForSeconds(0.5f);
@@ -687,7 +675,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator jyd() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
 
         SceneManager.LoadScene("1_Laundry");
@@ -735,7 +722,6 @@ public class PlaySceneController : MonoBehaviour {
     }
 
     private IEnumerator end_jy() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
 
@@ -765,12 +751,10 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_obj() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         GameManager.getInstance().isScenePlay = false;
         yield break;
     }
     private IEnumerator end_d() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
         yield return new WaitForSeconds(0.5f);
@@ -794,7 +778,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_k() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
         yield return new WaitForSeconds(0.5f);
@@ -818,7 +801,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_exit() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         yield return new WaitForSeconds(0.001f);
         SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.001f);
@@ -836,7 +818,6 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator end_battery() {
-        yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         yield return new WaitForSeconds(0.001f);
         Player pl = GameObject.Find("Player").GetComponent<Player>();
         yield return new WaitForSeconds(0.001f);

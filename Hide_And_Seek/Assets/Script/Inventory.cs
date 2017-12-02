@@ -43,10 +43,6 @@ public class Inventory {
             return false;
         }
         inventory.Remove(itemkey);
-        if(curEquipItem == itemkey) {
-            curEquipItem = -1;
-            GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().DisplayEquipItem(null);
-        }
         return true;
     }
 

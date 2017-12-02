@@ -1525,10 +1525,6 @@ Prefab:
       value: 
       objectReference: {fileID: 21304905115701350, guid: b76bbd4f22c664c4fa74ce68c5540232,
         type: 2}
-    - target: {fileID: 4464400004375132, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 0.9910007
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
@@ -3301,25 +3297,6 @@ MonoBehaviour:
     sound_default: {fileID: 0}
     type: 0
     isActByCollision: 0
-    outputByCollision:
-      script_key: 0
-      sound: {fileID: 0}
-      item_key: 0
-      isBlockPortal: 0
-      script_key_isExistitem: 0
-    isActByCall: 0
-    outputByCall:
-      script_key: 0
-      sound: {fileID: 0}
-      item_key: 0
-      isBlockPortal: 0
-      script_key_isExistitem: 0
-  - chapter: 9999999
-    isActive: 1
-    sprite: {fileID: 0}
-    sound_default: {fileID: 0}
-    type: 0
-    isActByCollision: 1
     outputByCollision:
       script_key: 0
       sound: {fileID: 0}
