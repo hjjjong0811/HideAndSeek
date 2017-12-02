@@ -51,6 +51,9 @@ public class ScriptManager : MonoBehaviour {
         function = new List<del>();
         DontDestroyOnLoad(this.gameObject);
         LoadData();
+        for (int i = 0; i < script_obj.Count; i++) {
+            script_obj[i].Name = "";
+        }
         scripts = new List<Script>();
         this.gameObject.SetActive(false);
         isPlaying = false;

@@ -98,6 +98,12 @@ public class InvenUIManager : MonoBehaviour {
                 itemInfo.transform.GetChild(1).GetComponent<Text>().text = item.Name;
                 itemInfo.transform.GetChild(2).GetComponent<Text>().text = item.Info;
                 itemInfo.SetActive(true);
+
+                if(result == 5) {
+                    ScriptManager.getInstance().showScript(true, new int[] {33011});
+                }else if (result == 22) {
+                    ScriptManager.getInstance().showScript(true, new int[] { 33021 });
+                }
             }
 
             selectedCompose_key.Clear();
