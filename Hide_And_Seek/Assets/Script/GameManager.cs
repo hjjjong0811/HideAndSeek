@@ -34,13 +34,16 @@ public class GameManager
     public int Wallpaper; // 띠벽지 발견
     public int HomeConstruct; // 집구조도
     public int CorrectPassword; // 비밀번호 일치 여부
+    public int BabyBox;
+    
 
+    public bool isHide;
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
 
 
     private GameManager()
     {
-        MainChapter = -1;
+        MainChapter = 8;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -49,12 +52,13 @@ public class GameManager
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         CheckOverlap = new int[3] { 0, 0, 0 };
 
-
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-
+        BabyBox = 0;
 
     }
+
+
 
     public static GameManager getInstance()
     {
@@ -87,7 +91,7 @@ public class GameManager
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
 
-
+        Debug.Log("겜매" + Player.hiding);
         //게임시작시 -> 0
         if (MainChapter == -1)
             SetMainChapter(0);
@@ -143,7 +147,7 @@ public class GameManager
         }
 
         // 장식장 뿌시는 씬 재생후, 장식장 깨져있으면 챕터증가 -> 8+1
-        else if (MainChapter >= 8 && isSceneEnd(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
+        else if (MainChapter >= 8 && BreakDisplay == 1)
         {
             if (CheckOverlap[1] == 0)
             {
@@ -153,7 +157,7 @@ public class GameManager
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
-        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break) && DeadCharacter[2] == 1)
+        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break))
         {
             if (CheckOverlap[2] == 0)
             {
@@ -162,12 +166,12 @@ public class GameManager
             }
         }
 
-        // (세탁기)씬종료후 서운이 죽음 확인하면 -> 12
-        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[3] == 1)
+        // (서운죽음)씬종료후 서운이 죽음 확인하면 -> 12
+        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.ringPhone) && DeadCharacter[3] == 1)
             SetMainChapter(12);
 
-        // 아저씨한테 전화하는씬 후 띠벽지 확인하면 ->13
-        else if (MainChapter == 12 && isSceneEnd(PlayScene.numScene.ringPhone) && Wallpaper == 1)
+        // 띠벽지 확인하면 ->13
+        else if (MainChapter == 12 && Wallpaper == 1)
             SetMainChapter(13);
 
         // 집구조도 확인가능 -> 14
@@ -186,8 +190,8 @@ public class GameManager
         if (FlashLight.getFlashData() <= 0)
             SetMainChapter(-6);
 
-
         chapterPlayScene(); // 스토리 씬인지 확인
+
 
     }
 
@@ -267,30 +271,37 @@ public class GameManager
                 //하빈이 죽었자나?!씬 
                 else if (isFirstTime(PlayScene.numScene.hb_die) && isCheckRoom("2_Swimming") && EndScene[7] == 1)
                     scenePlay_End(PlayScene.numScene.hb_die);
+
+                //장식장 뿌시는씬
+                if (isFirstTime(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
+                    scenePlay_End(PlayScene.numScene.break_cabinet);
                 break;
 
+            //장식장 뿌셨거나 소금물 있을때
             case 9:
             case 10:
                 //장식장 뿌시는씬
                 if (isFirstTime(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
                     scenePlay_End(PlayScene.numScene.break_cabinet);
 
-                //뿌신후 다음 장롱에 숨는씬
-                else if (isFirstTime(PlayScene.numScene.after_break) && EndScene[9] == 1)
+                //뿌신후 장롱안에서 세탁기 웅웅씬
+                else if (isFirstTime(PlayScene.numScene.after_break) && EndScene[9] == 1 && isHide)
+                {
                     scenePlay_End(PlayScene.numScene.after_break);
-                break;
+                    Player.hiding = false;
+                }
 
-            // 장롱에 숨은 상태. 정연이 주거따(세탁기 씬)
-            case 11:
-                if (isFirstTime(PlayScene.numScene.jy_die))
+                // 정연이 죽음씬
+                else if (isFirstTime(PlayScene.numScene.jy_die) && isCheckRoom("1_Laundry"))
                     scenePlay_End(PlayScene.numScene.jy_die);
                 break;
 
-            //  서운이 죽음확인 한 상태. 아저씨한테 전화씬
-            case 12:
-                if (isFirstTime(PlayScene.numScene.ringPhone))
+            // 서운이 죽게됨 
+            case 11:
+                if (isFirstTime(PlayScene.numScene.ringPhone) && isCheckRoom("2_Bed"))
                     scenePlay_End(PlayScene.numScene.ringPhone);
                 break;
+
 
         }
 
@@ -397,7 +408,7 @@ public class GameManager
 
     public void resetGame() // 새로 시작시 초기화
     {
-        MainChapter = -1;
+        MainChapter = 8;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -406,13 +417,15 @@ public class GameManager
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
         CheckOverlap = new int[3] { 0, 0, 0 };
 
-
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
+
+        BabyBox = 0;
     }
 
     public int GetMainChapter() // 현재 챕터 반환
     {
+
         CheckMainChapter(); //현정추가 한번체크후 반환필요해보여서
         changeArrayState(); // 스토리진행변수체크
         return MainChapter;
@@ -425,5 +438,3 @@ public class GameManager
 
 
 }
-
-
