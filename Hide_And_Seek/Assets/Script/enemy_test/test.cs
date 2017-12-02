@@ -16,6 +16,7 @@ public class test : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(GameObject.FindGameObjectWithTag("Player")==null) Debug.Log("플레이어 없음");
     }
 
     void testing()

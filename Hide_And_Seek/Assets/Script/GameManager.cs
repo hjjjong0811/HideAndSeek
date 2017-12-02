@@ -107,6 +107,7 @@ public class GameManager
         // hide_2_ready 씬 종료되면(준비끝) ->4
         else if (MainChapter == 3 && isSceneEnd(PlayScene.numScene.hide_2_ready))
         {
+            //Debug.Log("아저씨 활성화");//호빈추가
             Enemy.start_enemy_working();//호빈추가
             SetMainChapter(4);
         }

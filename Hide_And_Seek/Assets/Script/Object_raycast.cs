@@ -21,6 +21,9 @@ public class Object_raycast : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+        //Debug.Log(check_player_exist());//test
+        if(!check_player_exist()) return;
+
         change_childs();
 	}
 
@@ -37,5 +40,15 @@ public class Object_raycast : MonoBehaviour
         {
             sr.sortingLayerName = order;
         }
+    }
+
+    bool check_player_exist()
+    {
+        if (GameObject.FindGameObjectWithTag("Player") == null)
+        {
+            //Debug.Log("플레이어 없음");//test
+            return false;
+        }
+        else return true;
     }
 }

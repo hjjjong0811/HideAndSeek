@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
         _enemy_finding_time = 0f;
 
         _enemy.transform.position = ENEMY_INIT_LOC;
+        _enemy_pos = ENEMY_INIT_LOC;
 
         DontDestroyOnLoad(this.gameObject);//test
     }

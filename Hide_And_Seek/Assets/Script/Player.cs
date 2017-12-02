@@ -221,7 +221,7 @@ public class Player : MonoBehaviour {
     //호빈추가
     public static Object_State check_up_down(string s) {
         int i;
-        //Debug.Log(hits_up.Length);
+        //Debug.Log("오류테스트 : "+hits_up.Length);//test
         for (i = 0; i < hits_up.Length; i++) {
             if (hits_up[i].collider.name == s) {
                 //Debug.Log(hits_up[i].collider.name + " / " + s);
