@@ -121,7 +121,7 @@ public class GameManager
             SetMainChapter(-2);
 
         // 하빈이 만나면 ->6
-        else if (MainChapter == 5 && MeetCharacter[0] == 1)
+        else if (MainChapter == 5 && isCheckRoom("2_Hall"))
             SetMainChapter(6);
 
         // 소금있으면 ->7
@@ -194,9 +194,7 @@ public class GameManager
 
     public void chapterPlayScene()
     {
-        int Chapter = MainChapter;
-
-        switch (Chapter)
+        switch (MainChapter)
         {
             //잘못된 오브젝트 사용 엔딩
             case -1:
