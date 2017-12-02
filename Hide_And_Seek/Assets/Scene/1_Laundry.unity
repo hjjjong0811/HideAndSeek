@@ -1915,6 +1915,7 @@ GameObject:
   - component: {fileID: 1246259858}
   - component: {fileID: 1246259859}
   - component: {fileID: 1246259860}
+  - component: {fileID: 1246259861}
   m_Layer: 9
   m_Name: Basket
   m_TagString: Untagged
@@ -1999,6 +2000,23 @@ PolygonCollider2D:
       - {x: -0.049657464, y: -0.19401407}
       - {x: 0.3879094, y: -0.42464018}
       - {x: 0.6896802, y: 0.07839084}
+--- !u!68 &1246259861
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1246259857}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6156255, y: -0.011562586}
+  - {x: 0.9509382, y: -0.03468752}
 --- !u!1 &1287097087
 GameObject:
   m_ObjectHideFlags: 0
