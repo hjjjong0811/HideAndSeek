@@ -199,34 +199,34 @@ public class SaveManager : MonoBehaviour
 
         PlayerData data = new PlayerData();
 
-        Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
         
-        data.End = new int[15];
-        data.Find = new int[4];
-        data.Dead = new int[4];
-        data.Meet = new int[2];
-        data.FindJ = new int[8];
-        data.Check = new bool[3];
-        GameManager.getInstance().get_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);
+        GameManager gameManager = GameManager.getInstance();
+        Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
 
         data.SaveArray = new int[9];
-        GameManager.getInstance().get_save_data_state(data.SaveArray);
+        gameManager.get_save_data_state(data.SaveArray);
 
+        data.End = gameManager.EndScene;
+        data.Find = gameManager.FindCharacter;
+        data.Dead = gameManager.DeadCharacter;
+        data.Meet = gameManager.MeetCharacter;
+        data.FindJ = gameManager.FindJeongyeon;
+        data.Check = gameManager.isOverlap;
         data.Battery = FlashLight.getFlashData();
         data.SaveTime = DateTime.Now.ToString("yyyy/MM/dd/HH:mm");
-        data.MainChapter = GameManager.getInstance().GetMainChapter();
+        data.MainChapter = gameManager.GetMainChapter();
         data.x = PlayerPos.x;
         data.y = PlayerPos.y;
         data.z = PlayerPos.z;
         data.Inventory = Inventory.getInstance().inventory;
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
-
         // data.E_Room = (int)Enemy_ISpot._room;
+
         // data.E_Spot = Enemy_ISpot._spot;
 
 
-        data.Battery = FlashLight.getFlashData();
+  
 
         bf.Serialize(file, data);
         file.Close();
@@ -245,10 +245,12 @@ public class SaveManager : MonoBehaviour
             {
                 PlayerData data = (PlayerData)bf.Deserialize(file);
 
+                GameManager gamemanager = GameManager.getInstance();
 
                 Player_ISpot = new ISpot(0, 0);
                 Player_ISpot._room = (Room)data.P_Room;
                 Player_ISpot._spot = data.P_Spot;
+
                 String SaveScene = Scene_Manager.scene_name[(int)Player_ISpot._room];
                 SceneManager.LoadScene(SaveScene);
 
@@ -261,11 +263,10 @@ public class SaveManager : MonoBehaviour
                 //Enemy_ISpot._spot = data.E_Spot;
 
            
-                GameManager.getInstance().SetMainChapter(data.MainChapter);
-                GameManager.getInstance().set_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);
-                GameManager.getInstance().set_save_data_state(data.SaveArray);
                 Inventory.getInstance().inventory = data.Inventory;
-  
+                gamemanager.SetMainChapter(data.MainChapter);
+                gamemanager.set_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);
+                gamemanager.set_save_data_state(data.SaveArray);
                 FlashLight.Init(data.Battery, true);
                 Player.Init(data.hp, PlayerPos, Player_ISpot);
                 
