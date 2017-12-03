@@ -21,7 +21,7 @@ public class GameManager
     public int[] DeadCharacter; // 죽은 친구 배열
     public int[] MeetCharacter; // 만난 친구 배열
     public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
-    public int[] CheckOverlap; // 중복방지배열 
+    public bool[] isOverlap; // 중복방지배열 
 
     /*상태변수*/
     public int BreakDisplay; // 장식장 깨뜨림
@@ -119,24 +119,24 @@ public class GameManager
             SetMainChapter(8);
 
         // 소금물 보유시 챕터 증가 -> 8+1
-        else if (MainChapter >= 8 && SaltyWater == 1 && CheckOverlap[0] == 0)
+        else if (MainChapter >= 8 && SaltyWater == 1 && !isOverlap[0])
         {
-                CheckOverlap[0] = 1;
+                 isOverlap[0] = true;
                 SetMainChapter(MainChapter + 1);
         }
 
         // 장식장 뿌시는 씬 재생후, 장식장 깨져있으면 챕터증가 -> 8+1
-        else if (MainChapter >= 8 && BreakDisplay == 1 && CheckOverlap[1] == 0)
+        else if (MainChapter >= 8 && BreakDisplay == 1 && !isOverlap[1])
         {
-                CheckOverlap[1] = 1;
+                isOverlap[1] = true;
                 SetMainChapter(MainChapter + 1);
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
         
-        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[2] == 1 && CheckOverlap[2] == 0)
+        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[2] == 1 && !isOverlap[2])
         {
-                CheckOverlap[2] = 1;
+                 isOverlap[2] = true;
                 SetMainChapter(MainChapter + 1);
         }
 
@@ -284,7 +284,86 @@ public class GameManager
         }
 
     }
+    
+    //get data(using SaveManager)
+    public void get_save_data_array(int[] end, int[] find, int[]dead, int[]meet, int[] findJ, bool[] check)
+    {
+        end = new int[15];
+        find = new int[4];
+        dead = new int[4];
+        meet = new int[2];
+        findJ = new int[8];
+        check = new bool[3];
 
+        end = EndScene;
+        find = FindCharacter;
+        dead = DeadCharacter;
+        meet = MeetCharacter;
+        findJ = FindJeongyeon;
+        check = isOverlap;
+
+        Debug.Log("get_save_data_array");
+    }
+
+    //set data(using saveManager)
+    public void set_save_data_array(int[] end, int[] find, int[] dead, int[] meet, int[] findJ, bool[] check)
+    {
+        EndScene = end;
+        FindCharacter = find;
+        DeadCharacter = dead;
+        MeetCharacter = meet;
+        FindJeongyeon = findJ;
+        isOverlap = check;
+
+        Debug.Log("set_save_data_array");
+    }
+
+    
+    //get state data (using SaveManager)
+    public void get_save_data_state(int[] saveArray)
+    {
+        if (saveArray == null)
+        {
+            Debug.Log("get_save_state -> null ");
+            saveArray = new int[9];
+        }
+        else
+        {
+
+            saveArray[0] = Soju;
+            saveArray[1] = Salt;
+            saveArray[2] = SaltyWater;
+            saveArray[3] = GroundKey;
+            saveArray[4] = BreakDisplay;
+            saveArray[5] = Wallpaper;
+            saveArray[6] = HomeConstruct;
+            saveArray[7] = CorrectPassword;
+            saveArray[8] = BabyBox;
+
+        }
+            
+    }
+
+    //set state data(use SaveManager)
+    public void set_save_data_state(int[] saveArray)
+    {
+        if (saveArray != null)
+        {
+            Soju = saveArray[0];
+            Salt = saveArray[1];
+            SaltyWater = saveArray[2];
+            GroundKey = saveArray[3];
+            BreakDisplay = saveArray[4];
+            Wallpaper = saveArray[5];
+            HomeConstruct = saveArray[6];
+            CorrectPassword = saveArray[7];
+            BabyBox = saveArray[8];
+        }
+        else       
+            Debug.Log("set_save_state문제");
+    }
+
+ 
     /// <summary>
     /// // 현재 방이름이 룸네임과 일치하면true/아니면false
     /// </summary>
@@ -390,7 +469,7 @@ public class GameManager
         DeadCharacter = new int[4] { 0, 0, 0, 0 };
         MeetCharacter = new int[2] { 0, 0 };
         FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
-        CheckOverlap = new int[3] { 0, 0, 0 };
+        isOverlap = new bool[3] { false, false, false };
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
