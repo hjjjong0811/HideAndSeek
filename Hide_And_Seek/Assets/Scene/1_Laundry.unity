@@ -1066,6 +1066,7 @@ GameObject:
   m_Component:
   - component: {fileID: 712216077}
   - component: {fileID: 712216078}
+  - component: {fileID: 712216079}
   m_Layer: 9
   m_Name: Boxs
   m_TagString: Untagged
@@ -1140,6 +1141,35 @@ MonoBehaviour:
       isBlockPortal: 0
       script_key_isExistitem: 0
   usingItem: []
+--- !u!60 &712216079
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712216076}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.11282349, y: 0.36066705}
+      - {x: -0.87584084, y: 0.020690322}
+      - {x: 0.32733858, y: -0.6209778}
+      - {x: 1.0516151, y: -0.2574355}
+      - {x: 0.68780196, y: -0.004381299}
 --- !u!1 &769694381
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 601
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -1657,7 +1687,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 71
+      script_key: 6011
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -3091,7 +3121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 603
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -3108,26 +3138,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1072
-      sound: {fileID: 0}
-      item_key: 0
-      isBlockPortal: 0
-      script_key_isExistitem: 0
-  - chapter: 5
-    isActive: 1
-    sprite: {fileID: 0}
-    sound_default: {fileID: 0}
-    type: 2
-    isActByCollision: 0
-    outputByCollision:
-      script_key: 0
-      sound: {fileID: 0}
-      item_key: 0
-      isBlockPortal: 0
-      script_key_isExistitem: 0
-    isActByCall: 1
-    outputByCall:
-      script_key: 72
+      script_key: 6031
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -3290,7 +3301,7 @@ MonoBehaviour:
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-    isActByCall: 0
+    isActByCall: 1
     outputByCall:
       script_key: 6062
       sound: {fileID: 0}

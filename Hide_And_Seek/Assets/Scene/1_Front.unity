@@ -345,7 +345,7 @@ Transform:
   m_Children:
   - {fileID: 1127579482}
   m_Father: {fileID: 913465506}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &371148229
 PolygonCollider2D:
@@ -441,7 +441,7 @@ Transform:
   - {fileID: 990286539}
   - {fileID: 1265571078}
   m_Father: {fileID: 913465506}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &377344057
 PolygonCollider2D:
@@ -606,7 +606,7 @@ Transform:
   m_Children:
   - {fileID: 692247076}
   m_Father: {fileID: 913465506}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &568274251
 PolygonCollider2D:
@@ -1009,7 +1009,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4015841478209052, guid: ff8a6ec83471cab48b1d3af983837a26, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ff8a6ec83471cab48b1d3af983837a26, type: 2}
@@ -1039,12 +1039,12 @@ Transform:
   m_LocalPosition: {x: -0.08986243, y: -0.5758308, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 377344056}
   - {fileID: 265424061}
   - {fileID: 1921041585}
   - {fileID: 371148228}
   - {fileID: 1761767179}
   - {fileID: 568274250}
-  - {fileID: 377344056}
   - {fileID: 976827432}
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 301
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -1108,13 +1108,13 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 31
+      script_key: 3011
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-  - chapter: 5
-    isActive: 0
+  - chapter: 4
+    isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
     type: 1
@@ -1127,7 +1127,26 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1031
+      script_key: 3012
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter: 5
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 1
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 3013
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -1899,7 +1918,7 @@ Transform:
   m_Children:
   - {fileID: 98395657}
   m_Father: {fileID: 913465506}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1761767180
 MonoBehaviour:
@@ -2187,7 +2206,7 @@ Transform:
   m_Children:
   - {fileID: 2118804367}
   m_Father: {fileID: 913465506}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1921041586
 MonoBehaviour:

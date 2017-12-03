@@ -205,7 +205,8 @@ public class Objects : MonoBehaviour, IObject {
             else if (_key_num == 608) return 1;
             else if (_key_num == 13002) return 2;
             else if (_key_num == 13001) return 1;
-        }else if (_key_num == 110) {
+        }
+        if (_key_num == 110) {
             if (Inventory.getInstance().isExitItem(3) || Inventory.getInstance().isExitItem(5))
                 return 1;
         }else if (_key_num == 83 && GameManager.getInstance().Wallpaper == 1) {
@@ -276,6 +277,7 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(false);
         } else if (_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
+            else if(isValidPassword && isInputPassword) { GameManager.getInstance().GroundKey = 1; }
         } else if (_key_num == 2002) {
             PasswordUIManager password = new PasswordUIManager(this.gameObject, 4362);
         } else if(_key_num == 401) {
@@ -300,6 +302,8 @@ public class Objects : MonoBehaviour, IObject {
             spriteRenderer.sprite = InfoByChapter[2].sprite;
         }else if(_key_num == 1201) {
             GameManager.getInstance().DeadCharacter[3] = 1;
+        }else if(_key_num == 1701) {
+            GameManager.getInstance().HomeConstruct = 1;
         }
     }
 

@@ -1194,6 +1194,25 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
+      script_key: 18042
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter: 0
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 1
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
       script_key: 18041
       sound: {fileID: 0}
       item_key: 0
@@ -2225,7 +2244,15 @@ MonoBehaviour:
       item_key: 7
       isBlockPortal: 0
       script_key_isExistitem: 18032
-  usingItem: []
+  usingItem:
+  - chapter_canUse: 0
+    materialItem_key: 20
+    outputByUsingItem:
+      script_key: 18034
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
 --- !u!1001 &1546251488
 Prefab:
   m_ObjectHideFlags: 0
