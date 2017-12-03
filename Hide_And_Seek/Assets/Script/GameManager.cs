@@ -41,18 +41,7 @@ public class GameManager
 
     private GameManager()
     {
-        MainChapter = 8;
-
-        EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        FindCharacter = new int[4] { 0, 0, 0, 0 };
-        DeadCharacter = new int[4] { 0, 0, 0, 0 };
-        MeetCharacter = new int[2] { 0, 0 };
-        FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
-        CheckOverlap = new int[3] { 0, 0, 0 };
-
-        Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
-        BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-        BabyBox = 0;
+        resetGame();
 
     }
 
@@ -407,7 +396,7 @@ public class GameManager
 
     public void resetGame() // 새로 시작시 초기화
     {
-        MainChapter = 8;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -418,7 +407,6 @@ public class GameManager
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-
         BabyBox = 0;
     }
 
