@@ -66,7 +66,8 @@ public class Objects : MonoBehaviour, IObject {
         if (!_t_thing_f_portal) {
             _obj = Scene_Manager.getInstance()._get_portal(_key_num);
         } else {
-            spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+            if(transform.childCount != 0)
+                spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
             
             if(InfoByChapter[index].sprite != null) spriteRenderer.sprite = InfoByChapter[index].sprite;
             if(InfoByChapter[index].sound_default != null) {
@@ -297,6 +298,8 @@ public class Objects : MonoBehaviour, IObject {
         }else if(_key_num == 1806 && (Inventory.getInstance().isExitItem(20) ||
             Inventory.getInstance().isExitItem(21) || Inventory.getInstance().isExitItem(22))){
             spriteRenderer.sprite = InfoByChapter[2].sprite;
+        }else if(_key_num == 1201) {
+            GameManager.getInstance().DeadCharacter[3] = 1;
         }
     }
 
