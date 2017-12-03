@@ -85,6 +85,8 @@ public class Objects : MonoBehaviour, IObject {
             Detail curInfo = InfoByChapter[index];
             if (!curInfo.isActByCall) return;
 
+            if (curInfo.outputByCall.sound != null)
+                SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
             if (curInfo.outputByCall.script_key != invalidValue)
                 ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
 
@@ -230,6 +232,8 @@ public class Objects : MonoBehaviour, IObject {
             return 1;
         } else if (_key_num == 3003 && GameManager.getInstance().FindCharacter[3] == 1) {
             return 1;
+        }else if(_key_num == 202 && Inventory.getInstance().isExitItem(10)) {
+            return 2;
         }
 
         if (mode == mode_detail) {
@@ -277,7 +281,6 @@ public class Objects : MonoBehaviour, IObject {
             this.gameObject.SetActive(false);
         } else if (_key_num == 1903) {
             if (!isInputPassword) { PasswordUIManager password = new PasswordUIManager(this.gameObject, 1231); }
-            else if(isValidPassword && isInputPassword) { GameManager.getInstance().GroundKey = 1; }
         } else if (_key_num == 2002) {
             PasswordUIManager password = new PasswordUIManager(this.gameObject, 4362);
         } else if(_key_num == 401) {
