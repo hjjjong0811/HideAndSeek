@@ -35,26 +35,13 @@ public class GameManager
     public int HomeConstruct; // 집구조도
     public int CorrectPassword; // 비밀번호 일치 여부
     public int BabyBox;
-    
-
-    public bool isHide;
+   
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
 
 
     private GameManager()
     {
-        MainChapter = 8;
-
-        EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        FindCharacter = new int[4] { 0, 0, 0, 0 };
-        DeadCharacter = new int[4] { 0, 0, 0, 0 };
-        MeetCharacter = new int[2] { 0, 0 };
-        FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
-        CheckOverlap = new int[3] { 0, 0, 0 };
-
-        Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
-        BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-        BabyBox = 0;
+        resetGame();
 
     }
 
@@ -90,8 +77,7 @@ public class GameManager
 
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
-
-        Debug.Log("겜매" + Player.hiding);
+        
         //게임시작시 -> 0
         if (MainChapter == -1)
             SetMainChapter(0);
@@ -199,6 +185,7 @@ public class GameManager
 
     public void chapterPlayScene()
     {
+       
         switch (MainChapter)
         {
             //잘못된 오브젝트 사용 엔딩
@@ -283,9 +270,10 @@ public class GameManager
                     scenePlay_End(PlayScene.numScene.break_cabinet);
                 break;
 
-            //장식장 뿌셨거나 소금물 있을때
+            //장식장 뿌셨거나, 아직안뿌셧어도 소금물 있을때
             case 9:
             case 10:
+
                 //장식장 뿌시는씬
                 if (isFirstTime(PlayScene.numScene.break_cabinet) && BreakDisplay == 1)
                     scenePlay_End(PlayScene.numScene.break_cabinet);
@@ -293,7 +281,6 @@ public class GameManager
                 //뿌신후 장롱안에서 세탁기 웅웅씬
                 else if (isFirstTime(PlayScene.numScene.after_break) && isSceneEnd(PlayScene.numScene.break_cabinet) && Player.hiding)
                 {
-                    
                     scenePlay_End(PlayScene.numScene.after_break);
                     Player.hiding = false;
                 }
@@ -409,7 +396,7 @@ public class GameManager
 
     public void resetGame() // 새로 시작시 초기화
     {
-        MainChapter = 8;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
@@ -420,7 +407,6 @@ public class GameManager
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-
         BabyBox = 0;
     }
 
