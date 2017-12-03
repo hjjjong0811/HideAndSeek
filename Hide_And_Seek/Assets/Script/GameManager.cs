@@ -143,7 +143,7 @@ public class GameManager
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
-        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break))
+        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break) && DeadCharacter[3] == 1)
         {
             if (CheckOverlap[2] == 0)
             {
@@ -153,7 +153,7 @@ public class GameManager
         }
 
         // (서운죽음)씬종료후 서운이 죽음 확인하면 -> 12
-        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.ringPhone) && DeadCharacter[3] == 1)
+        else if (MainChapter == 11 && isSceneEnd(PlayScene.numScene.ringPhone))
             SetMainChapter(12);
 
         // 띠벽지 확인하면 ->13
@@ -393,7 +393,7 @@ public class GameManager
 
     public void resetGame() // 새로 시작시 초기화
     {
-        MainChapter = -1;
+        MainChapter = 8;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
