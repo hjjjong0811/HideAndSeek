@@ -119,9 +119,18 @@ public class FlashLight : MonoBehaviour {
     /// 배터리 충전 메서드
     /// </summary>
     /// <param name="charge">충전 배터리 양</param>
-    public void chargeBattery(int charge) {
-        Battery += charge;
-        if (Battery >= Battery_max) Battery = Battery_max;
+    public static void chargeBattery(float charge) {
+        GameObject go = GameObject.Find("Flash");
+        if(go != null) {
+            FlashLight flash = go.GetComponent<FlashLight>();
+            flash.Battery = flash.Battery + charge;
+            if (flash.Battery >= Battery_max) flash.Battery = Battery_max;
+        } else {
+            float newBattery = PlayerPrefs.GetFloat("Flash_Battery", Battery_max);
+            newBattery = newBattery + charge;
+            PlayerPrefs.SetFloat("Flash_Battery", newBattery);
+        }
+        
     }
 
     /// <summary>

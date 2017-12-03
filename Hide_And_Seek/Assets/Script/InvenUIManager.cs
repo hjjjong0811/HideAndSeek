@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class InvenUIManager : MonoBehaviour {
+    private const int batteryKey = 16;
     public GameObject pnlScrollList, itemInfo;
     public GameObject btnItem_prefab, imgCheck_prefab;
     
@@ -30,9 +31,7 @@ public class InvenUIManager : MonoBehaviour {
             Destroy(btnItemList[i]);
         }
         btnItemList.Clear();
-        //inventory class + itemManager
 
-        //test
         ItemManager mng = ItemManager.getInstance();
         Inventory inven = Inventory.getInstance();
 
@@ -72,7 +71,13 @@ public class InvenUIManager : MonoBehaviour {
     }
 
     public void itemEquipClick() {
-        if (selectedItem_key != -1) {
+        if(selectedItem_key == batteryKey) {
+            FlashLight.chargeBattery(50f);
+            Inventory.getInstance().deleteItem(batteryKey);
+            LoadItem();
+            selectedItem_key = -1;
+            itemInfo.SetActive(false);
+        } else if (selectedItem_key != -1) {
             //Change inventory-> curEquipItem
             Inventory inven = Inventory.getInstance();
             inven.equipItem(selectedItem_key);
