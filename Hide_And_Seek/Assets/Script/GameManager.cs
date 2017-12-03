@@ -123,33 +123,25 @@ public class GameManager
             SetMainChapter(8);
 
         // 소금물 보유시 챕터 증가 -> 8+1
-        else if (MainChapter >= 8 && SaltyWater == 1)
+        else if (MainChapter >= 8 && SaltyWater == 1 && CheckOverlap[0] == 0)
         {
-            if (CheckOverlap[0] == 0)
-            {
                 CheckOverlap[0] = 1;
                 SetMainChapter(MainChapter + 1);
-            }
         }
 
         // 장식장 뿌시는 씬 재생후, 장식장 깨져있으면 챕터증가 -> 8+1
-        else if (MainChapter >= 8 && BreakDisplay == 1)
+        else if (MainChapter >= 8 && BreakDisplay == 1 && CheckOverlap[1] == 0)
         {
-            if (CheckOverlap[1] == 0)
-            {
                 CheckOverlap[1] = 1;
                 SetMainChapter(MainChapter + 1);
-            }
         }
 
         // 세탁기 소리 씬재생후 정연이 죽음 확인-> 8+1
-        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.after_break) && DeadCharacter[2] == 1)
+        
+        else if (MainChapter >= 9 && isSceneEnd(PlayScene.numScene.jy_die) && DeadCharacter[2] == 1 && CheckOverlap[2] == 0)
         {
-            if (CheckOverlap[2] == 0)
-            {
                 CheckOverlap[2] = 1;
                 SetMainChapter(MainChapter + 1);
-            }
         }
 
         // (서운죽음)씬종료후 서운이 죽음 확인하면 -> 12
