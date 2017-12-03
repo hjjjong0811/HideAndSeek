@@ -462,7 +462,7 @@ public class GameManager
 
     public void resetGame() // 새로 시작시 초기화
     {
-        MainChapter = 8;
+        MainChapter = -1;
 
         EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         FindCharacter = new int[4] { 0, 0, 0, 0 };
