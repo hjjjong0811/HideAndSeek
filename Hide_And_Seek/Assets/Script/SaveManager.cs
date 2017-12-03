@@ -25,22 +25,11 @@ public class SaveManager : MonoBehaviour
     public int SlotNumber = 0;
 
 
-
-    public Vector3 PlayerPos;
-    public float Player_x;
-    public float Player_y;
-    public List<String> Player_Object;
-    public float Player_hp;
-    public int Player_Spot;
-    public float Player_Battery;
-    public int Player_MainChapter;
-    public List<int> Player_Inventory;
-    public int[] Player_EndScene;
-    public int[] Player_FindCharacter;
-    public int[] Player_DeadCharacter;
-    public int[] Player_MeetCharacter;
-    public int[] Player_FindJeongyeon;
+    /*저장용*/
     
+    public Vector3 PlayerPos;
+    public int Player_Spot;
+
     public Room Player_Room;
     public Room Enemy_Room;
 
@@ -63,12 +52,13 @@ public class SaveManager : MonoBehaviour
         public int P_Spot;
         public int E_Room;
         public int E_Spot;
-        public int[] EndScene;
-        public int[] FindCharacter;
-        public int[] DeadCharacter;
-        public int[] MeetCharacter;
-        public int[] FindJeongyeon;
-
+        public int[] End;
+        public int[] Find;
+        public int[] Dead;
+        public int[] Meet;
+        public int[] FindJ;
+        public int[] SaveArray;
+        public bool[] Check;
 
 
     }
@@ -88,9 +78,7 @@ public class SaveManager : MonoBehaviour
         Btn_Save.GetComponent<Button>().interactable = false;
         Btn_Load.GetComponent<Button>().interactable = false;
         Btn_Delete.GetComponent<Button>().interactable = false;
-
-        Player_EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-
+        
         isSlot = false;
         SlotNumber = 0;
 
@@ -211,10 +199,19 @@ public class SaveManager : MonoBehaviour
 
         PlayerData data = new PlayerData();
 
-        Player.getPlayerData(ref Player_hp, ref PlayerPos, ref Player_ISpot);
-        Enemy_ISpot = Enemy.get_enemy_spot();
+        Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
+        
+        data.End = new int[15];
+        data.Find = new int[4];
+        data.Dead = new int[4];
+        data.Meet = new int[2];
+        data.FindJ = new int[8];
+        data.Check = new bool[3];
+        GameManager.getInstance().get_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);
 
-        data.hp = Player_hp;
+        data.SaveArray = new int[9];
+        GameManager.getInstance().get_save_data_state(data.SaveArray);
+
         data.Battery = FlashLight.getFlashData();
         data.SaveTime = DateTime.Now.ToString("yyyy/MM/dd/HH:mm");
         data.MainChapter = GameManager.getInstance().GetMainChapter();
@@ -224,15 +221,9 @@ public class SaveManager : MonoBehaviour
         data.Inventory = Inventory.getInstance().inventory;
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
-        data.EndScene = GameManager.getInstance().EndScene;
-        data.FindCharacter = GameManager.getInstance().FindCharacter;
-        data.DeadCharacter = GameManager.getInstance().DeadCharacter;
-        data.MeetCharacter = GameManager.getInstance().MeetCharacter;
-        data.FindJeongyeon = GameManager.getInstance().FindJeongyeon;
+
         // data.E_Room = (int)Enemy_ISpot._room;
         // data.E_Spot = Enemy_ISpot._spot;
-
-        Debug.Log("save " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
 
 
         data.Battery = FlashLight.getFlashData();
@@ -261,34 +252,22 @@ public class SaveManager : MonoBehaviour
                 String SaveScene = Scene_Manager.scene_name[(int)Player_ISpot._room];
                 SceneManager.LoadScene(SaveScene);
 
-
-
-                Player_hp = data.hp;
-                Player_Battery = data.Battery;
-                Player_MainChapter = data.MainChapter;
+                
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
-                Player_Inventory = data.Inventory;
-                Player_EndScene = data.EndScene;
-                Player_FindCharacter = data.FindCharacter;
-                Player_MeetCharacter = data.MeetCharacter;
-                Player_DeadCharacter = data.DeadCharacter;
-                Player_FindJeongyeon = data.FindJeongyeon;
+
                 // Enemy_ISpot._room = (Room)data.E_Room;
                 //Enemy_ISpot._spot = data.E_Spot;
 
-                GameManager.getInstance().EndScene = Player_EndScene;
-                GameManager.getInstance().FindCharacter = Player_FindCharacter;
-                GameManager.getInstance().MeetCharacter = Player_MeetCharacter;
-                GameManager.getInstance().DeadCharacter = Player_DeadCharacter;
-                GameManager.getInstance().FindJeongyeon = Player_FindJeongyeon;
-                GameManager.getInstance().SetMainChapter(Player_MainChapter);
-                Inventory.getInstance().inventory = Player_Inventory;
+           
+                GameManager.getInstance().SetMainChapter(data.MainChapter);
+                GameManager.getInstance().set_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);
+                GameManager.getInstance().set_save_data_state(data.SaveArray);
+                Inventory.getInstance().inventory = data.Inventory;
   
-                FlashLight.Init(Player_Battery, true);
-                Player.Init(Player_hp, PlayerPos, Player_ISpot);
-
+                FlashLight.Init(data.Battery, true);
+                Player.Init(data.hp, PlayerPos, Player_ISpot);
                 
                 Debug.Log("load " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
             
@@ -300,20 +279,6 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    public void AddActiveObject()
-    {
-        String Active = "1/shoes/true"; // 오브젝트발동시 날라올 스트링
-
-        if (!Player_Object.Contains(Active)) // 리스트에 없으면 추가
-            Player_Object.Add(Active);
-
-    }
-
-
-    public List<String> GetObject()
-    {
-        return Player_Object;
-    }
 
     public void Btn_DeleteData() // 데이터삭제
     {
