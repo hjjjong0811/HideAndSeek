@@ -36,6 +36,8 @@ public class SaveManager : MonoBehaviour
     public ISpot Player_ISpot;
     public ISpot Enemy_ISpot;
 
+    public Enemy_Data Player_Enemy_data;
+
 
     [Serializable]
     class PlayerData
@@ -50,8 +52,6 @@ public class SaveManager : MonoBehaviour
         public float Battery;
         public int P_Room;
         public int P_Spot;
-        public int E_Room;
-        public int E_Spot;
         public int[] End;
         public int[] Find;
         public int[] Dead;
@@ -60,12 +60,23 @@ public class SaveManager : MonoBehaviour
         public int[] SaveArray;
         public bool[] Check;
 
+        public bool E_enemy_working;//아저씨 발동상태
+        public int E_Room;
+        public int E_Spot;
+        public int E_enemy_dest; // (Room)
+        public int E_enemy_state;
+  
+        
+        //public Route _enemy_route;
+      
+
 
     }
 
 
     public void Start()
     {
+       
         //저장오류날때이걸로 일단 모든파일지우고 그담에 다시 제거한후에 테스트하세욤
         /*
         File.Delete(Application.persistentDataPath + "/0.dat");
@@ -202,10 +213,22 @@ public class SaveManager : MonoBehaviour
         
         GameManager gameManager = GameManager.getInstance();
         Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
-
+       // Player_Enemy_data= Enemy.enemy_save_data(); 적정보 일단주석
         data.SaveArray = new int[9];
         gameManager.get_save_data_state(data.SaveArray);
 
+
+        //적정보(일단주석)
+        /*
+        data.E_enemy_working = Player_Enemy_data._enemy_working;
+        data.E_Room = (int)Player_Enemy_data._enemy_spot._room;
+        data.E_Spot = Player_Enemy_data._enemy_spot._spot;
+        data.E_enemy_state = (int)Player_Enemy_data._enemy_state;
+        data.E_enemy_dest = (int)Player_Enemy_data._enemy_dest;
+        */
+        //Player_Enemy_data._enemy_route._next;
+ 
+        //게임 정보
         data.End = gameManager.EndScene;
         data.Find = gameManager.FindCharacter;
         data.Dead = gameManager.DeadCharacter;
@@ -221,12 +244,8 @@ public class SaveManager : MonoBehaviour
         data.Inventory = Inventory.getInstance().inventory;
         data.P_Room = (int)Player_ISpot._room;
         data.P_Spot = Player_ISpot._spot;
-        // data.E_Room = (int)Enemy_ISpot._room;
 
-        // data.E_Spot = Enemy_ISpot._spot;
-
-
-  
+      
 
         bf.Serialize(file, data);
         file.Close();
