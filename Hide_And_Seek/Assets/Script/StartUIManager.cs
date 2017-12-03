@@ -20,12 +20,12 @@ public class StartUIManager : MonoBehaviour {
         GameManager.getInstance().resetGame(); // 데이터 제거
     }
 
-    public void Btn_Start() // 게임시작
+    public void btn_Start() // 게임시작
     {
         GameManager.getInstance().GetMainChapter();
     }
 
-    public void Btn_Load() // 이어하기
+    public void btn_Load() // 이어하기
     {
         GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Save_Prefab);
@@ -33,7 +33,7 @@ public class StartUIManager : MonoBehaviour {
       
     } 
 
-    public void Btn_Sound() // 세팅창 열기
+    public void btn_Sound() // 세팅창 열기
     {
         GameObject.Find("Canvas_Start").GetComponent<CanvasGroup>().interactable = false;
         GameObject temp = Instantiate(Sound_Prefab);
@@ -41,7 +41,7 @@ public class StartUIManager : MonoBehaviour {
  
     }
     
-    public void Btn_Exit() // 게임종료 + 에디터종료
+    public void btn_Exit() // 게임종료 + 에디터종료
     {
     #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
