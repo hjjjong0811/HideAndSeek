@@ -7,46 +7,44 @@ public class GameManager
 {
     private static GameManager instance = null;
 
+    public static int MainChapter; // 전체 메인 에피소드 관리
+
+
+    /*스토리에 영향주는 변수들*/
     public const int SOJU = 12;
     public const int SALT = 18;
     public const int SALTYWATER = 22;
     public const int GROUNDKEY = 43;
 
-
-
-    public static int MainChapter; // 전체 메인 에피소드 관리
-
-    public int[] EndScene;
+    public int[] EndScene; // 씬종료 여부 
     public int[] FindCharacter; // 친구찾기 배열
     public int[] DeadCharacter; // 죽은 친구 배열
     public int[] MeetCharacter; // 만난 친구 배열
     public int[] FindJeongyeon; // 정연 찾기 위해 1층 모든방 배열
     public int[] CheckOverlap; // 중복방지배열 
 
+    /*상태변수*/
+    public int BreakDisplay; // 장식장 깨뜨림
+    public int Wallpaper; // 띠벽지 발견
+    public int HomeConstruct; // 집구조도
+    public int CorrectPassword; // 비밀번호 일치 여부
+    public int BabyBox; // 보물상자
+    
     /*획득 아이템*/
     public int Soju;
     public int Salt;
     public int SaltyWater;
     public int GroundKey; // 지하실 열쇠
 
-    /*상태변수*/
-    public int BreakDisplay; // 장식장 깨뜨림
-    public int Wallpaper; // 띠벽지 발견
-    public int HomeConstruct; // 집구조도
-    public int CorrectPassword; // 비밀번호 일치 여부
-    public int BabyBox;
-   
+    
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
 
 
     private GameManager()
     {
         resetGame();
-
     }
-
-
-
+    
     public static GameManager getInstance()
     {
         if (instance == null)
@@ -55,7 +53,6 @@ public class GameManager
         }
         return instance;
     }
-
 
     public void GetItem(int ItemKey) // 스토리에 관련된 아이템 얻을때
     {
@@ -73,7 +70,6 @@ public class GameManager
             case 9: DeadCharacter[3] = 1; break;
         }
     }
-
 
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
@@ -173,9 +169,8 @@ public class GameManager
 
 
     }
-
-
-    public void chapterPlayScene()
+    
+    public void chapterPlayScene() // 챕터별로 진행될 씬 조건만족시 씬 실행
     {
        
         switch (MainChapter)
@@ -250,7 +245,7 @@ public class GameManager
             // 방 다 뒤져서 정연이없는상태임
             case 8:
                 //하빈이도 없네
-                if (isFirstTime(PlayScene.numScene.no_hb) && isCheckRoom("2_Hall"))
+                if (isFirstTime(PlayScene.numScene.no_hb) &&  isCheckRoom("2_Hall"))
                     scenePlay_End(PlayScene.numScene.no_hb);
 
                 //하빈이 죽었자나?!씬 
@@ -346,7 +341,7 @@ public class GameManager
     }
 
 
-    public void changeArrayState()
+    public void changeArrayState() // 챕터 7일때 정연이 찾을때 필요(모든방)
     {
             switch (SceneManager.GetActiveScene().name)
             {
@@ -362,9 +357,12 @@ public class GameManager
 
     }
 
-
-
-
+    /// <summary>
+    /// 배열이 모두 1인지 확인하는 함수. 모두 1이면 true 아니면 false
+    /// </summary>
+    /// <param name="TestArray">확인할 배열</param>
+    /// <param name="ArrayNum">배열 크기</param>
+    /// <returns></returns>
     public bool isCheckArray(int[] TestArray, int ArrayNum)
     {
         int Num = 0;
