@@ -103,7 +103,7 @@ public class PlaySceneController : MonoBehaviour {
 
         //ScriptManager 바베큐장 대사 진행 요청
         isWaitScript = true;
-        int[] scripts = new int[27];
+        int[] scripts = new int[5];
         for (int i = 0; i <= 4; i++) {
             scripts[i] = i+6;
         }
@@ -117,7 +117,7 @@ public class PlaySceneController : MonoBehaviour {
         for (int i = 0; i <= 21; i++) {
             scripts2[i] = i + 11;
         }
-        ScriptManager.getInstance().showScript(false, scripts, wake);
+        ScriptManager.getInstance().showScript(false, scripts2, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //펜션 내부로 이동
