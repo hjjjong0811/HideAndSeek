@@ -22,6 +22,10 @@ public class GameUIManager : MonoBehaviour {
             Destroy(this.gameObject);
             Destroy(this);
         }
+        Inventory inven = Inventory.getInstance();
+        if (inven.curEquipItem != -1) {
+            inven.equipItem(inven.curEquipItem);
+        }
 
     }
 
