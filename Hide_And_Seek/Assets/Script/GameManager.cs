@@ -126,7 +126,7 @@ public class GameManager
         }
 
         // 장식장 뿌시는 씬 재생후, 장식장 깨져있으면 챕터증가 -> 8+1
-        else if (MainChapter >= 8 && BreakDisplay == 1 && !isOverlap[1])
+        else if (MainChapter >= 8 && BreakDisplay == 1 && !isOverlap[1] && isSceneEnd(PlayScene.numScene.break_cabinet))
         {
                 isOverlap[1] = true;
                 SetMainChapter(MainChapter + 1);
@@ -285,25 +285,7 @@ public class GameManager
 
     }
     
-    //get data(using SaveManager)
-    public void get_save_data_array(int[] end, int[] find, int[]dead, int[]meet, int[] findJ, bool[] check)
-    {
-        end = new int[15];
-        find = new int[4];
-        dead = new int[4];
-        meet = new int[2];
-        findJ = new int[8];
-        check = new bool[3];
-
-        end = EndScene;
-        find = FindCharacter;
-        dead = DeadCharacter;
-        meet = MeetCharacter;
-        findJ = FindJeongyeon;
-        check = isOverlap;
-
-        Debug.Log("get_save_data_array");
-    }
+    
 
     //set data(using saveManager)
     public void set_save_data_array(int[] end, int[] find, int[] dead, int[] meet, int[] findJ, bool[] check)
@@ -314,22 +296,14 @@ public class GameManager
         MeetCharacter = meet;
         FindJeongyeon = findJ;
         isOverlap = check;
-
-        Debug.Log("set_save_data_array");
     }
 
     
     //get state data (using SaveManager)
     public void get_save_data_state(int[] saveArray)
     {
-        if (saveArray == null)
+        if(saveArray != null)
         {
-            Debug.Log("get_save_state -> null ");
-            saveArray = new int[9];
-        }
-        else
-        {
-
             saveArray[0] = Soju;
             saveArray[1] = Salt;
             saveArray[2] = SaltyWater;
@@ -339,7 +313,6 @@ public class GameManager
             saveArray[6] = HomeConstruct;
             saveArray[7] = CorrectPassword;
             saveArray[8] = BabyBox;
-
         }
             
     }
@@ -464,12 +437,18 @@ public class GameManager
     {
         MainChapter = -1;
 
-        EndScene = new int[15] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-        FindCharacter = new int[4] { 0, 0, 0, 0 };
-        DeadCharacter = new int[4] { 0, 0, 0, 0 };
-        MeetCharacter = new int[2] { 0, 0 };
-        FindJeongyeon = new int[8] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        EndScene = new int[15];
+        FindCharacter = new int[4];
+        DeadCharacter = new int[4];
+        MeetCharacter = new int[2];
+        FindJeongyeon = new int[8];
         isOverlap = new bool[3] { false, false, false };
+
+        System.Array.Clear(EndScene, 0, 15);
+        System.Array.Clear(FindCharacter, 0, 4);
+        System.Array.Clear(DeadCharacter, 0, 4);
+        System.Array.Clear(MeetCharacter, 0, 2);
+        System.Array.Clear(FindJeongyeon, 0, 8);
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
