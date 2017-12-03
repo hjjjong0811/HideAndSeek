@@ -147,8 +147,8 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        Debug.Log(hiding);
-        if (ScriptManager.getInstance().isPlaying) return;
+        //씬이나 스크립트 재생중 움직임 불가
+        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
 
         //호빈추가_ 숨기해제
         if (hiding)
@@ -158,12 +158,6 @@ public class Player : MonoBehaviour {
                 hiding = false;
                 Destroy(Hiding_UI_Obj);
 
-                //정원추가_숨을때 씬위해서
-                GameManager tmp = GameManager.getInstance();
-                if (tmp.isFirstTime(PlayScene.numScene.after_break) && tmp.isSceneEnd(PlayScene.numScene.break_cabinet))
-                {
-                    tmp.scenePlay_End(PlayScene.numScene.after_break);
-                }
             }
             return;
         }
@@ -337,10 +331,10 @@ public class Player : MonoBehaviour {
     }
 
     public void player_hide(){
-
+        Debug.Log("hide...");
         hiding = true;
+        GameManager.getInstance().CheckMainChapter();
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
         Enemy.player_start_hiding();
-        
     }
 }
