@@ -101,15 +101,23 @@ public class PlaySceneController : MonoBehaviour {
         light.fadeIn(2.0f);   //페이드인
         yield return new WaitForSeconds(3f);    //대사 전 딜레이
 
-        //Sound 스크립트 중간에 끊고 카메라 찰칵소리
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
         //ScriptManager 바베큐장 대사 진행 요청
         isWaitScript = true;
-        int[] scripts = new int[27];
-        for (int i = 0; i <= 26; i++) {
+        int[] scripts = new int[5];
+        for (int i = 0; i <= 4; i++) {
             scripts[i] = i+6;
         }
         ScriptManager.getInstance().showScript(false, scripts, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound 스크립트 중간에 끊고 카메라 찰칵소리
+        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        isWaitScript = true;
+        int[] scripts2 = new int[22];
+        for (int i = 0; i <= 21; i++) {
+            scripts2[i] = i + 11;
+        }
+        ScriptManager.getInstance().showScript(false, scripts2, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //펜션 내부로 이동
@@ -438,20 +446,25 @@ public class PlaySceneController : MonoBehaviour {
 
     private IEnumerator ringPhone() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
-        GameManager.getInstance().isScenePlay = false;
+        obj_char = new GameObject[6];
+        GameObject gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
 
         SceneManager.LoadScene("2_Bed");
         yield return new WaitForSeconds(0.001f);
 
         //필요 오브젝트 불러오기
-        GameObject pl = GameObject.Find("Player");
-        FlashLight flash = GameObject.Find("Flash").GetComponent<FlashLight>();
+        obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
+        GameObject fl_obj = Instantiate(pre_light_flash);
+        yield return new WaitForSeconds(0.001f);
+
+        FlashLight flash = fl_obj.GetComponent<FlashLight>();
         CameraScript camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
 
         //설정
-        pl.transform.position = new Vector3(0.79f, -1.46f, 0);
-        flash.LinkUser(null);
-        flash.setPosition(new Vector2(0.79f, -1.46f));
+        Vector3 pos = Player.get_player_pos();
+        obj_char[(int)char_num.main].transform.position = pos;
+        flash.setPosition(pos);
         flash.fadeIn(1.0f);
         yield return new WaitForSeconds(1f);
 
@@ -460,7 +473,6 @@ public class PlaySceneController : MonoBehaviour {
 
         //하이라이트 이동
         flash.move(new Vector2(-1.19f, -0.98f));
-        camera.linkUser(null);
         camera.zoom(new Vector2(-1.19f, -0.98f), 4f);
 
         //대사 진행
@@ -469,12 +481,9 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
 
         //하이라이트 이동
-        flash.move(new Vector2(0.79f, -1.46f));
-        camera.linkUser(null);
-        camera.zoom(new Vector2(0.79f, -1.46f), 4f);
+        flash.move(pos);
+        camera.zoom(pos, 4f);
         yield return new WaitForSeconds(0.5f);
-        flash.LinkUser(pl);
-        camera.linkUser(pl);
 
         //대사진행
         isWaitScript = true;
@@ -506,6 +515,11 @@ public class PlaySceneController : MonoBehaviour {
         SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.LAUGH_ENEMY));
         ScriptManager.getInstance().showScript(false, new int[] { 766 });
 
+        GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("2_Bed");
+        gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = true;
+
         Destroy(this.gameObject);
         Destroy(this);
 
@@ -514,6 +528,10 @@ public class PlaySceneController : MonoBehaviour {
 
     private IEnumerator nosalt() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
+
+        GameObject gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
+
         obj_char = new GameObject[6];
         //씬로드
         SceneManager.LoadScene("2_Hall");
@@ -550,6 +568,10 @@ public class PlaySceneController : MonoBehaviour {
         GameObject pl = GameObject.Find("Player");
         pl.transform.position = new Vector3(2.28f, 0, 0);
 
+
+        gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = true;
+
         Destroy(this.gameObject);
         Destroy(this);
 
@@ -557,6 +579,10 @@ public class PlaySceneController : MonoBehaviour {
     }
     private IEnumerator havesalt() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
+
+        GameObject gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = false;
+
         obj_char = new GameObject[6];
         //씬로드
         SceneManager.LoadScene("2_Hall");
@@ -587,6 +613,10 @@ public class PlaySceneController : MonoBehaviour {
         ////플레이어 위치설정
         GameObject pl = GameObject.Find("Player");
         pl.transform.position = new Vector3(2.28f, 0, 0);
+
+
+        gameUI = GameObject.Find("Canvas_UI");
+        if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = true;
 
         Destroy(this.gameObject);
         Destroy(this);
@@ -694,35 +724,45 @@ public class PlaySceneController : MonoBehaviour {
         yield break;
     }
     private IEnumerator afterbreak() {
-        GameManager.getInstance().isScenePlay = false;
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         yield return new WaitForSeconds(0.5f);
 
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 650, 651 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        yield return new WaitForSeconds(2f);
         //Sound 웅웅
         SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.WASHER));
-        ScriptManager.getInstance().showScript(false, new int[] { 650, 651, 652 });
 
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {652 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+        
+        GameManager.getInstance().isScenePlay = false;
         Destroy(this.gameObject);
         Destroy(this);
 
         yield break;
     }
     private IEnumerator jyd() {
-        GameManager.getInstance().isScenePlay = false;
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
         SceneManager.LoadScene("1_Laundry");
         yield return new WaitForSeconds(0.001f);
 
         //필요 오브젝트 불러오기
-        GameObject pl = GameObject.Find("Player");
-        FlashLight flash = GameObject.Find("Flash").GetComponent<FlashLight>();
+        obj_char = new GameObject[6];
+        obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
+        GameObject obj_flash = Instantiate(pre_light_flash);
+        yield return new WaitForSeconds(0.001f);
+        
         CameraScript camera = GameObject.Find("Main Camera").GetComponent<CameraScript>();
 
         //설정
-        pl.transform.position = new Vector3(1.38f, -2.69f, 0);
-        flash.LinkUser(null);
+        obj_char[(int)char_num.main].transform.position = new Vector3(1.38f, -2.69f, 0);
+        FlashLight flash = obj_flash.GetComponent<FlashLight>();
         flash.setPosition(new Vector2(1.38f, -2.69f));
         flash.fadeIn(1.0f);
         yield return new WaitForSeconds(1f);
@@ -750,8 +790,8 @@ public class PlaySceneController : MonoBehaviour {
         ScriptManager.getInstance().showScript(false, new int[] { 701,702 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
-        flash.LinkUser(pl);
-        camera.linkUser(pl);
+        GameManager.getInstance().isScenePlay = false;
+        SceneManager.LoadScene("1_Laundry");
 
         Destroy(this.gameObject);
         Destroy(this);

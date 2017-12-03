@@ -89,7 +89,7 @@ public class Player : MonoBehaviour {
         if(pl != null) {
             Player player = pl.GetComponent<Player>();
             pHp = player.Hp;
-            pPosition = player.get_player_pos();
+            pPosition = Player.get_player_pos();
             pSpot = player.SpotInfo;
         } else {
             pHp = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.hp], Hp_max);
@@ -147,16 +147,18 @@ public class Player : MonoBehaviour {
 
     // Update is called once per frame
     private void Update() {
-        Debug.Log(hiding);
-        if (ScriptManager.getInstance().isPlaying) return;
+        //씬이나 스크립트 재생중 움직임 불가
+        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
 
         //호빈추가_ 숨기해제
         if (hiding)
         {
             if (Input.GetButtonDown("Action"))//hiding상태에서 Action키 누르면
             {
+                Debug.Log("hide 취소");
                 hiding = false;
                 Destroy(Hiding_UI_Obj);
+
             }
             return;
         }
@@ -310,6 +312,7 @@ public class Player : MonoBehaviour {
     }
 
     //호빈추가
+    //현정변경 -> GameObject 존재검사 + PlayerPrefs < 안정성때메, static에선 GameObject 다룰때 주의
     public static void set_player_pos(Vector3 v) {
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], v.x);
         PlayerPrefs.SetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], v.y);
@@ -321,16 +324,36 @@ public class Player : MonoBehaviour {
         }
         Debug.Log(v.x + ", " + v.y + "set");
     }
-    public Vector3 get_player_pos() {
-        return this.transform.position;
+    public static Vector3 get_player_pos() {
+        GameObject go = GameObject.Find("Player");
+        if (go != null) {
+            return go.transform.position;
+        } else {
+            Vector3 pos = new Vector3();
+            pos.x = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.x], 0);
+            pos.y = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.y], 0);
+            pos.z = PlayerPrefs.GetFloat(PlayerPrefsKey[(int)PlayerPrefsIndex.z], 0);
+            return pos;
+        }
     }
     public static ISpot get_player_spot()
     {
-        return Player.Player_obj.GetComponent<Player>().SpotInfo;
+        GameObject go = GameObject.Find("Player");
+        if(go != null) {
+            return Player.Player_obj.GetComponent<Player>().SpotInfo;
+        } else {
+            int room = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.room], 0);
+            int spot = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], 0);
+            ISpot ispot = new ISpot((Room)room, spot);
+            return ispot;
+        }
+        
     }
 
     public void player_hide(){
+        Debug.Log("hide...");
         hiding = true;
+        GameManager.getInstance().CheckMainChapter();
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
         Enemy.player_start_hiding();
     }
