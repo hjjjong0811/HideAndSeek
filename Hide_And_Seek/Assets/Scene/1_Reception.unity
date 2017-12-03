@@ -151,7 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 9
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -164,12 +163,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &213114863
 PolygonCollider2D:
@@ -776,27 +777,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 901
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 1
+    type: 2
     isActByCollision: 0
     outputByCollision:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 1048
-      sound: {fileID: 0}
+      script_key: 9012
+      sound: {fileID: 8300000, guid: 980dc0a9707a49147aa0ea8da82ebbe8, type: 3}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 5
     isActive: 1
     sprite: {fileID: 0}
@@ -808,12 +810,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 48
-      sound: {fileID: 0}
+      script_key: 9011
+      sound: {fileID: 8300000, guid: 980dc0a9707a49147aa0ea8da82ebbe8, type: 3}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!1 &792413687
 GameObject:
@@ -1656,7 +1660,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1669,12 +1672,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 1050
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   - chapter: 5
     isActive: 1
     sprite: {fileID: 0}
@@ -1686,12 +1691,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 50
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &1292839952
 PolygonCollider2D:
@@ -2057,12 +2064,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
     sprite: {fileID: 0}
-    sound_default: {fileID: 0}
+    sound_default: {fileID: 8300000, guid: 923d4435dedea7944bb8060eb62e9464, type: 3}
     type: 1
     isActByCollision: 0
     outputByCollision:
@@ -2070,12 +2076,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 49
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &1692845347
 PolygonCollider2D:
@@ -2335,7 +2343,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 0
   _t_thing_f_portal: 1
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -2348,12 +2355,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 51
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &1904021728
 PolygonCollider2D:
