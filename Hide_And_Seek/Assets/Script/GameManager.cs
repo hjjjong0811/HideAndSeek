@@ -280,19 +280,16 @@ public class GameManager
 
                 //뿌신후 장롱안에서 세탁기 웅웅씬
                 else if (isFirstTime(PlayScene.numScene.after_break) && isSceneEnd(PlayScene.numScene.break_cabinet) && Player.hiding)
-                {
                     scenePlay_End(PlayScene.numScene.after_break);
-                    Player.hiding = false;
-                }
 
                 // 정연이 죽음씬
-                else if (isFirstTime(PlayScene.numScene.jy_die) && isCheckRoom("1_Laundry"))
+                else if (isFirstTime(PlayScene.numScene.jy_die) && isSceneEnd(PlayScene.numScene.after_break) &&isCheckRoom("1_Laundry"))
                     scenePlay_End(PlayScene.numScene.jy_die);
                 break;
 
             // 서운이 죽게됨 
             case 11:
-                if (isFirstTime(PlayScene.numScene.ringPhone) && isCheckRoom("2_Bed"))
+                if (isFirstTime(PlayScene.numScene.ringPhone) && isSceneEnd(PlayScene.numScene.jy_die) &&isCheckRoom("2_Bed"))
                     scenePlay_End(PlayScene.numScene.ringPhone);
                 break;
 
