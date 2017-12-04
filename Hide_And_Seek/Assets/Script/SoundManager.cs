@@ -274,8 +274,8 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         //환경설정불러오기
-        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm", 1.0f);
-        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect", 1.0f);
+        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
+        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
 
         bgmSource = new AudioSource();
         effectSource = new AudioSource();
@@ -315,7 +315,21 @@ public class SoundManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { 
+        
+        //정원추가
+        bgmSource.volume = SoundUIManager.getInstance().BGM_Slider.value;
+        effectSource.volume = SoundUIManager.getInstance().Effect_Slider.value;
+        
+        PlayerPrefs.SetFloat("Sound_vol_bgm",bgmSource.volume);
+        PlayerPrefs.SetFloat("Sound_vol_effect", effectSource.volume);
+        
+        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
+        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
+        //정원추가
+
+
+
         //walkSound 갱신
         if (!isMute)
         {
