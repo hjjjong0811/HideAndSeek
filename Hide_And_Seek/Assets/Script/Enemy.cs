@@ -60,6 +60,9 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
+
+
         //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
         if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
         if (GameObject.FindGameObjectWithTag("Player") == null) return;
@@ -123,8 +126,8 @@ public class Enemy : MonoBehaviour
 
             case true://chasing -> normal
                 _enemy.transform.position = Enemy.ENEMY_INIT_LOC;
-                //_enemy_spot = 
                 _enemy_last_spot = _enemy_spot;
+                _enemy_finding = false;
 
                 int tmp_i = 0;
                 if ((int)Player.get_player_spot()._room <= Scene_Manager.MAX_FLOOR1_IDX)//1층이면
@@ -141,7 +144,6 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_normal
     void do_normal()
     {
-        //Debug.Log("enemy_looking : "+_enemy_looking);//test
         if (!_enemy_looking)
         {
             StartCoroutine(looking_around(_enemy_stay_time[(int)_enemy_state]));
@@ -424,7 +426,8 @@ public class Enemy : MonoBehaviour
             {
                 Debug.Log("게임오버");//test
             }
-            else { //아저씨랑 멀리 있을때 숨으면
+            else
+            {
                 go_straight(player_hiding_spot);
             }
         }
@@ -437,6 +440,7 @@ public class Enemy : MonoBehaviour
         _enemy_route = look_around_route(_enemy_spot, _enemy_dest)._next;
         _enemy_state = Enemy_State.going_dest;
         _enemy_looking = false;
+        _enemy_finding = false;
     }
 
     public static void start_enemy_working()

@@ -71,7 +71,7 @@ public class Objects : MonoBehaviour, IObject {
             
             if(InfoByChapter[index].sprite != null) spriteRenderer.sprite = InfoByChapter[index].sprite;
             if(InfoByChapter[index].sound_default != null) {
-                SoundManager.getInstance().playEffect(InfoByChapter[index].sound_default);
+                SoundManager.getInstance().playEffectLoop(InfoByChapter[index].sound_default);
             }
         }
 
@@ -100,8 +100,13 @@ public class Objects : MonoBehaviour, IObject {
 
             //Sound 있으면재생
             if (curInfo.outputByCall.sound != null)
-                SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
+            {
+                //호빈추가
+                if (GameObject.FindGameObjectWithTag("Player") != null) { Enemy.go_straight(Player.get_player_spot()); }
+                else Debug.Log("어그로용사운드 발생했는데 플레이어가 없다니?!");//test
 
+                SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
+            }
             if (curInfo.type == Type.hide) {
                 //hide
                 GameObject pl = GameObject.Find("Player");

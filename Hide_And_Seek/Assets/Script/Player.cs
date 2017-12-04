@@ -158,10 +158,13 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetButtonDown("Action"))//hiding상태에서 Action키 누르면
             {
-                Debug.Log("hide 취소");
+                //아저씨위치 조정
+                Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+                Debug.Log("아저씨위치 초기화!");//test
+
+                //Debug.Log("hide 취소");//test
                 hiding = false;
                 Destroy(Hiding_UI_Obj);
-
             }
             return;
         }
