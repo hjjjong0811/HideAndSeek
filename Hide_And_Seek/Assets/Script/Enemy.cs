@@ -418,15 +418,23 @@ public class Enemy : MonoBehaviour
 
     public static void player_start_hiding(ISpot player_hiding_spot)
     {
-        //나중에_ 같은방 거리3이하면->게임아웃 / 아니면 거기로 향하게 하기
-        go_straight(player_hiding_spot);
+        if (_f_normal_t_chasing)
+        {
+            if (check_in_same_room() && check_player_enemey_distance() < CHASING_START_DISTANCE)//아저씨랑 같은방에서 가까울때 숨으면
+            {
+                Debug.Log("게임오버");//test
+            }
+            else { //아저씨랑 멀리 있을때 숨으면
+                go_straight(player_hiding_spot);
+            }
+        }
     }
 
     public static void go_straight(ISpot spot)
     {
+        _enemy_dest = spot._room;
         _f_normal_t_chasing = false;
-        //Debug.Log("test>>> " + Enemy._f_normal_t_chasing);//test
-        _enemy_route = look_around_route(_enemy_spot, spot._room)._next;
+        _enemy_route = look_around_route(_enemy_spot, _enemy_dest)._next;
         _enemy_state = Enemy_State.going_dest;
         _enemy_looking = false;
     }
