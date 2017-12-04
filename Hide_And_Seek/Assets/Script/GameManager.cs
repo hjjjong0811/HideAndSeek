@@ -14,7 +14,6 @@ public class GameManager
     public const int SOJU = 12;
     public const int SALT = 18;
     public const int SALTYWATER = 22;
-    public const int GROUNDKEY = 43;
 
     public int[] EndScene; // 씬종료 여부 
     public int[] FindCharacter; // 친구찾기 배열
@@ -28,13 +27,15 @@ public class GameManager
     public int Wallpaper; // 띠벽지 발견
     public int HomeConstruct; // 집구조도
     public int CorrectPassword; // 비밀번호 일치 여부
-    public int BabyBox; // 보물상자
-    
+    public int OpenBabyBox;
+    public int OpenPantry;
+    public int OpenGarret;
+
     /*획득 아이템*/
     public int Soju;
     public int Salt;
     public int SaltyWater;
-    public int GroundKey; // 지하실 열쇠
+    public int GroundKey; // 지하실 여는조건
 
     
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
@@ -61,7 +62,6 @@ public class GameManager
             case SOJU: Soju = 1; break;
             case SALT: Salt = 1; break;
             case SALTYWATER: SaltyWater = 1; break;
-            case GROUNDKEY: GroundKey = 1; break;
 
             //머리카락(효정/하빈/정연/서운)
             case 6: DeadCharacter[0] = 1; break;
@@ -312,8 +312,11 @@ public class GameManager
             saveArray[5] = Wallpaper;
             saveArray[6] = HomeConstruct;
             saveArray[7] = CorrectPassword;
-            saveArray[8] = BabyBox;
-        }
+            saveArray[8] = OpenBabyBox;
+            saveArray[9] = OpenPantry;
+            saveArray[10] = OpenGarret;
+
+}
             
     }
 
@@ -330,7 +333,9 @@ public class GameManager
             Wallpaper = saveArray[5];
             HomeConstruct = saveArray[6];
             CorrectPassword = saveArray[7];
-            BabyBox = saveArray[8];
+            OpenBabyBox = saveArray[8];
+            OpenPantry = saveArray[9];
+            OpenGarret = saveArray[10];
         }
         else       
             Debug.Log("set_save_state문제");
@@ -452,7 +457,7 @@ public class GameManager
 
         Soju = 0; Salt = 0; SaltyWater = 0; GroundKey = 0;
         BreakDisplay = 0; Wallpaper = 0; HomeConstruct = 0; CorrectPassword = 0;
-        BabyBox = 0;
+        OpenBabyBox = 0; OpenGarret = 0; OpenPantry = 0;
     }
 
     public int GetMainChapter() // 현재 챕터 반환
