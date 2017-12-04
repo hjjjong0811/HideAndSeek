@@ -565,7 +565,6 @@ public class PlaySceneController : MonoBehaviour {
         GameObject pl = GameObject.Find("Player");
         pl.transform.position = new Vector3(-0.56f, -1.3f, 0);
 
-
         gameUI = GameObject.Find("Canvas_UI");
         if (gameUI != null) gameUI.GetComponent<CanvasGroup>().interactable = true;
 
