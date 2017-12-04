@@ -491,6 +491,7 @@ public class Enemy : MonoBehaviour
         while (_enemy_route != null)
         {
             result._enemy_route_array[result._enemy_route_length++] = _enemy_route.get_data();
+            _enemy_route = _enemy_route._next;
         }
         return result;
     }
@@ -503,6 +504,6 @@ public class Enemy_Data
     public Enemy_State _enemy_state;//현재 내부상태
     public Room _enemy_dest;
     //public Route _enemy_route;
-    public int _enemy_route_length = 0;
-    public ISpot[] _enemy_route_array = new ISpot[100];
+    public int _enemy_route_length = 0;//루트 길이(_enemy_route_array 배열 길이)
+    public ISpot[] _enemy_route_array = new ISpot[100];//루트 순서대로 ISpot데이터만 배열로 저장
 }
