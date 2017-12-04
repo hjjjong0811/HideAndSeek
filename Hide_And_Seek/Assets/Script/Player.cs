@@ -148,8 +148,11 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         //씬이나 스크립트 재생중 움직임 불가
-        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
-
+        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) {
+            Animator.SetInteger("State", Ani_Idle);
+            Animator.speed = Speed_walk;
+            return;
+        }
         //호빈추가_ 숨기해제
         if (hiding)
         {
