@@ -239,15 +239,11 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_chasing
     void do_chasing(float spent_time)
     {
-        Debug.Log("chasing!"+_enemy_spot._room);//test
+        Debug.Log("chasing!"+_enemy_spot._room+" / 플레이어 : "+Player.get_player_spot()._room);//test
         if (check_in_same_room()) //chasing하고있고, player&enemy 같은방인 상태
         {
-            if (check_player_enemey_distance() <= Enemy.GAMEOVER_DISTANCE)
-            {
-                Debug.Log("게임오버");
-            }
             _enemy_finding_time = 0f;
-
+            Debug.Log("플레이어 따라다니는중!");
             //플레이어 따라다니기
             Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
