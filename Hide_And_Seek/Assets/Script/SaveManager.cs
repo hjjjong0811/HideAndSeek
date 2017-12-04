@@ -36,6 +36,8 @@ public class SaveManager : MonoBehaviour
     public ISpot Player_ISpot;
     public ISpot Enemy_ISpot;
 
+    public ISpot[] Enemy_route_array;
+
     public Enemy_Data Player_Enemy_data;
 
 
@@ -65,11 +67,11 @@ public class SaveManager : MonoBehaviour
         public int E_Spot;
         public int E_enemy_dest; // (Room)
         public int E_enemy_state;
-  
-        
-        //public Route _enemy_route;
-      
 
+        public int[] E_route_Room_array;
+        public int[] E_route_Spot_array;
+        public int E_route_length;
+      
 
     }
 
@@ -213,21 +215,36 @@ public class SaveManager : MonoBehaviour
         
         GameManager gameManager = GameManager.getInstance();
         Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
-       // Player_Enemy_data= Enemy.enemy_save_data(); 적정보 일단주석
+        Player_Enemy_data = new Enemy_Data();
+        Player_Enemy_data = Enemy.enemy_save_data();
         data.SaveArray = new int[11];
         gameManager.get_save_data_state(data.SaveArray);
 
+      
+        Enemy_route_array = new ISpot[Player_Enemy_data._enemy_route_length];
+        Player_Enemy_data._enemy_spot = new ISpot(0, 0);
+        Enemy_route_array = Player_Enemy_data._enemy_route_array;
 
-        //적정보(일단주석)
-        /*
+      
+        
+        //적정보
         data.E_enemy_working = Player_Enemy_data._enemy_working;
         data.E_Room = (int)Player_Enemy_data._enemy_spot._room;
         data.E_Spot = Player_Enemy_data._enemy_spot._spot;
         data.E_enemy_state = (int)Player_Enemy_data._enemy_state;
         data.E_enemy_dest = (int)Player_Enemy_data._enemy_dest;
-        */
-        //Player_Enemy_data._enemy_route._next;
- 
+        data.E_route_length = Player_Enemy_data._enemy_route_length;
+
+        data.E_route_Room_array = new int[data.E_route_length];
+        data.E_route_Spot_array = new int[data.E_route_length];
+
+        for(int i=0;i<data.E_route_length;i++)
+        {
+            data.E_route_Room_array[i] = (int)Enemy_route_array[i]._room;
+            data.E_route_Spot_array[i] = Enemy_route_array[i]._spot;
+        }
+
+        
         //게임 정보
         data.End = gameManager.EndScene;
         data.Find = gameManager.FindCharacter;
@@ -267,21 +284,41 @@ public class SaveManager : MonoBehaviour
                 GameManager gamemanager = GameManager.getInstance();
 
                 Player_ISpot = new ISpot(0, 0);
+                Player_Enemy_data = new Enemy_Data();
+                Player_Enemy_data._enemy_spot = new ISpot(0, 0);
+             
+                
                 Player_ISpot._room = (Room)data.P_Room;
                 Player_ISpot._spot = data.P_Spot;
-
-                String SaveScene = Scene_Manager.scene_name[(int)Player_ISpot._room];
-                SceneManager.LoadScene(SaveScene);
-
-                
                 PlayerPos.x = data.x;
                 PlayerPos.y = data.y;
                 PlayerPos.z = data.z;
+                
+                String SaveScene = Scene_Manager.scene_name[(int)Player_ISpot._room];
+                SceneManager.LoadScene(SaveScene);
 
-                // Enemy_ISpot._room = (Room)data.E_Room;
-                //Enemy_ISpot._spot = data.E_Spot;
+               
+                Player_Enemy_data._enemy_working = data.E_enemy_working;
+                Player_Enemy_data._enemy_spot._room = (Room)data.E_Room;
+                Player_Enemy_data._enemy_spot._spot = data.E_Spot;
+                Player_Enemy_data._enemy_state = (Enemy_State)data.E_enemy_state;
+                Player_Enemy_data._enemy_dest = (Room)data.E_enemy_dest;
+                Player_Enemy_data._enemy_route_length = data.E_route_length;
 
-           
+                Enemy_route_array = new ISpot[Player_Enemy_data._enemy_route_length];
+               
+
+                for(int i=0; i<Player_Enemy_data._enemy_route_length; i++)
+                {
+                    Enemy_route_array[i] = new ISpot(0, 0);
+                    Enemy_route_array[i]._room = (Room)data.E_route_Room_array[i];
+                    Enemy_route_array[i]._spot = data.E_route_Spot_array[i];
+                }
+
+                Player_Enemy_data._enemy_route_array = Enemy_route_array;
+
+
+                Enemy.enemy_bring_data(Player_Enemy_data);
                 Inventory.getInstance().inventory = data.Inventory;
                 gamemanager.SetMainChapter(data.MainChapter);
                 gamemanager.set_save_data_array(data.End, data.Find, data.Dead, data.Meet, data.FindJ, data.Check);

@@ -6,62 +6,77 @@ using UnityEngine.SceneManagement;
 
 public class SoundUIManager : MonoBehaviour {
 
+    private static SoundUIManager instance = null;
+
     public AudioSource BGM;
     public AudioSource Effect;
     public AudioSource FootStep;
    
     public Toggle BGM_toggle;
-    public Toggle Effect_Toggle;
+    public Toggle Effect_Toggle; // effect + footstep
 
     public Slider BGM_Slider;
-    public Slider Effect_Slider;
+    public Slider Effect_Slider; // effect + footstep
 
-    public void Awake()
+    public static SoundUIManager getInstance()
     {
-        BGM = GetComponent<AudioSource>();
-        Effect = GetComponent<AudioSource>();
-        FootStep = GetComponent<AudioSource>();
+        if (instance == null)
+        {
+            instance = new SoundUIManager();
+        }
+        return instance;
     }
 
     public void Start()
     {
-        BGM.Play();
+        SoundManager soundmanager = SoundManager.getInstance();
+
+        BGM = soundmanager.bgmSource;
+        Effect = soundmanager.effectSource;
+        FootStep = soundmanager.walkSource;
+
+        BGM_Slider.value = soundmanager.volume_bgm;
+        Effect_Slider.value = soundmanager.volume_effect;
+        
     }
 
     public void BGM_Volume() // BGM 볼륨조절
     {
         BGM.volume = BGM_Slider.value;
+        SoundManager.getInstance().volume_bgm = BGM.volume;
     }
 
     public void Effect_Volume() // 효과음 볼륨조절
     {
         Effect.volume = Effect_Slider.value;
+        SoundManager.getInstance().volume_effect = Effect.volume;
     }
 
-    public void BGM_ONOFF()
+    public void BGM_ONOFF()// BGM ONOFF
     {
         if (BGM_toggle.isOn.Equals(true))
-            BGM.Play();
+        {
+            SoundManager.getInstance().volume_bgm = BGM_Slider.value;
+        }
         else
-            BGM.Stop();
-    } // BGM ONOFF
+        {
+            SoundManager.getInstance().volume_bgm = 0.0f;
+        }
+    } 
 
-    public void Effect_ONOFF()
+    public void Effect_ONOFF() // 효과음 ONOFF
     {
         if (Effect_Toggle.isOn.Equals(true))
         {
-            Effect.Play();
-            FootStep.Play();
+            SoundManager.getInstance().volume_effect = Effect_Slider.value;
         }
         else
         {
-            Effect.Stop();
-            FootStep.Stop();
+            SoundManager.getInstance().volume_effect = 0.0f;
         }
-    } // 효과음 ONOFF
+    }
 
- 
-public void Btn_SoundOff()// 씬종료
+    public void Btn_SoundOff()// 씬종료
     {
         if (GameObject.Find("Setting"))
         {
