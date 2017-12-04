@@ -233,7 +233,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 0
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: 73fac849d19374944bb52fe587f68140, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -1722,7 +1722,7 @@ MonoBehaviour:
       isBlockPortal: 0
       script_key_isExistitem: 0
   - chapter: 14
-    isActive: 1
+    isActive: 0
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
     type: 0
@@ -2129,7 +2129,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 1
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: 16e01dbb6f37c604bbeb1fa65c106dca, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -3360,9 +3360,9 @@ MonoBehaviour:
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-    isActByCall: 0
+    isActByCall: 1
     outputByCall:
-      script_key: 0
+      script_key: 7213
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 1
@@ -3382,7 +3382,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 0
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: aa7061a365473a24fb45ad3798721c40, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -3391,9 +3391,25 @@ MonoBehaviour:
     materialItem_key: 43
     outputByUsingItem:
       script_key: 7211
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: aa7061a365473a24fb45ad3798721c40, type: 3}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
+  - chapter_canUse: 14
+    materialItem_key: 13
+    outputByUsingItem:
+      script_key: 7212
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 1
+      script_key_isExistitem: 0
+  - chapter_canUse: 14
+    materialItem_key: 24
+    outputByUsingItem:
+      script_key: 7212
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 1
       script_key_isExistitem: 0
 --- !u!1 &1841570895
 GameObject:
