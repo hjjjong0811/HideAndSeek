@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
         int spot = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], 0);
         SpotInfo = new ISpot((Room)room, spot);
 
-        Debug.Log(transform.position.x + ", " + transform.position.y + "Awake");
+        //Debug.Log(transform.position.x + ", " + transform.position.y + "Awake");
     }
 
     /// <summary>
@@ -271,7 +271,7 @@ public class Player : MonoBehaviour {
     private void action() {
         GameObject nearObject = findNearObject();
         if (nearObject != null) {
-            Debug.Log(nearObject.name + " Player_action");
+            //Debug.Log(nearObject.name + " Player_action");
             nearObject.SendMessage("action");
         }
     }
@@ -328,7 +328,7 @@ public class Player : MonoBehaviour {
         if (pl != null) {
             pl.transform.position = v;
         }
-        Debug.Log(v.x + ", " + v.y + "set");
+        //Debug.Log(v.x + ", " + v.y + "set");
     }
     public static Vector3 get_player_pos() {
         GameObject go = GameObject.Find("Player");

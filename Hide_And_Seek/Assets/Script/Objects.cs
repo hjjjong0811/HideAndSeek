@@ -102,7 +102,11 @@ public class Objects : MonoBehaviour, IObject {
             if (curInfo.outputByCall.sound != null)
             {
                 //호빈추가
-                if (GameObject.FindGameObjectWithTag("Player") != null) { Enemy.go_straight(Player.get_player_spot()); }
+                if (GameObject.FindGameObjectWithTag("Player") != null)
+                {
+                    Debug.Log("소리!");
+                    Enemy.go_straight(Player.get_player_spot());
+                }
                 else Debug.Log("어그로용사운드 발생했는데 플레이어가 없다니?!");//test
 
                 SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);

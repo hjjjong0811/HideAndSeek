@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 {
     public static GameObject _enemy = null;
     private static readonly int CHASING_START_DISTANCE = 3;//같은방에서 Enemy~Player spot 거리차이가 이 변수값 이하면 enemy가 쫓아옴
+    private static readonly int GAMEOVER_DISTANCE = 1;
     public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
     private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
     private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f, 1f };//[normal,chasing 상태] 내부상태에 따른 활동시간
@@ -60,7 +61,7 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
+        //Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
 
 
         //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
@@ -118,10 +119,11 @@ public class Enemy : MonoBehaviour
                 {
                     _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(_enemy_last_spot._room, _enemy_spot._room);
                 }
-
-                _f_normal_t_chasing = true;
+                
                 _enemy_finding_time = 0f;
                 _enemy_looking = false;
+                _enemy_finding = false;
+                _f_normal_t_chasing = true;
                 break;
 
             case true://chasing -> normal
@@ -148,7 +150,7 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(looking_around(_enemy_stay_time[(int)_enemy_state]));
         }
-
+        Debug.Log("do_normal!");//test
 
         //chasing 상태로 바꾸는 조건
         if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room() && !Player.hiding)
@@ -237,8 +239,13 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_chasing
     void do_chasing(float spent_time)
     {
+        Debug.Log("chasing!"+_enemy_spot._room);//test
         if (check_in_same_room()) //chasing하고있고, player&enemy 같은방인 상태
         {
+            if (check_player_enemey_distance() <= Enemy.GAMEOVER_DISTANCE)
+            {
+                Debug.Log("게임오버");
+            }
             _enemy_finding_time = 0f;
 
             //플레이어 따라다니기
@@ -301,7 +308,7 @@ public class Enemy : MonoBehaviour
     /// 플레이어랑 적이랑 같은 방인지 체크하는 함수
     /// </summary>
     /// <returns></returns>
-    private static bool check_in_same_room()
+    public static bool check_in_same_room()
     {
         if (Player.get_player_spot()._room == _enemy_spot._room) return true;
         else return false;
@@ -403,7 +410,7 @@ public class Enemy : MonoBehaviour
 
     public static int check_player_enemey_distance()
     {
-        int distance = -1;//-1은 Enemey 활동하지 않는중을 의미
+        int distance = 100;//-1은 Enemey 활동하지 않는중을 의미
         Scene_Manager tmp = Scene_Manager.getInstance();
         if (Player.Player_obj != null && Enemy._enemy_working)
         {
