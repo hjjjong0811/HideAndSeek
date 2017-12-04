@@ -102,12 +102,12 @@ public class Objects : MonoBehaviour, IObject {
             if (curInfo.outputByCall.sound != null)
             {
                 //호빈추가
-                if (GameObject.FindGameObjectWithTag("Player") != null)
+                if (GameObject.FindGameObjectWithTag("Player") != null&&Enemy.get_enemy_working()&&!Enemy.get_enemy_chasing())
                 {
-                    Debug.Log("소리!");
+                    Debug.Log("소리 -> 어그로 발생!!");//test
                     Enemy.go_straight(Player.get_player_spot());
                 }
-                else Debug.Log("어그로용사운드 발생했는데 플레이어가 없다니?!");//test
+                else Debug.Log("소리 -> 어그로 발생 (X)");//test
 
                 SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
             }

@@ -69,8 +69,8 @@ public class Enemy : MonoBehaviour
         if (GameObject.FindGameObjectWithTag("Player") == null) return;
 
         //test중
-        Debug.Log("enemy_working : " + _enemy_working);
-        Debug.Log("_f_normal_t_chasing : " + _f_normal_t_chasing);
+        //Debug.Log("enemy_working : " + _enemy_working);
+        //Debug.Log("_f_normal_t_chasing : " + _f_normal_t_chasing);
 
         if (!_enemy_working) return;
         if (ScriptManager.getInstance().isPlaying) _enemy_working = false;
@@ -402,6 +402,10 @@ public class Enemy : MonoBehaviour
     public static bool get_enemy_chasing()
     {
         return _f_normal_t_chasing;
+    }
+    public static bool get_enemy_working()
+    {
+        return _enemy_working;
     }
 
     public static int check_player_enemey_distance()
