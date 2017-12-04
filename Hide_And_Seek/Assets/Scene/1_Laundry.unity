@@ -269,7 +269,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 0
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: f276ae4b7ba5e6a44a8b104a14904246, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -1135,7 +1135,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 0
+      script_key: 6042
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
@@ -1677,7 +1677,7 @@ MonoBehaviour:
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 1
+    type: 4
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -1687,11 +1687,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 6011
+      script_key: 6012
       sound: {fileID: 0}
-      item_key: 0
+      item_key: 14
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 6011
   usingItem: []
 --- !u!1 &1083170307
 GameObject:
@@ -1978,8 +1978,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
-  _t_thing_f_portal: 0
+  _key_num: 602
+  _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -1995,7 +1995,7 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 201
+      script_key: 6021
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
