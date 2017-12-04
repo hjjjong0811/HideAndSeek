@@ -102,12 +102,15 @@ public class Objects : MonoBehaviour, IObject {
             if (curInfo.outputByCall.sound != null)
             {
                 //호빈추가
-                if (GameObject.FindGameObjectWithTag("Player") != null&&Enemy.get_enemy_working()&&!Enemy.get_enemy_chasing())
+                if (GameObject.FindGameObjectWithTag("Player") != null && Enemy.get_enemy_working() && !Enemy.get_enemy_chasing())
                 {
-                    Debug.Log("소리 -> 어그로 발생!!");//test
+                    //Debug.Log("소리 -> 어그로 발생!!");//test
                     Enemy.go_straight(Player.get_player_spot());
                 }
-                else Debug.Log("소리 -> 어그로 발생 (X)");//test
+                else
+                {
+                    //Debug.Log("소리 -> 어그로 발생 (X)");//test
+                }
 
                 SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
             }
@@ -193,7 +196,19 @@ public class Objects : MonoBehaviour, IObject {
             if (curInfo.isActByCollision)  {
                 //Sound 있으면재생
                 if (curInfo.outputByCollision.sound != null)
+                {
+                    //호빈추가
+                    if (GameObject.FindGameObjectWithTag("Player") != null && Enemy.get_enemy_working() && !Enemy.get_enemy_chasing())
+                    {
+                        Debug.Log("소리 -> 어그로 발생!!");//test
+                        Enemy.go_straight(Player.get_player_spot());
+                    }
+                    else
+                    {
+                        Debug.Log("소리 -> 어그로 발생 (X)");//test
+                    }
                     SoundManager.getInstance().playEffect(curInfo.outputByCollision.sound);
+                }
                 //Script 있으면 재생
                 if (curInfo.outputByCollision.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCollision.script_key });
