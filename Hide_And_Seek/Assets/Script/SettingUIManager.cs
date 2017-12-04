@@ -10,14 +10,20 @@ public class SettingUIManager : MonoBehaviour {
     public GameObject InfoPanel; // 개발자 정보 패널(음악 리소스...)
     public GameObject Sound_Prefab; // 사운드 설정
     public GameObject Save_Prefab;
+    public Button btn_save; // 저장버튼
+
     public List<string> SoundList;
-    public Text Developter;
     public Text Sound;
 
     public void Start()
     {
         InfoPanel.SetActive(false);
         SoundInfoView();
+
+        if (Enemy.get_enemy_chasing()) // 아저씨 chasing 이면 저장못함
+        {
+            btn_save.GetComponent<Button>().interactable = false;
+        }
 
     }
 
