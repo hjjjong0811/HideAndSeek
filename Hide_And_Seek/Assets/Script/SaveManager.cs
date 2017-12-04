@@ -214,7 +214,7 @@ public class SaveManager : MonoBehaviour
         GameManager gameManager = GameManager.getInstance();
         Player.getPlayerData(ref data.hp, ref PlayerPos, ref Player_ISpot);
        // Player_Enemy_data= Enemy.enemy_save_data(); 적정보 일단주석
-        data.SaveArray = new int[9];
+        data.SaveArray = new int[11];
         gameManager.get_save_data_state(data.SaveArray);
 
 
