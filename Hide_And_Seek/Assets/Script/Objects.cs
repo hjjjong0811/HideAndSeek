@@ -97,19 +97,23 @@ public class Objects : MonoBehaviour, IObject {
             int index = findIndexByChapter(mode_detail);
             Detail curInfo = InfoByChapter[index];
             if (!curInfo.isActByCall) return;
-            
+
+            //Sound 있으면재생
+            if (curInfo.outputByCall.sound != null)
+                SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
+
             if (curInfo.type == Type.hide) {
                 //hide
                 GameObject pl = GameObject.Find("Player");
                 if (pl != null) {
                     pl.GetComponent<Player>().player_hide();
                 }
+                //Script 있으면 재생
+                if (curInfo.outputByCall.script_key != invalidValue)
+                    ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
             } else if (curInfo.type == Type.no) {
                 return;
             } else if (curInfo.type == Type.getItem) {
-                //Sound 있으면재생
-                if (curInfo.outputByCall.sound != null)
-                    SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
                 //Item 획득가능하면 획득
                 if (curInfo.outputByCall.item_key != invalidValue) {
                     if (!Inventory.getInstance().addItem(curInfo.outputByCall.item_key)) {
@@ -123,10 +127,6 @@ public class Objects : MonoBehaviour, IObject {
                     }
                 }
             } else {
-                //Sound 있으면재생
-                if (curInfo.outputByCall.sound != null)
-                    SoundManager.getInstance().playEffect(curInfo.outputByCall.sound);
-
                 //Script 있으면 재생
                 if (curInfo.outputByCall.script_key != invalidValue)
                     ScriptManager.getInstance().showScript(true, new int[] { curInfo.outputByCall.script_key });
@@ -307,6 +307,8 @@ public class Objects : MonoBehaviour, IObject {
             GameManager.getInstance().DeadCharacter[3] = 1;
         }else if(_key_num == 1701) {
             GameManager.getInstance().HomeConstruct = 1;
+        } else if (_key_num == 202 && Inventory.getInstance().isExitItem(10)) {
+            this.gameObject.SetActive(false);
         }
     }
 

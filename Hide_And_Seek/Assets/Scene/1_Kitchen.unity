@@ -887,6 +887,25 @@ MonoBehaviour:
       item_key: 0
       isBlockPortal: 1
       script_key_isExistitem: 0
+  - chapter: 0
+    isActive: 1
+    sprite: {fileID: 0}
+    sound_default: {fileID: 0}
+    type: 0
+    isActByCollision: 0
+    outputByCollision:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
+    isActByCall: 1
+    outputByCall:
+      script_key: 0
+      sound: {fileID: 0}
+      item_key: 0
+      isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem:
   - chapter_canUse: 5
     materialItem_key: 13
@@ -1303,7 +1322,7 @@ MonoBehaviour:
   - chapter: 4
     isActive: 1
     sprite: {fileID: 0}
-    sound_default: {fileID: 8300000, guid: 877564e3abbd1e5479e147b85a0cfa8f, type: 3}
+    sound_default: {fileID: 0}
     type: 4
     isActByCollision: 0
     outputByCollision:
@@ -1315,7 +1334,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 5013
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: 877564e3abbd1e5479e147b85a0cfa8f, type: 3}
       item_key: 30
       isBlockPortal: 0
       script_key_isExistitem: 5014
@@ -3500,7 +3519,7 @@ MonoBehaviour:
     isActByCall: 1
     outputByCall:
       script_key: 1057
-      sound: {fileID: 0}
+      sound: {fileID: 8300000, guid: d5428368d4613ab44a3b418a54919414, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -5063,7 +5082,7 @@ MonoBehaviour:
     isActive: 1
     sprite: {fileID: 0}
     sound_default: {fileID: 0}
-    type: 0
+    type: 2
     isActByCollision: 0
     outputByCollision:
       script_key: 0
@@ -5071,10 +5090,10 @@ MonoBehaviour:
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
-    isActByCall: 0
+    isActByCall: 1
     outputByCall:
-      script_key: 0
-      sound: {fileID: 0}
+      script_key: 5021
+      sound: {fileID: 8300000, guid: e2ab94c9a83113a45a4d02708168722c, type: 3}
       item_key: 0
       isBlockPortal: 0
       script_key_isExistitem: 0
@@ -5092,11 +5111,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 2007
-      sound: {fileID: 8300000, guid: ef75ad8e6c5492348b3c791b7239e652, type: 3}
+      script_key: 5022
+      sound: {fileID: 8300000, guid: e2ab94c9a83113a45a4d02708168722c, type: 3}
       item_key: 13
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 5021
   usingItem: []
 --- !u!60 &1515327533
 PolygonCollider2D:
@@ -5125,8 +5144,8 @@ PolygonCollider2D:
     - - {x: -1.5131768, y: 0.2595092}
       - {x: -1.7800841, y: 0.01121068}
       - {x: -1.6341308, y: -0.08462393}
-      - {x: -1.4083202, y: -0.19730735}
-      - {x: -1.1255372, y: 0.05145496}
+      - {x: -1.1998577, y: -0.31891042}
+      - {x: -0.91707504, y: -0.035404205}
 --- !u!1 &1517663639
 GameObject:
   m_ObjectHideFlags: 0
