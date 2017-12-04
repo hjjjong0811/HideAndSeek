@@ -439,27 +439,47 @@ public class Enemy : MonoBehaviour
     /// 세이브파일 데이터 가져오는 함수
     /// </summary>
     /// <param name="result"></param>
-    public void enemy_bring_data(Enemy_Data result){
+    public static void enemy_bring_data(Enemy_Data result){
 
-        Enemy._enemy = this.gameObject;
+        //Enemy._enemy = this.gameObject;
         Enemy._enemy_working = result._enemy_working;
         Enemy._f_normal_t_chasing = false;
         Enemy._enemy_spot = result._enemy_spot;
         Enemy._enemy_last_spot = Enemy._enemy_spot;
         Enemy._enemy_state = result._enemy_state;
         Enemy._enemy_dest = result._enemy_dest;
-        Enemy._enemy_route = result._enemy_route;
+        //Enemy._enemy_route = result._enemy_route;
         Enemy._enemy_looking = false;
         Enemy._enemy_finding = false;
         Enemy._enemy_finding_time = 0f;
         Enemy._enemy_pos = Enemy.ENEMY_INIT_LOC;
 
+        Enemy._enemy_route = null;
+        if(result._enemy_route_length==0){
+            return;
+        }
+        else if(result._enemy_route_length==1){
+            Enemy._enemy_route = new Route(result._enemy_route_array[0]);
+        }
+        else
+        {
+            Route[] tmp_route = new Route[result._enemy_route_length];
+            for (int i = 0; i < result._enemy_route_length; i++)
+            {
+                tmp_route[i] = new Route(result._enemy_route_array[i]);
+            }
+            for (int i = 1; i < tmp_route.Length; i++)
+            {
+                tmp_route[i - 1]._next = tmp_route[i];
+            }
+            Enemy._enemy_route = tmp_route[0];
+        }
     }
     /// <summary>
     /// 세이브파일 저장용 데이터 반환하는 함수
     /// </summary>
     /// <returns></returns>
-    public Enemy_Data enemy_save_data()
+    public static Enemy_Data enemy_save_data()
     {
         Enemy_Data result = new Enemy_Data();
 
@@ -467,8 +487,11 @@ public class Enemy : MonoBehaviour
         result._enemy_spot = Enemy._enemy_spot;
         result._enemy_state = Enemy._enemy_state;
         result._enemy_dest = Enemy._enemy_dest;
-        result._enemy_route = Enemy._enemy_route;
-
+        //result._enemy_route = Enemy._enemy_route;
+        while (_enemy_route != null)
+        {
+            result._enemy_route_array[result._enemy_route_length++] = _enemy_route.get_data();
+        }
         return result;
     }
 }
@@ -479,5 +502,7 @@ public class Enemy_Data
     public ISpot _enemy_spot;//아저씨 위치
     public Enemy_State _enemy_state;//현재 내부상태
     public Room _enemy_dest;
-    public Route _enemy_route;
+    //public Route _enemy_route;
+    public int _enemy_route_length = 0;
+    public ISpot[] _enemy_route_array = new ISpot[100];
 }
