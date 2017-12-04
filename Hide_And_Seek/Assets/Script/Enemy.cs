@@ -29,11 +29,16 @@ public class Enemy : MonoBehaviour
     private static float _enemy_finding_time;
     private static Vector3 _enemy_pos;
 
+    void Awake()
+    {
+        if (Enemy._enemy != null)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     // Use this for initialization
     void Start()
     {
-        if (Enemy._enemy != null) Destroy(this.gameObject);
-
         _enemy = this.gameObject;
         _enemy_working = false;
         _f_normal_t_chasing = false;
