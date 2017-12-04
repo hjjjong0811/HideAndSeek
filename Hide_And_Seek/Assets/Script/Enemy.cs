@@ -60,6 +60,14 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
+        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
+        if (GameObject.FindGameObjectWithTag("Player") == null) return;
+
+        //test중
+        Debug.Log("enemy_working : " + _enemy_working);
+        Debug.Log("_f_normal_t_chasing : " + _f_normal_t_chasing);
+
         if (!_enemy_working) return;
         if (ScriptManager.getInstance().isPlaying) _enemy_working = false;
 
@@ -110,6 +118,7 @@ public class Enemy : MonoBehaviour
 
                 _f_normal_t_chasing = true;
                 _enemy_finding_time = 0f;
+                _enemy_looking = false;
                 break;
 
             case true://chasing -> normal
@@ -140,7 +149,7 @@ public class Enemy : MonoBehaviour
 
 
         //chasing 상태로 바꾸는 조건
-        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room())
+        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room() && !Player.hiding)
         {
             change_state();
             //Debug.Log("change_state");//test
@@ -217,7 +226,7 @@ public class Enemy : MonoBehaviour
         _enemy_spot = _enemy_route.get_data();
         _enemy_route = _enemy_route._next;
         Debug.Log(">>>" + "이동 : " + _enemy_spot._room + "/" + _enemy_spot._spot);//test
-        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room())
+        if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room() && !Player.hiding)
         {
             change_state();
         }
@@ -396,13 +405,6 @@ public class Enemy : MonoBehaviour
         Scene_Manager tmp = Scene_Manager.getInstance();
         if (Player.Player_obj != null && Enemy._enemy_working)
         {
-            //Player 위치 tmp_ispot에 가져오기
-            /*
-            ISpot tmp_ispot = new ISpot(Room.None, -1);
-            float tmp_float = 0f;
-            Vector3 tmp_vector = new Vector3(0f, 0f, 0f);
-            Player.getPlayerData(ref tmp_float, ref tmp_vector, ref tmp_ispot);
-            */
             ISpot tmp_ispot = Player.get_player_spot();
 
             //Enemy 위치 enemy_ispot에 가져오기
@@ -414,31 +416,41 @@ public class Enemy : MonoBehaviour
         return distance;
     }
 
-    public static void player_start_hiding()
+    public static void player_start_hiding(ISpot player_hiding_spot)
+    {
+        //나중에_ 같은방 거리3이하면->게임아웃 / 아니면 거기로 향하게 하기
+        go_straight(player_hiding_spot);
+    }
+
+    public static void go_straight(ISpot spot)
     {
         _f_normal_t_chasing = false;
-        _enemy_route = look_around_route(_enemy_spot, _enemy_dest)._next;
+        //Debug.Log("test>>> " + Enemy._f_normal_t_chasing);//test
+        _enemy_route = look_around_route(_enemy_spot, spot._room)._next;
         _enemy_state = Enemy_State.going_dest;
+        _enemy_looking = false;
     }
 
     public static void start_enemy_working()
     {
+        if (_enemy == null)
+        {
+            Debug.Log("일어날 수 없는 오류!");
+            return;
+        }
         if (!_enemy_working) Debug.Log("이미 Enemy working하는 중임!!!");//test
+       
         _enemy.transform.position = _enemy_pos;
         _enemy_working = true;
     }
     public static void end_enemy_working()
     {
+        Debug.Log("end_enemy_working()");//test
         if (!_enemy_working) Debug.Log("이미 Enemy working 안하는 중임!!!");//test
         _enemy_working = false;
         _enemy.transform.position = ENEMY_INIT_LOC;
     }
-    private void check_enemy_created_before()
-    {
-        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        Debug.Log("적 수 : " + enemys.Length);
-        if (enemys.Length > 1) Destroy(this.gameObject);
-    }
+
 
     /// <summary>
     /// 세이브파일 데이터 가져오는 함수

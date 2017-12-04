@@ -355,6 +355,6 @@ public class Player : MonoBehaviour {
         hiding = true;
         GameManager.getInstance().CheckMainChapter();
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
-        Enemy.player_start_hiding();
+        Enemy.player_start_hiding(SpotInfo);
     }
 }
