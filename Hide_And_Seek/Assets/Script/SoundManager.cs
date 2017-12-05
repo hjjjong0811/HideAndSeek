@@ -277,6 +277,8 @@ public class SoundManager : MonoBehaviour
         volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
         volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
 
+       
+
         bgmSource = new AudioSource();
         effectSource = new AudioSource();
         walkSource = new AudioSource();
@@ -287,6 +289,8 @@ public class SoundManager : MonoBehaviour
         effectSource = gameObject.AddComponent<AudioSource>();
         walkSource = gameObject.AddComponent<AudioSource>();
 
+        bgmSource.volume = volume_bgm;
+        effectSource.volume = volume_effect;
 
         //변수초기화
         effectSource.loop = false;
@@ -315,21 +319,26 @@ public class SoundManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { 
-        
-        //정원추가
-        bgmSource.volume = SoundUIManager.getInstance().BGM_Slider.value;
-        effectSource.volume = SoundUIManager.getInstance().Effect_Slider.value;
-        
-        PlayerPrefs.SetFloat("Sound_vol_bgm",bgmSource.volume);
-        PlayerPrefs.SetFloat("Sound_vol_effect", effectSource.volume);
-        
-        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
-        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
-        //정원추가
+    {
+
+        bgmSource.volume = volume_bgm;
+        effectSource.volume = volume_effect;
 
 
+        if (SoundUIManager.getInstance() !=null)
+        {
+            volume_bgm = SoundUIManager.getInstance().BGM_Slider.value;
+            volume_effect = SoundUIManager.getInstance().Effect_Slider.value;
+            PlayerPrefs.SetFloat("Sound_vol_bgm", SoundUIManager.getInstance().BGM_Slider.value);
+            PlayerPrefs.SetFloat("Sound_vol_effect", SoundUIManager.getInstance().Effect_Slider.value);
 
+        }
+
+        bgmSource.volume = volume_bgm;
+        effectSource.volume = volume_effect;
+
+
+ 
         //walkSound 갱신
         if (!isMute)
         {
