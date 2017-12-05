@@ -279,12 +279,6 @@ public class SoundManager : MonoBehaviour
         volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm",1.0f);
         volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect",1.0f);
 
-        bgmSource = new AudioSource();
-        effectSource = new AudioSource();
-        walkSource = new AudioSource();
-
-        audioClipList = new AudioClip[54];
-
         bgmSource = gameObject.AddComponent<AudioSource>();
         effectSource = gameObject.AddComponent<AudioSource>();
         walkSource = gameObject.AddComponent<AudioSource>();
@@ -295,9 +289,9 @@ public class SoundManager : MonoBehaviour
         walkVolume = 0;
 
         //-------리소스 긁어오기-------------------------
-        object[] temp = new object[54];
+        object[] temp;
         temp = Resources.LoadAll("Sounds");
-
+        audioClipList = new AudioClip[temp.Length]; //리소스갯수로변경함
 
         //226 - 227 / 221- 224 왜 로드안댐?
         for (int i = 0; i < temp.Length; i++)
@@ -311,8 +305,6 @@ public class SoundManager : MonoBehaviour
         walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
 
         bgmSource.PlayOneShot(audioClip);
-
-        muteAll();
     }
 
     // Update is called once per frame

@@ -5,13 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class SoundUIManager : MonoBehaviour {
-
     private static SoundUIManager instance = null;
-
-    public AudioSource BGM;
-    public AudioSource Effect;
-    public AudioSource FootStep;
-   
+    
     public Toggle BGM_toggle;
     public Toggle Effect_Toggle; // effect + footstep
 
@@ -33,13 +28,7 @@ public class SoundUIManager : MonoBehaviour {
     {
         
         SoundManager soundmanager = SoundManager.getInstance();
-       
-        BGM = soundmanager.bgmSource;
-        Effect = soundmanager.effectSource;
-        FootStep = soundmanager.walkSource;
 
-        soundmanager.setVolumeBgm(soundmanager.volume_bgm);
-        soundmanager.setVolumeEffect(soundmanager.volume_effect);
         BGM_Slider.value = soundmanager.volume_bgm;
         Effect_Slider.value = soundmanager.volume_effect;
 
