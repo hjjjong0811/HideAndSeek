@@ -327,8 +327,12 @@ public class SaveManager : MonoBehaviour
                 Player.Init(data.hp, PlayerPos, Player_ISpot);
                 
                 Debug.Log("load " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
-            
 
+                //현정추가, 챕터별 BGM재생
+                if (data.MainChapter == -1) { }
+                else if (data.MainChapter < 2) SoundManager.getInstance().playBgm(Resources.Load("Sounds/244") as AudioClip);
+                else if (data.MainChapter < 4) SoundManager.getInstance().playBgm(Resources.Load("Sounds/000STARTBGM") as AudioClip);
+                else SoundManager.getInstance().playBgm(Resources.Load("Sounds/BGM") as AudioClip);
             }
 
             file.Close();
