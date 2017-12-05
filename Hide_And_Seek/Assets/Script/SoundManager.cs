@@ -7,7 +7,7 @@ public enum SOUND_NAME
     /// <summary>
     /// 브금
     /// </summary>
-    STARTBGM=0,
+    STARTBGM = 0,
     /// <summary>
     /// 심장두근1
     /// </summary>
@@ -226,7 +226,7 @@ public enum SOUND_NAME
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance = null;
-    
+
     public AudioClip[] audioClipList;
 
     public AudioSource bgmSource;
@@ -239,6 +239,8 @@ public class SoundManager : MonoBehaviour
     public int walkVolume;//(0~100) 발소리 사운드 볼륨*퍼센트
 
     public bool isMute = false;//true면 음소거
+    public bool isMuteBgm = false;
+    public bool isMuteEffect = false;
 
     //접근용
     public static SoundManager getInstance()
@@ -246,7 +248,7 @@ public class SoundManager : MonoBehaviour
 
         if (instance == null)
             instance = new SoundManager();
-        
+
         return instance;
     }
 
@@ -268,25 +270,15 @@ public class SoundManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
-    
+
 
     // Use this for initialization
     void Start()
     {
         //환경설정불러오기
+        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm",1.0f);
+        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect",1.0f);
 
-        if (PlayerPrefs.GetInt("bgm_") == 1)
-            volume_bgm = 0.0f;
-           
-        else
-            volume_bgm = PlayerPrefs.GetFloat("bgm_slider_value");
-
-        if (PlayerPrefs.GetInt("effect_") == 1)
-            volume_bgm = 0.0f;
-        else
-            volume_effect = PlayerPrefs.GetFloat("effect_slider_value");
-    
-       
         bgmSource = new AudioSource();
         effectSource = new AudioSource();
         walkSource = new AudioSource();
@@ -308,7 +300,7 @@ public class SoundManager : MonoBehaviour
 
 
         //226 - 227 / 221- 224 왜 로드안댐?
-        for (int i = 0; i<temp.Length; i++)
+        for (int i = 0; i < temp.Length; i++)
         {
             audioClipList[i] = temp[i] as AudioClip;
         }
@@ -326,25 +318,6 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        bgmSource.volume = volume_bgm;
-        effectSource.volume = volume_effect;
-
-
-        if (SoundUIManager.getInstance() !=null)
-        {
-            volume_bgm = SoundUIManager.getInstance().BGM_Slider.value;
-            volume_effect = SoundUIManager.getInstance().Effect_Slider.value;
-            PlayerPrefs.SetFloat("Sound_vol_bgm", SoundUIManager.getInstance().BGM_Slider.value);
-            PlayerPrefs.SetFloat("Sound_vol_effect", SoundUIManager.getInstance().Effect_Slider.value);
-
-        }
-
-        bgmSource.volume = volume_bgm;
-        effectSource.volume = volume_effect;
-
-
- 
         //walkSound 갱신
         if (!isMute)
         {
@@ -352,7 +325,8 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private void OnDestroy() {
+    private void OnDestroy()
+    {
         //환경설정저장
         PlayerPrefs.SetFloat("Sound_vol_bgm", volume_bgm);
         PlayerPrefs.SetFloat("Sound_vol_effect", volume_effect);
@@ -392,7 +366,7 @@ public class SoundManager : MonoBehaviour
 
     public void playEffect()
     {
-        if (!isMute)
+        if (!isMuteEffect)
         {
             effectSource.Play();
             effectSource.volume = volume_effect;
@@ -403,14 +377,17 @@ public class SoundManager : MonoBehaviour
     public void playEffect(AudioClip audio)
     {
         AudioSource au;
-        if (effectSource.isPlaying) {
+        if (effectSource.isPlaying)
+        {
             au = new GameObject().AddComponent<AudioSource>();
-        } else {
+        }
+        else
+        {
             au = effectSource;
         }
         au.clip = audio;
 
-        if (!isMute)
+        if (!isMuteEffect)
         {
             au.Play();
             au.volume = volume_effect;
@@ -421,10 +398,12 @@ public class SoundManager : MonoBehaviour
     /// <summary>
     /// 효과음중 loop로 씬에 계속 재생하고싶은 경우
     /// </summary>
-    public void playEffectLoop(AudioClip audio) {
+    public void playEffectLoop(AudioClip audio)
+    {
         GameObject go = new GameObject();
         AudioSource au = go.AddComponent<AudioSource>();
-        if (!isMute) {
+        if (!isMuteEffect)
+        {
             au.volume = volume_effect;
             au.clip = audio;
             au.loop = true;
@@ -439,14 +418,17 @@ public class SoundManager : MonoBehaviour
         effectSource.volume = pVol_effect;
         bgmSource.volume = pVol_bgm;
     }
-    public void setVolumeBgm(float pVol_bgm) {
+    public void setVolumeBgm(float pVol_bgm)
+    {
         volume_bgm = pVol_bgm;
         bgmSource.volume = pVol_bgm;
     }
-    public void setVolumeEffect(float pVol_effect) {
+    public void setVolumeEffect(float pVol_effect)
+    {
         volume_effect = pVol_effect;
         effectSource.volume = pVol_effect;
     }
+
 
     public void muteAll()
     {
@@ -463,6 +445,39 @@ public class SoundManager : MonoBehaviour
         effectSource.volume = volume_bgm;
         walkSource.volume = volume_bgm;
     }
+
+    //-------정원추가----
+
+    public void muteBgm()
+    {
+        isMuteBgm = true;
+        bgmSource.volume = 0;
+
+    }
+
+    public void unMuteBgm()
+    {
+        isMuteBgm = false;
+        bgmSource.volume = volume_bgm;
+
+    }
+
+
+    public void muteEffect()
+    {
+        isMuteEffect = true;
+        effectSource.volume = 0;
+
+    }
+
+    public void unMuteEffect()
+    {
+        isMuteEffect = false;
+        effectSource.volume = volume_bgm;
+
+    }
+
+    //-----------------------------
 
     public void playWalkSoundStart()
     {
