@@ -63,7 +63,6 @@ public class Enemy : MonoBehaviour
     {
         //Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
 
-
         //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
         if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
         if (GameObject.FindGameObjectWithTag("Player") == null) return;
@@ -150,7 +149,7 @@ public class Enemy : MonoBehaviour
         {
             StartCoroutine(looking_around(_enemy_stay_time[(int)_enemy_state]));
         }
-        Debug.Log("do_normal!");//test
+        //Debug.Log("do_normal!");//test
 
         //chasing 상태로 바꾸는 조건
         if (check_player_enemey_distance() <= CHASING_START_DISTANCE && check_in_same_room() && !Player.hiding)
@@ -239,11 +238,11 @@ public class Enemy : MonoBehaviour
     /////////////////////////////////////////////do_chasing
     void do_chasing(float spent_time)
     {
-        Debug.Log("chasing!"+_enemy_spot._room+" / 플레이어 : "+Player.get_player_spot()._room);//test
+        //Debug.Log("chasing!"+_enemy_spot._room+" / 플레이어 : "+Player.get_player_spot()._room);//test
         if (check_in_same_room()) //chasing하고있고, player&enemy 같은방인 상태
         {
             _enemy_finding_time = 0f;
-            Debug.Log("플레이어 따라다니는중!");
+            //Debug.Log("플레이어 따라다니는중!");
             //플레이어 따라다니기
             Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
@@ -458,7 +457,10 @@ public class Enemy : MonoBehaviour
             Debug.Log("일어날 수 없는 오류!");
             return;
         }
-        if (!_enemy_working) Debug.Log("이미 Enemy working하는 중임!!!");//test
+        if (!_enemy_working)
+        {
+            //Debug.Log("이미 Enemy working하는 중임!!!");//test
+        }
        
         _enemy.transform.position = _enemy_pos;
         _enemy_working = true;
@@ -466,7 +468,10 @@ public class Enemy : MonoBehaviour
     public static void end_enemy_working()
     {
         Debug.Log("end_enemy_working()");//test
-        if (!_enemy_working) Debug.Log("이미 Enemy working 안하는 중임!!!");//test
+        if (!_enemy_working)
+        {
+            //Debug.Log("이미 Enemy working 안하는 중임!!!");//test
+        }
         _enemy_working = false;
         _enemy.transform.position = ENEMY_INIT_LOC;
     }
