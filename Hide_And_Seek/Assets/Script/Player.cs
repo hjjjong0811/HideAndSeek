@@ -371,7 +371,7 @@ public class Player : MonoBehaviour {
     }
 
     public void player_hide(){
-        Debug.Log("hide...");
+        //Debug.Log("hide...");
         hiding = true;
         GameManager.getInstance().CheckMainChapter();
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
