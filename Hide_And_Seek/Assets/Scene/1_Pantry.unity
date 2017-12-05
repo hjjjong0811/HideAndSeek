@@ -243,11 +243,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 137373484}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.84, y: -0.94000006, z: 0}
+  m_LocalPosition: {x: 0.6199999, y: -0.31000006, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2113147629}
-  m_RootOrder: 3
+  m_Father: {fileID: 199880118}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &137373486
 SpriteRenderer:
@@ -318,7 +318,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 137373485}
   m_Father: {fileID: 756528623}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -912,7 +913,7 @@ Transform:
   m_Children:
   - {fileID: 834667659}
   m_Father: {fileID: 2113147629}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &661365731
 PolygonCollider2D:
@@ -954,7 +955,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 803
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -971,11 +972,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 2003
+      script_key: 8031
       sound: {fileID: 0}
       item_key: 11
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 8022
   usingItem: []
 --- !u!1 &689197465
 GameObject:
@@ -1035,7 +1036,7 @@ Transform:
   m_Children:
   - {fileID: 199880118}
   m_Father: {fileID: 2113147629}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &756528624
 MonoBehaviour:
@@ -1142,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 802
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -1159,11 +1160,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 44
+      script_key: 8021
       sound: {fileID: 0}
       item_key: 18
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 8022
   usingItem: []
 --- !u!1001 &967560804
 Prefab:
@@ -1472,7 +1473,7 @@ Transform:
   m_Children:
   - {fileID: 90982236}
   m_Father: {fileID: 2113147629}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1256981905
 MonoBehaviour:
@@ -1485,7 +1486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f8a4a17913808e4ea385ecb6f78ae9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _key_num: 0
+  _key_num: 804
   _t_thing_f_portal: 1
   InfoByChapter:
   - chapter: 0
@@ -1502,11 +1503,11 @@ MonoBehaviour:
       script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
-      script_key: 2004
+      script_key: 8041
       sound: {fileID: 0}
       item_key: 19
       isBlockPortal: 0
-      script_key_isExistitem: 0
+      script_key_isExistitem: 8022
   usingItem: []
 --- !u!60 &1256981906
 PolygonCollider2D:
@@ -1829,7 +1830,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2113147629}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1607088181
 SpriteRenderer:
@@ -2027,10 +2028,9 @@ Transform:
   m_LocalPosition: {x: 0.040289916, y: -0.09311415, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 1607088180}
   - {fileID: 1256981904}
   - {fileID: 661365730}
-  - {fileID: 1607088180}
-  - {fileID: 137373485}
   - {fileID: 756528623}
   m_Father: {fileID: 0}
   m_RootOrder: 4

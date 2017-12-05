@@ -246,7 +246,7 @@ public class Objects : MonoBehaviour, IObject {
         }else if(_key_num == 702) {
             if (Inventory.getInstance().isExitItem(1) || Inventory.getInstance().isExitItem(5))
                 return 2;
-        } else if (_key_num == 1005 && false) {
+        } else if (_key_num == 1005 && GameManager.getInstance().OpenBabyBox == 1) {
             return 2;
         }else if (_key_num == 3001 && GameManager.getInstance().FindCharacter[0] == 1) {
             return 1;
@@ -258,6 +258,10 @@ public class Objects : MonoBehaviour, IObject {
             return 1;
         }else if(_key_num == 202 && Inventory.getInstance().isExitItem(10)) {
             return 2;
+        } else if (!_t_thing_f_portal && _key_num == 7 && GameManager.getInstance().OpenPantry == 1) {
+            return 1;
+        } else if (!_t_thing_f_portal && _key_num == 18 && GameManager.getInstance().OpenGarret == 1) {
+            return 1;
         }
 
         if (mode == mode_detail) {
@@ -349,10 +353,15 @@ public class Objects : MonoBehaviour, IObject {
             Inventory.getInstance().deleteItem(15);
         } else if(_key_num == 1005 && item_Key == 10) {
             spriteRenderer.sprite = InfoByChapter[2].sprite;
+            GameManager.getInstance().OpenBabyBox = 1;
         }else if(_key_num == 1 && !_t_thing_f_portal && item_Key == 43) {
             GameManager.getInstance().GroundKey = 1;
         }else if(_key_num == 3201 && item_Key == 20) {
             Inventory.getInstance().deleteItem(20);
+        }else if(!_t_thing_f_portal && _key_num == 7 && item_Key == 13) {
+            GameManager.getInstance().OpenPantry = 1;
+        }else if(!_t_thing_f_portal && _key_num == 18 && item_Key == 24) {
+            GameManager.getInstance().OpenGarret = 1;
         }
     }
 
