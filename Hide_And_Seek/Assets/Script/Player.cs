@@ -209,12 +209,26 @@ public class Player : MonoBehaviour {
 
     //호빈추가_오브젝트 앞뒤구분용
     void Raycasting() {
+        /*
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].name == "Player")
+            {
+                hits_up = Physics2D.RaycastAll(this.transform.position, Vector3.up);
+                hits_down = Physics2D.RaycastAll(this.transform.position, Vector3.down);
+            }
+        }
+         */
+        if (GameObject.Find("Player") == null) return;
         hits_up = Physics2D.RaycastAll(this.transform.position, Vector3.up);
         hits_down = Physics2D.RaycastAll(this.transform.position, Vector3.down);
     }
 
     //호빈추가
     public static Object_State check_up_down(string s) {
+        //if (GameObject.FindGameObjectWithTag("Player") == null) return Object_State.too_far;
+        if (GameObject.Find("Player") == null) return Object_State.too_far;
         int i;
         //Debug.Log(hits_up.Length);
         for (i = 0; i < hits_up.Length; i++) {
