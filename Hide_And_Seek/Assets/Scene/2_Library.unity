@@ -365,6 +365,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 405974735}
+  - {fileID: 1154686855}
   - {fileID: 439257270}
   - {fileID: 2045979574}
   m_Father: {fileID: 674737227}
@@ -627,11 +629,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405974734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.26000002, y: 0.33999997, z: 0}
+  m_LocalPosition: {x: -0.00999999, y: 0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 439257270}
-  m_RootOrder: 2
+  m_Father: {fileID: 283071000}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &405974736
 SpriteRenderer:
@@ -949,10 +951,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 569970816}
-  - {fileID: 1154686855}
-  - {fileID: 405974735}
   m_Father: {fileID: 283071000}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &439257271
 MonoBehaviour:
@@ -1326,7 +1326,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -2.0085008, y: 0.26295808}
+  - {x: -2.2848208, y: 0.4528111}
+  - {x: -0.72679234, y: 0.42533836}
+  - {x: -0.7367977, y: 0.14629434}
   - {x: 2.5474133, y: -0.17520905}
 --- !u!114 &569970820
 MonoBehaviour:
@@ -1745,10 +1747,10 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154686854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.77, y: 0.38, z: 0}
+  m_LocalPosition: {x: -1.04, y: 0.17000002, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 439257270}
+  m_Father: {fileID: 283071000}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1154686856
@@ -2164,7 +2166,9 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -3.36434, y: 0.5944887}
+  - {x: -3.5026546, y: 0.9916506}
+  - {x: -1.2288225, y: 0.9012353}
+  - {x: -0.74296665, y: 0.21687543}
   - {x: 1.9171348, y: -0.24140537}
 --- !u!114 &1581384519
 MonoBehaviour:
@@ -3123,7 +3127,7 @@ Transform:
   m_Children:
   - {fileID: 1581384516}
   m_Father: {fileID: 283071000}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &2045979575
 PolygonCollider2D:

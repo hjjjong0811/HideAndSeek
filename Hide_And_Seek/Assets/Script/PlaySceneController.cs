@@ -776,9 +776,9 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("2_Dress");
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
-        //Sound
-        AudioClip audio_effect = Resources.Load("Sounds/259") as AudioClip;
-        SoundManager.getInstance().playDontDestroyLoop(audio_effect, "Sound_washer");
+        //Sound 쨍
+        AudioClip audio_effect = Resources.Load("Sounds/235") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         ScriptManager.getInstance().showScript(false, new int[] {600 });
 
@@ -802,7 +802,7 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(2f);
         //Sound 웅웅
         AudioClip audio_effect = Resources.Load("Sounds/259") as AudioClip;
-        SoundManager.getInstance().playEffect(audio_effect);
+        SoundManager.getInstance().playDontDestroyLoop(audio_effect, "Sound_washer");
 
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] {652 }, wake);

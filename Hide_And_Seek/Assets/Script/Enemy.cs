@@ -292,9 +292,9 @@ public class Enemy : MonoBehaviour
         //Debug.Log("포탈앞에서 1초기다리기");
         yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
         //플레이어 스크립트 생성중인데 포탈타서 나타나야하는경우_ 잠시 기다리기
-        while (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay)
-        {
-        }
+
+        yield return new WaitWhile(() => ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay);
+
         _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
         _enemy_spot._room = Player.get_player_spot()._room;
         //Debug.Log("아저씨 위치 이동");
