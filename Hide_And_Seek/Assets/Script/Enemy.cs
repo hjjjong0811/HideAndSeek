@@ -247,6 +247,7 @@ public class Enemy : MonoBehaviour
             //플레이어 따라다니기
             Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
+            if (distance < Enemy.GAMEOVER_DISTANCE) Debug.Log("게임오버");//test
             if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
 
             //가장 가까운 Spot확인하기  = 플레이어 쫓아다니면서 ISpot정보 갱신하기
