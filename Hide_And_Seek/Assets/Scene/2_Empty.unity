@@ -291,6 +291,50 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4305411195729258, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.08581743
+      objectReference: {fileID: 0}
+    - target: {fileID: 4305411195729258, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.9963109
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464400004375132, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.13385688
+      objectReference: {fileID: 0}
+    - target: {fileID: 4464400004375132, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.99100065
+      objectReference: {fileID: 0}
+    - target: {fileID: 4037062480584346, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.0126254745
+      objectReference: {fileID: 0}
+    - target: {fileID: 4505493411057160, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.0057760435
+      objectReference: {fileID: 0}
+    - target: {fileID: 4379628565602894, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.021596735
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919872059070012, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0.9912624
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919872059070012, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.13190491
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749395192741512, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0.98687404
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749395192741512, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.161492
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
@@ -806,7 +850,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1612106575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.65, y: 0.28, z: 0}
+  m_LocalPosition: {x: 1.08, y: -0.83, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 908778271}
@@ -847,10 +891,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.8114052, y: -1.1231148}
-      - {x: -1.4148949, y: -0.019419193}
-      - {x: -4.2785616, y: -1.4781039}
-      - {x: -1.8883104, y: -2.4755337}
+    - - {x: 2.4989896, y: -0.04769349}
+      - {x: 0.3554138, y: 1.1552718}
+      - {x: -2.475163, y: -0.28686792}
+      - {x: -0.28345072, y: -1.3670228}
 --- !u!1 &2003675270
 GameObject:
   m_ObjectHideFlags: 0
@@ -894,7 +938,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _key_num: 21
   _t_thing_f_portal: 0
-  Key: 0
   InfoByChapter:
   - chapter: 0
     isActive: 1
@@ -907,12 +950,14 @@ MonoBehaviour:
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
     isActByCall: 1
     outputByCall:
       script_key: 0
       sound: {fileID: 0}
       item_key: 0
       isBlockPortal: 0
+      script_key_isExistitem: 0
   usingItem: []
 --- !u!60 &2003675273
 PolygonCollider2D:

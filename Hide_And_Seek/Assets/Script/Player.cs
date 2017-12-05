@@ -52,7 +52,7 @@ public class Player : MonoBehaviour {
         int spot = PlayerPrefs.GetInt(PlayerPrefsKey[(int)PlayerPrefsIndex.spot], 0);
         SpotInfo = new ISpot((Room)room, spot);
 
-        Debug.Log(transform.position.x + ", " + transform.position.y + "Awake");
+        //Debug.Log(transform.position.x + ", " + transform.position.y + "Awake");
     }
 
     /// <summary>
@@ -158,10 +158,13 @@ public class Player : MonoBehaviour {
         {
             if (Input.GetButtonDown("Action"))//hiding상태에서 Action키 누르면
             {
-                Debug.Log("hide 취소");
+                //아저씨위치 조정
+                Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+                Debug.Log("아저씨위치 초기화!");//test
+
+                //Debug.Log("hide 취소");//test
                 hiding = false;
                 Destroy(Hiding_UI_Obj);
-
             }
             return;
         }
@@ -268,7 +271,7 @@ public class Player : MonoBehaviour {
     private void action() {
         GameObject nearObject = findNearObject();
         if (nearObject != null) {
-            Debug.Log(nearObject.name + " Player_action");
+            //Debug.Log(nearObject.name + " Player_action");
             nearObject.SendMessage("action");
         }
     }
@@ -325,7 +328,7 @@ public class Player : MonoBehaviour {
         if (pl != null) {
             pl.transform.position = v;
         }
-        Debug.Log(v.x + ", " + v.y + "set");
+        //Debug.Log(v.x + ", " + v.y + "set");
     }
     public static Vector3 get_player_pos() {
         GameObject go = GameObject.Find("Player");
