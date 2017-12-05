@@ -340,6 +340,36 @@ PolygonCollider2D:
       - {x: -0.1634512, y: 0.65697694}
       - {x: -2.600812, y: -0.5851824}
       - {x: -1.0988145, y: -1.411966}
+--- !u!1 &283070999
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 283071000}
+  m_Layer: 9
+  m_Name: Shelf
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283071000
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 283070999}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 439257270}
+  - {fileID: 2045979574}
+  m_Father: {fileID: 674737227}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &356901331
 GameObject:
   m_ObjectHideFlags: 0
@@ -597,11 +627,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405974734}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.01, y: 0.13, z: 0}
+  m_LocalPosition: {x: 0.26000002, y: 0.33999997, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1783945578}
-  m_RootOrder: 4
+  m_Father: {fileID: 439257270}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &405974736
 SpriteRenderer:
@@ -674,7 +704,7 @@ Transform:
   m_Children:
   - {fileID: 535774227}
   m_Father: {fileID: 674737227}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &411106419
 MonoBehaviour:
@@ -919,7 +949,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 569970816}
-  m_Father: {fileID: 674737227}
+  - {fileID: 1154686855}
+  - {fileID: 405974735}
+  m_Father: {fileID: 283071000}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &439257271
@@ -1294,8 +1326,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.84732175, y: 0.120043695}
-  - {x: 0.7788477, y: -0.03229463}
+  - {x: -2.0085008, y: 0.26295808}
+  - {x: 2.5474133, y: -0.17520905}
 --- !u!114 &569970820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1332,10 +1364,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 439257270}
+  - {fileID: 283071000}
   - {fileID: 1400730635}
   - {fileID: 1130991093}
-  - {fileID: 2045979574}
   - {fileID: 411106418}
   - {fileID: 1620384952}
   m_Father: {fileID: 0}
@@ -1714,11 +1745,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1154686854}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.04, y: 0.17, z: 0}
+  m_LocalPosition: {x: -0.77, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1783945578}
-  m_RootOrder: 5
+  m_Father: {fileID: 439257270}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1154686856
 SpriteRenderer:
@@ -1777,8 +1808,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.48229706, y: 0.026689306}
-  - {x: 0.46411085, y: 0.040888503}
+  - {x: -1.3040545, y: 0.08028191}
+  - {x: 2.0004404, y: -0.030568719}
 --- !u!114 &1154686858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,8 +2164,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -0.75615287, y: 0.1657455}
-  - {x: 0.8095487, y: -0.06276238}
+  - {x: -3.36434, y: 0.5944887}
+  - {x: 1.9171348, y: -0.24140537}
 --- !u!114 &1581384519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2177,7 +2208,7 @@ Transform:
   - {fileID: 373437187}
   - {fileID: 1470434361}
   m_Father: {fileID: 674737227}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &1620384953
 PolygonCollider2D:
@@ -2669,8 +2700,6 @@ Transform:
   - {fileID: 424174522}
   - {fileID: 858278082}
   - {fileID: 356901332}
-  - {fileID: 405974735}
-  - {fileID: 1154686855}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3093,8 +3122,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1581384516}
-  m_Father: {fileID: 674737227}
-  m_RootOrder: 3
+  m_Father: {fileID: 283071000}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &2045979575
 PolygonCollider2D:
