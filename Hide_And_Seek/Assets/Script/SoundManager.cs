@@ -242,6 +242,8 @@ public class SoundManager : MonoBehaviour
     public bool isMuteBgm = false;
     public bool isMuteEffect = false;
 
+    private List<AudioSource> listAudio;
+
     //접근용
     public static SoundManager getInstance()
     {
@@ -287,6 +289,7 @@ public class SoundManager : MonoBehaviour
         //변수초기화
         effectSource.loop = false;
         walkVolume = 0;
+        listAudio = new List<AudioSource>();
 
         //-------리소스 긁어오기-------------------------
         object[] temp;
@@ -301,7 +304,6 @@ public class SoundManager : MonoBehaviour
 
         //--------------------------------------------
 
-        playBgm(audioClipList[(int)SOUND_NAME.STARTBGM]);
         walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
 
         bgmSource.PlayOneShot(audioClip);
@@ -346,14 +348,17 @@ public class SoundManager : MonoBehaviour
 
     public void playBgm(AudioClip audio)
     {
+        //현정수정, isMute더라도 bgm수정은 반영되도록함
         bgmSource.clip = audio;
+        
+        bgmSource.Play();
+        bgmSource.loop = true;
+        if (isMute) bgmSource.volume = 0f;
+        else bgmSource.volume = volume_bgm;
+    }
 
-        if (!isMuteBgm)
-        {
-            bgmSource.Play();
-            bgmSource.loop = true;
-            bgmSource.volume = volume_bgm;
-        }
+    public void stopBgm() {
+        bgmSource.Stop();
     }
 
     public void playEffect()
@@ -368,38 +373,105 @@ public class SoundManager : MonoBehaviour
 
     public void playEffect(AudioClip audio)
     {
-        AudioSource au;
-        if (effectSource.isPlaying)
-        {
-            au = new GameObject().AddComponent<AudioSource>();
-        }
-        else
-        {
-            au = effectSource;
-        }
-        au.clip = audio;
 
         if (!isMuteEffect)
         {
+            //현정수정, 동시 여러효과음재생가능
+            AudioSource au;
+            au = new GameObject().AddComponent<AudioSource>();
+            au.clip = audio;
             au.Play();
             au.volume = volume_effect;
 
         }
     }
 
+    //현정추가, 이름써서 stop가능하도록함
+    /// <summary>
+    /// if want Control Audio, using name
+    /// </summary>
+    public void playEffect(AudioClip audio, string name) {
+        if (!isMuteEffect) {
+            AudioSource au;
+            au = new GameObject("name").AddComponent<AudioSource>();
+            au.clip = audio;
+            au.Play();
+            au.volume = volume_effect;
+        }
+    }
+
+    //현정추가, 이름써서 Stop하는 메서드
+    /// <summary>
+    /// if want Stop Audio, input GameObject name
+    /// </summary>
+    public void stopEffect(string name) {
+        GameObject go = GameObject.Find("name");
+        if(go != null && go.GetComponent<AudioSource>() != null) {
+            Destroy(go);
+        }
+    }
+
+    //현정추가, 씬에 계속있을시 loop로 재생
     /// <summary>
     /// 효과음중 loop로 씬에 계속 재생하고싶은 경우
     /// </summary>
     public void playEffectLoop(AudioClip audio)
     {
-        GameObject go = new GameObject();
-        AudioSource au = go.AddComponent<AudioSource>();
+        
         if (!isMuteEffect)
         {
+            GameObject go = new GameObject();
+            AudioSource au = go.AddComponent<AudioSource>();
             au.volume = volume_effect;
             au.clip = audio;
             au.loop = true;
             au.Play();
+        }
+    }
+
+    //현정추가, 씬바껴도 계속 남아서 재생될 오디오
+    /// <summary>
+    /// Audio Loop Play(DontDestroy)
+    /// </summary>
+    /// <param name="audio">AudioClip</param>
+    /// <param name="name">GameObject's Name</param>
+    public AudioSource playDontDestroyLoop(AudioClip audio, string name) {
+        GameObject go = new GameObject(name);
+        AudioSource au = go.AddComponent<AudioSource>();
+        au.volume = volume_bgm;
+        au.clip = audio;
+        au.loop = true;
+        DontDestroyOnLoad(go);
+        au.Play();
+        listAudio.Add(au);
+        return au;
+    }
+
+    //현정추가, 위에서 재생시킨 오디오 삭제가능
+    /// <summary>
+    /// Audio Loop Destroy
+    /// </summary>
+    /// <param name="name"></param>
+    public void DestroyLoop(string name) {
+        for (int i = 0; i < listAudio.Count; i++) {
+            if (listAudio[i].gameObject.name.Equals(name)) {
+                GameObject go = listAudio[i].gameObject;
+                listAudio.RemoveAt(i);
+                Destroy(go);
+                break;
+            }
+        }
+    }
+
+    //현정추가, DontDestroy + Loop 시킨 오디오 전부삭제
+    /// <summary>
+    /// All Loop Sound Destroy
+    /// </summary>
+    public void AllDestroyLoop() {
+        for (int i = listAudio.Count -1; i >= 0; i++) {
+            AudioSource go = listAudio[i];
+            listAudio.Remove(go);
+            Destroy(go.gameObject);
         }
     }
 
@@ -409,11 +481,19 @@ public class SoundManager : MonoBehaviour
         volume_effect = pVol_effect;
         effectSource.volume = pVol_effect;
         bgmSource.volume = pVol_bgm;
+
+        for (int i = 0; i < listAudio.Count; i++) {
+            listAudio[i].volume = pVol_bgm;
+        }
     }
     public void setVolumeBgm(float pVol_bgm)
     {
         volume_bgm = pVol_bgm;
         bgmSource.volume = pVol_bgm;
+
+        for (int i = 0; i < listAudio.Count; i++) {
+            listAudio[i].volume = pVol_bgm;
+        }
     }
     public void setVolumeEffect(float pVol_effect)
     {

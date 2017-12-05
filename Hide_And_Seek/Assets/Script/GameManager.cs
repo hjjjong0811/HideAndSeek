@@ -469,6 +469,12 @@ public class GameManager
     public void SetMainChapter(int Chapter) // 챕터 수정하기
     {
         MainChapter = Chapter;
+
+        //현정추가, 챕터별 BGM재생
+        if (Chapter == -1) { }
+        else if (Chapter < 2) SoundManager.getInstance().playBgm(Resources.Load("Sounds/244") as AudioClip);
+        else if (Chapter < 4) SoundManager.getInstance().playBgm(Resources.Load("Sounds/000STARTBGM") as AudioClip);
+        else SoundManager.getInstance().playBgm(Resources.Load("Sounds/BGM") as AudioClip);
     }
 
 

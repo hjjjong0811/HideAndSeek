@@ -62,7 +62,7 @@ public class PlaySceneController : MonoBehaviour {
         obj_char = new GameObject[6];
 
         //Sound Stop
-        //SoundManager.getInstance().playBgm(audio_bgm);
+        SoundManager.getInstance().stopBgm();
 
         //씬 로드
         SceneManager.LoadScene("S_BBQ");
@@ -114,7 +114,7 @@ public class PlaySceneController : MonoBehaviour {
         ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
-        //Sound
+        //Sound 찰칵
         AudioClip audio_effect = Resources.Load("Sounds/246") as AudioClip;
         SoundManager.getInstance().playEffect(audio_effect);
 
@@ -127,15 +127,17 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
 
         //Sound BGM Stop
+        SoundManager.getInstance().stopBgm();
         //Sound
         audio_effect = Resources.Load("Sounds/256") as AudioClip;
-        SoundManager.getInstance().playEffect(audio_effect);
+        SoundManager.getInstance().playEffect(audio_effect, "audio256");
 
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] {21,22,23,24,25,26}, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //Sound
+        SoundManager.getInstance().stopEffect("audio256");
         audio_effect = Resources.Load("Sounds/241") as AudioClip;
         SoundManager.getInstance().playEffect(audio_effect);
 
@@ -210,6 +212,7 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
 
         //정적
+        SoundManager.getInstance().stopBgm();
         //Sound
         audio_effect = Resources.Load("Sounds/241") as AudioClip;
         SoundManager.getInstance().playEffect(audio_effect);
@@ -222,6 +225,8 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
 
         GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(0f, -1f), 4);
+
+        SoundManager.getInstance().playBgm();
 
         //Player빼고 전부 숨으러간다
         moveWaitChar.Remove(obj_char[(int)char_num.main].GetComponent<MoveWayPoint>());
@@ -416,7 +421,7 @@ public class PlaySceneController : MonoBehaviour {
         for (int i = 0; i < 3; i++) {
             doll_sp.sprite = pre_sprite[(int)sprite_num.doll1];
             yield return new WaitForSeconds(0.5f);
-            //Sound
+            //Sound 퍽
             SoundManager.getInstance().playEffect(audio_effect);
             isWaitScript = true;
             ScriptManager.getInstance().showScript(false, new int[] { 157 }, wake);
@@ -552,9 +557,10 @@ public class PlaySceneController : MonoBehaviour {
 
         //Sound 두루루
         audio_effect = Resources.Load("Sounds/214") as AudioClip;
-        SoundManager.getInstance().playEffect(audio_effect);
-        yield return new WaitForSeconds(2f);
+        SoundManager.getInstance().playEffect(audio_effect, "calling");
+        yield return new WaitForSeconds(3f);
         //Sound Effect Stop
+        SoundManager.getInstance().stopEffect("calling");
         //Sound 띠리링
         audio_effect = Resources.Load("Sounds/102") as AudioClip;
         SoundManager.getInstance().playEffect(audio_effect);
@@ -749,6 +755,9 @@ public class PlaySceneController : MonoBehaviour {
         camera.linkUser(null);
         camera.zoom(new Vector2(-1.9f, -2.35f), 4f);
 
+        AudioClip audio_effect = Resources.Load("Sounds/248") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 553,554,555 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
@@ -767,9 +776,10 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("2_Dress");
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
 
-        //쨍
         //Sound
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.HUTCH_CRASH));
+        AudioClip audio_effect = Resources.Load("Sounds/259") as AudioClip;
+        SoundManager.getInstance().playDontDestroyLoop(audio_effect, "Sound_washer");
+
         ScriptManager.getInstance().showScript(false, new int[] {600 });
 
         //대사진행
@@ -791,7 +801,8 @@ public class PlaySceneController : MonoBehaviour {
 
         yield return new WaitForSeconds(2f);
         //Sound 웅웅
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.WASHER));
+        AudioClip audio_effect = Resources.Load("Sounds/259") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] {652 }, wake);
@@ -809,6 +820,11 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("1_Laundry");
         yield return new WaitForSeconds(0.001f);
 
+        //Sound End, and play Beep
+        SoundManager.getInstance().DestroyLoop("Sound_washer");
+        AudioClip audio_effect = Resources.Load("Sounds/258") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
         //필요 오브젝트 불러오기
         obj_char = new GameObject[6];
         obj_char[(int)char_num.main] = Instantiate(pre_char[(int)char_num.main]);
@@ -825,7 +841,8 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         //Sound 시체
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        audio_effect = Resources.Load("Sounds/248") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         //하이라이트 이동
         flash.move(new Vector2(-0.31f, -1.2f));
@@ -859,12 +876,14 @@ public class PlaySceneController : MonoBehaviour {
     private IEnumerator end_jy() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.HYOJUNG_KKYAK));
+        AudioClip audio_effect = Resources.Load("Sounds/239") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
 
         yield return new WaitForSeconds(0.5f);
         //Sound 쿵쿵
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.WALK));
+        audio_effect = Resources.Load("Sounds/103") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 250, 251 }, wake);
@@ -874,11 +893,12 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.1f);
         //Sound 철퍽
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        audio_effect = Resources.Load("Sounds/250") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(1f);
         //Sound 철퍽
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
 
@@ -898,6 +918,8 @@ public class PlaySceneController : MonoBehaviour {
     private IEnumerator end_d() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
+        AudioClip audio_effect = Resources.Load("Sounds/239") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
         yield return new WaitForSeconds(0.5f);
 
@@ -905,9 +927,12 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.5f);
         //Sound 철퍽
+        audio_effect = Resources.Load("Sounds/250") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(1f);
         //Sound 철퍽
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
 
@@ -922,6 +947,8 @@ public class PlaySceneController : MonoBehaviour {
     private IEnumerator end_k() {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         //Sound 비명
+        AudioClip audio_effect = Resources.Load("Sounds/239") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().shakeCamera();
         yield return new WaitForSeconds(0.5f);
 
@@ -929,9 +956,12 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.5f);
         //Sound 철퍽
+        audio_effect = Resources.Load("Sounds/250") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(1f);
         //Sound 철퍽
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
 
@@ -968,23 +998,28 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(0.001f);
         FlashLight flash = pl.Flash;
         yield return new WaitForSeconds(0.001f);
+
+        //flash 깜박감박
         flash.setLight(true);
         flash.flashedLight(100f);
         yield return new WaitForSeconds(3f);
-
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 850}, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
+        //flash off
         flash.setLight(false);
         yield return new WaitForSeconds(0.5f);
         //Sound 종료음
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        AudioClip audio_effect = Resources.Load("Sounds/256") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 851 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
+
         //Sound 발소리
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.WALK));
+        audio_effect = Resources.Load("Sounds/103") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 852,853 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
@@ -993,11 +1028,12 @@ public class PlaySceneController : MonoBehaviour {
         SceneManager.LoadScene("empty");
         yield return new WaitForSeconds(0.1f);
         //Sound 철퍽
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        audio_effect = Resources.Load("Sounds/250") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_1").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(1f);
         //Sound 철퍽
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        SoundManager.getInstance().playEffect(audio_effect);
         GameObject.Find("blood_full_2").GetComponent<Animation>().Play();
         yield return new WaitForSeconds(2f);
 
