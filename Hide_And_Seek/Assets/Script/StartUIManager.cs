@@ -18,6 +18,8 @@ public class StartUIManager : MonoBehaviour {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         GameManager.getInstance().resetGame(); // 데이터 제거
+        SoundManager.getInstance().AllDestroyLoop();
+        SoundManager.getInstance().playBgm(Resources.Load("Sounds/000STARTBGM") as AudioClip);
     }
 
     public void btn_Start() // 게임시작
