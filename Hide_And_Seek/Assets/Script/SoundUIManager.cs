@@ -38,13 +38,19 @@ public class SoundUIManager : MonoBehaviour {
         Effect = soundmanager.effectSource;
         FootStep = soundmanager.walkSource;
 
+    
+
         BGM_Slider.value = soundmanager.volume_bgm;
         Effect_Slider.value = soundmanager.volume_effect;
+
+        toggle_state("bgm_", BGM_toggle);
+        toggle_state("effect_", Effect_Toggle);
 
         BGM_Slider.value = PlayerPrefs.GetFloat("bgm_slider_value");
         Effect_Slider.value = PlayerPrefs.GetFloat("effect_slider_value");
 
 
+ 
     }
 
     public void Update()
@@ -53,31 +59,53 @@ public class SoundUIManager : MonoBehaviour {
         BGM_Slider.value = PlayerPrefs.GetFloat("bgm_slider_value");
         Effect_Slider.value = PlayerPrefs.GetFloat("effect_slider_value");
 
-        if (PlayerPrefs.GetInt("bgm_") == 1) // Bgm_Off
-            BGM_toggle.isOn = false;
+        toggle_state("bgm_", BGM_toggle);
+        toggle_state("effect_", Effect_Toggle);
+
+    }
+
+    /// <summary>
+    /// toggle 상태유지하기
+    /// </summary>
+    /// <param name="type">soundtype(effect_,bgm_)</param>
+    /// <param name="toggle">toggle name</param>
+    public void toggle_state(string type, Toggle toggle)
+    {
+        if (PlayerPrefs.GetInt(type) == 1)
+            toggle.isOn = false;
         else
-            BGM_toggle.isOn = true;
-
-
-        if (PlayerPrefs.GetInt("effect_") == 1)
-            Effect_Toggle.isOn = false;
-        else
-            Effect_Toggle.isOn = true;
-
+            toggle.isOn = true;
     }
 
     public void BGM_Volume() // BGM 볼륨조절
     {
-        BGM.volume = BGM_Slider.value;
-        SoundManager.getInstance().volume_bgm = BGM.volume;
-        PlayerPrefs.SetFloat("bgm_slider_value", BGM.volume);
+        if (PlayerPrefs.GetInt("bgm_") == 0)
+        {
+            BGM.volume = BGM_Slider.value;
+            SoundManager.getInstance().volume_bgm = BGM.volume;
+            PlayerPrefs.SetFloat("bgm_slider_value", BGM.volume);
+        }
+        else
+        {
+            BGM.volume = BGM_Slider.value;
+            PlayerPrefs.SetFloat("bgm_slider_value", BGM.volume);
+        }
     }
 
     public void Effect_Volume() // 효과음 볼륨조절
     {
-        Effect.volume = Effect_Slider.value;
-        SoundManager.getInstance().volume_effect = Effect.volume;
-        PlayerPrefs.SetFloat("effect_slider_value", Effect.volume);
+        if(PlayerPrefs.GetInt("effect_") == 0)
+        {
+            Effect.volume = Effect_Slider.value;
+            SoundManager.getInstance().volume_effect = Effect.volume;
+            PlayerPrefs.SetFloat("effect_slider_value", Effect.volume);
+        }
+        else
+        {
+            Effect.volume = Effect_Slider.value;
+            PlayerPrefs.SetFloat("effect_slider_value", Effect.volume);
+        }
+      
     }
 
     public void BGM_ONOFF()// BGM ONOFF
