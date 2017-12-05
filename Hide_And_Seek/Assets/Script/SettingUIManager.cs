@@ -24,6 +24,8 @@ public class SettingUIManager : MonoBehaviour {
         {
             btn_save.GetComponent<Button>().interactable = false;
         }
+        else
+            btn_save.GetComponent<Button>().interactable = true;
 
     }
 
