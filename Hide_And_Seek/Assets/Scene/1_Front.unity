@@ -569,14 +569,14 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.2
   m_Points:
-  - {x: 2.3077204, y: -1.0412269}
-  - {x: 1.1167569, y: -1.7562954}
-  - {x: -0.64350027, y: -2.5609791}
-  - {x: -3.5237484, y: -1.0843773}
-  - {x: -0.5123222, y: 0.3193977}
-  - {x: 2.2495317, y: -1.0563169}
+  - {x: 2.7097144, y: -1.0462976}
+  - {x: 1.2061368, y: -1.9350544}
+  - {x: -0.6679376, y: -2.7686965}
+  - {x: -3.9719896, y: -1.073258}
+  - {x: -0.5611968, y: 0.61264575}
+  - {x: 2.640529, y: -0.9830049}
 --- !u!1 &568274249
 GameObject:
   m_ObjectHideFlags: 0
@@ -2513,6 +2513,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21872113397664666, guid: cd0bafef5ed5c36438afc2301f6c23cd,
         type: 2}
+    - target: {fileID: 1952515282279402, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
