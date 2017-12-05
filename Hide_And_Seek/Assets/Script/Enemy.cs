@@ -64,7 +64,10 @@ public class Enemy : MonoBehaviour
         //Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
 
         //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
-        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay) return;
+        if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay)
+        {
+            return;
+        }
         if (GameObject.FindGameObjectWithTag("Player") == null) return;
 
         //test중
@@ -288,6 +291,10 @@ public class Enemy : MonoBehaviour
 
         //Debug.Log("포탈앞에서 1초기다리기");
         yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
+        //플레이어 스크립트 생성중인데 포탈타서 나타나야하는경우_ 잠시 기다리기
+        while (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay)
+        {
+        }
         _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
         _enemy_spot._room = Player.get_player_spot()._room;
         //Debug.Log("아저씨 위치 이동");
