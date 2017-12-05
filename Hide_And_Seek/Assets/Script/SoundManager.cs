@@ -274,11 +274,11 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         //환경설정불러오기
-        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
-        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
-
+     
+        volume_bgm = PlayerPrefs.GetFloat("bgm_slider_value");
+        volume_effect = PlayerPrefs.GetFloat("effect_slider_value");
+    
        
-
         bgmSource = new AudioSource();
         effectSource = new AudioSource();
         walkSource = new AudioSource();

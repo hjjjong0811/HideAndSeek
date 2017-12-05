@@ -45,17 +45,24 @@ public class SoundUIManager : MonoBehaviour {
         Effect_Slider.value = PlayerPrefs.GetFloat("effect_slider_value");
 
 
+    }
+
+    public void Update()
+    {
+
+        BGM_Slider.value = PlayerPrefs.GetFloat("bgm_slider_value");
+        Effect_Slider.value = PlayerPrefs.GetFloat("effect_slider_value");
+
         if (PlayerPrefs.GetInt("bgm_") == 1) // Bgm_Off
             BGM_toggle.isOn = false;
         else
             BGM_toggle.isOn = true;
-       
+
 
         if (PlayerPrefs.GetInt("effect_") == 1)
             Effect_Toggle.isOn = false;
         else
             Effect_Toggle.isOn = true;
-    
 
     }
 
