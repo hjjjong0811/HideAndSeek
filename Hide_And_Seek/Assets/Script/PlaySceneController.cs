@@ -61,8 +61,8 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(()=>!ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
 
-        //Sound 짹짹 경쾌 새지저귐
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        //Sound Stop
+        //SoundManager.getInstance().playBgm(audio_bgm);
 
         //씬 로드
         SceneManager.LoadScene("S_BBQ");
@@ -72,6 +72,10 @@ public class PlaySceneController : MonoBehaviour {
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 1, 2, 3, 4, 5 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound bgm
+        AudioClip audio_bgm = Resources.Load("Sounds/243") as AudioClip;
+        SoundManager.getInstance().playBgm(audio_bgm);
 
         //바베큐장 씬 로드
         GameObject.Find("Main Camera").GetComponent<CameraScript>().setPosition(new Vector2(0f, 0f));
@@ -110,14 +114,37 @@ public class PlaySceneController : MonoBehaviour {
         ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
-        //Sound 스크립트 중간에 끊고 카메라 찰칵소리
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        //Sound
+        AudioClip audio_effect = Resources.Load("Sounds/246") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
         isWaitScript = true;
-        int[] scripts2 = new int[22];
-        for (int i = 0; i <= 21; i++) {
-            scripts2[i] = i + 11;
+        scripts = new int[10];
+        for (int i = 11; i <= 20; i++) {
+            scripts[i - 11] = i;
         }
-        ScriptManager.getInstance().showScript(false, scripts2, wake);
+        ScriptManager.getInstance().showScript(false, scripts, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound BGM Stop
+        //Sound
+        audio_effect = Resources.Load("Sounds/256") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {21,22,23,24,25,26}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound
+        audio_effect = Resources.Load("Sounds/241") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
+        isWaitScript = true;
+        scripts = new int[6];
+        for (int i = 27; i <= 32; i++) {
+            scripts[i - 27] = i;
+        }
+        ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //펜션 내부로 이동
@@ -171,14 +198,22 @@ public class PlaySceneController : MonoBehaviour {
 
         //ScriptManager 1차숨바꼭질시작 대사 진행 요청
         isWaitScript = true;
-        scripts = new int[8];
-        for (int i = 0; i <= 7; i++) {
-            scripts[i] = i+50;
-        }
-        ScriptManager.getInstance().showScript(false, scripts, wake);
+        ScriptManager.getInstance().showScript(false, new int[] {50,51,52,53}, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound bgm
+        audio_bgm = Resources.Load("Sounds/244") as AudioClip;
+        SoundManager.getInstance().playBgm(audio_bgm);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {54,55,56,57}, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //정적
+        //Sound
+        audio_effect = Resources.Load("Sounds/241") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
+
         yield return new WaitForSeconds(1.5f);
         GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(-2f, -0.5f), 2);
 
@@ -235,9 +270,6 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !ScriptManager.getInstance().isPlaying);
         obj_char = new GameObject[6];
 
-        //Sound 경쾌한브금..?
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
-        //씬 로드
         SceneManager.LoadScene("1_Living");
         yield return new WaitForSeconds(0.001f);
         
@@ -266,9 +298,17 @@ public class PlaySceneController : MonoBehaviour {
 
         //대사 진행
         isWaitScript = true;
-        int[] scripts = new int[9];
-        for (int i = 0; i <= 8; i++) {
-            scripts[i] = i + 100;
+        ScriptManager.getInstance().showScript(false, new int[] {100,101,102 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        AudioClip audio_bgm = Resources.Load("Sounds/000STARTBGM") as AudioClip;
+        SoundManager.getInstance().playBgm(audio_bgm);
+
+        //대사 진행
+        isWaitScript = true;
+        int[] scripts = new int[6];
+        for (int i = 103; i <= 108; i++) {
+            scripts[i-103] = i;
         }
         ScriptManager.getInstance().showScript(false, scripts, wake);
         yield return new WaitUntil(() => !isWaitScript);
@@ -372,11 +412,12 @@ public class PlaySceneController : MonoBehaviour {
         GameObject.Find("Main Camera").GetComponent<CameraScript>().zoom(new Vector2(1.5f, -2.3f), 1.5f);
         yield return new WaitForSeconds(0.5f);
 
+        AudioClip audio_effect = Resources.Load("Sounds/257") as AudioClip;
         for (int i = 0; i < 3; i++) {
             doll_sp.sprite = pre_sprite[(int)sprite_num.doll1];
             yield return new WaitForSeconds(0.5f);
-            //Sound 푹
-            //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+            //Sound
+            SoundManager.getInstance().playEffect(audio_effect);
             isWaitScript = true;
             ScriptManager.getInstance().showScript(false, new int[] { 157 }, wake);
             doll_sp.sprite = pre_sprite[(int)sprite_num.doll2];
@@ -389,19 +430,24 @@ public class PlaySceneController : MonoBehaviour {
             ScriptManager.getInstance().showScript(false, new int[] { 158 }, wake);
             yield return new WaitUntil(() => !isWaitScript);
         }
+        //Sound BGM Stop
         light.fadeOut(1.0f);
         yield return new WaitForSeconds(1f);
+
+        SceneManager.LoadScene("1_Reception");
 
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] {160, 161, 162}, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
-        //Sound 비명
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.HYOJUNG_KKYAK));
+        //SoundBGM Change
+        AudioClip audio_bgm = Resources.Load("Sounds/BGM") as AudioClip;
+        SoundManager.getInstance().playBgm(audio_bgm);
+        yield return new WaitForSeconds(1f);
 
-        //Sound BGM 천둥비로 변경
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
-        SceneManager.LoadScene("1_Reception");
+        //Sound 비명
+        audio_effect = Resources.Load("Sounds/239") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         ////대사 진행
         isWaitScript = true;
@@ -469,7 +515,8 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(1f);
 
         //Sound 시체발견
-        //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+        AudioClip audio_effect = Resources.Load("Sounds/248") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
 
         //하이라이트 이동
         flash.move(new Vector2(-1.19f, -0.98f));
@@ -490,9 +537,10 @@ public class PlaySceneController : MonoBehaviour {
         ScriptManager.getInstance().showScript(false, new int[] { 752,753,754,755,756,757 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
+        audio_effect = Resources.Load("Sounds/245") as AudioClip;
         for (int i = 758; i <= 761; i++) {
             //Sound 메시지
-            //SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.));
+            SoundManager.getInstance().playEffect(audio_effect);
             isWaitScript = true;
             ScriptManager.getInstance().showScript(false, new int[] {i }, wake);
             yield return new WaitUntil(() => !isWaitScript);
@@ -503,16 +551,20 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitUntil(() => !isWaitScript);
 
         //Sound 두루루
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.CALLING));
+        audio_effect = Resources.Load("Sounds/214") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         yield return new WaitForSeconds(2f);
+        //Sound Effect Stop
         //Sound 띠리링
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.BELLSOUND));
+        audio_effect = Resources.Load("Sounds/102") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         yield return new WaitForSeconds(1f);
         isWaitScript = true;
         ScriptManager.getInstance().showScript(false, new int[] { 764,765 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
         //Sound 크큭
-        SoundManager.getInstance().playEffect(SoundManager.getInstance().findAudioClip(SOUND_NAME.LAUGH_ENEMY));
+        audio_effect = Resources.Load("Sounds/105") as AudioClip;
+        SoundManager.getInstance().playEffect(audio_effect);
         ScriptManager.getInstance().showScript(false, new int[] { 766 });
 
         GameManager.getInstance().isScenePlay = false;
