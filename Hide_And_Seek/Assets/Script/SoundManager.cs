@@ -336,7 +336,7 @@ public class SoundManager : MonoBehaviour
     //------------소스를 재생시키는것
     public void playBgm()
     {
-        if (!isMute)
+        if (!isMuteBgm)
         {
             bgmSource.Play();
             bgmSource.loop = true;
@@ -348,7 +348,7 @@ public class SoundManager : MonoBehaviour
     {
         bgmSource.clip = audio;
 
-        if (!isMute)
+        if (!isMuteBgm)
         {
             bgmSource.Play();
             bgmSource.loop = true;
@@ -466,6 +466,7 @@ public class SoundManager : MonoBehaviour
     {
         isMuteEffect = false;
         effectSource.volume = volume_bgm;
+       
 
     }
 
