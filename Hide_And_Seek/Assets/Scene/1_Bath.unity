@@ -2040,6 +2040,10 @@ Prefab:
       value: 
       objectReference: {fileID: 21304905115701350, guid: b76bbd4f22c664c4fa74ce68c5540232,
         type: 2}
+    - target: {fileID: 1952515282279402, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e889e9d1b9ed81141bb7f3dd06d0a419, type: 2}
   m_IsPrefabParent: 0
@@ -5003,15 +5007,18 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_EdgeRadius: 0.2
   m_Points:
-  - {x: 3.9478264, y: -2.0070019}
-  - {x: 1.5889611, y: -3.5222926}
-  - {x: 0.0951314, y: -2.8378103}
-  - {x: -2.0216615, y: -1.6861374}
-  - {x: -3.9491568, y: -0.54951537}
-  - {x: -1.7089934, y: 0.9162556}
-  - {x: 3.9688864, y: -1.9930896}
+  - {x: 4.258836, y: -2.069204}
+  - {x: 3.6818357, y: -2.4988909}
+  - {x: 2.5779157, y: -3.0779855}
+  - {x: 1.5889611, y: -3.7711008}
+  - {x: -0.0657326, y: -3.0308473}
+  - {x: -2.086007, y: -1.8630879}
+  - {x: -4.399576, y: -0.5173423}
+  - {x: -1.7089934, y: 1.1253788}
+  - {x: -0.7731712, y: 0.68166465}
+  - {x: 4.2798967, y: -1.9153368}
 --- !u!1 &1327785701
 GameObject:
   m_ObjectHideFlags: 0
