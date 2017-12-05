@@ -274,11 +274,19 @@ public class SoundManager : MonoBehaviour
     void Start()
     {
         //환경설정불러오기
-        volume_bgm = PlayerPrefs.GetFloat("Sound_vol_bgm");
-        volume_effect = PlayerPrefs.GetFloat("Sound_vol_effect");
 
+        if (PlayerPrefs.GetInt("bgm_") == 1)
+            volume_bgm = 0.0f;
+           
+        else
+            volume_bgm = PlayerPrefs.GetFloat("bgm_slider_value");
+
+        if (PlayerPrefs.GetInt("effect_") == 1)
+            volume_bgm = 0.0f;
+        else
+            volume_effect = PlayerPrefs.GetFloat("effect_slider_value");
+    
        
-
         bgmSource = new AudioSource();
         effectSource = new AudioSource();
         walkSource = new AudioSource();
@@ -289,8 +297,6 @@ public class SoundManager : MonoBehaviour
         effectSource = gameObject.AddComponent<AudioSource>();
         walkSource = gameObject.AddComponent<AudioSource>();
 
-        bgmSource.volume = volume_bgm;
-        effectSource.volume = volume_effect;
 
         //변수초기화
         effectSource.loop = false;
