@@ -133,19 +133,6 @@ public class Player : MonoBehaviour {
             return;
         }
 
-        if (hiding)
-        {
-            if (Input.GetButtonDown("Action"))
-            {
-
-                Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
-                
-                hiding = false;
-                Destroy(Hiding_UI_Obj);
-            }
-            return;
-        }
-
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (30f * Time.deltaTime);
@@ -155,12 +142,6 @@ public class Player : MonoBehaviour {
         if (!Tire) {
             movement();
             Animator.speed = Speed;
-            if (Input.GetButtonDown("Action")) {
-                action();
-            }
-            if (Input.GetButtonDown("UseItem")) {
-                action_item();
-            }
         }
 
         if (Hp <= 0) {
@@ -169,17 +150,7 @@ public class Player : MonoBehaviour {
             Animator.SetInteger("State", Ani_Idle);
             Invoke("heal", 2.0f);
         }
-
-
-        if (Input.GetButtonDown("Flash") && Flash != null) {
-            Flash.setLight(!Flash.getIsLighted());
-        }
-
-        if (Input.GetButtonDown("Inventory")) {
-            GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().Btn_Inven();
-        }
-
-
+        
         Raycasting();
     }
 
@@ -240,14 +211,24 @@ public class Player : MonoBehaviour {
 
     }
 
-    private void action() {
-        GameObject nearObject = findNearObject();
-        if (nearObject != null) {
-            nearObject.SendMessage("action");
+    public void action() {
+        if (Tire) return;
+
+        if (hiding) {
+            Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+
+            hiding = false;
+            Destroy(Hiding_UI_Obj);
+        } else {
+            GameObject nearObject = findNearObject();
+            if (nearObject != null) {
+                nearObject.SendMessage("action");
+            }
         }
     }
 
-    private void action_item() {
+    public void action_item() {
+        if (Tire || hiding) return;
         int itemKey = Inventory.getInstance().curEquipItem;
         if (itemKey == -1) return;
         GameObject nearObject = findNearObject();

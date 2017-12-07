@@ -12,6 +12,8 @@ public class GameUIManager : MonoBehaviour {
     public Image ImgBattery;
     public Sprite[] Battery_ImgSource = new Sprite[5];
 
+    public Player player;
+
     public bool isOpenInven = false;
 
     private void Start() {
@@ -26,7 +28,7 @@ public class GameUIManager : MonoBehaviour {
         if (inven.curEquipItem != -1) {
             inven.equipItem(inven.curEquipItem);
         }
-
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     public void Update()
@@ -95,6 +97,15 @@ public class GameUIManager : MonoBehaviour {
     //현정추가
     public void DisplayEquipItem(Sprite s) {
         ImgItem.sprite = s;
+    }
+    public void btnActionClick() {
+        player.SendMessage("action");
+    }
+    public void btnItemClick() {
+        player.SendMessage("action_item");
+    }
+    public void btnFlashClick() {
+        player.Flash.setLight(!player.Flash.getIsLighted());
     }
 
 }
