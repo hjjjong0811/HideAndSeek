@@ -971,7 +971,6 @@ GameObject:
   - component: {fileID: 4505961924299430}
   - component: {fileID: 95569913785701638}
   - component: {fileID: 114472449930192660}
-  - component: {fileID: 114604812110491466}
   - component: {fileID: 50554305684119260}
   - component: {fileID: 60544816701789576}
   - component: {fileID: 33433978635897230}
@@ -2531,6 +2530,8 @@ MonoBehaviour:
   Light_Prefab: {fileID: 1620188589109048, guid: 1ddc596c35062b84f92ae1b210888173,
     type: 2}
   Light: {fileID: 0}
+  JoyStick_Prefab: {fileID: 1610468156209546, guid: d58d2ed354d1b9641b3890457a543b6f,
+    type: 2}
 --- !u!114 &114482010276652112
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2644,20 +2645,6 @@ MonoBehaviour:
     targetPosition: {x: -5.7112145, y: -2.297445, z: 0}
     iterations: 10
     damping: 0.94
---- !u!114 &114604812110491466
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1952515282279402}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49473fda3d8d9344b8c2619aead432c7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Horizontal: 0
-  Vertical: 0
-  Run: 0
 --- !u!114 &114608532839442438
 MonoBehaviour:
   m_ObjectHideFlags: 1

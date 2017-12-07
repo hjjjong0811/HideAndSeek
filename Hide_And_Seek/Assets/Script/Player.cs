@@ -29,6 +29,8 @@ public class Player : MonoBehaviour {
     public GameObject Light_Prefab;
     public Light_Directional Light = null;
 
+    public GameObject JoyStick_Prefab;
+
     
     static RaycastHit2D[] hits_up = new RaycastHit2D[] { },
                             hits_down = new RaycastHit2D[] { };
@@ -92,12 +94,13 @@ public class Player : MonoBehaviour {
             Destroy(this);
             return;
         }
+        GameObject joyStick = Instantiate(JoyStick_Prefab);
 
         Player_obj = this.gameObject;
         Tire = false;
         hiding = false;
         Animator = GetComponent<Animator>();
-        move = GetComponent<Move>();
+        move = joyStick.GetComponent<Move>();
         Speed = Speed_walk;
 
         if (chapter < 4) {
