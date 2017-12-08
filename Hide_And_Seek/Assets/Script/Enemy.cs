@@ -42,6 +42,7 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        SoundManager.getInstance().playWalkSoundStart();
         _enemy = this.gameObject;
         
         /*
@@ -97,6 +98,17 @@ public class Enemy : MonoBehaviour
         {
             do_normal();
         }
+        set_walk_volume();
+    }
+
+    void set_walk_volume()
+    {
+        int volume;
+
+        volume = 100 - (check_player_enemey_distance() * 10);
+        if (volume < 0 || _enemy_pos == ENEMY_INIT_LOC) volume = 0;
+
+        SoundManager.getInstance().walkVolume = volume;
     }
 
     /// <summary>
