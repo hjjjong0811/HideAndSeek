@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Anima2D;
 
 public class Object_raycast : MonoBehaviour
 {
     static string[] object_sorting = new string[] { "Object_back", "Object_front" };
     List<SpriteRenderer> sr_list = new List<SpriteRenderer>();
+    List<SpriteMeshInstance> smr_list = new List<SpriteMeshInstance>();
 
     // Use this for initialization
     void Start()
@@ -16,6 +18,9 @@ public class Object_raycast : MonoBehaviour
             if (t.gameObject.GetComponent<SpriteRenderer>() != null)
             {
                 sr_list.Add(t.gameObject.GetComponent<SpriteRenderer>());
+            }
+            if(t.gameObject.GetComponent<SpriteMeshInstance>() != null) {
+                smr_list.Add(t.gameObject.GetComponent<SpriteMeshInstance>());
             }
         }
     }
@@ -41,6 +46,9 @@ public class Object_raycast : MonoBehaviour
         foreach (SpriteRenderer sr in sr_list)
         {
             sr.sortingLayerName = order;
+        }
+        foreach ( SpriteMeshInstance smr in smr_list) {
+            smr.sortingLayerName = order;
         }
     }
 
