@@ -42,7 +42,9 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        SoundManager.getInstance().playWalkSoundStart();
+        DontDestroyOnLoad(this.gameObject);//test
+
+        //SoundManager.getInstance().playWalkSoundStart();
         _enemy = this.gameObject;
         
         /*
@@ -62,8 +64,6 @@ public class Enemy : MonoBehaviour
          */
 
         init();
-
-        DontDestroyOnLoad(this.gameObject);//test
     }
 
     // Update is called once per frame
@@ -89,6 +89,7 @@ public class Enemy : MonoBehaviour
         _enemy_pos = _enemy.transform.position;
 
         //Enemy에서 볼륨조절하게 되면, 여기에 추가하기!!
+        set_walk_volume();
 
         if (_f_normal_t_chasing)
         {
@@ -98,17 +99,20 @@ public class Enemy : MonoBehaviour
         {
             do_normal();
         }
-        set_walk_volume();
     }
 
     void set_walk_volume()
     {
         int volume;
 
-        volume = 100 - (check_player_enemey_distance() * 10);
-        if (volume < 0 || _enemy_pos == ENEMY_INIT_LOC) volume = 0;
+        int c = check_player_enemey_distance();
+
+        if (c <= 1) volume = 100;
+        else if (c <= 5) volume = 100 - 20 * (c - 1);
+        else volume = 16 - c;
 
         SoundManager.getInstance().walkVolume = volume;
+        //Debug.Log(check_player_enemey_distance()+" -> " + volume);
     }
 
     /// <summary>
@@ -452,6 +456,7 @@ public class Enemy : MonoBehaviour
 
             //Enemy 위치 enemy_ispot에 가져오기
             ISpot enemy_ispot = Enemy.get_enemy_spot();
+            if (tmp_ispot._room == enemy_ispot._room && tmp_ispot._spot == enemy_ispot._spot) return 0;
 
             //Player, Enemy 각각의 위치정보로 거리 계산하기 => "distance변수"에 저장됨
             tmp.find_shortest(enemy_ispot, tmp_ispot, ref distance, new List<ISpot>());
