@@ -296,9 +296,7 @@ public class SaveManager : MonoBehaviour
                 gamemanager.set_save_data_state(data.SaveArray);
                 FlashLight.Init(data.Battery, true);
                 Player.Init(data.hp, PlayerPos, Player_ISpot);
-                
-                Debug.Log("load " + "room" + Player_ISpot._room + "spot" + Player_ISpot._spot);
-
+             
                 //현정추가, 챕터별 BGM재생
                 if (data.MainChapter == -1) { }
                 else if (data.MainChapter < 2) SoundManager.getInstance().playBgm(Resources.Load("Sounds/244") as AudioClip);
