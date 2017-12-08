@@ -257,7 +257,15 @@ public class Enemy : MonoBehaviour
             //플레이어 따라다니기
             Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
-            if (distance < Enemy.GAMEOVER_DISTANCE) Debug.Log("게임오버");//test
+            if (distance < Enemy.GAMEOVER_DISTANCE)
+            {
+                Debug.Log("게임오버");//test
+
+                ///나중에 주석지우고 이걸로 게임오버 처리하기!!
+                //game_over();
+            }
+
+
             if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
 
             //가장 가까운 Spot확인하기  = 플레이어 쫓아다니면서 ISpot정보 갱신하기
@@ -446,6 +454,9 @@ public class Enemy : MonoBehaviour
             if (check_in_same_room() && check_player_enemey_distance() < CHASING_START_DISTANCE)//아저씨랑 같은방에서 가까울때 숨으면
             {
                 Debug.Log("게임오버");//test
+
+                ///나중에 주석지우고 이걸로 게임오버 처리하기!!
+                //game_over();
             }
             else
             {
@@ -570,6 +581,13 @@ public class Enemy : MonoBehaviour
             _enemy_route = _enemy_route._next;
         }
         return result;
+    }
+    private void game_over()
+    {
+        if (GameManager.getInstance().GetMainChapter() >= 11)
+            GameManager.getInstance().scenePlay_End(PlayScene.numScene.suspectKim);
+        else
+            GameManager.getInstance().scenePlay_End(PlayScene.numScene.suspectDoll);
     }
 }
 
