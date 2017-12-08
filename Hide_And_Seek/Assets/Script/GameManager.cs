@@ -363,9 +363,12 @@ public class GameManager
     /// <param name="sceneNumber">씬 번호</param>
     public void scenePlay_End(PlayScene.numScene sceneNumber)
     {
+
         isScenePlay = true;
         PlayScene.getInstance().playScene(sceneNumber);
-        EndScene[(int)sceneNumber] = 1;
+        if (sceneNumber >= 0)
+            EndScene[(int)sceneNumber] = 1;
+        
     }
 
 
