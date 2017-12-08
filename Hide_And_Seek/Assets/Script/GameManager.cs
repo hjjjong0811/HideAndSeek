@@ -9,7 +9,6 @@ public class GameManager
 
     public static int MainChapter; // 전체 메인 에피소드 관리
 
-
     /*스토리에 영향주는 변수들*/
     public const int SOJU = 12;
     public const int SALT = 18;
@@ -37,9 +36,7 @@ public class GameManager
     public int SaltyWater;
     public int GroundKey; // 지하실 여는조건
 
-    
     public bool isScenePlay;    //현정추가! 컷씬플레이중인지 여부
-
 
     private GameManager()
     {
@@ -73,7 +70,6 @@ public class GameManager
 
     public void CheckMainChapter() // 챕터넘어갈 이벤트 만족했는지 확인
     {
-        
         //게임시작시 -> 0
         if (MainChapter == -1)
             SetMainChapter(0);
@@ -165,14 +161,11 @@ public class GameManager
             SetMainChapter(-6);
         
         chapterPlayScene(); // 스토리 씬인지 확인
-        
-
 
     }
     
     public void chapterPlayScene() // 챕터별로 진행될 씬 조건만족시 씬 실행
     {
-       
         switch (MainChapter)
         {
             //잘못된 오브젝트 사용 엔딩
@@ -199,7 +192,6 @@ public class GameManager
             case -5:
                 scenePlay_End(PlayScene.numScene.suspectKim);
                 break;
-
 
             // 튜토리얼일때 튜토리얼 씬진행
             case 0:
@@ -279,10 +271,7 @@ public class GameManager
                 if (isFirstTime(PlayScene.numScene.ringPhone) && isSceneEnd(PlayScene.numScene.jy_die) &&isCheckRoom("2_Bed"))
                     scenePlay_End(PlayScene.numScene.ringPhone);
                 break;
-
-
         }
-
     }
     
     
@@ -315,9 +304,7 @@ public class GameManager
             saveArray[8] = OpenBabyBox;
             saveArray[9] = OpenPantry;
             saveArray[10] = OpenGarret;
-
-}
-            
+        }
     }
 
     //set state data(use SaveManager)
@@ -337,8 +324,6 @@ public class GameManager
             OpenPantry = saveArray[9];
             OpenGarret = saveArray[10];
         }
-        else       
-            Debug.Log("set_save_state문제");
     }
 
  
@@ -363,12 +348,10 @@ public class GameManager
     /// <param name="sceneNumber">씬 번호</param>
     public void scenePlay_End(PlayScene.numScene sceneNumber)
     {
-
         isScenePlay = true;
         PlayScene.getInstance().playScene(sceneNumber);
         if (sceneNumber >= 0)
             EndScene[(int)sceneNumber] = 1;
-        
     }
 
 
@@ -383,7 +366,6 @@ public class GameManager
             return true;
         else
             return false;
-
     }
 
 
@@ -403,8 +385,8 @@ public class GameManager
 
     public void changeArrayState() // 챕터 7일때 정연이 찾을때 필요(모든방)
     {
-            switch (SceneManager.GetActiveScene().name)
-            {
+       switch (SceneManager.GetActiveScene().name)
+       {
                 case "1_Bath": FindJeongyeon[0] = 1; break;
                 case "1_Dining": FindJeongyeon[1] = 1; break;
                 case "1_Front": FindJeongyeon[2] = 1; break;
@@ -413,7 +395,7 @@ public class GameManager
                 case "1_Laundry": FindJeongyeon[5] = 1; break;
                 case "1_Living": FindJeongyeon[6] = 1; break;
                 case "1_Reception": FindJeongyeon[7] = 1; break;
-            }
+        }
 
     }
 
@@ -431,12 +413,10 @@ public class GameManager
         {
             if (TestArray[i] == 1)
                 Num += 1;
-
         }
 
         if (ArrayNum == Num)
             return true;
-
         else
             return false;
     }
