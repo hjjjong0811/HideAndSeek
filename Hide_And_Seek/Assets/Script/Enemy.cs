@@ -42,7 +42,12 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        DontDestroyOnLoad(this.gameObject);//test
+
+        //SoundManager.getInstance().playWalkSoundStart();
         _enemy = this.gameObject;
+        
+        /*
         _enemy_working = false;
         _f_normal_t_chasing = false;
         _enemy_spot = new ISpot(Room.Wine_0, 0);
@@ -56,8 +61,9 @@ public class Enemy : MonoBehaviour
         _enemy_finding_time = 0f;
         _enemy.transform.position = ENEMY_INIT_LOC;
         _enemy_pos = ENEMY_INIT_LOC;
+         */
 
-        DontDestroyOnLoad(this.gameObject);//test
+        init();
     }
 
     // Update is called once per frame
@@ -83,6 +89,7 @@ public class Enemy : MonoBehaviour
         _enemy_pos = _enemy.transform.position;
 
         //Enemy에서 볼륨조절하게 되면, 여기에 추가하기!!
+        set_walk_volume();
 
         if (_f_normal_t_chasing)
         {
@@ -92,6 +99,20 @@ public class Enemy : MonoBehaviour
         {
             do_normal();
         }
+    }
+
+    void set_walk_volume()
+    {
+        int volume;
+
+        int c = check_player_enemey_distance();
+
+        if (c <= 1) volume = 100;
+        else if (c <= 5) volume = 100 - 20 * (c - 1);
+        else volume = 16 - c;
+
+        SoundManager.getInstance().walkVolume = volume;
+        //Debug.Log(check_player_enemey_distance()+" -> " + volume);
     }
 
     /// <summary>
@@ -252,7 +273,15 @@ public class Enemy : MonoBehaviour
             //플레이어 따라다니기
             Vector3 _player_pos = Player.Player_obj.transform.position;
             float distance = Vector3.Distance(_player_pos, _enemy_pos);
-            if (distance < Enemy.GAMEOVER_DISTANCE) Debug.Log("게임오버");//test
+            if (distance < Enemy.GAMEOVER_DISTANCE)
+            {
+                Debug.Log("게임오버");//test
+
+                ///나중에 주석지우고 이걸로 게임오버 처리하기!!
+                //game_over();
+            }
+
+
             if (distance > 0.1f) _enemy.transform.Translate((_player_pos - _enemy_pos) * Time.deltaTime / distance * _enemy_speed);
 
             //가장 가까운 Spot확인하기  = 플레이어 쫓아다니면서 ISpot정보 갱신하기
@@ -427,6 +456,7 @@ public class Enemy : MonoBehaviour
 
             //Enemy 위치 enemy_ispot에 가져오기
             ISpot enemy_ispot = Enemy.get_enemy_spot();
+            if (tmp_ispot._room == enemy_ispot._room && tmp_ispot._spot == enemy_ispot._spot) return 0;
 
             //Player, Enemy 각각의 위치정보로 거리 계산하기 => "distance변수"에 저장됨
             tmp.find_shortest(enemy_ispot, tmp_ispot, ref distance, new List<ISpot>());
@@ -441,6 +471,9 @@ public class Enemy : MonoBehaviour
             if (check_in_same_room() && check_player_enemey_distance() < CHASING_START_DISTANCE)//아저씨랑 같은방에서 가까울때 숨으면
             {
                 Debug.Log("게임오버");//test
+
+                ///나중에 주석지우고 이걸로 게임오버 처리하기!!
+                //game_over();
             }
             else
             {
@@ -483,6 +516,23 @@ public class Enemy : MonoBehaviour
         }
         _enemy_working = false;
         _enemy.transform.position = ENEMY_INIT_LOC;
+    }
+
+    public static void init()
+    {
+        _enemy_working = false;
+        _f_normal_t_chasing = false;
+        _enemy_spot = new ISpot(Room.Wine_0, 0);
+        _enemy_last_spot = _enemy_spot;
+        _enemy_state = Enemy_State.going_hall;
+        _enemy_dest = Room.None;
+        int tmp = 0;
+        _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref tmp, new List<ISpot>());
+        _enemy_looking = false;
+        _enemy_finding = false;
+        _enemy_finding_time = 0f;
+        _enemy.transform.position = ENEMY_INIT_LOC;
+        _enemy_pos = ENEMY_INIT_LOC;
     }
 
 
@@ -549,6 +599,13 @@ public class Enemy : MonoBehaviour
         }
         return result;
     }
+    private void game_over()
+    {
+        if (GameManager.getInstance().GetMainChapter() >= 11)
+            GameManager.getInstance().scenePlay_End(PlayScene.numScene.suspectKim);
+        else
+            GameManager.getInstance().scenePlay_End(PlayScene.numScene.suspectDoll);
+    }
 }
 
 public class Enemy_Data
@@ -561,3 +618,4 @@ public class Enemy_Data
     public int _enemy_route_length = 0;//루트 길이(_enemy_route_array 배열 길이)
     public ISpot[] _enemy_route_array = new ISpot[100];//루트 순서대로 ISpot데이터만 배열로 저장
 }
+
