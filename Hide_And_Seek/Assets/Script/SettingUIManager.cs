@@ -55,6 +55,14 @@ public class SettingUIManager : MonoBehaviour {
         SoundList.Add("RockingChair4 / stevelalonde");
         SoundList.Add("Metal-Lid-Thumps-01 / joedeshon");
         SoundList.Add("Gramophone / setuniman");
+        SoundList.Add("Camera-snap1 / thecheeseman");
+        SoundList.Add("horror-ambience-10 / klankbeeld");
+        SoundList.Add("blood-hitting-window / rock-savage");
+        SoundList.Add("under-the-stars-loop / shadydave");
+        SoundList.Add("=========================================");
+        SoundList.Add("--------------------((http:earbro.com))--------------------");
+        SoundList.Add("A Shy smile/ earbro");
+        SoundList.Add("Hide And Seek / earbro");
         SoundList.Add("=========================================");
 
 
