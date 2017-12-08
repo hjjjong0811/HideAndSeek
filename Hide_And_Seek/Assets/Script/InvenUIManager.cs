@@ -15,8 +15,7 @@ public class InvenUIManager : MonoBehaviour {
     private List<GameObject> btnItemList;
 
     private Vector3 beginMousePos;
-
-	// Use this for initialization
+    
 	void Start () {
         selectedItem_key = -1;
         isComposeMode = false;
@@ -60,11 +59,9 @@ public class InvenUIManager : MonoBehaviour {
         if (isComposeMode) {
             if (selectedCompose_key.Contains(item.Key)) {
                 selectedCompose_key.Remove(item.Key);
-                Debug.Log("조합 아이템 재료 제거 : " + item.Key);
                 Destroy(btnItemList[index].transform.GetChild(0).gameObject);
             } else {
                 selectedCompose_key.Add(item.Key);
-                Debug.Log("조합 아이템 추가 : " + item.Key);
                 Instantiate(imgCheck_prefab, btnItemList[index].transform);
             }
         }
@@ -78,10 +75,8 @@ public class InvenUIManager : MonoBehaviour {
             selectedItem_key = -1;
             itemInfo.SetActive(false);
         } else if (selectedItem_key != -1) {
-            //Change inventory-> curEquipItem
             Inventory inven = Inventory.getInstance();
             inven.equipItem(selectedItem_key);
-            Debug.Log(inven.curEquipItem + " 을 장착");
         }
         
     }
@@ -90,10 +85,7 @@ public class InvenUIManager : MonoBehaviour {
         if (isComposeMode) {
             ItemManager mng = ItemManager.getInstance();
             int result = mng.getComposeItem(selectedCompose_key.Count, selectedCompose_key);
-            if(result == -1) {
-                Debug.Log("조합실패");
-            } else {
-                //조합성공, 인벤토리 수정
+            if(result != -1) {
                 Inventory inven = Inventory.getInstance();
                 inven.composeItem(result, selectedCompose_key);
 
@@ -118,7 +110,6 @@ public class InvenUIManager : MonoBehaviour {
         } else {
             selectedCompose_key = new List<int>();
             isComposeMode = true;
-            Debug.Log("조합 아이템 선택 시작");
         }
     }
 
@@ -127,5 +118,9 @@ public class InvenUIManager : MonoBehaviour {
     }
     public void OnDrag() {
         transform.position = Input.mousePosition - beginMousePos;
+    }
+
+    public void OnCloseClick() {
+        GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().Btn_Inven();
     }
 }
