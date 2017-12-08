@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
     private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
     private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f, 1f };//[normal,chasing 상태] 내부상태에 따른 활동시간
-    public float _enemy_speed = 1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
+    public float _enemy_speed = 1.1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
 
     //[아저씨 상태 변수]
     private static bool _enemy_working;//아저씨 발동상태
