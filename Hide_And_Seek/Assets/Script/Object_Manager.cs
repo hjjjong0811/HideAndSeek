@@ -9,7 +9,8 @@ public enum Object_State
     Object_back = 0,
     Object_front = 1
 }
-public class Object_Manager{
+public class Object_Manager
+{
 }
 
 public interface IObject
@@ -18,7 +19,7 @@ public interface IObject
 }
 public class Portal : IObject
 {
-    int key_num=0;
+    int key_num = 0;
     public string scene_name1, scene_name2;
     public Vector2 portal_loc1, portal_loc2;
 
@@ -122,20 +123,22 @@ public class Portal : IObject
 
     public void action()
     {
+        float[] distances = new float[] { 1f, 2f, 3f, 4f, };
         if (SceneManager.GetActiveScene().name == scene_name1)
         {
             MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name2);
             Player.set_player_pos(new Vector3(portal_loc2.x, portal_loc2.y, 0f));
         }
-        else {
+        else
+        {
             MonoBehaviour.Destroy(GameObject.Find("Player"));
             SceneManager.LoadScene(scene_name1);
             Player.set_player_pos(new Vector3(portal_loc1.x, portal_loc1.y, 0f));
         }
         Player.Player_Last_Portal_num = key_num;
-        Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
         //Debug.Log("포탈발동 -> 아저씨 위치초기화");
+        Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
     }
 
     public int get_key()

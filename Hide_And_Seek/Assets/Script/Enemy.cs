@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3, finding = 4 };//내부상태
+public enum Enemy_State { in_dest = 0, going_hall = 1, going_dest = 2, in_hall = 3 };//내부상태
+
 public class Enemy : MonoBehaviour
 {
+
     public static GameObject _enemy = null;
     private static readonly int CHASING_START_DISTANCE = 3;//같은방에서 Enemy~Player spot 거리차이가 이 변수값 이하면 enemy가 쫓아옴
-    private static readonly int GAMEOVER_DISTANCE = 1;
+    private static readonly float GAMEOVER_DISTANCE = 1f;
     public static readonly Vector3 ENEMY_INIT_LOC = new Vector3(-100f, -100f, 0f); //enemy 활동안할때 안보이게 치워놓을 위치
     private static readonly float CHASING_MOVE_SCENE_TIME = 1f;//[chasing상태] 플레이어가 방이동할때 해당 시간후 포탈에서 튀어나옴
-    private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f, 1f };//[normal,chasing 상태] 내부상태에 따른 활동시간
+    private static readonly float[] _enemy_stay_time = new float[] { 3f, 1f, 2f, 0f };//[normal,chasing 상태] 내부상태에 따른 활동시간
     public float _enemy_speed = 1.1f;//[chasing 상태] 플레이어 쫓아가는 속도_(test : 일단 public -> 나중에 private static readonly)
 
     //[아저씨 상태 변수]
@@ -73,12 +75,13 @@ public class Enemy : MonoBehaviour
         //test중
         //Debug.Log("enemy_working : " + _enemy_working);
         //Debug.Log("_f_normal_t_chasing : " + _f_normal_t_chasing);
+        //Debug.Log(Vector3.Distance(Player.Player_obj.transform.position, Enemy._enemy.transform.position));
 
         if (!_enemy_working) return;
         if (ScriptManager.getInstance().isPlaying) _enemy_working = false;
 
         _enemy_pos = _enemy.transform.position;
-        
+
         //Enemy에서 볼륨조절하게 되면, 여기에 추가하기!!
 
         if (_f_normal_t_chasing)
@@ -121,7 +124,7 @@ public class Enemy : MonoBehaviour
                 {
                     _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(_enemy_last_spot._room, _enemy_spot._room);
                 }
-                
+
                 _enemy_finding_time = 0f;
                 _enemy_looking = false;
                 _enemy_finding = false;
@@ -289,15 +292,14 @@ public class Enemy : MonoBehaviour
     {
         _enemy_finding = true;
 
-        //Debug.Log("포탈앞에서 1초기다리기");
-        yield return new WaitForSeconds(_enemy_stay_time[(int)Enemy_State.finding]);
-        //플레이어 스크립트 생성중인데 포탈타서 나타나야하는경우_ 잠시 기다리기
+        //Debug.Log("포탈시 거리 : " + check_player_enemey_distance());
+        yield return new WaitForSeconds((float)check_player_enemey_distance());
 
         yield return new WaitWhile(() => ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay);
 
-        _enemy_finding_time += _enemy_stay_time[(int)Enemy_State.finding];
+        _enemy_finding_time += (float)check_player_enemey_distance();
         _enemy_spot._room = Player.get_player_spot()._room;
-        //Debug.Log("아저씨 위치 이동");
+        //Debug.Log("아저씨 위치 이동");//test
         _enemy.transform.position = Scene_Manager.getInstance()._get_portal_loc(Player.Player_Last_Portal_num, Player.get_player_spot()._room);
 
         if (_enemy_finding_time > 10f)
@@ -468,7 +470,7 @@ public class Enemy : MonoBehaviour
         {
             //Debug.Log("이미 Enemy working하는 중임!!!");//test
         }
-       
+
         _enemy.transform.position = _enemy_pos;
         _enemy_working = true;
     }
@@ -488,7 +490,8 @@ public class Enemy : MonoBehaviour
     /// 세이브파일 데이터 가져오는 함수
     /// </summary>
     /// <param name="result"></param>
-    public static void enemy_bring_data(Enemy_Data result){
+    public static void enemy_bring_data(Enemy_Data result)
+    {
 
         //Enemy._enemy = this.gameObject;
         Enemy._enemy_working = result._enemy_working;
@@ -504,10 +507,12 @@ public class Enemy : MonoBehaviour
         Enemy._enemy_pos = Enemy.ENEMY_INIT_LOC;
 
         Enemy._enemy_route = null;
-        if(result._enemy_route_length==0){
+        if (result._enemy_route_length == 0)
+        {
             return;
         }
-        else if(result._enemy_route_length==1){
+        else if (result._enemy_route_length == 1)
+        {
             Enemy._enemy_route = new Route(result._enemy_route_array[0]);
         }
         else
