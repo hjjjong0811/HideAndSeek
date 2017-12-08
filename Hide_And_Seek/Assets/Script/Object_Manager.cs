@@ -122,6 +122,7 @@ public class Portal : IObject
 
     public void action()
     {
+        float[] distances = new float[]{1f, 2f, 3f, 4f, };
         if (SceneManager.GetActiveScene().name == scene_name1)
         {
             MonoBehaviour.Destroy(GameObject.Find("Player"));
@@ -135,7 +136,14 @@ public class Portal : IObject
         }
         Player.Player_Last_Portal_num = key_num;
         Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+
         //Debug.Log("포탈발동 -> 아저씨 위치초기화");
+        /*
+        float distance = Vector3.Distance(Player.Player_obj.transform.position, Enemy._enemy.transform.position);
+        Enemy._enemy_portal_zen_time = distance;
+        Debug.Log("테스트"+Enemy._enemy_portal_zen_time);//test
+         */
+        Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
     }
 
     public int get_key()
