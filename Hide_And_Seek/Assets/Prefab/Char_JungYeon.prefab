@@ -103,6 +103,8 @@ GameObject:
   - component: {fileID: 50759361478290068}
   - component: {fileID: 60181020318348928}
   - component: {fileID: 114421061067816146}
+  - component: {fileID: 68104846964781580}
+  - component: {fileID: 114183219804199074}
   m_Layer: 8
   m_Name: Char_JungYeon
   m_TagString: Player
@@ -1140,7 +1142,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1069193047546406}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 30, z: 0}
+  m_LocalPosition: {x: 0.16131705, y: -4.450599, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4789377766831432}
@@ -1929,6 +1931,23 @@ PolygonCollider2D:
       - {x: -0.12669468, y: -0.1327124}
       - {x: 0.19182014, y: -0.12402211}
       - {x: 0.27257872, y: 0.015243679}
+--- !u!68 &68104846964781580
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069193047546406}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.6652553, y: -0.113069534}
+  - {x: 0.64786, y: -0.08697653}
 --- !u!95 &95418260084289020
 Animator:
   serializedVersion: 3
@@ -2139,6 +2158,17 @@ MonoBehaviour:
   - {fileID: 4828867751411692}
   - {fileID: 4372229828585376}
   - {fileID: 4483546292274686}
+--- !u!114 &114183219804199074
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1069193047546406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27c16730ab4b642833439fc4c1b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114185134196773396
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2151,7 +2181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2533432
+  m_Length: 0.25334308
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4472037390615162}
   m_AttachedIK: {fileID: 114850408090998182}
@@ -2531,7 +2561,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2240088
+  m_Length: 0.22400883
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4247972296175604}
   m_AttachedIK: {fileID: 114214435574172214}
@@ -2734,7 +2764,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.27363798
+  m_Length: 0.273638
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4876904519477528}
   m_AttachedIK: {fileID: 114653849944203622}
@@ -2814,7 +2844,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.21902288
+  m_Length: 0.21902283
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4867345195990844}
   m_AttachedIK: {fileID: 114446160526775080}

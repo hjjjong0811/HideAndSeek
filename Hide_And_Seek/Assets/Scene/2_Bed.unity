@@ -1074,10 +1074,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.48501402, y: 0.78302}
-      - {x: -1.9849024, y: -0.010071337}
-      - {x: -0.21764302, y: -1.0642877}
-      - {x: 0.8813462, y: -0.017677903}
+    - - {x: -0.6746567, y: 0.911706}
+      - {x: -2.3032308, y: -0.010071337}
+      - {x: -0.20409703, y: -1.2403843}
+      - {x: 1.0235782, y: -0.08540738}
+      - {x: 1.1498194, y: 0.011544168}
       - {x: 0.912766, y: 0.07927364}
 --- !u!114 &483109521
 MonoBehaviour:
@@ -1945,6 +1946,86 @@ Prefab:
     - target: {fileID: 4029723656933538, guid: 0c2588bb49b696940a28803c32607f4c, type: 2}
       propertyPath: m_LocalPosition.y
       value: -1.514
+      objectReference: {fileID: 0}
+    - target: {fileID: 114537860310009942, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 137830128957081096, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 54
+      objectReference: {fileID: 0}
+    - target: {fileID: 114961494438739044, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 137507538302273678, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 55
+      objectReference: {fileID: 0}
+    - target: {fileID: 114823947341818436, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 137014410123067862, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114148544228460244, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 137376032005107260, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 56
+      objectReference: {fileID: 0}
+    - target: {fileID: 114541365662470570, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 137519488593645372, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 114182830055622696, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 137920306965620220, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 57
+      objectReference: {fileID: 0}
+    - target: {fileID: 114637613679677158, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 137855876160751472, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 114899088613922696, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 53
+      objectReference: {fileID: 0}
+    - target: {fileID: 137624741068473436, guid: 0c2588bb49b696940a28803c32607f4c,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 53
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 95651662535475642, guid: 0c2588bb49b696940a28803c32607f4c, type: 2}
@@ -3235,6 +3316,39 @@ MonoBehaviour:
       isBlockPortal: 0
       script_key_isExistitem: 0
   usingItem: []
+--- !u!1 &1498471684 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1695679438722284, guid: 0c2588bb49b696940a28803c32607f4c,
+    type: 2}
+  m_PrefabInternal: {fileID: 758759908}
+--- !u!114 &1498471685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498471684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27c16730ab4b642833439fc4c1b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!68 &1498471686
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1498471684}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -2.0669456, y: -0.1718841}
+  - {x: 1.6249698, y: -0.14735256}
 --- !u!1 &1562892260
 GameObject:
   m_ObjectHideFlags: 0
