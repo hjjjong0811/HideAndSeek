@@ -43,6 +43,8 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _enemy = this.gameObject;
+        
+        /*
         _enemy_working = false;
         _f_normal_t_chasing = false;
         _enemy_spot = new ISpot(Room.Wine_0, 0);
@@ -56,6 +58,9 @@ public class Enemy : MonoBehaviour
         _enemy_finding_time = 0f;
         _enemy.transform.position = ENEMY_INIT_LOC;
         _enemy_pos = ENEMY_INIT_LOC;
+         */
+
+        init();
 
         DontDestroyOnLoad(this.gameObject);//test
     }
@@ -485,6 +490,23 @@ public class Enemy : MonoBehaviour
         _enemy.transform.position = ENEMY_INIT_LOC;
     }
 
+    public static void init()
+    {
+        _enemy_working = false;
+        _f_normal_t_chasing = false;
+        _enemy_spot = new ISpot(Room.Wine_0, 0);
+        _enemy_last_spot = _enemy_spot;
+        _enemy_state = Enemy_State.going_hall;
+        _enemy_dest = Room.None;
+        int tmp = 0;
+        _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref tmp, new List<ISpot>());
+        _enemy_looking = false;
+        _enemy_finding = false;
+        _enemy_finding_time = 0f;
+        _enemy.transform.position = ENEMY_INIT_LOC;
+        _enemy_pos = ENEMY_INIT_LOC;
+    }
+
 
     /// <summary>
     /// 세이브파일 데이터 가져오는 함수
@@ -561,3 +583,4 @@ public class Enemy_Data
     public int _enemy_route_length = 0;//루트 길이(_enemy_route_array 배열 길이)
     public ISpot[] _enemy_route_array = new ISpot[100];//루트 순서대로 ISpot데이터만 배열로 저장
 }
+
