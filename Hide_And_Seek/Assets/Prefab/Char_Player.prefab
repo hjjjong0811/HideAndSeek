@@ -528,6 +528,8 @@ GameObject:
   - component: {fileID: 60300961095878328}
   - component: {fileID: 33183011263607980}
   - component: {fileID: 114846486997933274}
+  - component: {fileID: 68986137510541118}
+  - component: {fileID: 114832926223215290}
   m_Layer: 8
   m_Name: Char_Player
   m_TagString: Player
@@ -1478,7 +1480,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1502048401633954}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 30, z: 0}
+  m_LocalPosition: {x: -2.8220167, y: -5.0400357, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4079967072813260}
@@ -1937,6 +1939,23 @@ PolygonCollider2D:
       - {x: -0.12076092, y: -0.14148092}
       - {x: 0.08733368, y: -0.1564691}
       - {x: 0.22950792, y: -0.03554845}
+--- !u!68 &68986137510541118
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502048401633954}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.5, y: 0}
+  - {x: 0.5, y: 0}
 --- !u!95 &95679081365228024
 Animator:
   serializedVersion: 3
@@ -2489,7 +2508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.22119032
+  m_Length: 0.22119051
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4384277780190030}
   m_AttachedIK: {fileID: 114618850294332730}
@@ -2633,7 +2652,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.27363807
+  m_Length: 0.27363804
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4692376385722134}
   m_AttachedIK: {fileID: 114108154967270974}
@@ -2776,7 +2795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.44420663
+  m_Length: 0.4442065
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4538904638071826}
   m_AttachedIK: {fileID: 0}
@@ -2854,6 +2873,17 @@ MonoBehaviour:
   m_BoneTransforms:
   - {fileID: 4212986616229584}
   - {fileID: 4864930230910082}
+--- !u!114 &114832926223215290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1502048401633954}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27c16730ab4b642833439fc4c1b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114836529904735650
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2956,7 +2986,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.30718553
+  m_Length: 0.30718565
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4419446776264190}
   m_AttachedIK: {fileID: 114930833585721294}
@@ -3004,7 +3034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.3999541
+  m_Length: 0.39995387
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4851319068959634}
   m_AttachedIK: {fileID: 0}
@@ -3036,7 +3066,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.15400395
+  m_Length: 0.15400413
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4128213042759872}
   m_AttachedIK: {fileID: 0}

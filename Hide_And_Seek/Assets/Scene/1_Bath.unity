@@ -6882,6 +6882,7 @@ GameObject:
   - component: {fileID: 1923899101}
   - component: {fileID: 1923899098}
   - component: {fileID: 1923899096}
+  - component: {fileID: 1923899099}
   - component: {fileID: 1923899097}
   m_Layer: 8
   m_Name: hj
@@ -6898,8 +6899,8 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1923899095}
   m_Mesh: {fileID: 0}
---- !u!60 &1923899097
-PolygonCollider2D:
+--- !u!68 &1923899097
+EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -6907,27 +6908,16 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_EdgeRadius: 0
   m_Points:
-    m_Paths:
-    - - {x: -0.5412518, y: 1.1994085}
-      - {x: -0.49526572, y: 0.6935906}
-      - {x: -0.42948562, y: 0.0075747967}
-      - {x: -0.35988992, y: -0.13957429}
-      - {x: -0.095900714, y: -0.1965481}
-      - {x: 0.7801348, y: 0.5653995}
+  - {x: -1.0908207, y: -0.0071183443}
+  - {x: 0.35018453, y: -0.005233407}
+  - {x: 1.1192942, y: 0.5552292}
+  - {x: 1.3114887, y: 0.4128629}
 --- !u!60 &1923899098
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -6953,11 +6943,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.18085337, y: 0.10670403}
-      - {x: -0.25480032, y: -0.05502838}
-      - {x: -0.041944027, y: -0.08185047}
-      - {x: 0.12402296, y: -0.10705781}
-      - {x: 0.17935705, y: 0.09153086}
+    - - {x: -0.032136142, y: 0.26180142}
+      - {x: -0.25915486, y: 0.19212389}
+      - {x: -0.41140348, y: -0.047909975}
+      - {x: -0.2056343, y: -0.22472382}
+      - {x: 0.022120893, y: -0.18862522}
+      - {x: 0.18096966, y: -0.099939466}
+      - {x: 0.36443335, y: 0.1627143}
+--- !u!114 &1923899099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1923899095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27c16730ab4b642833439fc4c1b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1923899101
 Transform:
   m_ObjectHideFlags: 0
