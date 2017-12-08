@@ -408,6 +408,8 @@ GameObject:
   - component: {fileID: 60999688604259604}
   - component: {fileID: 114419438932000036}
   - component: {fileID: 33164019586850472}
+  - component: {fileID: 114783848680084318}
+  - component: {fileID: 68559377033688168}
   m_Layer: 8
   m_Name: Char_HyoJung
   m_TagString: Player
@@ -1458,7 +1460,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1424421781323040}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 30, y: 30, z: 0}
+  m_LocalPosition: {x: 2.1101685, y: -3.7080097, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4213886134067736}
@@ -1937,6 +1939,23 @@ PolygonCollider2D:
       - {x: -0.041944027, y: -0.08185047}
       - {x: 0.12402296, y: -0.10705781}
       - {x: 0.17935705, y: 0.09153086}
+--- !u!68 &68559377033688168
+EdgeCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424421781323040}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -1.1021522, y: 0.031692266}
+  - {x: 0.9753833, y: 0}
 --- !u!95 &95253390718291416
 Animator:
   serializedVersion: 3
@@ -1966,7 +1985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.2071216
+  m_Length: 0.20712164
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4600285766702282}
   m_AttachedIK: {fileID: 114660912022074382}
@@ -2881,6 +2900,17 @@ MonoBehaviour:
   - {fileID: 4074274743118336}
   - {fileID: 4515754278163048}
   - {fileID: 4855233577205446}
+--- !u!114 &114783848680084318
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424421781323040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c27c16730ab4b642833439fc4c1b0ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114837958002594388
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2994,7 +3024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Length: 0.25334322
+  m_Length: 0.2533431
   m_Child: {fileID: 0}
   m_ChildTransform: {fileID: 4236360546692968}
   m_AttachedIK: {fileID: 114483285524859670}

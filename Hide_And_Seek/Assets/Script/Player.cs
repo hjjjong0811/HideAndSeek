@@ -9,7 +9,7 @@ public class Player : MonoBehaviour {
         "Player_Pos_room", "Player_Pos_spot"};
 
     public static GameObject Player_obj;
-    public const float Speed_walk = 1, Speed_run = 2.5f, Hp_max = 300;
+    public const float Speed_walk = 0.8f, Speed_run = 1.5f, Hp_max = 300f;
     public const int Ani_Idle = 0, Ani_Walk = 1, Ani_Run = 2;
 
     public float Hp, Speed;

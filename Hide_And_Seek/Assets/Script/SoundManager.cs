@@ -35,7 +35,7 @@ public enum SOUND_NAME
     /// <summary>
     /// 아저씨 걷는소리
     /// </summary>
-    WALK,
+    WALK=103,
     /// <summary>
     /// 아저씨 점점 멀어지는소리
     /// </summary>
@@ -283,7 +283,8 @@ public class SoundManager : MonoBehaviour
 
         bgmSource = gameObject.AddComponent<AudioSource>();
         effectSource = gameObject.AddComponent<AudioSource>();
-        walkSource = gameObject.AddComponent<AudioSource>();
+        //walkSource = gameObject.AddComponent<AudioSource>();
+        walkSource = Enemy._enemy.GetComponent<AudioSource>();
 
 
         //변수초기화
@@ -304,14 +305,18 @@ public class SoundManager : MonoBehaviour
 
         //--------------------------------------------
 
-        walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
+        //walkSource.clip = audioClipList[(int)SOUND_NAME.WALK];
 
         bgmSource.PlayOneShot(audioClip);
+
+        playWalkSoundStart();//호빈추가
+        updateWalkSoundVolume();//호빈추가
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log("배경음악 크기 : " + volume_bgm*100f);
         //walkSound 갱신
         if (!isMute)
         {
@@ -554,14 +559,18 @@ public class SoundManager : MonoBehaviour
 
     public void playWalkSoundStart()
     {
+        walkSource.playOnAwake = false;
         walkSource.Play();
         walkSource.loop = true;
     }
 
     public void updateWalkSoundVolume()
     {
-        walkSource.volume = walkVolume * volume_bgm;
 
+        //Debug.Log("test))"+(float)walkVolume);//test
+        //walkSource.volume = ((float)walkVolume / 100f) * volume_bgm;
+        walkSource.volume = ((float)walkVolume / 100f);
+        //Debug.Log(walkSource.volume);//test
     }
 
 
