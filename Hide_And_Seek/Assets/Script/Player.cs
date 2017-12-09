@@ -307,4 +307,13 @@ public class Player : MonoBehaviour {
         Hiding_UI_Obj = Instantiate(Hiding_UI_Prefab);
         Enemy.player_start_hiding(SpotInfo);
     }
+
+    public void player_hide_exit() {
+        if (hiding) {
+            Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
+
+            hiding = false;
+            Destroy(Hiding_UI_Obj);
+        }
+    }
 }
