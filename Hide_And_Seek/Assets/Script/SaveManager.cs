@@ -231,7 +231,7 @@ public class SaveManager : MonoBehaviour
         data.FindJ = gameManager.FindJeongyeon;
         data.Check = gameManager.isOverlap;
         data.Battery = FlashLight.getFlashData();
-        data.SaveTime = DateTime.Now.ToString("yyyy/MM/dd/HH:mm");
+        data.SaveTime = DateTime.Now.ToString("yyyy/MM/dd" + "\n"+"HH:mm");
         data.MainChapter = gameManager.GetMainChapter();
         data.x = PlayerPos.x;
         data.y = PlayerPos.y;
