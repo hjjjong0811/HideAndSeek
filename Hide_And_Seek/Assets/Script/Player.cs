@@ -132,24 +132,9 @@ public class Player : MonoBehaviour {
             Animator.speed = Speed_walk;
             return;
         }
-
-<<<<<<< HEAD
-=======
-        if (hiding)
-        {
-            if (Input.GetButtonDown("Action"))
-            {
-
-                Enemy._enemy.transform.position = Enemy.ENEMY_INIT_LOC;
-                
-                hiding = false;
-                Destroy(Hiding_UI_Obj);
-            }
-            return;
-        }
+        
         set_spot_info();
         
->>>>>>> master
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (30f * Time.deltaTime);
