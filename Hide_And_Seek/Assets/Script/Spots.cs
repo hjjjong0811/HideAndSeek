@@ -13,7 +13,7 @@ public class Spots : MonoBehaviour {
 	void Update () {
 		
 	}
-
+    /*
     void OnTriggerStay2D(Collider2D c)
     {
         if (c.name=="Player")
@@ -26,5 +26,5 @@ public class Spots : MonoBehaviour {
                 //Debug.Log("플레이어 spot넘버 : "+pl.GetComponent<Player>().SpotInfo._spot);//test
             }
         }
-    }
+    }*/
 }

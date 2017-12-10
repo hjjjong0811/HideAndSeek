@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         //Debug.Log("enemy 위치(" + _enemy.transform.position.x + ")");//test
-
+        //Debug.Log("_enemy_spot" + _enemy_spot._room + "/" + _enemy_spot._spot);//test
         //일단 오류만 안나게_ 겜매니저 진행도보고 조정중
         if (ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay)
         {
@@ -84,17 +84,27 @@ public class Enemy : MonoBehaviour
 
     void set_walk_volume()
     {
-        int volume;
+        try
+        {
+            int volume;
 
-        int c = check_player_enemey_distance();
-        if (_f_normal_t_chasing && c == 100) return;
+            int c = check_player_enemey_distance();
+            if (_f_normal_t_chasing && c == 100) return;
 
-        if (c <= 1) volume = 100;
-        else if (c <= 5) volume = 100 - 20 * (c - 1);
-        else volume = 16 - c;
+            if (c <= 1) volume = 100;
+            else if (c <= 5) volume = 100 - 20 * (c - 1);
+            else volume = 16 - c;
 
+            SoundManager.getInstance().walkVolume = volume;
+            //Debug.Log(check_player_enemey_distance()+" -> " + volume);//test
+        }
+        catch
+        {
+        }
+    }
+    void set_walk_volume(int volume)
+    {
         SoundManager.getInstance().walkVolume = volume;
-        //Debug.Log(check_player_enemey_distance()+" -> " + volume);//test
     }
 
     /// <summary>
@@ -249,6 +259,7 @@ public class Enemy : MonoBehaviour
     void do_chasing(float spent_time)
     {
         //Debug.Log("chasing!"+_enemy_spot._room+" / 플레이어 : "+Player.get_player_spot()._room);//test
+        //Debug.Log("chasing!" + _enemy_spot._room + "/" + _enemy_spot._spot);
         if (check_in_same_room()) //chasing하고있고, player&enemy 같은방인 상태
         {
             _enemy_finding_time = 0f;
@@ -293,7 +304,7 @@ public class Enemy : MonoBehaviour
 
             if (!_enemy_finding)
             {
-                //1초 후, 다음포탈타기
+                //일정시간 후, 다음포탈타기
                 StartCoroutine(finding_player());
             }
         }
@@ -304,8 +315,13 @@ public class Enemy : MonoBehaviour
     {
         _enemy_finding = true;
 
+        int c = check_player_enemey_distance();
+        if (c >= 100) c = 1;
+        Debug.Log("포탈시 거리 : " + c);
         //Debug.Log("포탈시 거리 : " + check_player_enemey_distance());
-        yield return new WaitForSeconds((float)check_player_enemey_distance());
+        //yield return new WaitForSeconds((float)check_player_enemey_distance());
+        //yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds((float)c);
 
         yield return new WaitWhile(() => ScriptManager.getInstance().isPlaying || GameManager.getInstance().isScenePlay);
 
@@ -439,7 +455,7 @@ public class Enemy : MonoBehaviour
             ISpot tmp_ispot = Player.get_player_spot();
 
             //Enemy 위치 enemy_ispot에 가져오기
-            ISpot enemy_ispot = Enemy.get_enemy_spot();
+            ISpot enemy_ispot = _enemy_spot;
             if (tmp_ispot._room == enemy_ispot._room && tmp_ispot._spot == enemy_ispot._spot) return 0;
 
             //Player, Enemy 각각의 위치정보로 거리 계산하기 => "distance변수"에 저장됨
