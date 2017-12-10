@@ -47,23 +47,25 @@ public class SettingUIManager : MonoBehaviour {
     public void SoundInfoView()
     {
         SoundList = new List<string>();
-        SoundList.Add("================= Sound =================");
-        SoundList.Add("-------------------((http://FreeSound.org))-------------------");
-        SoundList.Add("Water-Swirl-Small-23 / inspertorj");
-        SoundList.Add("Glass-Smash-Bottle-C/ inspertorj");
-        SoundList.Add("Music-Box-Happy-Birthday / inspertorj");
-        SoundList.Add("RockingChair4 / stevelalonde");
-        SoundList.Add("Metal-Lid-Thumps-01 / joedeshon");
-        SoundList.Add("Gramophone / setuniman");
-        SoundList.Add("Camera-snap1 / thecheeseman");
-        SoundList.Add("horror-ambience-10 / klankbeeld");
-        SoundList.Add("blood-hitting-window / rock-savage");
-        SoundList.Add("under-the-stars-loop / shadydave");
-        SoundList.Add("=========================================");
-        SoundList.Add("--------------------((http:earbro.com))--------------------");
-        SoundList.Add("A Shy smile/ earbro");
-        SoundList.Add("Hide And Seek / earbro");
-        SoundList.Add("=========================================");
+        SoundList.Add("\n");
+        SoundList.Add("===========================");
+        SoundList.Add("((http://FreeSound.org))");
+        SoundList.Add("\"Bird Whistling, A.wav\" by InspectorJ");
+        SoundList.Add("\"Water-Swirl-Small-23\" by inspertorJ");
+        SoundList.Add("\"Glass-Smash-Bottle-C\" by inspertorJ");
+        SoundList.Add("\"Music-Box-Happy-Birthday\" by inspertorJ");
+        SoundList.Add("\"RockingChair4\" by stevelalonde");
+        SoundList.Add("\"Metal-Lid-Thumps-01\" by joedeshon");
+        SoundList.Add("\"Gramophone\" by setuniman");
+        SoundList.Add("\"Camera-snap1\" by thecheeseman");
+        SoundList.Add("\"horror-ambience-10\" by klankbeeld");
+        SoundList.Add("\"blood-hitting-window\" by rock-savage");
+        SoundList.Add("\"under-the-stars-loop\" by shadydave");
+        SoundList.Add("===========================");
+        SoundList.Add("((http:earbro.com))");
+        SoundList.Add("\"A Shy smile\" by earbro");
+        SoundList.Add("\"Hide And Seek\" by earbro");
+        SoundList.Add("===========================");
 
 
         for (int i = 0; i < SoundList.Count; i++)
