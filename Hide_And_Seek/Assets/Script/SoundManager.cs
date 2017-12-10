@@ -286,6 +286,11 @@ public class SoundManager : MonoBehaviour
         //walkSource = gameObject.AddComponent<AudioSource>();
         walkSource = Enemy._enemy.GetComponent<AudioSource>();
 
+        // 정원추가
+        if (isMuteBgm)
+            muteBgm();
+        if (isMuteEffect)
+            muteEffect();
 
         //변수초기화
         effectSource.loop = false;
@@ -316,6 +321,8 @@ public class SoundManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         //Debug.Log("배경음악 크기 : " + volume_bgm*100f);
         //walkSound 갱신
         if (!isMute)
@@ -358,7 +365,7 @@ public class SoundManager : MonoBehaviour
         
         bgmSource.Play();
         bgmSource.loop = true;
-        if (isMute) bgmSource.volume = 0f;
+        if (isMuteBgm) bgmSource.volume = 0f;
         else bgmSource.volume = volume_bgm;
     }
 
