@@ -16,7 +16,11 @@ public class GameUIManager : MonoBehaviour {
 
     public bool isOpenInven = false;
 
+    public Sprite imgItem_default;
+
     private void Start() {
+        imgItem_default = ImgItem.sprite;
+
         int chapter = GameManager.getInstance().GetMainChapter();
         ImgBattery = GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().ImgBattery;
 
@@ -97,6 +101,9 @@ public class GameUIManager : MonoBehaviour {
     //현정추가
     public void DisplayEquipItem(Sprite s) {
         ImgItem.sprite = s;
+    }
+    public void UnDisplayEquipItem() {
+        ImgItem.sprite = imgItem_default;
     }
     public void btnActionClick() {
         player.SendMessage("action");

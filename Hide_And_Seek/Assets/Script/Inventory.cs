@@ -45,7 +45,7 @@ public class Inventory {
         inventory.Remove(itemkey);
         if(curEquipItem == itemkey) {
             curEquipItem = -1;
-            GameObject.Find("Canvas_UI").GetComponent<GameUIManager>().DisplayEquipItem(null);
+            GameObject.Find("Canvas_UI").SendMessage("UnDisplayEquipItem");
         }
         return true;
     }
@@ -64,6 +64,7 @@ public class Inventory {
 
     public bool equipClear() {
         curEquipItem = -1;
+        GameObject.Find("Canvas_UI").SendMessage("UnDisplayEquipItem");
         return true;
     }
 
