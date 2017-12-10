@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class SettingUIManager : MonoBehaviour {
 
-
+    public GameObject btnMenuClose;
     public GameObject InfoPanel; // 개발자 정보 패널(음악 리소스...)
     public GameObject Sound_Prefab; // 사운드 설정
     public GameObject Save_Prefab;
@@ -72,13 +72,14 @@ public class SettingUIManager : MonoBehaviour {
     }
     public void Btn_Info() // 개발자 정보
     {
-        
+        btnMenuClose.SetActive(false);
         InfoPanel.SetActive(true);
         
     }
 
     public void Btn_InfoOff()
     {
+        btnMenuClose.SetActive(true);
         InfoPanel.SetActive(false);
     }
 
