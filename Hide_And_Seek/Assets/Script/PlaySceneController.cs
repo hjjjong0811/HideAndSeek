@@ -70,7 +70,15 @@ public class PlaySceneController : MonoBehaviour {
 
         //대사 진행
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 1, 2, 3, 4, 5 }, wake);
+        ScriptManager.getInstance().showScript(false, new int[] { 1, 2 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        //Sound bird
+        SoundManager.getInstance().playBgm(Resources.Load("Sounds/bgm_bird") as AudioClip);
+
+        //대사 진행
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] {  3, 4, 5 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
 
         //Sound bgm
@@ -980,7 +988,13 @@ public class PlaySceneController : MonoBehaviour {
         yield return new WaitForSeconds(0.001f);
 
         isWaitScript = true;
-        ScriptManager.getInstance().showScript(false, new int[] { 800, 801, 802, 803 }, wake);
+        ScriptManager.getInstance().showScript(false, new int[] { 800 }, wake);
+        yield return new WaitUntil(() => !isWaitScript);
+
+        SoundManager.getInstance().playBgm(Resources.Load("Sounds/bgm_bird") as AudioClip);
+
+        isWaitScript = true;
+        ScriptManager.getInstance().showScript(false, new int[] { 801, 802, 803 }, wake);
         yield return new WaitUntil(() => !isWaitScript);
         
         GameManager.getInstance().isScenePlay = false;
