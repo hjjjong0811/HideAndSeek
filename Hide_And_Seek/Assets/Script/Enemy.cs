@@ -42,27 +42,8 @@ public class Enemy : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        DontDestroyOnLoad(this.gameObject);//test
-
-        //SoundManager.getInstance().playWalkSoundStart();
+        DontDestroyOnLoad(this.gameObject);
         _enemy = this.gameObject;
-        
-        /*
-        _enemy_working = false;
-        _f_normal_t_chasing = false;
-        _enemy_spot = new ISpot(Room.Wine_0, 0);
-        _enemy_last_spot = _enemy_spot;
-        _enemy_state = Enemy_State.going_hall;
-        _enemy_dest = Room.None;
-        int tmp = 0;
-        _enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref tmp, new List<ISpot>());
-        _enemy_looking = false;
-        _enemy_finding = false;
-        _enemy_finding_time = 0f;
-        _enemy.transform.position = ENEMY_INIT_LOC;
-        _enemy_pos = ENEMY_INIT_LOC;
-         */
-
         init();
     }
 
@@ -106,13 +87,14 @@ public class Enemy : MonoBehaviour
         int volume;
 
         int c = check_player_enemey_distance();
+        if (_f_normal_t_chasing && c == 100) return;
 
         if (c <= 1) volume = 100;
         else if (c <= 5) volume = 100 - 20 * (c - 1);
         else volume = 16 - c;
 
         SoundManager.getInstance().walkVolume = volume;
-        //Debug.Log(check_player_enemey_distance()+" -> " + volume);
+        //Debug.Log(check_player_enemey_distance()+" -> " + volume);//test
     }
 
     /// <summary>
@@ -253,6 +235,7 @@ public class Enemy : MonoBehaviour
     static void move_next_route()
     {
         _enemy_last_spot = _enemy_spot;//이전 위치 정보 저장
+        if (_enemy_route == null) return;
         _enemy_spot = _enemy_route.get_data();
         _enemy_route = _enemy_route._next;
         Debug.Log(">>>" + "이동 : " + _enemy_spot._room + "/" + _enemy_spot._spot);//test
@@ -448,6 +431,7 @@ public class Enemy : MonoBehaviour
 
     public static int check_player_enemey_distance()
     {
+        //if (_f_normal_t_chasing && _enemy_pos == Enemy.ENEMY_INIT_LOC) return 100;
         int distance = 100;//-1은 Enemey 활동하지 않는중을 의미
         Scene_Manager tmp = Scene_Manager.getInstance();
         if (Player.Player_obj != null && Enemy._enemy_working)
@@ -542,15 +526,12 @@ public class Enemy : MonoBehaviour
     /// <param name="result"></param>
     public static void enemy_bring_data(Enemy_Data result)
     {
-
-        //Enemy._enemy = this.gameObject;
         Enemy._enemy_working = result._enemy_working;
         Enemy._f_normal_t_chasing = false;
         Enemy._enemy_spot = result._enemy_spot;
         Enemy._enemy_last_spot = Enemy._enemy_spot;
         Enemy._enemy_state = result._enemy_state;
         Enemy._enemy_dest = result._enemy_dest;
-        //Enemy._enemy_route = result._enemy_route;
         Enemy._enemy_looking = false;
         Enemy._enemy_finding = false;
         Enemy._enemy_finding_time = 0f;
@@ -559,7 +540,8 @@ public class Enemy : MonoBehaviour
         Enemy._enemy_route = null;
         if (result._enemy_route_length == 0)
         {
-            return;
+            int tmp = 0;
+            Enemy._enemy_route = Scene_Manager.getInstance().find_shortest(_enemy_spot, new ISpot(Room.Hall_1, 1), ref tmp, new List<ISpot>());
         }
         else if (result._enemy_route_length == 1)
         {
@@ -591,7 +573,6 @@ public class Enemy : MonoBehaviour
         result._enemy_spot = Enemy._enemy_spot;
         result._enemy_state = Enemy._enemy_state;
         result._enemy_dest = Enemy._enemy_dest;
-        //result._enemy_route = Enemy._enemy_route;
         while (_enemy_route != null)
         {
             result._enemy_route_array[result._enemy_route_length++] = _enemy_route.get_data();
@@ -601,6 +582,8 @@ public class Enemy : MonoBehaviour
     }
     private void game_over()
     {
+        end_enemy_working();
+
         if (GameManager.getInstance().GetMainChapter() >= 11)
             GameManager.getInstance().scenePlay_End(PlayScene.numScene.suspectKim);
         else
@@ -614,7 +597,6 @@ public class Enemy_Data
     public ISpot _enemy_spot;//아저씨 위치
     public Enemy_State _enemy_state;//현재 내부상태
     public Room _enemy_dest;
-    //public Route _enemy_route;
     public int _enemy_route_length = 0;//루트 길이(_enemy_route_array 배열 길이)
     public ISpot[] _enemy_route_array = new ISpot[100];//루트 순서대로 ISpot데이터만 배열로 저장
 }
