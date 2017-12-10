@@ -142,7 +142,8 @@ public class Player : MonoBehaviour {
             }
             return;
         }
-
+        set_spot_info();
+        
         Animator.SetInteger("State", Ani_Idle);
         Speed = Speed_walk;
         Hp = (Hp >= Hp_max) ? Hp_max : Hp + (30f * Time.deltaTime);
@@ -185,6 +186,23 @@ public class Player : MonoBehaviour {
         if (GameObject.Find("Player") == null) return;
         hits_up = Physics2D.RaycastAll(this.transform.position, Vector3.up);
         hits_down = Physics2D.RaycastAll(this.transform.position, Vector3.down);
+    }
+
+    void set_spot_info()
+    {
+        if (GameObject.Find("Player") == null) return;
+        GameObject[] spots = GameObject.FindGameObjectsWithTag("Spot");
+        float nearest_distance = 10000f;
+        GameObject nearest_spot = null;
+        for (int i = 0; i < spots.Length; i++)
+        {
+            if (Vector3.Distance(this.transform.position, spots[i].transform.position) <= nearest_distance)
+            {
+                nearest_distance = Vector3.Distance(this.transform.position, spots[i].transform.position);
+                nearest_spot = spots[i];
+            }
+        }
+        SpotInfo = new ISpot(Scene_Manager.getInstance().get_room_info(SceneManager.GetActiveScene().name), int.Parse(nearest_spot.name));
     }
     
     public static Object_State check_up_down(string s) {
